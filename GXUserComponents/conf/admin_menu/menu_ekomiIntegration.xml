@@ -1,0 +1,10 @@
+
+<?xml version="1.0"?>
+<!-- {load_language_text section="admin_menu"} -->
+<admin_menu>
+	{if 'MODULE_CENTER_EKOMIINTEGRATION_INSTALLED'|gm_get_conf == '1'}
+	<menugroup id="BOX_HEADING_MODULES">
+		<menuitem sort="30" link="admin.php" link_param="do=EkomiIntegrationModuleCenterModule" title="{$txt.ekomiIntegration_module}" />
+	</menugroup>
+	{/if}
+</admin_menu>

@@ -1,0 +1,79 @@
+{load_language_text section="module_center"}
+{load_language_text section="buttons" name="ekomiIntegration"}
+
+<div class="gx-container breakpoint-small">
+
+    {if $messageType =='error'}
+    <div class="message_stack_container breakpoint-large">
+        <div class="alert alert-danger" >
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {$message}
+        </div>
+    </div>
+    {else if $messageType =='success'}
+    <div class="message_stack_container breakpoint-large">
+        <div class="alert alert-success" >
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            {$message}
+        </div>
+    </div>
+    {/if}
+    <form name="ekomi_form"  action="{$actionLink}" method="post">
+        <table>
+            <tr>
+                <td>
+                    <span style="display:inline-block; width: 130px;">{$lang->get_text('ekomiIntegration_enabled')}</span>
+                    <select name="enable" required="" style="display:inline-block; width: 50%;">
+                        <option value="0" {(gm_get_conf('EKOMIINTEGRATION_ENABLE')==0)? 'selected':''}>{$lang->get_text('ekomiIntegration_no')}</option>
+                        <option value="1" {(gm_get_conf('EKOMIINTEGRATION_ENABLE')==1)? 'selected':''}>{$lang->get_text('ekomiIntegration_yes')}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="display:inline-block; width: 130px;">{$lang->get_text('ekomiIntegration_product_base_reviews')}</span>
+                    <select name="productBase" required="" style="display:inline-block; width: 50%;">
+                        <option value="0" {(gm_get_conf('EKOMIINTEGRATION_PRODUCT_BASE')==0)? 'selected':''}>{$lang->get_text('ekomiIntegration_no')}</option>
+                        <option value="1" {(gm_get_conf('EKOMIINTEGRATION_PRODUCT_BASE')==1)? 'selected':''}>{$lang->get_text('ekomiIntegration_yes')}</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="display:inline-block; width: 130px;">{$lang->get_text('ekomiIntegration_shop_id')}</span>
+                    <input type="text" name="shopId" required="" value="{htmlspecialchars_wrapper(gm_get_conf('EKOMIINTEGRATION_SHOPID'))}" size="30" style="display:inline-block; width: 50%;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="display:inline-block; width: 130px;">{$lang->get_text('ekomiIntegration_shop_password')}</span>
+                    <input type="text" name="shopPassword" required="" value="{htmlspecialchars_wrapper(gm_get_conf('EKOMIINTEGRATION_SHOPPWD'))}" size="30" style="display:inline-block; width: 50%;">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="display:inline-block; width: 130px;">{$lang->get_text('ekomiIntegration_order_status')}</span>
+                    <select name="orderStatuses[]" multiple required="" style="display:inline-block; width: 50%; height: auto;min-height: 150px;">
+                        {foreach from=$orderStatuses item=status}
+                        <option value="{$status['id']}" {(in_array($status['id'],explode(',', gm_get_conf('EKOMIINTEGRATION_ORDER_STATUSES'))))? "selected":""} >{$status['text']}</option>
+                        {/foreach}
+
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span style="display:inline-block; width: 130px;">{$lang->get_text('ekomiIntegration_review_mod')}</span>
+                    <select name="reviewMod" required="" style="display:inline-block; width: 50%;">
+                        <option value="email" {(gm_get_conf('EKOMIINTEGRATION_REVIEW_MOD')=='email')? 'selected':''}>{$lang->get_text('ekomiIntegration_email')}</option>
+                        <option value="sms" {(gm_get_conf('EKOMIINTEGRATION_REVIEW_MOD')=='sms')? 'selected':''}>{$lang->get_text('ekomiIntegration_sms')}</option>
+                        <option value="fallback" {(gm_get_conf('EKOMIINTEGRATION_REVIEW_MOD')=='fallback')? 'selected':''}>{$lang->get_text('ekomiIntegration_fallback')}</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        {$hiddenToken}
+        <input type="submit" name="go" style="display:inline-block" class="btn btn-primary" onclick="this.blur();" value="{$lang->get_text('ekomiIntegration_save')}">
+    </form>
+
+</div>
