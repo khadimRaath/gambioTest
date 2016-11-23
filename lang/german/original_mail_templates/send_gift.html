@@ -1,0 +1,49 @@
+<meta charset="UTF-8" />
+<div style="height: 100%; margin: 0 !important; padding: 0 !important; max-width: 9000px !important; background-color: #e5e5e5;">
+	<div style="margin-left: auto; margin-right: auto; width: 720px; padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #999999; text-align: right;">&nbsp;</div>
+
+	<div style="margin-left: auto; margin-right: auto; width: 630px; padding: 25px 45px 25px; background-color: white; margin-top: 15px; margin-bottom: 15px; display: block;">
+		<table align="center" border="0" cellpadding="4" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td>
+						{if $gm_logo_mail}
+						<div style="overflow: hidden; margin-bottom: 25px; display: block; float: right;">{$gm_logo_mail}</div>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$MESSAGE}</span></span>
+						</p>
+
+						<p>
+							<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Gutscheinwert: {$AMMOUNT}</span></span>
+						</p>
+
+						<p>
+							<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Um Ihren Gutschein zu verbuchen, klicken Sie auf den unten stehenden Link. Bitte notieren Sie sich zur Sicherheit Ihren pers&ouml;nlichen Gutschein-Code. Ihr Gutschein-Code lautet: {$GIFT_ID}</span></span>
+						</p>
+
+						<p>
+							<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;"><a href="{$GIFT_LINK}">{$GIFT_LINK}</a></span></span>
+						</p>
+
+						<p>
+							<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Falls es wider Erwarten zu Problemen beim Verbuchen kommen sollte, besuchen Sie unsere Webseite <a href="{$WEBSITE}">{$WEBSITE}</a> und geben den Gutschein-Code bitte manuell ein.</span></span>
+						</p>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		&nbsp;
+	</div>
+
+	<div style="padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #444444; font-family: arial; text-align: center;">
+		<br /><br />
+		<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$EMAIL_SIGNATURE_HTML}</span></span>
+		<br /><br />
+	</div>
+</div>

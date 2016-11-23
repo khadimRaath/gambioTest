@@ -1,0 +1,16 @@
+{if $images|@count > 0}
+	<div class="product-info-image {if 'SHOW_ZOOM'|gm_get_conf === 'true'}has-zoom{/if}" {if 'SHOW_ZOOM'|gm_get_conf === 'true'}data-gambio-widget="image_gallery magnifier" data-magnifier-target=".magnifier-target"{else}data-gambio-widget="image_gallery"{/if}>
+		<div class="product-info-image-inside">
+			{include file="get_usermod:{$tpl_path}snippets/product_info/images/swiper.html" swiperId="product_image_swiper" startWidget="true" swiperImages=$images itemProp=$RICH_SNIPPET_ARRAY.product_itemprop_image swiperControls="#product_thumbnail_swiper, #product_thumbnail_swiper_mobile" swiperOptions=", \"effect\": \"fade\", \"autoplay\": null"}
+		</div>
+	</div>
+{/if}
+
+{if $thumbnails|@count > 1}
+	<div class="product-info-thumbnails hidden-xs hidden-sm swiper-vertical">
+		{include file="get_usermod:{$tpl_path}snippets/product_info/images/swiper.html" swiperId="product_thumbnail_swiper" startWidget="true" swiperImages=$thumbnails itemProp=$RICH_SNIPPET_ARRAY.product_itemprop_image swiperTarget="#product_image_swiper" swiperOptions=", \"spaceBetween\": 10, \"loop\": false, \"direction\": \"vertical\", \"slidesPerView\": 4, \"autoplay\": null" additionalData="data-swiper-breakpoints=\"[]\""}
+	</div>
+	<div class="product-info-thumbnails-mobile col-xs-12 visible-xs-block visible-sm-block">
+		{include file="get_usermod:{$tpl_path}snippets/product_info/images/swiper.html" swiperId="product_thumbnail_swiper_mobile" startWidget="true" swiperImages=$thumbnails itemProp=$RICH_SNIPPET_ARRAY.product_itemprop_image swiperTarget="#product_image_swiper" swiperOptions=", \"spaceBetween\": 10, \"loop\": false, \"direction\": \"horizontal\", \"slidesPerView\": 4, \"autoplay\": null" additionalData="data-swiper-breakpoints=\"[]\""}
+	</div>
+{/if}

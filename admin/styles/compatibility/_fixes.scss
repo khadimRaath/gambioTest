@@ -1,0 +1,48 @@
+// ----------------------------------------------------------------------------
+// GX-Admin Stylesheet - Fixes
+// 
+// This script contains UI fixes that aim to normalize the styling between different 
+// browsers. Please consider adding a comment whenever you add a new fix to this file 
+// describing the issue that is fixed.
+// 
+// All the styling included in this file will be applied to the children of
+// an element containing the ".gx-container" class.
+// 
+// @since v2.3.1.0
+// ----------------------------------------------------------------------------
+
+.gx-container {
+  // 
+  // [FIREFOX]
+  // 
+  // Remove button padding in Firefox so that buttons have the 
+  // same size with other browsers.
+  // 
+  button::-moz-focus-inner {
+    border:  0;
+    padding: 0;
+  }
+
+  // 
+  // [INTERNET EXPLORER 9]
+  // 
+  // Internet Explorer does not display the form elements that are inside a 
+  // .control-group div. The following fix will set the correct input/select
+  // width for those elements. 
+  // 
+  .control-group {
+    input[type=file],
+    select {
+      display: block \9;
+    }
+  }
+
+  // 
+  // [INTERNET EXPLORER]
+  // 
+  // Remove border for images
+  // 
+  img {
+    border: 0;
+  }
+}

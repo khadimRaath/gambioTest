@@ -1,0 +1,46 @@
+{load_language_text section="properties" name="properties"}
+<div class="lightbox_properties_values_delete_content">
+	<div class="row">{$properties.want_to_delete_property_value}</div>
+	{foreach item=properties_values_name from=$content_data.properties_values.values_names}	
+	<div class="row">
+		<div class="span_1_4">
+			<label>{$properties.name} ({$properties_values_name.code}):</label>
+		</div>
+		<div class="span_3_4">
+			<input type="text" value="{$properties_values_name.values_name|escape}" disabled="disabled" />
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	{/foreach}
+	<div class="row">
+		<div class="span_1_4">
+			<label>{$properties.sort_order}:</label>
+		</div>
+		<div class="span_3_4">
+			<input type="text" value="{$content_data.properties_values.sort_order}" disabled="disabled" />
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	<div class="row">
+		<div class="span_1_4">
+			<label>{$properties.products_model}:</label>
+		</div>
+		<div class="span_3_4">
+			<input type="text" value="{$content_data.properties_values.value_model|escape}" disabled="disabled" />
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	<div class="row">
+		<div class="span_1_4">
+			<label>{$properties.price}:</label>
+		</div>
+		<div class="span_3_4">
+			<input type="text" value="{$content_data.properties_values.value_price_formatted}" disabled="disabled" />
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	{if $content_data.properties_values.properties_values_in_combis_count > 0}
+	<div class="row attention">{$properties.attention_properties_values_in_combis_count|replace:"%count%":$content_data.properties_values.properties_values_in_combis_count}</div>
+	{/if}
+	<div class="clear_both"> <!-- &nbsp; --> </div>
+</div>

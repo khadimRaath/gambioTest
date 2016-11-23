@@ -1,0 +1,11 @@
+{load_language_text section="payone" name="p1txt"}
+<h1>{$p1txt.action_form_heading}</h1>
+
+<form action="{$content_data.FORM_ACTION}" method="POST" class="autosubmit">
+	<p>{$p1txt.note_autosubmit}</p>
+	{foreach from=$content_data.PARAMS item=value key=name}
+		<input type="hidden" name="{$name}" value="{$value}">
+	{/foreach}
+	<input type="submit" value="{$p1txt.send_autosubmit}">
+</form>
+

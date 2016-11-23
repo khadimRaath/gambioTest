@@ -1,0 +1,25 @@
+{load_language_text section="labels" name="label"}
+
+{if $content_data.popupNotification->isActive()}
+<div class="mfp-bg iframe_layer mfp-ready popup-notification"></div>
+<div style="overflow-x: hidden; overflow-y: auto;" 
+     tabindex="-1" 
+     class="mfp-wrap mfp-close-btn-in mfp-auto-cursor iframe_layer mfp-ready popup-notification"
+     data-gambio-widget="notifications">
+	<div class="mfp-container mfp-inline-holder">
+		<div class="mfp-content">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<span class="col-xs-11 title">{$label.hint}:</span>
+						<i class="fa fa-close col-xs-1 hide-popup-notification"></i>
+					</div>
+					<div class="modal-body">
+						{$content_data.popupNotification->getContentByLanguageId($languages_id)}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{/if}

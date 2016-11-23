@@ -1,0 +1,78 @@
+{load_language_text section="product_listing"}
+{load_language_text section="product_info" name="info"}
+{load_language_text section="buttons" name="button"}
+
+{foreach name=aussen item=module_data from=$module_content}
+
+	{if $module_data.PRODUCTS_META_DESCRIPTION && $module_data.PRODUCTS_META_DESCRIPTION != ''}
+		{assign var="p_meta" value=$module_data.PRODUCTS_META_DESCRIPTION|strip_tags|truncate:80:"..."|replace:'"':'&quot;'}
+	{else}
+		{assign var="p_meta" value=$module_data.PRODUCTS_NAME|strip_tags}
+	{/if}
+
+	{if $module_data.PRODUCTS_SHORT_DESCRIPTION && $module_data.PRODUCTS_SHORT_DESCRIPTION != ''}
+		{assign var="p_short_desc" value=$module_data.PRODUCTS_SHORT_DESCRIPTION}
+	{else}
+		{assign var="p_short_desc" value=""}
+	{/if}
+
+	{product_images product_id=$module_data.PRODUCTS_ID out=imagetest p_name=$module_data.PRODUCTS_NAME p_image=$module_data.PRODUCTS_IMAGE}
+
+	{product_ribbons
+	showManufacturerImages=$showManufacturerImages
+	showProductRibbons=$showProductRibbons
+	product_id=$module_data.PRODUCTS_ID
+	out=ribbons
+	}
+
+	{include file="get_usermod:{$tpl_path}snippets/product_listing/product.html"
+		is_swiper="false"
+		showRating=$showRating
+		p_image={($module_data.PRODUCTS_IMAGE && $module_data.PRODUCTS_IMAGE != '') ? $module_data.PRODUCTS_IMAGE : "" }
+		p_url=$module_data.PRODUCTS_LINK
+		p_img_title=$module_data.PRODUCTS_IMAGE_ALT|default:$module_data.PRODUCTS_NAME
+		p_img_alt=$module_data.PRODUCTS_IMAGE_ALT|default:$module_data.PRODUCTS_NAME
+		p_meta=$p_meta
+		p_name_full=$module_data.PRODUCTS_NAME
+		p_headline=$module_data.PRODUCTS_NAME
+		p_short_desc=$p_short_desc
+		p_price=$module_data.PRODUCTS_PRICE
+		p_vpe={($module_data.PRODUCTS_VPE && $module_data.PRODUCTS_VPE != '') ? $module_data.PRODUCTS_VPE : "" }
+		
+		p_imgs=$imagetest
+		
+		p_fsk18=$module_data.PRODUCTS_FSK18
+		tpl_path=($tpl_path && $tpl_path != "") ? $tpl_path : ""
+		p_attributes=$module_data.GM_ATTRIBUTES
+		p_graduated_prices=($module_data.GM_GRADUATED_PRICES && $module_data.GM_GRADUATED_PRICES != "") ? $module_data.GM_GRADUATED_PRICES : ""
+		p_shipping_name=$module_data.PRODUCTS_SHIPPING_NAME
+		p_qty=$module_data.PRODUCTS_QUANTITY
+		p_weight=($module_data.SHOW_PRODUCTS_WEIGHT && $module_data.PRODUCTS_WEIGHT && $module_data.PRODUCTS_WEIGHT != "") ? $module_data.PRODUCTS_WEIGHT : ""
+		p_shipping_img=$module_data.PRODUCTS_SHIPPING_IMAGE
+		p_shipping_img_alt=$module_data.PRODUCTS_SHIPPING_NAME
+		p_shipping_img_title=$module_data.PRODUCTS_SHIPPING_NAME
+		p_shipping_name=$module_data.PRODUCTS_SHIPPING_NAME
+		p_shipping_link_active=$module_data.PRODUCTS_SHIPPING_LINK_ACTIVE
+		co_id=$smarty.const.SHIPPING_INFOS
+		show_qty_info=$GM_SHOW_QTY_INFO
+		p_stock=$module_data.GM_PRODUCTS_STOCK
+		p_unit=$module_data.UNIT
+		p_by_now=($module_data.GM_PRODUCTS_BUTTON_BUY_NOW && $module_data.GM_PRODUCTS_BUTTON_BUY_NOW != "") ? $module_data.GM_PRODUCTS_BUTTON_BUY_NOW : ""
+		p_qty_gm=$module_data.GM_PRODUCTS_QTY
+		p_deactivate_btn=$DEACTIVATE_BUTTON
+		p_id=$module_data.PRODUCTS_ID
+		qty_value=$module_data.QTY_DATA.VALUE
+		input_hidden=$HIDDEN_QTY_NAME
+		show_qty=$GM_SHOW_QTY
+		has_attributes=$module_data.GM_HAS_ATTRIBUTES
+		qty_id=$module_data.QTY_DATA.ID
+		qty_type=$module_data.QTY_DATA.TYPE
+		qty_name=$module_data.QTY_DATA.NAME
+		qty_cls=$module_data.QTY_DATA.CLASS
+		
+		data_index="productlist_"|cat:$module_data.PRODUCTS_ID
+		hover="true"
+		img_start_widget="true"
+	}
+
+{/foreach}

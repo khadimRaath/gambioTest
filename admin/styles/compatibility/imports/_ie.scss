@@ -1,0 +1,51 @@
+// ----------------------------------------------------------------------------
+// INTERNET EXPLORER SPECIFIC FIXES
+// ----------------------------------------------------------------------------
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  // Fixes jQuery UI dialog drag problem.
+  html, body {
+    position: relative;
+  }
+
+  // Dashboard news entries are not displayed correctly. 
+  .load_url .article .header {
+    width: 100%;
+  }
+
+  // Fix size problems with various pages (Teaser Slider, Quantity Units, etc)
+  .dataTableRow,
+  .dataTableRowSelected,
+  .dataTableHeadingRow {
+    @include box-sizing(border-box !important);
+  }
+
+  // Campaings Report page select width fix.
+  .sales-statistics-menu-wrapper {
+    .date-select {
+      width: 55px !important;
+    }
+  }
+
+  // Force the following rule
+  html body.gx-compatibility select {
+    background-image: none;
+    padding-right:    5px !important;
+  }
+
+  .statistic-widget {
+    margin-right: 18px !important;
+
+    &:last-child {
+      margin-right: 0 !important;
+    }
+  }
+
+  .gx-compatibility .alert button.close {
+    min-width: 20px;
+  }
+  
+  html body.gx-compatibility .paginator {
+    overflow: visible;
+  }
+}

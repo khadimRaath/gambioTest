@@ -1,0 +1,123 @@
+
+/* Bootstrap Variables
+   ========================================================================== 
+
+  Use this section to override Bootstrap defaults. Find all possible
+  variables in styles/bootstrap/bootstrap/_variables.scss
+
+  */
+
+
+// Breakpoints
+
+$screen-lg:                                   1200px !default;
+$screen-sm:                                   768px !default;
+$container-large-desktop:                     ($screen-lg - 30) !default;
+$grid-float-breakpoint:                       $screen-sm !default;
+
+
+// Colors
+
+$brand-primary:                               #337ab7 !default;
+$body-bg:                                     #fff !default;
+$text-color:                                  #333 !default;
+
+
+// Links
+
+$link-color:                                  $brand-primary !default;
+$link-hover-color:                            darken($link-color, 15%) !default;
+$link-hover-decoration:                       underline !default;
+
+
+// Buttons
+
+$btn-default-color:                           #666 !default;
+$btn-default-bg:                              #f3f3f3 !default;
+
+
+// Fonts
+
+$icon-font-path:                              "assets/fonts/bootstrap/" !default;
+$font-family-sans-serif:                      "Roboto", Arial, sans-serif !default;
+$font-size-base:                              13px !default;
+
+
+// Headings
+
+$font-size-h1:                                18px !default;
+$font-size-h2:                                18px !default;
+$font-size-h3:                                18px !default;
+$font-size-h4:                                16px !default;
+$font-size-h5:                                13px !default;
+$font-size-h6:                                13px !default; 
+$headings-color:                              $text-color !default;
+$headings-font-weight:                        400 !default;
+
+
+// Rounded Borders
+
+$border-radius-base:                          2px !default;
+$border-radius-large:                         6px !default;
+$border-radius-small:                         3px !default;
+
+
+// Navbar
+
+$navbar-height:                               40px !default;
+$navbar-border-radius:                        $border-radius-base !default;
+$navbar-collapse-max-height:                  340px !default;
+$navbar-margin-bottom:                        $line-height-computed !default;
+$navbar-padding-horizontal:                   floor(($grid-gutter-width / 2)) !default;
+$navbar-padding-vertical:                     12px !default;
+
+$navbar-default-color:                        #fff !default;
+$navbar-default-bg:                           #393939 !default;
+$navbar-default-border:                       darken($navbar-default-bg, 6.5%) !default;
+$navbar-default-link-color:                   #fff !default;
+$navbar-default-link-hover-color:             #fff !default;
+$navbar-default-link-hover-bg:                darken($navbar-default-bg, 6.5%) !default;
+$navbar-default-link-active-color:            #fff !default;
+$navbar-default-link-active-bg:               darken($navbar-default-bg, 6.5%) !default;
+$navbar-default-link-disabled-color:          #ccc !default;
+$navbar-default-link-disabled-bg:             transparent !default;
+
+
+// Paddings
+
+$padding-base-vertical:                       9px !default;
+$padding-base-horizontal:                     12px !default;
+
+$padding-large-vertical:                      10px !default;
+$padding-large-horizontal:                    16px !default;
+
+$padding-small-vertical:                      5px !default;
+$padding-small-horizontal:                    10px !default;
+
+$padding-xs-vertical:                         1px !default;
+$padding-xs-horizontal:                       5px !default;
+
+
+// Forms
+
+$input-color-placeholder:                     #999 !default;
+
+
+// Brand colors
+
+$alert-success-bg:                            #00990b !default;
+$alert-success-text:                          #fff !default;
+$alert-success-border:                        darken($alert-success-bg, 5%) !default;
+
+$alert-info-bg:                               $brand-primary !default;
+$alert-info-text:                             #fff !default;
+$alert-info-border:                           darken($alert-info-bg, 5%) !default;
+
+$alert-warning-bg:                            #ffae00 !default;
+$alert-warning-text:                          #fff !default;
+$alert-warning-border:                        darken($alert-warning-bg, 5%) !default;
+
+$alert-danger-bg:                             #c20400 !default;
+$alert-danger-text:                           #fff !default;
+$alert-danger-border:                         darken($alert-danger-bg, 5%) !default;
+

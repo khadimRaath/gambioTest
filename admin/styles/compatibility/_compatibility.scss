@@ -1,0 +1,1058 @@
+// ----------------------------------------------------------------------------
+// GX-Admin Stylesheet - Compatibility
+//
+// This stylesheet contains CSS that will be used to convert the old admin pages into
+// the new theme by overriding the existing CSS rules.
+//
+// All the styling included in this file will be applied to the children of an
+// element containing the "gx-compatibility" class. This class is automatically set
+// to the body of each old page via the "init_class_fixes.js" module.
+//
+// IMPORTANT: ADD ONLY GENERAL CSS RULES IN THIS FILES IN ORDER TO KEEP
+// IT SMALL. THERE ARE OTHER SUB-FILES THAT CONTAIN SPECIFIC STYLING.
+//
+// @since v2.5.1.0
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// GX-COMPATIBILITY
+// ----------------------------------------------------------------------------
+
+.gx-compatibility {
+	
+	// Import external files.
+	@import "imports/admin_info_box";
+	@import "imports/clear_cache";
+	@import "imports/content_manager";
+	@import "imports/compatibility_fixes";
+	@import "imports/configuration";
+	@import "imports/configuration_box";
+	@import "imports/customers";
+	@import "imports/csv";
+	@import "imports/dashboard";
+	@import "imports/emails";
+	@import "imports/gx_customizer";
+	@import "imports/helpers";
+	@import "imports/html_components";
+	@import "imports/miscellaneous";
+	@import "imports/message_stack";
+	@import "imports/modules";
+	@import "imports/newsletter";
+	@import "imports/orders";
+	@import "imports/product_attributes";
+	@import "imports/products_categories";
+	@import "imports/properties";
+	@import "imports/security";
+	@import "imports/sales_statistics";
+	@import "imports/shop_key";
+	@import "imports/shop_offline";
+	@import "imports/show_logs";
+	@import "imports/specials";
+	@import "imports/whos_online";
+	@import "imports/withdrawals";
+	
+	@import "../../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+	
+	// Move main content down for the fixed header.
+	padding-top: $header-height !important;
+	
+	// --------------------------------------------------------------------------
+	// MAIN TOP HEADER
+	// --------------------------------------------------------------------------
+	
+	.main-top-header {
+		width:      100vw !important;
+		height:     $header-height !important;
+		background: $gambio-blue !important;
+		margin:     0 !important;
+		position:   fixed;
+		top:        0;
+		z-index:    2;
+		box-sizing: border-box;
+		
+		div.logo-container {
+			display: inline-block;
+			height:  100%;
+			width:   200px;
+			float:   left;
+			
+			a.logo {
+				overflow: auto;
+				display:  inline-block;
+				@include transition(opacity 0.3s linear);
+			}
+			
+			.app-logo {
+				width:  32px;
+				margin: 7px 12px;
+			}
+			
+			.app-title {
+				color:  $component-color;
+				@include font(16px);
+				margin: 13px 0;
+			}
+		}
+		
+		div.search-container {
+			display:    inline-block;
+			height:     100%;
+			float:      left;
+			width:      calc(100% - 650px);
+		}
+		
+		div.action-container {
+			display:       inline-block;
+			height:        100%;
+			float:         left;
+			padding-right: 12px;
+			width:         450px;
+			
+			.header-actions {
+				list-style: none;
+				margin:     0 12px 0 0;
+				padding:    0;
+				
+				li {
+					float:          left;
+					display:        inline-block;
+					width:          46px;
+					height:         46px;
+					text-align:     center;
+					vertical-align: middle;
+					position:       relative;
+					@include transition(0.3s background);
+					
+					i {
+						font-size:   15px;
+						color:       $component-color;
+						line-height: 46px;
+						width:       46px;
+						height:      46px;
+						@include transition(all 0.1s ease);
+						
+						&:hover {
+							font-size: 1.6em;
+						}
+					}
+					
+					&:hover {
+						background: $header-action-hover-color;
+					}
+				}
+				
+				.notification-count {
+					position:       absolute;
+					top:            7px;
+					left:           26px;
+					
+					display:        inline-block;
+					padding:        1px 4px;
+					border-radius:  100%;
+					
+					background:     $lila;
+					color:          $component-color;
+					font-size:      9px;
+					font-weight:    bold;
+					
+					pointer-events: none;
+					
+					&.hidden {
+						display: none;
+					}
+				}
+			}
+		}
+		
+		.offline-notice {
+			display:          inline-block;
+			margin-top:       13px;
+			margin-right:     12px;
+			padding:          3px 5px;
+			color:            $text-color-inverse;
+			font-size:        10px;
+			background-color: $lila;
+			@include border-radius(2px);
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// MAIN LEFT MENU
+	// --------------------------------------------------------------------------
+	
+	.main-left-menu {
+		width: 199px; // Initial Left Menu Width
+		@include font(12px); // Force font to left menu.
+		
+		&:not(.collapsed) {
+			width: 199px !important;
+		}
+		
+		.leftmenu_head {
+			
+			padding:             11px 12px 12px 12px;
+			@include box-sizing(border-box);
+			width:               100%;
+			height:              41px;
+			
+			font-weight:         300;
+			line-height:         1.5;
+			font-size:           12px;
+			color:               $text-color-light;
+			text-transform:      none;
+			white-space:         nowrap;
+			
+			border-bottom:       1px solid $border-color-light;
+			background-size:     20px 20px;
+			background-position: 10px;
+			
+			cursor:              pointer;
+			
+			&.active {
+				&:not(.current-menu-head) {
+					background-color: $default-color;
+				}
+				
+				&.current-menu-head {
+					background-color: $default-color;
+				}
+			}
+			&:hover,
+			&.current {
+				background-color: adjust-lightness($background-color, -8);
+				
+				&.hover {
+					background-color: $default-color;
+				}
+			}
+			
+			.icon {
+				display: inline-block;
+				vertical-align: middle;
+				font-size:      14px;
+				position: relative;
+				left: 3px;
+				
+				i {
+					text-align:  center;
+					line-height: 20px;
+					margin-top: -1px; // Matches the new layout.
+				}
+				
+			}
+			
+			span {
+				padding-left: 10px;
+			}
+		}
+		
+		.leftmenu_collapse {
+			display: none;
+		}
+		
+		.leftmenu_box {
+			z-index:          999;
+			display:          none;
+			min-width:        200px;
+			padding:          0;
+			margin-top:       -42px;
+			position:         absolute;
+			left:             170px;
+			background-color: $default-color;
+			
+			&.floating {
+				border: 1px solid $border-color-light;
+				
+				&::before {
+					content:    '';
+					width:      1px;
+					height:     42px;
+					position:   absolute;
+					left:       -1px;
+					top:        -1;
+					background: $default-color;
+				}
+				
+			}
+			
+			li {
+				white-space:      nowrap;
+				background-image: none;
+				padding:          0;
+				margin:           0;
+				
+				a {
+					color:           $text-color-light;
+					line-height:     1.7;
+					padding:         5px 20px;
+					display:         block;
+					text-decoration: none;
+					
+					&.ui-draggable-dragging {
+						cursor:  move;
+						cursor:  url(html/assets/images/legacy/closedhand.cur), move; // Fallback for IE
+						cursor:  -webkit-grabbing;
+						cursor:  -moz-grabbing;
+						cursor:  grabbing;
+						z-index: 2000;
+					}
+					
+					&:hover {
+						color: $link-color;
+					}
+					
+					&:focus {
+						outline: none;
+					}
+				}
+				
+				&:first-child a {
+					border-left: none;
+				}
+				
+				i {
+					margin-right: 5px;
+				}
+			}
+			
+			.menuitem-group {
+				float:     left;
+				min-width: 180px;
+				
+				// When all items are expanded
+				&.all-expanded {
+					float:   none;
+					display: inline;
+				}
+				
+				&:first-child {
+					li {
+						a {
+							border-left: 1px solid $border-color-light;
+						}
+						
+						&:first-child a {
+							border-left: none;
+						}
+					}
+				}
+				
+				li {
+					a {
+						border-left: none;
+					}
+				}
+				
+			}
+			
+		}
+		
+		.leftmenu_box.current {
+			z-index:          999;
+			min-width:        200px;
+			padding:          0;
+			margin-top:       0;
+			position:         static;
+			display:          block !important; // must be always visible
+			border-bottom:    1px solid $border-color-light;
+			background-color: $default-color;
+			
+			li {
+				height: 28px;
+				
+				&.current {
+					background-image: none;
+					padding:          0;
+					margin:           0;
+					
+					a {
+						color:       $link-color;
+						line-height: 1.7;
+						display:     block;
+					}
+					
+					&:first-child a {
+						border-left: none;
+					}
+					
+					i {
+						margin-right: 5px;
+					}
+				}
+				
+				&:last-child {
+					margin-bottom: 10px;
+				}
+			}
+		}
+		
+		&.collapsed {
+			.leftmenu_head {
+				padding: 11px;
+				text-align: center;
+				
+				.icon {
+					position: static;
+					width:    auto;
+					height:   auto;
+					display:  inline-block;
+					
+					i {
+						position: relative;
+						left:     -1px;
+					}
+				}
+			}
+			
+			.leftmenu_box.current {
+				display: none !important;
+			}
+		}
+		
+		// important for dragging fav-box
+		.leftmenu_box li {
+			position: relative;
+		}
+		
+		// Left menu "Favorites" drag-n-drop frame.
+		.gm_fav_add {
+			color:  $gambio-blue;
+			width:  101px;
+			height: 101px;
+		}
+		
+		.gm_fav_remove {
+			color:  $danger-color;
+			width:  101px;
+			height: 101px;
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// MENU TOGGLE BUTTON
+	// --------------------------------------------------------------------------
+	
+	.collapse-left-menu {
+		font-size: 12px;
+		cursor:    pointer;
+		
+		&:hover {
+			color: $link-color;
+		}
+		
+		#menu-button-indicator {
+			position: relative;
+			left: 0;
+			display: inline-block;
+			width:   6px;
+			margin-right: 1px;
+			
+			&.fa-caret-down {
+				left: -1px;
+			}
+		}
+		
+		.menu-toggle-button {
+			color: #777777;
+			
+			&:hover {
+				.fa {
+					color: $link-color;
+				}
+			}
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// MAIN PAGE CONTENT
+	// --------------------------------------------------------------------------
+	
+	.main-page-content {
+		width:      100% !important;
+		padding:    0 0 $header-height 0;
+		margin:     0;
+		position:   relative;
+		box-sizing: border-box;
+		@include font(12px); // Force font to main content.
+		
+		.columnLeft {
+			display: none;
+		}
+		
+		.columnLeft2 {
+			padding:      0 !important;
+			border-right: 1px solid $border-color-light;
+			//   width:        200px;
+		}
+		
+		.pageHeadingWrapper {
+			box-sizing: border-box;
+			height:     41px !important;
+		}
+		
+		.pageSubHeading {
+			a.btn-success {
+				vertical-align: middle;
+				height:         31px;
+				
+				span.button-content {
+					min-width: 65px;
+					display:   block;
+					margin:    1px 0;
+				}
+			}
+		}
+		
+		.pageHeading {
+			display:          block;
+			border-bottom:    1px solid $border-color-light;
+			height:           auto !important;
+			min-height:       41px;
+			background-color: $background-color;
+			width:            100%;
+			box-sizing:       border-box;
+			overflow:         hidden;
+			//white-space:      nowrap;
+			z-index:          1;
+			
+			&:first-child {
+				background-image: none !important;
+				color:            $gambio-blue;
+				text-transform:   initial;
+				font-weight:      300;
+				@include font(18px);
+				padding:          1px 0 0 23px;
+				min-height:       41px;
+				
+				// Page nav-tabs compatibility module.
+				.page-nav-tabs {
+					float:  left;
+					height: auto !important;
+					
+					.nav-tab {
+						float:      left;
+						background: $default-color;
+						cursor:     pointer;
+						color:      adjust-lightness($text-color-light, 3.5) !important;
+						max-height: 40px;
+						text-align: center;
+						width:      auto;
+						display:    inline-block;
+						@include font(12px);
+						
+						&.no-link {
+							padding: 13px;
+							cursor:  default;
+						}
+						
+						&:first-letter {
+							text-transform: uppercase;
+						}
+						
+						a {
+							padding:    13px;
+							background: $component-color;
+							display:    inline-block;
+							color:      adjust-lightness($text-color-light, 3.5) !important;
+							@include transition(all 0.2s linear);
+							
+							&:hover {
+								background:      $default-color;
+								text-decoration: none;
+							}
+							
+							&:active {
+								background: adjust-lightness($default-color, -10);
+							}
+							
+							&:first-letter {
+								text-transform: uppercase;
+							}
+						}
+					}
+				}
+				
+				.page-nav-title {
+					float:  left;
+					margin: 9px 24px 0 1px;
+				}
+				
+			}
+			
+		}
+		
+		.boxCenterWrapper {
+			margin: 0 24px 24px 24px;
+		}
+		
+		.box-center-wrapper {
+			margin: 24px;
+		}
+		
+		.boxCenter {
+			padding: 0;
+		}
+		
+		// Compatibility style for input fields.
+		input[type="text"],
+		select,
+		textarea {
+			//min-width: 170px;
+			//width:     340px;
+			//max-width: 510px;
+			padding: 5px;
+			color:   $text-color-light;
+		}
+		
+		input[type="file"] {
+			padding: 5px;
+			border:  none;
+		}
+		
+		// Style compatibility buttons.
+		input[type="submit"],
+		input[type="button"],
+		button {
+			@include button-basic-style();
+		}
+		
+		.btn {
+			border-width: 1px;
+			border-style: solid;
+			padding:      6px 12px;
+			margin:       0 0 12px 12px;
+			cursor:       pointer;
+			
+			@include font(12px);
+			@include border-radius(2px);
+			@include component-colors($default-color, $text-color-light);
+			
+			&:hover {
+				@include component-colors-hover($default-color, $text-color-light);
+			}
+			
+			&:disabled {
+				@include opacity($disabled-opacity);
+				@include component-colors($default-color, $text-color-light);
+			}
+			
+			&.btn-icon {
+				padding:    5px;
+				min-width:  0;
+				background: none;
+				border:     none;
+				
+				&:hover {
+					background: none;
+				}
+				
+				&:focus {
+					box-shadow: inset 0 0 3px $gambio-blue;
+				}
+				
+				img {
+					margin: 4px;
+				}
+			}
+			
+			&.btn-success {
+				
+				i {
+					&.fa-plus {
+						background-color: #3C923C;
+						width:            15px;
+						height:           15px;
+						padding:          1.5px 1px 1px 1px;
+						border-radius:    8px;
+					}
+				}
+				
+				@include force-component-colors($success-color);
+				
+				&:active {
+					@include box-shadow(inset 0 0 4px adjust-lightness($success-color, -10));
+				}
+				
+				&:focus {
+					@include box-shadow(inset 0 0 4px adjust-lightness($success-color, -10));
+				}
+				
+				&:hover {
+					@include force-component-colors-hover($success-color);
+				}
+				
+				&:disabled {
+					@include force-component-colors($success-color);
+				}
+			}
+			
+			&.btn-primary {
+				@include force-component-colors($primary-color);
+				
+				&:active {
+					@include box-shadow(inset 0 0 4px adjust-lightness($primary-color, -10));
+				}
+				
+				&:focus {
+					@include box-shadow(inset 0 0 4px adjust-lightness($primary-color, -10));
+				}
+				
+				&:hover {
+					@include force-component-colors-hover($primary-color); // fix for pixel-admin css styling bug
+				}
+				
+				&:disabled {
+					@include force-component-colors($primary-color);
+				}
+			}
+			
+			&.btn-danger {
+				@include force-component-colors($danger-color);
+				
+				&:active {
+					@include box-shadow(inset 0 0 4px adjust-lightness($danger-color, -10));
+				}
+				
+				&:focus {
+					@include box-shadow(inset 0 0 4px adjust-lightness($danger-color, -10));
+				}
+				
+				&:hover {
+					@include force-component-colors-hover($danger-color);
+				}
+				
+				&:disabled {
+					@include force-component-colors($danger-color);
+				}
+			}
+			
+			&.btn-warning {
+				@include force-component-colors($warning-color);
+				
+				&:active {
+					@include box-shadow(inset 0 0 4px adjust-lightness($warning-color, -10));
+				}
+				
+				&:focus {
+					@include box-shadow(inset 0 0 4px adjust-lightness($warning-color, -10));
+				}
+				
+				&:hover {
+					@include force-component-colors-hover($warning-color);
+				}
+				
+				&:disabled {
+					@include force-component-colors($warning-color);
+				}
+			}
+		}
+		
+		// Needed for <a> and <span> buttons.
+		a.btn,
+		span.btn {
+			padding-top:     7px;
+			height:          31px;
+			min-width:       100px;
+			text-align:      center;
+			text-decoration: none;
+			display:         inline-block;
+		}
+		
+		.dataTableHeadingContent,
+		.dataTableHeadingContentText {
+			color:           $component-color;
+			background:      $gambio-blue !important;
+			text-decoration: none !important; // some menus have text-underline even without a link element
+			text-transform:  none;
+			@include font(12px);
+			
+			* {
+				@include font(12px);
+			}
+			
+			i {
+				font-family: FontAwesome !important; // icons must always use the font awesome font
+			}
+			
+			b {
+				color: $component-color; // for infoBoxHeading
+			}
+			
+			a {
+				text-decoration: none !important; // for links
+				@include font(12px);
+				&:hover {
+					@include font(12px);
+					color: adjust-lightness($gambio-blue, 20);
+				}
+			}
+		}
+		
+		.dataTableRow,
+		.dataTableRowSelected,
+		.dataTableHeadingRow {
+			height: 48px;
+			cursor: default;
+			
+			td {
+				.main {
+					line-height: 1.6em;
+				}
+				
+				input[type="checkbox"] {
+					margin:  0;
+					padding: 0;
+					height:  auto;
+				}
+				
+				a, a:hover, a:link, a:visited, a:active {
+					@include font(12px); // override old fonts for links
+				}
+				
+				&:first-child {
+					
+				}
+			}
+			
+			td.numeric_cell {
+				text-align: right;
+			}
+		}
+		
+		td.messageStackError,
+		td.messageStackWarning,
+		td.messageStackSuccess {
+			
+			color: $component-color !important;
+			
+			i {
+				color: $component-color !important;
+			}
+			
+		}
+		
+		table.gx-configuration form,
+		form table.gx-configuration {
+			th,
+			td {
+				padding: 6px 12px;
+				
+				&:first-of-type {
+					padding-left: 24px;
+				}
+				
+				&:last-of-type {
+					padding-right: 24px;
+				}
+			}
+			
+			&.logo-manager {
+				margin-bottom: 24px;
+			}
+		}
+		
+		// fix dashboard gambio news button hover
+		.redbtn {
+			&:hover {
+				background: #FF0000 !important;
+				@include background-image(linear-gradient(to bottom, #FF0000 0%, #B90000 100%) !important);
+			}
+		}
+		
+		.bluebtn {
+			&:hover {
+				background: #629FCA !important;
+				@include background-image(linear-gradient(to bottom, #6FB5E6 0%, #5D97BF 100%) !important)
+			}
+		}
+		
+		.article .header label {
+			margin: 0 !important;
+		}
+		
+		// Image flags in input fields at info boxes.
+		input[type="text"] {
+			&.icon-input {
+				padding-right: 30px !important;
+			}
+		}
+		
+		// Key titles
+		span.key-title {
+			color:       $text-color-light;
+			font-weight: bold;
+			line-height: 24px;
+		}
+		
+		.languages {
+			.language-selector {
+				@include opacity(0.5); 
+				text-decoration: none;
+				
+				&.active {
+					@include opacity(1);
+				}
+			}
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// MAIN BOTTOM FOOTER
+	// --------------------------------------------------------------------------
+	
+	.main-bottom-footer {
+		position:   fixed;
+		bottom:     0;
+		left:       0;
+		width:      100%;
+		box-sizing: border-box;
+		z-index:    2;
+		@include font(12px); // Force font to left menu.
+		
+		.gx-container {
+			margin: 0;
+		}
+		
+		.footer-info {
+			background: $background-color !important;
+			border-top: 1px solid $border-color-light;
+			padding:    15px;
+			height:     48px;
+			margin:     0;
+			
+			.info {
+				color:        $text-color-light;
+				margin-right: 45px;
+				height:       100%;
+				position:     relative;
+				top:          -1px;
+			}
+			
+			.collapse-left-menu {
+				font-size: 12px;
+				margin:    0;
+			}
+			
+			.shop-key-information {
+				margin-left: 6px;
+				font-size:   12px;
+				
+				.shop-key-invalid {
+					color: $danger-color;
+				}
+				
+				.shop-key-valid {
+					color: $success-color;
+				}
+			}
+			
+			.shop-key-link:hover {
+				text-decoration: none;
+			}
+			
+			.current-language {
+				margin: 1px 0 0 38px;
+				
+				ul {
+					list-style-type: none;
+					padding:         0;
+					margin:          0;
+					
+					li {
+						margin: 0 9px 0 0;
+						
+						&:last-of-type {
+							margin: 0;
+						}
+						
+						img {
+							width:  28px;
+							margin: -7px 0;
+						}
+					}
+				}
+			}
+			
+			input[type="text"] {
+				margin: 0 0 5px 0;
+			}
+		}
+	}
+	
+	// Day Selectors (Coupon)
+	select[name='coupon_startdate_day'],
+	select[name='coupon_finishdate_day'] {
+		width: 60px;
+	}
+	
+	// Month Selectors (Coupon)
+	select[name='coupon_startdate_month'],
+	select[name='coupon_finishdate_month'] {
+		width: 98px;
+	}
+	
+	// Year Selectors (Coupon)
+	select[name='coupon_startdate_year'],
+	select[name='coupon_finishdate_year'] {
+		width: 65px;
+	}
+	
+	// --------------------------------------------------------------------------
+	// MAIN BOTTOM COPYRIGHT FOOTER
+	// --------------------------------------------------------------------------
+	
+	.main-bottom-copyright {
+		overflow:         auto;
+		box-sizing:       border-box;
+		background-color: $copyright-background-color;
+		line-height:      1.5;
+		
+		#gm_footer,
+		{
+			color: adjust-lightness($copyright-background-color, 30);
+			@include font(10px);
+			
+			a,
+			a:hover,
+			a:visited {
+				color: adjust-lightness($copyright-background-color, 30);
+				@include font(10px);
+			}
+		}
+		
+	}
+	
+	// --------------------------------------------------------------------------
+	// SCROLL TO TOP BUTTON
+	// --------------------------------------------------------------------------
+	.js-scroll-top-button {
+		
+		position:  fixed;
+		bottom:    50px;
+		left:      9px;
+		cursor:    pointer;
+		color:     $gambio-blue;
+		font-size: 3em;
+		
+		&:hover {
+			color: $text-color-light;
+		}
+		
+	}
+	
+	.dataTableHeadingRow {
+		th {
+			text-align: left;
+		}
+	}
+}
+
+// ----------------------------------------------------------------------------
+// NON-GX-COMPATIBILITY STYLES
+// 
+// The following styles need to remain outside the "gx-compatibility" class 
+// because they might affect elements that are outside the body tag (e.g. html).
+// ----------------------------------------------------------------------------
+@import "imports/admin_loading_bar";
+@import "imports/keyframes";
+@import "imports/ie";

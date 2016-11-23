@@ -1,0 +1,97 @@
+{* --------------------------------------------------------------
+	shipcloud_multilabellist.html 2016-04-07
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*}
+<div class="gx-container" id="sc_labellist_container" data-gx-widget="checkbox">
+	{if $shipments}
+		<form action="" method="POST" id="sc_pickup">
+			<table class="gx-compatibility-table">
+				<tr class="dataTableHeadingRow gx-container">
+					<th>
+						<input class="pickup_checkbox_all" type="checkbox" data-single_checkbox>
+					</th>
+					<th>##order</th>
+					<th>##created_at</th>
+					<th>##carrier_and_service</th>
+					<th>##carrier_tracking_no</th>
+					<th>##shipment_price</th>
+					<th style="min-width: 275px"></th>
+				</tr>
+				{foreach from=$shipments item=shipment key=orders_id}
+					<tr class="dataTableRow gx-container">
+						{if $shipment->error_message}
+							<td class="dataTableContent">&nbsp;</td>
+							<td class="dataTableContent">{$shipment->orders_id}</td>
+							<td colspan="5" class="dataTableContent sc_multilabel_error">{$shipment->error_message}</td>
+						{else}
+							<td class="dataTableContent">
+								<input class="pickup_checkbox" type="checkbox" name="pickup_shipments[]" value="{$shipment->shipments.0->id}/{$shipment->shipments.0->carrier}" data-single_checkbox>
+							</td>
+							<td class="dataTableContent">{$orders_id} ({$shipment->shipments.0->to->last_name}, {$shipment->shipments.0->to->first_name})</td>
+							<td class="dataTableContent">{$shipment->shipments.0->created_at}</td>
+							<td class="dataTableContent">{$shipment->shipments.0->carrier}/{$shipment->shipments.0->service}</td>
+							<td class="dataTableContent">{$shipment->shipments.0->carrier_tracking_no}</td>
+							<td class="dataTableContent numeric_cell">{$shipment->shipments.0->price|string_format:"%.2f"}</td>
+							<td class="dataTableContent">
+								<a class="btn pull-right remove-margin-bottom" href="{$shipment->shipments.0->tracking_url}" target="_new">##tracking</a>
+								<a class="btn pull-right remove-margin-bottom label-link" href="{$shipment->shipments.0->label_url}" target="_new">##label</a>
+							</td>
+						{/if}
+					</tr>
+				{/foreach}
+			</table>
+
+			<div class="labellist-toolbar">
+				<div class="pull-right pickup_time">
+					##pickup_time:
+					##pickup_between
+					<input
+						name="pickup_earliest"
+						type="text"
+						value="{$pickup_earliest}"
+						placeholder="YYYY-MM-DD HH:MM"
+						data-gx-widget="datetimepicker"
+						data-datetimepicker-lang="de"
+						data-datetimepicker-format="Y-m-d H:i"
+						data-datetimepicker-day-of-week-start="1"
+						data-datetimepicker-min-date="{$pickup_mindate}"
+						data-datetimepicker-max-date="{$pickup_maxdate}"
+						>
+					##pickup_and
+					<input
+						name="pickup_latest"
+						type="text"
+						value="{$pickup_latest}"
+						placeholder="YYYY-MM-DD HH:MM"
+						data-gx-widget="datetimepicker"
+						data-datetimepicker-lang="de"
+						data-datetimepicker-format="Y-m-d H:i"
+						data-datetimepicker-day-of-week-start="1"
+						data-datetimepicker-min-date="{$pickup_mindate}"
+						data-datetimepicker-max-date="{$pickup_maxdate}"
+						>
+				</div>
+				<div data-gx-widget="button_dropdown">
+					<div class="gx-container grid display-inline">
+						<div id="sc-labellist-dropdown"
+						     data-use-button_dropdown="true"
+						     class="remove-margin js-bottom-dropdown">
+							<button class="btn"></button>
+							<ul></ul>
+						</div>
+					</div>
+				</div>
+				<div id="pickup_result" class="hidden"></div>
+				<div id="download_result" class="hidden"></div>
+			</div>
+		</form>
+	{else}
+		##no_shipments
+	{/if}
+</div>
+

@@ -1,0 +1,27 @@
+{load_language_text section="reviews"}
+{load_language_text section="buttons" name="button"}
+
+<div class="rating" id="reviews">
+	<h1>{$txt.heading_reviews}</h1>
+	<div class="navigation">
+		{foreach name=aussen item=module_data from=$module_content}
+			<div class="rating-item clearfix">
+				<div class="rating-product-name">
+					<a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a> {$module_data.RATING}
+				</div>
+				<div class="rating-caption">
+					{$txt.text_author} {$module_data.AUTHOR}
+				</div>
+				<div class="rating-comment">
+					{$module_data.REVIEW_TEXT|truncate:150:" ..."}<br /><a href="{$module_data.PRODUCTS_LINK}">{$txt.text_reviews_link}</a>
+				</div>
+				<div class="rating-image">
+					<a href="{$module_data.PRODUCTS_LINK}">
+						<img src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_NAME}" title="{$module_data.PRODUCTS_NAME}" border="0" />
+					</a>
+				</div>
+			</div>
+		{/foreach}
+		<div class="navigation_right">{$NAVBAR}</div>
+	</div>
+</div>

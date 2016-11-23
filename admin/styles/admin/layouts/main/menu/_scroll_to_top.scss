@@ -1,0 +1,25 @@
+/*
+	Scroll To Top
+    ==========================================================================
+
+	Styling for the scroll-to-top element. 
+
+*/
+
+.scroll-to-top {
+	display:    none; // Initial State
+	position:   fixed;
+	left:       100px - $font-size-base;
+	bottom:     100px;
+	font-size:  $font-size-base * 4;
+	color:      $link-color;
+	text-align: center;
+	
+	i {
+		cursor: pointer;
+		
+		&:hover {
+			color: $text-color-light;
+		}
+	}
+}

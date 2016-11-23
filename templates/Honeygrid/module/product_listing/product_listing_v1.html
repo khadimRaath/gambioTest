@@ -1,0 +1,33 @@
+{load_language_text section="product_listing"}
+{load_language_text section="product_info" name="info"}
+{load_language_text section="buttons" name="button"}
+
+{$FILTER_SELECTION}
+
+{manufacturer_data
+	manufacturer_id=$gm_manufacturers_id
+	out=manufacturer
+}
+
+{include file="get_usermod:{$tpl_path}snippets/category_description.html" img_alt=$CATEGORIES_GM_ALT_TEXT category_title=$CATEGORIES_HEADING_TITLE
+	category_name=$CATEGORIES_NAME manufacturer=$manufacturer}
+	
+<!-- #BOF YOOCHOOSE -->
+{if $MODULE_yoochoose_category_topsellers != ''}
+	{$MODULE_yoochoose_category_topsellers}
+{/if}
+<!-- #EOF YOOCHOOSE -->
+
+{include file="get_usermod:{$tpl_path}snippets/product_listing/product_listing_filter.html" formname="panel"}
+
+<div class="container-fluid" data-gambio-widget="product_hover" data-product_hover-scope=".productlist-viewmode-grid">		
+	<div class="row product-filter-target productlist productlist-viewmode {if $VIEW_MODE == 'tiled'}productlist-viewmode-grid{else}productlist-viewmode-list{/if}" data-gambio-widget="cart_handler">
+
+		{include file="get_usermod:{$tpl_path}snippets/product_listing/product_listing_main.html"}
+		
+	</div>
+</div>
+
+{include file="get_usermod:{$tpl_path}snippets/product_listing/product_listing_filter.html" formname="panel2"}
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/pagination_info.html" info=$NAVIGATION_INFO}

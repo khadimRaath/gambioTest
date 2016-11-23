@@ -1,0 +1,13 @@
+{load_language_text section="box_categories"}
+
+<div id="menubox_categories" class="c_categories content-box white no-border categories submenu">
+	<ul>
+		{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+			<li id="menu_cat_id_{$categories_item.data.id}" class="{if $smarty.foreach.cat_data.first}first{elseif $smarty.foreach.cat_data.last}last{/if}" >
+				<h4>
+					{if $categories_item.data.icon}<img src="{$categories_item.data.icon}" {if $categories_item.data.icon_w != 0 && $categories_item.data.icon_h != 0}width="{$categories_item.data.icon_w}" height="{$categories_item.data.icon_h}" {/if}alt="" />{/if}<a href="{$categories_item.data.url}" rel="{$categories_item.data.id}" {if $categories_item.data.meta_description != ''} title="{$categories_item.data.meta_description|truncate:80:"..."|replace:'"':'&quot;'}"{/if} class="{if $categories_item.children|@count > 0}parent{/if}{if $categories_item.data.id == $content_data.category_id} current{/if}">{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}{if $categories_item.data.products_count} ({$categories_item.data.products_count}){/if}</a>
+				</h4>
+			</li>
+		{/foreach}
+	</ul>
+</div>

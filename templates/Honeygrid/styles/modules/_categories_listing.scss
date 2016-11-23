@@ -1,0 +1,15 @@
+.categories-description-container {
+	.categories-images {
+		margin-bottom: 15px;
+		
+		img {
+			display:        inline-block;
+			vertical-align: middle;
+			margin-right:   10px;
+		}
+		
+		.align-helper strong {
+			font-size: $font-size-h4;
+		}
+	}
+}

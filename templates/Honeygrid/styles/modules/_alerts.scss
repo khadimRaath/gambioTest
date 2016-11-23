@@ -1,0 +1,120 @@
+/* Alerts
+   ========================================================================== */
+
+.alert {
+	margin-bottom: ($line-height-computed * 2);
+	&.checkbox {
+		padding:          5px 0;
+		label {
+			display: block;
+			padding: 5px floor($grid-gutter-width / 2) 5px floor(($grid-gutter-width / 2) + 20);
+		}
+		background-color: $gx-checkbox-bg;
+		color:            $gx-checkbox-color;
+		border-color:     $gx-checkbox-border;
+		
+		@if ($gx-checkbox-bg-image-url and $gx-checkbox-bg-image-url != '' and $gx-checkbox-bg-image-url != "") {
+			background-image: url($gx-checkbox-bg-image-url);
+			@if ($gx-checkbox-bg-image-position) {
+				background-position: $gx-checkbox-bg-image-position;
+			}
+			@if ($gx-checkbox-bg-image-repeat) {
+				background-repeat: $gx-checkbox-bg-image-repeat;
+			}
+			@if ($gx-checkbox-bg-image-size) {
+				background-size: $gx-checkbox-bg-image-size;
+			}
+			@if ($gx-checkbox-bg-image-attachment) {
+				background-attachment: $gx-checkbox-bg-image-attachment;
+			}
+		}
+		
+		&.active {
+			background-color: $gx-checkbox-active-bg;
+			color:            $gx-checkbox-active-color;
+			border-color:     $gx-checkbox-active-border;
+			
+			@if ($gx-checkbox-active-bg-image-url and $gx-checkbox-active-bg-image-url != '' and $gx-checkbox-active-bg-image-url != "") {
+				background-image: url($gx-checkbox-active-bg-image-url);
+				@if ($gx-checkbox-active-bg-image-position) {
+					background-position: $gx-checkbox-active-bg-image-position;
+				}
+				@if ($gx-checkbox-active-bg-image-repeat) {
+					background-repeat: $gx-checkbox-active-bg-image-repeat;
+				}
+				@if ($gx-checkbox-active-bg-image-size) {
+					background-size: $gx-checkbox-active-bg-image-size;
+				}
+				@if ($gx-checkbox-active-bg-image-attachment) {
+					background-attachment: $gx-checkbox-active-bg-image-attachment;
+				}
+			}
+		}
+	}
+	
+	&.alert-danger {
+		background-color: $gx-alert-danger-bg;
+		color:            $gx-alert-danger-color;
+		border-color:     $gx-alert-danger-border;
+		
+		@if ($gx-alert-danger-bg-image-url and $gx-alert-danger-bg-image-url != '' and $gx-alert-danger-bg-image-url != "") {
+			background-image: url($gx-alert-danger-bg-image-url);
+			@if ($gx-alert-danger-bg-image-position) {
+				background-position: $gx-alert-danger-bg-image-position;
+			}
+			@if ($gx-alert-danger-bg-image-repeat) {
+				background-repeat: $gx-alert-danger-bg-image-repeat;
+			}
+			@if ($gx-alert-danger-bg-image-size) {
+				background-size: $gx-alert-danger-bg-image-size;
+			}
+			@if ($gx-alert-danger-bg-image-attachment) {
+				background-attachment: $gx-alert-danger-bg-image-attachment;
+			}
+		}
+	}
+	
+	&.alert-success {
+		background-color: $gx-alert-success-bg;
+		color:            $gx-alert-success-color;
+		border-color:     $gx-alert-success-border;
+		
+		@if ($gx-alert-success-bg-image-url and $gx-alert-success-bg-image-url != '' and $gx-alert-success-bg-image-url != "") {
+			background-image: url($gx-alert-success-bg-image-url);
+			@if ($gx-alert-success-bg-image-position) {
+				background-position: $gx-alert-success-bg-image-position;
+			}
+			@if ($gx-alert-success-bg-image-repeat) {
+				background-repeat: $gx-alert-success-bg-image-repeat;
+			}
+			@if ($gx-alert-success-bg-image-size) {
+				background-size: $gx-alert-success-bg-image-size;
+			}
+			@if ($gx-alert-success-bg-image-attachment) {
+				background-attachment: $gx-alert-success-bg-image-attachment;
+			}
+		}
+	}
+	
+	&.alert-info {
+		background-color: $gx-alert-info-bg;
+		color:            $gx-alert-info-color;
+		border-color:     $gx-alert-info-border;
+		
+		@if ($gx-alert-info-bg-image-url and $gx-alert-info-bg-image-url != '' and $gx-alert-info-bg-image-url != "") {
+			background-image: url($gx-alert-info-bg-image-url);
+			@if ($gx-alert-info-bg-image-position) {
+				background-position: $gx-alert-info-bg-image-position;
+			}
+			@if ($gx-alert-info-bg-image-repeat) {
+				background-repeat: $gx-alert-info-bg-image-repeat;
+			}
+			@if ($gx-alert-info-bg-image-size) {
+				background-size: $gx-alert-info-bg-image-size;
+			}
+			@if ($gx-alert-info-bg-image-attachment) {
+				background-attachment: $gx-alert-info-bg-image-attachment;
+			}
+		}
+	}
+}

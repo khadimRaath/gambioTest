@@ -1,0 +1,13 @@
+/* 
+	Delete Order Modal 
+    ========================================================================== 
+
+	Styles the order removal modal in the orders overview.
+	
+*/
+
+.delete.modal {
+	.modal-dialog {
+		width: $orders-modal-small-width;
+	}
+}

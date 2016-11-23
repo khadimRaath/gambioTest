@@ -1,0 +1,22 @@
+{if $SHIPPING_NAME || $SHOW_SHIPPING_TIME}
+	<dt class="col-xs-4 text-left">
+		<label>
+			{$txt.text_shippingtime}
+		</label>
+	</dt>
+	<dd class="col-xs-8">
+		{if $SHIPPING_IMAGE}
+			<span class="img-shipping-time">
+				<img src="{$SHIPPING_IMAGE}" alt="{$SHIPPING_NAME}" />
+			</span>
+		{/if}
+		<span class="products-shipping-time-value">
+			{$SHIPPING_NAME}
+		</span>
+		{if $ABROAD_SHIPPING_INFO_LINK_ACTIVE}
+			<a class="js-open-modal text-small" data-modal-type="iframe" data-modal-settings='{literal}{{/literal}"title": "{$txt.text_shippingtime}"{literal}}{/literal}' href="popup_content.php?coID={$smarty.const.SHIPPING_INFOS}">
+				({$txt.text_abroad_shipping_info})
+			</a>
+		{/if}
+	</dd>
+{/if}

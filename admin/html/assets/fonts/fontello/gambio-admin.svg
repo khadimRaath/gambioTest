@@ -1,0 +1,12 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>Copyright (C) 2014 by original authors @ fontello.com</metadata>
+<defs>
+<font id="gambio-admin" horiz-adv-x="1000" >
+<font-face font-family="gambio-admin" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<missing-glyph horiz-adv-x="1000" />
+<glyph glyph-name="gambio-symbol" unicode="&#xe800;" d="m1184 143c0-65-53-118-118-118-65 0-117 53-117 118 0 65 52 117 117 117 65 0 118-52 118-117z m-386-59c-57 0-104-46-104-104 0-57 47-103 104-103 57 0 103 46 103 103 0 58-46 104-103 104z m-274 23c-51 0-93-41-93-92 0-51 42-93 93-93 51 0 92 42 92 93 0 51-41 92-92 92z m-181 184c-43 0-78-35-78-79 0-43 35-78 78-78 44 0 79 35 79 78 0 44-35 79-79 79z m27 152c0 39-31 70-69 70s-70-31-70-70 31-70 70-70 69 32 69 70z m27 135c34 0 62 28 62 62 0 34-28 62-62 62s-62-28-62-62c0-34 28-62 62-62z m145 124c28 0 52 23 52 52s-24 52-52 52c-29 0-52-24-52-52s23-52 52-52z m212 76c0 25-20 45-45 45-25 0-45-20-45-45 0-25 20-45 45-45 25 0 45 20 45 45z m102-74c18 0 33 14 33 33 0 18-15 32-33 32-18 0-33-14-33-32 0-19 15-33 33-33z" horiz-adv-x="1413" />
+</font>
+</defs>
+</svg>

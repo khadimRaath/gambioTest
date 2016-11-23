@@ -1,0 +1,14 @@
+.miscellaneous {
+  // tooltip icon positioning fix
+  .withdrawal_time_wrapper {
+    .tooltip_icon {
+      overflow: auto;
+      display:  inline-block;
+      float:    right;
+
+      i {
+        float: right !important;
+      }
+    }
+  }
+}

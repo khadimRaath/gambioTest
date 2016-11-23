@@ -1,0 +1,77 @@
+{load_language_text section="account_history_info"}
+{load_language_text section="checkout_confirmation" name="info"}
+
+<div class="order-wishlist">
+	
+	<table class="table table-responsive">
+	
+		<thead>
+			{include file="get_usermod:{$tpl_path}snippets/order/order_item.html"
+			is_wishlist=false
+			is_tablehead=true
+			}
+		</thead>
+
+		<tbody>
+
+			{foreach name=products_data item=products_item_array from=$content_data.products_data}
+			
+				{assign var="STR_attributes" value=""}
+				{foreach item=attribute from=$products_item_array.attributes}
+					{if isset($attribute.option) && $attribute.option != ''}
+						{assign var="STR_attributes" value=$STR_attributes|cat:$attribute.option|cat:": "|cat:$attribute.value|cat:"<br />"}
+					{/if}
+				{/foreach}
+			
+				{assign var="STR_properties" value=""}
+				{foreach item=property from=$products_item_array.properties_array}
+					{assign var="STR_properties" value=$STR_properties|cat:$property.properties_name|cat:": "|cat:$property.values_name|cat:"<br />"}
+				{/foreach}
+			
+				{assign var="p_shipping_time" value=""}
+				{if $products_item_array.shipping_time && $products_item_array.shipping_time != ''}
+					{assign var="p_shipping_time" value=$info.text_shipping_time|cat:": "|cat:$products_item_array.shipping_time}
+				{/if}
+				
+				{assign var="p_model" value=""}
+				{if $products_item_array.products_model && $products_item_array.products_model != ''}
+					{assign var="p_model" value=$info.text_model|cat:": "|cat:$products_item_array.products_model}
+				{/if}
+				
+				{assign var="p_weight" value=""}
+				{if $products_item_array.products_weight && $products_item_array.products_weight != ''}
+					{assign var="p_weight" value=$info.text_weight|cat:": "|cat:$products_item_array.products_weight|cat:" "|cat:$info.text_weight_unit}
+				{/if}
+
+				{include file="get_usermod:{$tpl_path}snippets/order/order_item.html"
+					is_wishlist=false 
+					is_confirmation=true
+					is_checkout=true
+					show_p_model="true"
+					p_attributes=$STR_attributes
+					p_properties=$STR_properties
+					p_name=$products_item_array.products_name
+					p_checkout_info=$products_item_array.checkout_information
+					p_details_url=$products_item_array.products_url
+					p_details_text=$info.text_detail_information
+					p_price_single=$products_item_array.price
+					p_price_final=$products_item_array.final_price
+					last=($smarty.foreach.products_data.last) ? "true" : "false"   
+					image_src={($products_item_array.products_image && $products_item_array.products_image != "") ? $products_item_array.products_image : ""}
+					image_alt={($products_item_array.products_alt && $products_item_array.products_alt != "") ? $products_item_array.products_alt : $products_item_array.products_name}
+					image_title={($products_item_array.products_alt && $products_item_array.products_alt != "") ? $products_item_array.products_alt : $products_item_array.products_name}
+					p_price_vpe={($products_item_array.products_vpe_array.vpe_text && $products_item_array.products_vpe_array.vpe_text != '') ? $products_item_array.products_vpe_array.vpe_text : ""}
+					p_unit={($products_item_array.unit && $products_item_array.unit != '') ? $products_item_array.unit : ""}
+					p_qty={($products_item_array.quantity && $products_item_array.quantity != '') ? $products_item_array.quantity : ""}
+					p_shipping_time=$p_shipping_time
+					p_model=$p_model
+					p_weight=$p_weight
+				}
+			
+			{/foreach}
+
+		</tbody>
+
+	</table>
+	
+</div>

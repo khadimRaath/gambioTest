@@ -1,0 +1,287 @@
+// --------------------------------------------------------------------------
+// GX MODULES TABLE 
+//
+// This file contains styling for the admin module pages.
+// --------------------------------------------------------------------------
+
+.gx-modules-table {
+
+  tr {
+    height: 42px;
+
+    th, td.dataTableHeadingContent {
+      cursor: default;
+    }
+    
+    td {
+      cursor: pointer;
+      
+      &:last-of-type {
+        img {
+          display: none;
+        }
+      }
+    }
+    
+    td:nth-child(0) {
+      padding-left:     10px;
+      background-color: $background-color-dark;
+    }
+
+    &:hover:not(.no-hover) {
+      td {
+        background-color: $highlight-color;
+      }
+    }
+
+    &:nth-child(even) {
+      background-color: $background-color;
+    }
+
+    &:nth-child(odd) {
+      background-color: adjust-lightness($background-color, -2.5);
+    }
+
+    &.active {
+      td:last-of-type {
+        &::before {
+          content: "";
+          font-family: FontAwesome;
+          font-feature-settings: normal;
+          font-kerning: auto;
+          font-language-override: normal;
+          font-size-adjust: none;
+          font-stretch: normal;
+          font-style: normal;
+          font-synthesis: weight style;
+          font-variant: normal;
+          font-weight: normal;
+          line-height: 1;
+          text-rendering: auto;
+          font-size: 24px;
+          display: inline-block;
+          float: right;
+        }
+      }
+      
+      td:hover {
+        cursor: default;
+      }
+    }
+  }
+
+  .dataTableHeadingRow {
+    height: 39px; // remove 3px from 42px, because the bottom border have this size
+  }
+
+  .dataTableHeadingContent {
+    background-color: $background-color !important;
+    border-left:      none;
+    border-right:     none;
+    border-bottom:    3px solid $gambio-blue;
+    color:            $text-color;
+  }
+
+  .dataTableContent {
+    border:         none;
+    color:          $text-color-light;
+    @include font(12px);
+    vertical-align: middle;
+
+    img {
+      vertical-align: middle;
+    }
+
+    a {
+      color: $text-color-light;
+
+      &:hover {
+        color: $link-color;
+      }
+    }
+  }
+
+  .dataTableRow {
+    border: none;
+  }
+
+  img {
+    max-width: 100px;
+  }
+
+  tr {
+    cursor: pointer;
+  }
+
+  tr:first-child {
+    cursor: default;
+  }
+
+  tr.active {
+    background-color: $highlight-color;
+  }
+
+  &.shipping,
+  &.ordertotal {
+    td:first-child {
+      width: 10px;
+    }
+  }
+
+  td:nth-child(2) {
+    i {
+      display:      inline-block;
+    }
+  }
+
+  tr .collapse-icon {
+    display:   inline-block;
+    font-size: 14px;
+  }
+
+  i.active {
+    float:         right;
+    font-size:     20px;
+    padding-right: 20px;
+  }
+
+  .control-group {
+    position: relative;
+    top:      14px;
+  }
+}
+
+// --------------------------------------------------------------------------
+// NEW MODULE CENTER PAGE
+// --------------------------------------------------------------------------
+
+.gx-container {
+  .gx-modules-table {
+    &.payment {
+      border-bottom: 1px solid $border-color-light;
+      
+      tr {
+        &.dataTableRow {
+          &:not(.active) {
+            background-color: transparent;
+          }
+
+          td.dataTableContent {
+            border-top: 1px solid $border-color-light;
+          }
+
+          &.module-head {
+            background-color: adjust-lightness($background-color, -2.5);
+
+            &.closed {
+              background-color: transparent;
+            }
+          }
+
+          &.nested {
+            td.dataTableContent {
+              border-top: none;
+            }
+
+            td:nth-of-type(2) {
+              padding-left: 60px;
+            }
+          }
+        }
+      }
+    }
+    
+    &.shipping,
+    &.ordertotal {
+      tr {
+        th:first-of-type,
+        td:first-of-type {
+          display: none;
+        }
+
+        th:nth-of-type(2),
+        td:nth-of-type(2) {
+          padding-left: 24px;
+        }
+      }
+    }
+    
+    &.payment,
+    &.shipping,
+    &.ordertotal {
+      tr {
+        th, td {
+          .badge {
+            visibility: visible;
+          }
+        }
+      }
+    }
+    
+    tr {
+      &.active {
+        i.fa {
+          visibility: visible;
+        }
+      }
+
+      th, td {
+        .badge {
+          visibility: hidden;
+          
+          &.active {
+            visibility: visible;
+          }
+        }
+      }
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// PAGINATOR FIX
+// --------------------------------------------------------------------------
+
+table.paginator.table-paginator {
+  margin-right: 0;
+  width: 100%;
+
+  &.left-table {
+    width: $breakpoint-width-left-table;
+  }
+}
+
+// --------------------------------------------------------------------------
+// JANOLAW CONFIGURATION PAGE
+// --------------------------------------------------------------------------
+
+.janolaw-configuration {
+  &.gx-container {
+    .gx-configuration {
+      tr {
+        td {
+          .switcher {
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    .button-container {
+      .btn {
+        margin: 12px 0 0 12px;
+      }
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// EMBEDDED MODULES
+// --------------------------------------------------------------------------
+
+.boxCenterWrapper {
+	iframe.embedded_module {
+		width: 100%;
+		border: none;
+	}
+}

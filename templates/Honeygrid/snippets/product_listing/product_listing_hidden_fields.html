@@ -1,0 +1,11 @@
+<div class="productlisting-filter-hiddens">
+	{foreach item=hidden_data from=$get_params_hidden_data}
+		{if $hidden_data.NAME != 'view_mode' && $hidden_data.NAME != 'filter_id' && ($hidden_data.VALUE != '' || ($hidden_data.NAME|strpos:'filter_fv_id' != 0 && $hidden_data.NAME|strpos:'value_conjunction' != 0))}
+			{if $hidden_data.NAME != 'filter_url'}
+				<input type="hidden" name="{$hidden_data.NAME}" value="{$hidden_data.VALUE}" />
+			{else}
+				<input type="hidden" name="{$hidden_data.NAME}" value="{$hidden_data.VALUE|escape:'url'}" />
+			{/if}
+		{/if}
+	{/foreach}
+</div>

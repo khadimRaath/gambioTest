@@ -1,0 +1,46 @@
+/* Productlisting-Filter
+   ========================================================================== */
+
+.productlisting-filter-container {
+
+  padding: 10px 0;
+  border-top: 1px solid $gx-pagination-border-color;
+  border-bottom: 1px solid $gx-pagination-border-color;
+
+  .input-select {
+    display: none;
+  }
+  
+  .btn.btn-default {
+    border-color: #ddd;
+    text-transform: none;
+    letter-spacing: 0;
+    &.active {
+      border-color: #ccc;
+    }
+  }
+	
+	.btn-group {
+		vertical-align: inherit;
+	}
+	
+	.filter-button {
+		vertical-align: top;
+	}
+	
+
+  .panel-pagination {
+    @include clearfix();
+    > nav > ul {
+      margin: 10px 0 0;
+      float: left;
+      @media (min-width: $screen-lg-min) {
+        margin-top: 0;
+        float: right;
+      }
+	    li {
+		    display: inline-block;
+	    }
+    }
+  }
+}

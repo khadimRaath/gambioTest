@@ -1,0 +1,13 @@
+{load_language_text section="box_categories_top"}
+
+<div id="head_navi" class="gradient">
+	<ul class="clearfix">
+		{foreach name=cat_data item=content_item from=$content_data.CONTENT_LINKS_DATA}
+		<li class="megadropdown_top_link {if $smarty.foreach.cat_data.first}first{elseif $smarty.foreach.cat_data.last}last{/if}">
+			<h3>
+        <a {if $content_item.SELECTED}class="selected"{/if} href="{$content_item.URL}" target="{$content_item.URL_TARGET}">{$content_item.NAME}</a>
+			</h3>
+		</li>
+		{/foreach}
+	</ul>
+</div>

@@ -1,0 +1,26 @@
+/* 
+	DataTables Page Navigation Partial 
+    ========================================================================== 
+
+	Most of the markup is styled with Bootstrap and helper classes. 
+	
+*/
+
+.page-navigation {
+	label {
+		margin-right: $margin-small;
+	}
+	
+	.previous {
+		margin-right: $margin-small / 2;
+	}
+	
+	.next {
+		margin-left: $margin-small / 2;
+	}
+	
+	select {
+		display: inline;
+		width:   auto;
+	}
+}

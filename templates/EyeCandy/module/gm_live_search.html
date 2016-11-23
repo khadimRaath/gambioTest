@@ -1,0 +1,23 @@
+{load_language_text section="index"}
+
+{if $module_content}
+	<span id="live-search-head">
+		{$txt.text_live_search_head}:
+	</span>
+	<ul class="search-result">
+		{foreach name=aussen item=module_data from=$module_content}		
+			<li>
+				{if $module_data.PRODUCTS_IMAGE != ''}
+					<img class="product-image" src="{$module_data.PRODUCTS_IMAGE}" />
+				{else}
+					<div class="product-image">&nbsp;</div>
+				{/if}
+				<a href="{$module_data.PRODUCTS_URL}" title="{$module_data.PRODUCTS_NAME}">
+					<span>
+						{$module_data.PRODUCTS_NAME}
+					</span>
+				</a>
+			</li>
+		{/foreach}
+	</ul>
+{/if}

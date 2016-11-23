@@ -1,0 +1,40 @@
+{extends file="../../layouts/main/partial/tooltip.html"}
+
+{block name="content"}
+
+	{load_language_text section="content_manager" name="content_manager"}
+	
+	<table class="order-items">
+		<tbody>
+			{foreach $products as $product}
+				<tr class="product">
+					<td>{$product.quantity} {$product.unit_name}</td>
+					<td>
+						{$product.name}
+						
+						{if !empty($product.attributes)}
+							<ul>
+								{foreach $product.attributes as $attribute}
+									<li>- {$attribute.name}: {$attribute.value}</li>
+								{/foreach}
+							</ul>
+						{/if}
+					</td>
+					<td>{$product.model}</td>
+					<td class="price">{$product.price}</td>
+				</tr>
+			{/foreach}
+	
+			<tr>
+				<td class="total-price" colspan="4">{$total_price}</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div class="edit-button-container">
+		<a class="btn btn-primary pull-right" href="orders_edit.php?edit_action=products&oID={$id}">
+			{$content_manager.TEXT_EDIT}
+		</a>
+	</div>
+
+{/block}

@@ -1,0 +1,136 @@
+{load_language_text section="export_schemes"}
+<div id="import_container">
+	<div>  
+		<form id="upload_import_file_form">
+			<div class="span_3_5">
+				<div class="row" style="padding: 0;">
+					<div class="span_1">
+						<label>{$txt.upload_import_file}:</label>
+						<input id="upload_import_file" name="upload_import_file" title="{$txt.tooltip_import_file_extension}" class="validate_csv-import_file_extension" type="file" size="54"  /> 
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="button_container">
+					<div class="button_left_container"></div>
+					<div class="button_right_container">
+						<a onclick="return false;" class="admin_button green upload_import_file_button" href="#">{$txt.upload}</a>
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="clear_both"> <!-- &nbsp; --> </div>
+			</div>
+			<div class="clear_both"> <!-- &nbsp; --> </div>
+		</form>
+		
+		<div id="import_form_container"{if !$content_data.import_file_data} style="display:none;"{/if}>
+		<form>
+			<br />
+			<br />
+			<div class="span_3_5">
+				<div class="row">
+					<div class="span_1">
+						<label>{$txt.available_import_files}:</label>
+						<div class="tooltip_wrapper" title="{$txt.tooltip_select_import_file}">
+							<select id="select_import_file" name="select_import_file">
+							{foreach from=$content_data.import_file_data key=file_key item=file name=import_file_data }
+								<option value="{$file}">{$file}</option>
+							{/foreach}
+							</select>
+						</div>
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="import_field_separator">{$txt.field_separator}:</label>
+						<input type="text" value="|" id="import_field_separator" name="import_field_separator" title="{$txt.tooltip_import_field_separator}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="import_field_quotes">{$txt.field_quotes}:</label>
+						<input type="text" value="&quot;" id="import_field_quotes" name="import_field_quotes" title="{$txt.tooltip_import_field_quotes}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+			</div>
+			<div class="span_1">
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_products">{$txt.delete_products}</label>
+						<input type="checkbox" value="1" id="delete_products" name="deletions[delete_products]" title="{$txt.delete_products}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_images">{$txt.delete_images}</label>
+						<input type="checkbox" value="1" id="delete_images" name="deletions[delete_images]" title="{$txt.delete_images}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_attributes">{$txt.delete_attributes}</label>
+						<input type="checkbox" value="1" id="delete_attributes" name="deletions[delete_attributes]" title="{$txt.delete_attributes}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_properties">{$txt.delete_properties}</label>
+						<input type="checkbox" value="1" id="delete_properties" name="deletions[delete_properties]" title="{$txt.delete_properties}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_specials">{$txt.delete_specials}</label>
+						<input type="checkbox" value="1" id="delete_specials" name="deletions[delete_specials]" title="{$txt.delete_specials}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_categories">{$txt.delete_categories}</label>
+						<input type="checkbox" value="1" id="delete_categories" name="deletions[delete_categories]" title="{$txt.delete_categories}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_manufacturers">{$txt.delete_manufacturers}</label>
+						<input type="checkbox" value="1" id="delete_manufacturers" name="deletions[delete_manufacturers]" title="{$txt.delete_manufacturers}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_reviews">{$txt.delete_reviews}</label>
+						<input type="checkbox" value="1" id="delete_reviews" name="deletions[delete_reviews]" title="{$txt.delete_reviews}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+				<div class="row">
+					<div class="span_1">
+						<label for="delete_xsell">{$txt.delete_xsell}</label>
+						<input type="checkbox" value="1" id="delete_xsell" name="deletions[delete_xsell]" title="{$txt.delete_xsell}" />
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+			</div>
+			<div class="span_1">
+				<div class="button_container">
+					<div class="button_left_container">
+						<a onclick="return false;" title="{$txt.import}" class="admin_button green start_import_button" href="export/export_scheme_export.html?type=import">{$txt.import}</a>
+					</div>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+			</div>
+			<div class="clear_both"> <!-- --> </div>
+		</form>
+		</div>
+	</div>
+	<div class="clear_both"> <!-- --> </div>
+</div>

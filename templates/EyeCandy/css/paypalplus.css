@@ -1,0 +1,88 @@
+/* BEGIN PayPalPlus */
+#ppplus_continue {
+	float: right;
+	display: none;
+}
+
+body #wrap_box.wrap_shop #ppplus_continue a.button_blue_big {
+    background-color: #03D012;
+    background-image: url("../backgrounds/gradients/gradient-reflection.png");
+    background-position: left center;
+    background-repeat: repeat-x;
+    border-color: #03D012;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFF;
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+#ppplus { margin-left: -7px; }
+
+#ppplus iframe {
+	background: #ffffff;
+	padding: 0;
+	border: none;
+}
+
+div.ppplus_payment_item > div.caption > p { display: none; }
+
+.order_payment .payment_item .radiobox {display: none; }
+
+.order_payment #checkout_payment div.items div.module_option_checked {
+	background-color: #F9F9F9;
+}
+
+.order_payment #checkout_payment div.items div.module_option_selected {
+	background-image: url("../img/checkmark.png");
+	background-position: 680px 10px;
+	background-repeat: no-repeat;
+}
+
+.ui-mobile .order_payment #checkout_payment div.items div.module_option_selected {
+	background-position: calc(100% - 23px) 25%;
+}
+
+.order_payment #checkout_payment div.items div.module_option_selected .caption span.title {
+	font-weight: bold;
+}
+
+.order_payment #checkout_payment div.items .payment_item {
+	background-image: none;
+	border-bottom: 1px solid #ddd;
+	position: relative;
+	width: 100%;
+	padding-left: 2px;
+}
+
+.order_payment #checkout_payment div.items .ppplus_payment_item:hover {
+	background-color: transparent !important;
+	background-image: none !important;
+}
+
+.order_payment .payment_item .caption span.title {
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.order_payment #checkout_payment .payment_item .price { float: none; position: absolute; right: 65px; top: 5px; }
+
+.order_payment #checkout_payment .payment_item .caption {
+	margin-left: 8px;
+	width: 650px;
+}
+
+.order_payment #checkout_payment div.items div.ppplus_payment_item {
+	padding-left: 0px !important;
+}
+
+.order_payment #checkout_payment  div.items div.ppplus_payment_item .caption {
+	width: 100%;
+}
+
+div.ppplus_payment_item > label {
+	width: 100%;
+}
+
+/* END PayPalPlus */

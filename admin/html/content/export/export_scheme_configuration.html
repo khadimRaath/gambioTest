@@ -1,0 +1,304 @@
+{load_language_text section="export_schemes"}
+{load_language_text section="lightbox_buttons" name="buttons"}
+
+<div class="export_scheme_configuration">
+	<input type="hidden" value="{$content_data.export_type}" name="type_id" />
+	<div class="row content_headline">{$txt.configuration_tab}</div>
+	<div class="clear_both"> <!-- --> </div>
+
+	{if $content_data.export_type == 1}
+	<div>
+		<div class="span_1_2">
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_scheme_name">{$txt.provider}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.scheme_name|htmlentities_wrapper}" {if $content_data.scheme->v_data_array.created_by == "gambio"}disabled="disabled"{/if} name="scheme_name" id="conf_scheme_name" title="{$txt.tooltip_conf_scheme_name}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_filename">{$txt.filename}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.filename|htmlentities_wrapper}" name="filename" id="conf_filename" title="{$txt.tooltip_conf_filename}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_export_properties_checkbox">{$txt.export_properties}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="checkbox" value="1" id="conf_export_properties_checkbox" title="{$txt.tooltip_conf_export_properties_checkbox}" {if $content_data.scheme->v_data_array.export_properties}checked="checked"{/if} />
+					<input type="hidden" value="{if $content_data.scheme->v_data_array.export_properties}1{else}0{/if}" id="conf_export_properties_input" name="export_properties" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+		</div>
+		<div class="span_1_2">
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_field_separator">{$txt.field_separator}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.field_separator|htmlentities_wrapper}" {if $content_data.scheme->v_data_array.created_by == "gambio"}disabled="disabled"{/if} name="field_separator" id="conf_field_separator" class="validate_minlength_1" title="{$txt.tooltip_conf_field_separator}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_field_quotes">{$txt.field_quotes}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.field_quotes|htmlentities_wrapper}" {if $content_data.scheme->v_data_array.created_by == "gambio"}disabled="disabled"{/if} name="field_quotes" id="conf_field_quotes" title="{$txt.tooltip_conf_field_quotes}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	{/if}
+
+	{if $content_data.export_type == 2}
+	<div class="row" style="padding: 0;">
+		<div class="span_1_2">
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_scheme_name">{$txt.provider}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.scheme_name|htmlentities_wrapper}" {if $content_data.scheme->v_data_array.created_by == "gambio"}disabled="disabled"{/if} name="scheme_name" id="conf_scheme_name" title="{$txt.tooltip_conf_scheme_name}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_filename">{$txt.filename}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.filename|htmlentities_wrapper}" name="filename" id="conf_filename" title="{$txt.tooltip_conf_filename}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_field_separator">{$txt.field_separator}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.field_separator|htmlentities_wrapper}" {if $content_data.scheme->v_data_array.created_by == "gambio"}disabled="disabled"{/if} name="field_separator" id="conf_field_separator" class="validate_minlength_1" title="{$txt.tooltip_conf_field_separator}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_field_quotes">{$txt.field_quotes}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.field_quotes|htmlentities_wrapper}" {if $content_data.scheme->v_data_array.created_by == "gambio"}disabled="disabled"{/if} name="field_quotes" id="conf_field_quotes" title="{$txt.tooltip_conf_field_quotes}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label>{$txt.currency}:</label>
+				</div>
+				<div class="span_2_3 tooltip_wrapper" title="{$txt.tooltip_conf_currencies_id}">
+					<select name="currencies_id" id="conf_currencies_id">
+						{foreach item=currency from=$content_data.currencies}
+						<option value="{$currency.currencies_id}" {if $currency.currencies_id == $content_data.scheme->v_data_array.currencies_id}selected="selected"{/if} >{$currency.code}</option>
+						{/foreach}
+					</select>
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label>{$txt.language}:</label>
+				</div>
+				<div class="span_2_3 tooltip_wrapper" title="{$txt.tooltip_conf_languages_id}">
+					<select name="languages_id" id="conf_languages_id">
+						{foreach item=language from=$content_data.languages}
+						<option value="{$language.id}" {if $language.id == $content_data.scheme->v_data_array.languages_id}selected="selected"{/if} >{$language.name}</option>
+						{/foreach}
+					</select>
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+		</div>
+		<div class="span_1_2">
+			<div class="row">
+				<div class="span_1_3">
+					<label>{$txt.customers_status}:</label>
+				</div>
+				<div class="span_2_3 tooltip_wrapper" title="{$txt.tooltip_conf_customers_status_id}">
+					<select name="customers_status_id" id="conf_customers_status_id">
+						{foreach item=customers_status from=$content_data.customers_status}
+						<option value="{$customers_status.customers_status_id}" {if $customers_status.customers_status_id == $content_data.scheme->v_data_array.customers_status_id || !isset($content_data.scheme->v_data_array.customers_status_id) && $customers_status.customers_status_id == 1 }selected="selected"{/if} >{$customers_status.customers_status_name|htmlentities_wrapper}</option>
+						{/foreach}
+					</select>
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label>{$txt.campaign}:</label>
+				</div>
+				<div class="span_2_3 tooltip_wrapper" title="{$txt.tooltip_conf_campaign_id}">
+					<select name="campaign_id" id="conf_campaign_id">
+						<option value="0">{$txt.no_campaign}</option>
+						{foreach item=campaign from=$content_data.campaigns}
+						<option value="{$campaign.campaigns_refID}" {if $campaign.campaigns_refID == $content_data.scheme->v_data_array.campaign_id}selected="selected"{/if} >{$campaign.campaigns_name}</option>
+						{/foreach}
+					</select>
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_shipping_free_minimum">{$txt.shipping_free_minimum}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.shipping_free_minimum}" name="shipping_free_minimum" id="conf_shipping_free_minimum" class="validate_float" title="{$txt.tooltip_conf_shipping_free_minimum}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_quantity_minimum">{$txt.quantity_minimum}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="text" value="{$content_data.scheme->v_data_array.quantity_minimum}" name="quantity_minimum" id="conf_quantity_minimum" class="validate_float" title="{$txt.tooltip_conf_quantity_minimum}" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_export_attributes_checkbox">{$txt.export_attributes}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="checkbox" value="1" id="conf_export_attributes_checkbox" title="{$txt.tooltip_conf_export_attributes_checkbox}" {if $content_data.scheme->v_data_array.export_attributes}checked="checked"{/if} />
+					<input type="hidden" value="{if $content_data.scheme->v_data_array.export_attributes}1{else}0{/if}" id="conf_export_attributes_input" name="export_attributes" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row">
+				<div class="span_1_3">
+					<label for="conf_export_properties_checkbox">{$txt.export_properties}:</label>
+				</div>
+				<div class="span_2_3">
+					<input type="checkbox" value="1" id="conf_export_properties_checkbox" title="{$txt.tooltip_conf_export_properties_checkbox}" {if $content_data.scheme->v_data_array.export_properties}checked="checked"{/if} />
+					<input type="hidden" value="{if $content_data.scheme->v_data_array.export_properties}1{else}0{/if}" id="conf_export_properties_input" name="export_properties" />
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+
+	<div class="row">
+		<div class="span_1_6">
+			<label for="conf_export_path">{$txt.export_file_path}</label>
+		</div>
+		<div class="span_5_6">
+			<input type="text" readonly value="{$content_data.export_file_path}" id="conf_export_path" title="{$txt.tooltip_conf_export_file_path}">
+		</div>
+		<div style="clear: both;"><!-- --></div>
+	</div>
+	{/if}
+	
+	<div>
+		<div class="row">
+			<div class="span_1_6">
+				<label for="conf_cronjob_allowed_checkbox">{$txt.export_cronjob}:</label>
+			</div>
+			<div class="span_5_6">
+				<input type="checkbox" value="1" id="conf_cronjob_allowed_checkbox" title="{$txt.tooltip_conf_cronjob_allowed_checkbox}" {if $content_data.scheme->v_data_array.cronjob_allowed}checked="checked"{/if} />
+				<input type="hidden" value="{if $content_data.scheme->v_data_array.cronjob_allowed}1{else}0{/if}" id="conf_cronjob_allowed_input" name="cronjob_allowed" />
+			</div>
+			<div class="clear_both"> <!-- &nbsp; --> </div>
+		</div>
+		<div class="conf_cronjob_time" {if !$content_data.scheme->v_data_array.cronjob_allowed}style="visibility: hidden;"{/if}>
+			<div class="row">
+				<div class="span_1_6">
+					<label class="cronjob_label">{$txt.week_days}:</label>
+				</div>
+				<div class="span_5_6">
+					<input id="cronjob_day_mon" type="checkbox" value="Mon" name="cronjob_days[]" {if in_array("Mon", $content_data.cronjob_days_array)}checked="checked"{/if} /><label for="cronjob_day_mon">{$txt.short_monday}</label>
+					<input id="cronjob_day_tue" type="checkbox" value="Tue" name="cronjob_days[]" {if in_array("Tue", $content_data.cronjob_days_array)}checked="checked"{/if} /><label for="cronjob_day_tue">{$txt.short_tuesday}</label>
+					<input id="cronjob_day_wed" type="checkbox" value="Wed" name="cronjob_days[]" {if in_array("Wed", $content_data.cronjob_days_array)}checked="checked"{/if} /><label for="cronjob_day_wed">{$txt.short_wednesday}</label>
+					<input id="cronjob_day_thu" type="checkbox" value="Thu" name="cronjob_days[]" {if in_array("Thu", $content_data.cronjob_days_array)}checked="checked"{/if} /><label for="cronjob_day_thu">{$txt.short_thursday}</label>
+					<input id="cronjob_day_fri" type="checkbox" value="Fri" name="cronjob_days[]" {if in_array("Fri", $content_data.cronjob_days_array)}checked="checked"{/if} /><label for="cronjob_day_fri">{$txt.short_friday}</label>
+					<input id="cronjob_day_sat" type="checkbox" value="Sat" name="cronjob_days[]" {if in_array("Sat", $content_data.cronjob_days_array)}checked="checked"{/if} /><label for="cronjob_day_sat">{$txt.short_saturday}</label>
+					<input id="cronjob_day_sun" type="checkbox" value="Sun" name="cronjob_days[]" {if in_array("Sun", $content_data.cronjob_days_array)}checked="checked"{/if} /><label for="cronjob_day_sun">{$txt.short_sunday}</label>
+				</div>
+				<div class="clear_both"> <!-- &nbsp; --> </div>
+			</div>
+			<div class="row" style="padding: 0;">
+				<div class="span_1_6">
+					<label class="cronjob_label">{$txt.start_time}:</label>
+				</div>
+				<div class="span_5_6">
+					<select name="cronjob_hour">
+						<option value="0" {if $content_data.scheme->v_data_array.cronjob_hour == 0}selected="selected"{/if}>00:00</option>
+						<option value="1" {if $content_data.scheme->v_data_array.cronjob_hour == 1}selected="selected"{/if}>01:00</option>
+						<option value="2" {if $content_data.scheme->v_data_array.cronjob_hour == 2}selected="selected"{/if}>02:00</option>
+						<option value="3" {if $content_data.scheme->v_data_array.cronjob_hour == 3}selected="selected"{/if}>03:00</option>
+						<option value="4" {if $content_data.scheme->v_data_array.cronjob_hour == 4}selected="selected"{/if}>04:00</option>
+						<option value="5" {if $content_data.scheme->v_data_array.cronjob_hour == 5}selected="selected"{/if}>05:00</option>
+						<option value="6" {if $content_data.scheme->v_data_array.cronjob_hour == 6}selected="selected"{/if}>06:00</option>
+						<option value="7" {if $content_data.scheme->v_data_array.cronjob_hour == 7}selected="selected"{/if}>07:00</option>
+						<option value="8" {if $content_data.scheme->v_data_array.cronjob_hour == 8}selected="selected"{/if}>08:00</option>
+						<option value="9" {if $content_data.scheme->v_data_array.cronjob_hour == 9}selected="selected"{/if}>09:00</option>
+						<option value="10" {if $content_data.scheme->v_data_array.cronjob_hour == 10}selected="selected"{/if}>10:00</option>
+						<option value="11" {if $content_data.scheme->v_data_array.cronjob_hour == 11}selected="selected"{/if}>11:00</option>
+						<option value="12" {if $content_data.scheme->v_data_array.cronjob_hour == 12}selected="selected"{/if}>12:00</option>
+						<option value="13" {if $content_data.scheme->v_data_array.cronjob_hour == 13}selected="selected"{/if}>13:00</option>
+						<option value="14" {if $content_data.scheme->v_data_array.cronjob_hour == 14}selected="selected"{/if}>14:00</option>
+						<option value="15" {if $content_data.scheme->v_data_array.cronjob_hour == 15}selected="selected"{/if}>15:00</option>
+						<option value="16" {if $content_data.scheme->v_data_array.cronjob_hour == 16}selected="selected"{/if}>16:00</option>
+						<option value="17" {if $content_data.scheme->v_data_array.cronjob_hour == 17}selected="selected"{/if}>17:00</option>
+						<option value="18" {if $content_data.scheme->v_data_array.cronjob_hour == 18}selected="selected"{/if}>18:00</option>
+						<option value="19" {if $content_data.scheme->v_data_array.cronjob_hour == 19}selected="selected"{/if}>19:00</option>
+						<option value="20" {if $content_data.scheme->v_data_array.cronjob_hour == 20}selected="selected"{/if}>20:00</option>
+						<option value="21" {if $content_data.scheme->v_data_array.cronjob_hour == 21}selected="selected"{/if}>21:00</option>
+						<option value="22" {if $content_data.scheme->v_data_array.cronjob_hour == 22}selected="selected"{/if}>22:00</option>
+						<option value="23" {if $content_data.scheme->v_data_array.cronjob_hour == 23}selected="selected"{/if}>23:00</option>
+					</select>
+				</div>
+				<div class="clear_both"> <!-- &nbsp; --> </div>
+			</div>
+			<div class="row" style="padding: 0;">
+				<div class="span_1_6">
+					<div style="height: 25px; line-height: 25px;">{$txt.or}</div>
+				</div>
+				<div class="clear_both"> <!-- &nbsp; --> </div>
+			</div>
+			<div class="row">
+				<div class="span_1_6">
+					<label class="cronjob_label">{$txt.interval}:</label>
+				</div>
+				<div class="span_5_6">
+					<select name="cronjob_interval">
+						<option value="0" {if $content_data.scheme->v_data_array.cronjob_interval == 0}selected="selected"{/if}>{$txt.no_interval}</option>
+						<option value="1" {if $content_data.scheme->v_data_array.cronjob_interval == 1}selected="selected"{/if}>1 {$txt.hour}</option>
+						<option value="2" {if $content_data.scheme->v_data_array.cronjob_interval == 2}selected="selected"{/if}>2 {$txt.hours}</option>
+						<option value="3" {if $content_data.scheme->v_data_array.cronjob_interval == 3}selected="selected"{/if}>3 {$txt.hours}</option>
+						<option value="4" {if $content_data.scheme->v_data_array.cronjob_interval == 4}selected="selected"{/if}>4 {$txt.hours}</option>
+						<option value="5" {if $content_data.scheme->v_data_array.cronjob_interval == 5}selected="selected"{/if}>5 {$txt.hours}</option>
+						<option value="6" {if $content_data.scheme->v_data_array.cronjob_interval == 6}selected="selected"{/if}>6 {$txt.hours}</option>
+						<option value="7" {if $content_data.scheme->v_data_array.cronjob_interval == 7}selected="selected"{/if}>7 {$txt.hours}</option>
+						<option value="8" {if $content_data.scheme->v_data_array.cronjob_interval == 8}selected="selected"{/if}>8 {$txt.hours}</option>
+						<option value="9" {if $content_data.scheme->v_data_array.cronjob_interval == 9}selected="selected"{/if}>9 {$txt.hours}</option>
+						<option value="10" {if $content_data.scheme->v_data_array.cronjob_interval == 10}selected="selected"{/if}>10 {$txt.hours}</option>
+						<option value="11" {if $content_data.scheme->v_data_array.cronjob_interval == 11}selected="selected"{/if}>11 {$txt.hours}</option>
+						<option value="12" {if $content_data.scheme->v_data_array.cronjob_interval == 12}selected="selected"{/if}>12 {$txt.hours}</option>
+					</select>
+					<div class="clear_both"> <!-- &nbsp; --> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

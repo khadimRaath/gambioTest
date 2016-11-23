@@ -1,0 +1,27 @@
+// ----------------------------------------------------------------------------
+// GX-Admin Stylesheet - JavaScript Extensions
+// 
+// This script contains UI styling for the JavaScript engine extensions. If the module
+// does something specific that needs extra styling then the style rules must be placed
+// in this file.
+// 
+// All the styling included in this file will be applied to the children of
+// an element containing the ".gx-container" class.
+// 
+// @since v2.3.1.0
+// ----------------------------------------------------------------------------
+
+.gx-container {
+  
+  // --------------------------------------------------------------------------
+  // VALIDATOR COMPONENT
+  // --------------------------------------------------------------------------
+  
+  .validate.error {
+    border: 1px solid $danger-color;
+  }
+
+  .validate.valid {
+    border: 1px solid $success-color;
+  }
+}

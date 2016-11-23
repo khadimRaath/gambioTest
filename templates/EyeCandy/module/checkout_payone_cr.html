@@ -1,0 +1,14 @@
+{load_language_text section="payone" name="p1txt"}
+<div class="p1cr">
+	<h1>{$p1txt.credit_risk_heading}</h1>
+
+	<form id="p1crconfirm" action="{$content_data.form_action}" method="POST">
+		<p class="notice">{$content_data.notice}</p>
+		<p class="confirm">{$content_data.confirmation}</p>
+		<p class="buttons">
+			<input class="yesbutton" type="submit" name="confirm" value="{$p1txt.button_confirm}">
+			<input class="nobutton" type="submit" name="noconfirm" value="{$p1txt.button_noconfirm}">
+		</p>
+	</form>
+</div>
+

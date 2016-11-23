@@ -1,0 +1,116 @@
+
+p.message {
+	border: 2px solid red;
+	background: #FFFBAC;
+	padding: 1ex 1em;
+	width: 95%;
+	margin: 0 auto 1.5em;
+}
+
+p.partnerinfo {
+	font: 1em sans-serif;
+	background-color: #e8e8e8;
+	clear: both;
+	margin: 2em auto;
+	padding: 2em;
+}
+
+p.partnerinfo a.plink {
+	font: 1em sans-serif;
+	text-shadow: 0 0 1px #9CB8D8;
+}
+
+td.main form {
+	overflow: auto;
+}
+
+fieldset {
+	border: none;
+	background-color: #e8e8e8;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	margin-bottom: 1.5em;
+}
+
+fieldset.lefthalf {
+	clear: left;
+	float: left;
+	width: 49%
+}
+
+fieldset.righthalf {
+	float: right;;
+	width: 49%;
+}
+
+legend {
+	font-weight: bold;
+	padding: 1ex 2ex;
+	background-color: #9CB8D8;
+}
+
+dl.adminform {
+	overflow: auto;
+}
+
+dl.adminform dt,
+dl.adminform dd {
+	float: left;
+	margin: .2ex 0;
+}
+
+dl.adminform dt {
+	clear: left;
+	width: 20em;
+}
+
+dl.adminform dt label:after {
+	content: ':';
+}
+
+dl.adminform input {
+	vertical-align: middle;
+}
+
+div.buttons {
+	margin: 1.5em auto;
+	float: left;
+	width: 100%;
+}
+
+input.button_wide {
+	width: auto !important;
+	display: inline-block !important;
+	margin: 1ex;
+}
+
+table.orders {
+	border-collapse: collapse;
+	background-color: #E6F1FA;
+}
+
+table.orders thead {
+	background-color: #ddd;
+}
+
+table.orders tbody {
+}
+
+table.orders td,
+table.orders th {
+	vertical-align: top;
+	padding: .5ex 1ex;
+}
+
+
+form.bluegray {font-size: 0.9em; }
+form.bluegray fieldset {border: none; padding: 0; margin: 1ex 0 0 0; }
+form.bluegray legend {font-weight: bolder; font-size: 1.4em; background: #585858; color: #FFFFFF; padding: .2ex 0.5%; width: 99%; }
+form.bluegray dl.adminform {margin: 0; }
+form.bluegray dl.adminform dt, form.bluegray dl.adminform dd {line-height: 1.3; padding: 3px 0; margin: 0; }
+form.bluegray dl.adminform dt {width: 30%; float: left; font-weight: bold; padding: 2px;}
+form.bluegray dl.adminform dd {border-bottom: 1px dotted rgb(90, 90, 90); width: 68%; float: none; padding-left: 32%; background-color: #F7F7F7; }
+form.bluegray dl.adminform dd:nth-child(4n) {background: #D6E6F3; }
+
+form.bluegray dl.adminform dd { height: 2.5em; }

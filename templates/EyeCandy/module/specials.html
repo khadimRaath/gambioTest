@@ -1,0 +1,17 @@
+{load_language_text section="specials"}
+{load_language_text section="product_listing" name="product"}
+{load_language_text section="index" name="index"}
+
+<div id="specials">
+	<h1>{$txt.heading_text}</h1>
+	
+	<div class="site_navigation">{$NAVBAR}</div>
+	<br /><br />
+	{object_product_list product_list=$module_content id_prefix="specials" truncate_products_name=$TRUNCATE_PRODUCTS_NAME}
+	<div>
+		<div class="panel-pagination-info">{$NAVIGATION_INFO}</div>
+		<div class="site_navigation">{$NAVBAR}</div>
+	</div>
+</div>
+
+

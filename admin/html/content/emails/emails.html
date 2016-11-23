@@ -1,0 +1,302 @@
+{load_language_text section="emails"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="admin_labels" name="label"}
+{load_language_text section="admin_general" name="general"}
+{load_language_text section="admin_menu" name="menu"}
+
+<div class="gx-container breakpoint-large">
+	
+	<table>
+		<tr>
+			<td class="dataTableHeadingContent">
+				{$txt.emails}
+			</td>
+			<td class="dataTableHeadingContent">
+				<a href="configuration.php?gID=12">
+					{$menu.BOX_CONFIGURATION_12}
+				</a>
+			</td>
+			<td class="dataTableHeadingContent">
+				<a href="gm_emails.php">
+					{$menu.BOX_GM_EMAILS}
+				</a>
+			</td>
+		</tr>
+	</table>
+	
+	<!--
+		MAIN PAGE TOOLBAR
+
+		Main control-actions for the page.
+	-->
+	<div id="emails-toolbar" data-gx-controller="emails/emails_toolbar">
+		<div class="grid">
+			<div class="span4">
+				<form id="quick-search" class="control-group remove-padding">
+					<label for="search-keyword">{$label.search}</label>
+					<input type="text" id="search-keyword" />
+				</form>
+			</div>
+
+			<div class="span8 remove-padding">
+				<button id="create-new-email" class="btn btn-success pull-right">
+					<i class="fa fa-plus"></i>
+					{$button.new_mail}
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<!--
+		MAIN TABLE
+
+		DataTable is initialized in JS controller.
+	-->
+	<table id="emails-table" data-gx-controller="emails/emails_table">
+		<thead>
+			<tr>
+				<th><input type="checkbox" id="select-all-rows" /></th>
+				<th>#</th>
+				<th>{$txt.table_creation}</th>
+				<th>{$txt.email_sent}</th>
+				<th>{$txt.email_sender}</th>
+				<th>{$txt.email_recipient}</th>
+				<th>{$txt.email_subject}</th>
+				<th>{$txt.table_status}</th>
+				<th>{$txt.table_actions}</th>
+			</tr>
+		</thead>
+		<tbody> <!-- Dynamic Content --> </tbody>
+	</table>
+
+	<!--
+		MAIN TABLE PAGINATOR
+
+		Table paginator div will be parsed by JavaScript (see emails_table.js initialization). It
+		will be mixed with the DataTables HTML output.
+	-->
+	<div class="paginator grid"
+	     data-gx-controller="emails/emails_paginator"
+	     data-gx-widget="button_dropdown"
+	     data-button_dropdown-user_id="{$userId}"
+	>
+		<div class="span5">
+			<div class="bulk-action"
+			     data-icon="check-square-o fa-fw"
+			     data-use-button_dropdown="true"
+				 data-config_key="emailMultiDropdownBtn"
+				 data-config_value="{$emailMultiDropdownBtn}">
+				<button></button>
+				<ul></ul>
+			</div>
+
+			<button id="handle-attachments" class="btn">
+				{$txt.handle_attachments}
+				<span id="attachments-size">(0 bytes)</span>
+			</button>
+
+			<button id="refresh-table" class="btn">{$button.refresh}</button>
+		</div>
+		<div class="span7 datatable-components remove-padding">
+			<select id="display-records" class="pull-left input-small">
+				<option value="20" selected>20 {$general.PER_PAGE}</option>
+				<option value="30">30 {$general.PER_PAGE}</option>
+				<option value="50">50 {$general.PER_PAGE}</option>
+				<option value="100">100 {$general.PER_PAGE}</option>
+			</select>
+
+			<!-- Will dynamically filled (see emails_table.js). -->
+		</div>
+	</div>
+
+	<!--
+		 HANDLE ATTACHMENTS MODAL
+
+		 Contains the elements for the old attachments manipulation.
+	-->
+	<div id="attachments-modal" class="hidden simple-container" data-gx-controller="emails/attachments_modal">
+		<p>{$txt.message_delete_old_attachments_description}</p>
+		<br>
+		<div class="grid control-group">
+			<div class="span5">
+				<label for="removal-date">{$txt.removal_date}</label>
+			</div>
+			<div class="span7 remove-padding">
+				<input type="text" id="removal-date" class="cursor-pointer" />
+			</div>
+		</div>
+		<br>
+		<div class=control-group grid">
+			<button id="delete-old-attachments" class="btn btn-primary pull-right remove-margin">{$txt.delete_old_attachments}</button>
+		</div>
+	</div>
+
+	<!--
+		MAIN EMAILS MODAL
+
+		Will be used for displaying the email modal.
+	-->
+	<div id="emails-modal" class="hidden" data-gx-controller="emails/emails_modal" data-jse-extension="validator">
+		<div data-gx-widget="tabs">
+			<div class="tab-headline-wrapper">
+				<a class="tab-headline details active">{$txt.modal_details}</a>
+				<a class="tab-headline bcc-cc">BCC & CC</a>
+				<a class="tab-headline attachments">{$txt.modal_attachments}</a>
+			</div>
+			<div class="tab-content-wrapper">
+				<!--
+					Email Details Tab
+				-->
+				<div class="details tab-content">
+					<input type="hidden" id="email-id" />
+					<input type="hidden" id="is-pending" />
+					<input type="hidden" id="creation-date" />
+					<input type="hidden" id="sent-date" />
+
+					<!-- Subject -->
+					<div class="grid">
+						<div class="span6">
+							<div class="control-group">
+								<label for="subject">{$txt.email_subject} *</label>
+								<input type="text" id="subject" name="subject" class="validate" data-validator-validate="required" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Sender -->
+					<div class="grid sender">
+						<div class="span6">
+							<div class="control-group">
+								<label for="sender-email">{$txt.email_sender} *</label>
+								<input type="text" id="sender-email" name="sender-email" placeholder="{$txt.modal_contact_email}" class="validate" data-validator-validate="required email" />
+							</div>
+						</div>
+						<div class="span6">
+							<div class="control-group">
+								<input type="text" id="sender-name" name="sender-name" placeholder="{$txt.modal_contact_name}" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Recipient -->
+					<div class="grid recipient">
+						<div class="span6">
+							<div class="control-group">
+								<label for="recipient-email">{$txt.email_recipient} *</label>
+								<input type="text" id="recipient-email" name="recipient-email" placeholder="{$txt.modal_contact_email}" class="validate" data-validator-validate="required email" />
+							</div>
+						</div>
+						<div class="span6">
+							<div class="control-group">
+								<input type="text" id="recipient-name" name="recipient-name" placeholder="{$txt.modal_contact_name}" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Reply To -->
+					<div class="grid reply-to">
+						<div class="span6">
+							<div class="control-group">
+								<label for="reply-to-email">{$txt.email_reply_to}</label>
+								<input type="text" id="reply-to-email" name="reply-to-email" placeholder="{$txt.modal_contact_email}" class="validate" data-validator-validate="email" />
+							</div>
+						</div>
+						<div class="span6">
+							<div class="control-group">
+								<input type="text" id="reply-to-name" name="reply-to-name" placeholder="{$txt.modal_contact_name}" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Content -->
+					<div class="content" data-gx-widget="tabs">
+						<div class="tab-headline-wrapper">
+							<a class="tab-headline content-html active">{$txt.email_html}</a>
+							<a class="tab-headline content-plain">{$txt.email_plain}</a>
+						</div>
+						<div class="tab-content-wrapper">
+							<div>
+								<textarea id="content-html" name="content-html" rows="5"></textarea>
+							</div>
+							<div>
+								<div class="control-group remove-margin">
+									<textarea id="content-plain" name="content-plain" rows="20"></textarea>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!--
+					BCC & CC Contacts Tab
+				-->
+				<div class="grid bcc-cc tab-content">
+					<div class="grid">
+
+						<div class="span4">
+							<div class="control-group">
+								<label for="contact-email">{$txt.modal_contact_email} *</label>
+								<input type="text" id="contact-email" name="contact-email" class="validate" data-validator-validate="required email" />
+							</div>
+						</div>
+
+
+						<div class="span4">
+							<div class="control-group">
+								<label for="contact-name">{$txt.modal_contact_name}</label>
+								<input type="text" id="contact-name" name="contact-name"/>
+							</div>
+						</div>
+
+
+						<div class="span2">
+							<div class="control-group">
+								<label for="contact-type">{$txt.modal_contact_type}</label>
+								<select id="contact-type" name="contact-type">
+									<option value="bcc">BCC</option>
+									<option value="cc">CC</option>
+								</select>
+							</div>
+						</div>
+						<div class="span2 remove-padding">
+							<button id="add-contact" class="pull-right">{$button.add}</button>
+						</div>
+					</div>
+
+					<table id="contacts-table">
+						<thead>
+							<th>{$txt.modal_contact_email}</th>
+							<th>{$txt.modal_contact_name}</th>
+							<th>{$txt.modal_contact_type}</th>
+							<th class="disable-sort">{$txt.table_actions}</th>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+
+				<!--
+					File Attachments Tab
+				-->
+				<div class="grid attachments tab-content">
+					<div class="control-group">
+						<label for="upload-attachment">{$txt.modal_upload_attachment}</label>
+						<input type="file" id="upload-attachment" name="upload-attachment"
+						        data-gx-extension="ajax_file_upload"
+								data-ajax_file_upload-url="admin.php?do=Emails/UploadAttachment&pageToken={$pageToken}" />
+					</div>
+
+					<table id="attachments-table">
+						<thead>
+							<tr>
+								<th class="sort-asc">{$txt.modal_path}</th>
+								<th class="disable-sort">{$txt.table_actions}</th>
+							</tr>
+						</thead>
+						<tbody></tbody>
+					</table>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>

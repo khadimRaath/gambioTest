@@ -1,0 +1,143 @@
+{load_language_text section="checkout_payment"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="withdrawal" name="withdrawal"}
+{load_language_text section="amazonadvancedpayment" name="amzadvpay"}
+<!-- PAYMENT -->
+{if $LIGHTBOX == 'true'}<div id="lightbox_content" style="display:none">{/if}
+	<div class="order_payment{if $LIGHTBOX == 'true'} lightbox_block{/if}">
+
+		<form id="checkout_payment" action="{$FORM_ACTION_URL}" method="post">
+	
+			<div class="process_bar">
+				<ul>
+					<li><label><span>{$txt.text_shoppingcart}</span></label></li>
+					<li><label><span>{$txt.text_yourdata}</span></label></li>
+					<li class="active"><label><span>{$txt.text_shipandpay}</span></label></li>
+					<li><label><span>{$txt.text_confirm}</span></label></li>
+				</ul>
+			</div>
+			<h1>{$txt.text_payment_info}</h1>
+	
+			{if $error!=''}<div class="errorText">{$error}</div>{/if}
+
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" />{$txt.title_address}</h2>
+			{if $amazonadvpay_active}
+				<div class="amzadvpay_billto">
+					{$amzadvpay.note_billing_address}
+				</div>
+			{else}
+				<div class="invoice_address">
+					<p>{$txt.text_address}</p>
+					<p class="address">
+						{$ADDRESS_LABEL}<br /><br />
+						<a class="button_blue button_set" href="{'checkout_payment_address.php'|xtc_href_link:'':'SSL'}"><span class="button-outer"><span class="button-inner">{$button.address_change}</span></span></a>
+					</p>
+				</div>
+			{/if}
+	
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/payment.png" alt="" />{$txt.heading_payment}</h2>
+			<div class="items">
+				{if $GV_COVER != 'true'}
+					{if $amazonadvpay_active}
+						<input type="hidden" name="payment" value="amazonadvpay">
+						{$amazon_checkout_payment}
+					{else}
+						<p>{$txt.text_payment}</p>
+						{$PAYMENT_BLOCK}
+					{/if}
+					{$module_gift}
+				{else}
+					<input type="hidden" name="cot_gv" value="on" />
+					<p>{$txt.text_gccover}</p>
+				{/if}
+			</div>
+	
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/comments.png" alt="" />{$txt.title_comments}</h2>
+			<div class="remarks">
+				<p>{$txt.text_comments}</p>
+	
+				<textarea id="comments_textarea" name="{$COMMENTS_NAME}" wrap="{$COMMENTS_WRAP}" class="input-textarea">{$COMMENTS_VALUE}</textarea>
+				<input type="hidden" name="{$COMMENTS_HIDDEN_NAME}" value="{$COMMENTS_HIDDEN_VALUE}" />
+			</div>
+	
+	
+			{if $SHOW_WITHDRAWAL || $show_abandonment_download || $show_abandonment_service}
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/secrecy.png" alt="" /> {$txt.title_withdrawal} <a href="request_port.php?module=ShopContent&action=download&coID={gm_get_conf get="GM_WITHDRAWAL_CONTENT_ID"}">({$withdrawal.download_as_pdf})</a></h2>
+			<div class="remarks">
+				{if $SHOW_CHECKBOX_WITHDRAWAL}
+					<p>{$txt.text_withdrawal}</p>
+				{/if}
+	
+				{foreach from=$withdrawal_array item=withdrawal_data}
+					<p class="withdrawal_heading">{$withdrawal_data.data.HEADING}</p>
+					{if $withdrawal_data.data_type == 'content'}
+						<div class="miscellaneous-container">{$withdrawal_data.data.TEXT}</div>
+					{elseif $withdrawal_data.data_type == 'iframe'}
+						<iframe src="{$withdrawal_data.data.IFRAME_URL}"></iframe>
+					{/if}
+				{/foreach}
+				
+				{if $SHOW_CHECKBOX_WITHDRAWAL }
+					<div class="accept_box">
+						<div class="accept_box_checkbox">
+							<input type="checkbox" value="withdrawal" name="withdrawal" id="withdrawal" />
+						</div>
+						<div class="accept_box_text">
+							<label for="withdrawal">{$txt.text_accept_withdrawal}</label>
+						</div>
+					</div>
+				{/if}
+				{if $show_abandonment_download}
+					<div class="accept_box abandonment_checkbox"><div class="accept_box_checkbox"><input type="checkbox" name="abandonment_download" value="abandonment_download"/></div><div class="accept_box_text">{$withdrawal.text_abandonment_download}</div></div>
+				{/if}
+				{if $show_abandonment_service}
+					<div class="accept_box abandonment_checkbox"><div class="accept_box_checkbox"><input type="checkbox" name="abandonment_service" value="abandonment_service"/></div><div class="accept_box_text">{$withdrawal.text_abandonment_service}</div></div>
+				{/if}
+			</div>
+			{/if}
+
+			{if $conditions_data || $AGB_IFRAME == 1}
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/secrecy.png" alt="" /> 
+				{$txt.title_agb} 
+				<a href="request_port.php?module=ShopContent&action=download&coID=3">
+					({$withdrawal.download_as_pdf})
+				</a>
+			</h2>
+			{/if}
+			<div class="remarks">
+				{if $SHOW_CONDITIONS_CHECKBOX}
+					<p>{$txt.text_agb}</p>
+				{/if}
+
+				{if $AGB_IFRAME == 1}
+					<iframe src="{$AGB_IFRAME_URL}"></iframe>
+				{else}
+					{if $conditions_data}
+						<div class="miscellaneous-container">{$conditions_data.TEXT}</div>
+					{/if}
+				{/if}
+	
+				{if $SHOW_CONDITIONS_CHECKBOX && ($conditions_data || $AGB_IFRAME == 1)}
+					<div class="accept_box">
+						<div class="accept_box_checkbox">
+							<input type="checkbox" value="conditions" name="conditions" id="conditions" />
+						</div>
+						<div class="accept_box_text">
+							<label for="conditions">{$txt.text_accept_agb}</label>
+						</div>
+					</div>
+				{/if}
+			</div>
+			<br/><br/>
+	
+			{* TODO: write action_page_back handler *}
+			<div class="back_button"><a href="{$BUTTON_BACK_URL}" class="button_grey_big button_set_big action_page_back"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a></div>
+			{* TODO: use xtc_href_link plugin *}
+			<div class="continue_button"><a href="{page_url}#" class="button_green_big button_set_big action_submit"><span class="button-outer"><span class="button-inner"><img class="png-fix" src="{$tpl_path}img/icons/icon-white-shoppingcart.png" alt="" style="margin-right:10px; float:left" />{$button.continue}</span></span></a></div>
+
+		</form>
+	</div>
+{if $LIGHTBOX == 'true'}
+	<a href="{$LIGHTBOX_CLOSE}" class="icon_lightbox_close_checkout button_close_lightbox" title="{$button.close}">{$button.close}</a>
+</div>
+{/if}

@@ -1,0 +1,38 @@
+{load_language_text section="reviews"}
+{load_language_text section="buttons" name="button"}
+
+<div id="reviews-info">
+	<h1>{$txt.heading_product_reviews} <a href="{$PRODUCTS_LINK}">{$PRODUCTS_NAME}</a></h1>
+	<div class="rating-item clearfix"{$rich_snippet_content.review_itemscope}>
+		{$rich_snippet_content.review_itemprop_about}
+		<div class="rating-stars"{$rich_snippet_content.review_itemprop_reviewRating}{$rich_snippet_content.rating_itemscope}>
+			{$RATING}
+			{$rich_snippet_content.rating_itemprop_ratingValue}
+		</div>
+		<div class="rating-caption">
+			{$txt.label_author}<br />
+			{$txt.label_date}
+		</div>
+		<div class="rating-meta">
+			<span{$rich_snippet_content.review_itemprop_author}{$rich_snippet_content.author_itemscope}>
+				<span{$rich_snippet_content.author_itemprop_name}>{$AUTHOR}</span>
+			</span><br />
+			{$rich_snippet_content.review_itemprop_datePublished}{$DATE}
+		</div>
+		<div class="rating-comment">
+			<span{$rich_snippet_content.review_itemprop_reviewBody}>
+				{$REVIEWS_TEXT|default:'&nbsp;'}
+			</span>
+		</div>
+		<div class="rating-image">
+			<img src="{$IMAGE_URL}" border="0" />
+		</div>
+	</div>
+	<br />
+	<br />
+
+	<a href="{$BUTTON_BACK_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+
+	<a href="{$PRODUCTS_LINK}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.to_the_product}</span></span></a>
+
+</div>

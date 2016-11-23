@@ -1,0 +1,50 @@
+{load_language_text section="db_backup"}
+{if count($content_data.errors) == 0}
+	<div class="db_backup_list">
+		<div class="db_backup_list_headline">
+			<div class="db_backup_list_filedate">{$txt.date}</div>
+			<div class="db_backup_list_filename">{$txt.filename}</div>		
+			<div class="db_backup_list_filesize">{$txt.size}</div>
+			<div class="db_backup_list_buttons"></div>
+			<div class="clear_both"> <!-- --> </div>
+		</div>
+		{foreach item=file from=$content_data.files}
+			<div class="db_backup_list_row">
+				<div class="db_backup_list_content db_backup_list_filedate">{$file.filedate_formatted}</div>
+				<div class="db_backup_list_content db_backup_list_filename">
+					<a href="request_port.php?module=DBBackup&amp;action=download_db_backup&amp;filename={$file.filename}&amp;page_token={$content_data.page_token}" title="{$txt.download_backup}">{$file.filename}</a>
+				</div>		
+				<div class="db_backup_list_content db_backup_list_filesize">{$file.filesize}</div>
+				<div class="db_backup_list_content db_backup_list_buttons">
+					<a href="request_port.php?module=DBBackup&amp;action=download_db_backup&amp;filename={$file.filename}&amp;page_token={$content_data.page_token}" title="{$txt.download_backup}"><img alt="" title="{$txt.download_backup}" src="html/assets/images/legacy/icon_download.png" /></a>
+					<a href="lightbox_confirm.html?buttons=cancel-delete&amp;section=db_backup&amp;message=delete_db_backup_confirm" rel="{$file.filename}" title="{$txt.delete_backup}" onclick="return false;" class="db_backup_delete"><img alt="" title="{$txt.delete_backup}" src="html/assets/images/legacy/icon_delete.png" /></a>
+				</div>
+				<div class="clear_both"> <!-- --> </div>
+			</div>
+		{/foreach}
+		{if empty( $content_data.files )}
+			<div class="db_backup_list_row">
+				{$txt.no_backups_created}
+			</div>
+		{/if}
+	</div>
+	<div class="db_backup_path">{$txt.backup_directory}: {$content_data.backup_path}</div>
+	<div class="button_container">
+		<div class="button_left_container"></div>
+		<div class="button_right_container">
+			{if !empty( $content_data.files )}
+				<a onclick="return false;" class="admin_button green db_backup_restore" href="db_backup/db_backup_restore.html" title="{$txt.restore}">{$txt.restore}</a>
+			{/if}
+			<a onclick="return false;" class="admin_button green db_backup_create" href="db_backup/db_backup_create.html" title="{$txt.create_backup}">{$txt.create_backup}</a>
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>   
+	</div>
+{else}
+	<div class="db_backup_list">
+		<div class="db_backup_list_row error">
+			{foreach from=$content_data.errors item=error}
+				{$error}<br />
+			{/foreach}
+		</div>
+	</div>
+{/if}

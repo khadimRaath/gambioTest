@@ -1,0 +1,5 @@
+<div class="properties_order_details_cart" style="font-style:italic">
+{foreach item=prop_item_array from=$content_data.PROPERTIES_DATA}
+	{$prop_item_array.properties_name}: {$prop_item_array.values_name}<br/>
+{/foreach}
+</div>

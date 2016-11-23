@@ -1,0 +1,8 @@
+Dear admin,
+
+the customer {$CUSTOMER} would like to delete his account.
+{if $NOTIFY_COMMENTS}
+
+Comments:
+{$NOTIFY_COMMENTS}
+{/if}

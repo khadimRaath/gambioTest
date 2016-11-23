@@ -1,0 +1,102 @@
+/* --------------------------------------------------------------
+	stylesheet_payone.css 2014 mabr
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2014 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*/
+
+p.message {
+	margin: .5ex auto;
+	background: rgb(240, 230, 140);
+	border: 1px solid rgb(255, 0, 0);
+	padding: 1em;
+}
+
+dl.adminform {
+	position: relative;
+	overflow: auto;
+}
+
+dl.adminform dd, dl.adminform dt {
+	float: left;
+	margin: 1px 0;
+}
+
+dl.adminform dt {
+	clear: left;
+	width: 17%;
+}
+
+dl.adminform dd {
+	margin-left: 2%;
+	width: 80%;
+}
+
+input[type="submit"].btn_wide {
+	width: auto;
+}
+
+dl.adminform input[type="checkbox"] {
+	vertical-align: middle;
+}
+
+dl.adminform input[type="radio"] {
+	vertical-align: bottom ;
+}
+
+
+.payone_config h3 {
+	background: #ccc;
+	padding: 1ex;
+	margin: 1px 0;
+	cursor: pointer;
+}
+
+.payone_config h4 {
+	background: #ddd;
+	padding: 1ex;
+	margin: 1px 0;
+	cursor: pointer;
+}
+
+.payone_config dd.countries_list {
+	max-height: 15em;
+	min-width: 30em;
+	overflow: auto;
+}
+
+.payone_config dd.countries_list input[type="checkbox"] {
+	margin: 0;
+}
+
+h3 + .subblock, h4 + .subblock {
+	display: none;
+}
+
+fieldset.paymentgenre {
+	border: none;
+	background: #eee;
+}
+
+fieldset.paymentgenre legend {
+	display: none;
+}
+
+div.paymentgenres {
+	margin-left: 1em;
+}
+
+div.rbuttons {
+	display: inline-block;
+	vertical-align: top;
+}
+
+div.note {
+	font-size: 0.9em;
+	display: inline-block;
+	max-width: 80%;
+}
+

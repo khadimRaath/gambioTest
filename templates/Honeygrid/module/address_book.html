@@ -1,0 +1,74 @@
+{load_language_text section="address_book"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="postfinder" name="postfinder"}
+
+<h1>{$txt.heading_address}</h1>
+
+{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error type="danger"}
+
+<h3>{$txt.title_standard}</h3>
+<p class="space-0">
+	{$txt.text_standard}<br /> <br />
+	{$ADDRESS_DEFAULT}
+</p>
+
+<h3>{$txt.title_addresses}</h3>
+
+{foreach name=aussen item=addresses from=$addresses_data}
+	<dl>
+		<dt>
+			{$smarty.foreach.aussen.iteration}. {$addresses.NAME}{if $addresses.PRIMARY=='1'} ({$txt.title_standard}){/if}{if $addresses.IS_PACKSTATION || $addresses.IS_POSTFILIALE},
+			{$addresses.STREET}{if $addresses.HOUSENUMBER} {$addresses.HOUSENUMBER}{/if}, {$addresses.POSTCODE} {$addresses.CITY}{/if}
+		</dt>
+		<dd class="button-container row">
+			<a class="btn btn-primary col-xs-3 {if $addresses.IS_PACKSTATION == 1 && $addresses.IS_POSTFILIALE == 1}disabled{/if}"
+			   href="{if $addresses.IS_PACKSTATION != 1 && $addresses.IS_POSTFILIALE != 1}{$addresses.BUTTON_EDIT_URL}{else}#{/if}"
+			   title="{$button.edit}">
+				{$button.edit}
+			</a>
+
+			{if $addresses.BUTTON_PFINDER_URL}
+				<a class="btn btn-default col-xs-4"
+				   href="{$addresses.BUTTON_PFINDER_URL}"
+				   title="{$postfinder.btn_pfinder}">
+					{$postfinder.btn_pfinder}
+				</a>
+			{/if}
+
+			{if $addresses.IS_PACKSTATION == 1}
+				<a class="btn btn-default col-xs-3 disabled" href="#" title="Packstation">
+					Packstation
+				</a>
+			{/if}
+			
+			{if $addresses.IS_POSTFILIALE == 1}
+				<a class="btn btn-default col-xs-3 disabled" href="#" title="Postfiliale">
+					Postfiliale
+				</a>
+			{/if}
+
+			<a class="btn btn-default col-xs-3 {if $addresses.PRIMARY == '1'}disabled{/if}"
+			   href="{if $addresses.PRIMARY != '1'}{$addresses.BUTTON_DELETE_URL}{else}#{/if}"
+			   title="{$button.delete}">
+				{$button.delete}
+			</a>
+		</dd>
+	</dl>
+{/foreach}
+
+<div class="row navigation-buttons">
+	<div class="col-xs-6 col-sm-4 col-md-3">
+		<a class="btn btn-default btn-block" href="{$BUTTON_BACK_LINK}" title="{$button.back}">
+			{$button.back}
+		</a>
+	</div>
+	<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+		<a class="btn btn-primary btn-block" href="{$BUTTON_NEW_URL}" title="{$button.new_address}">
+			{$button.new_address}
+		</a>
+	</div>
+</div>
+
+<div class="row address-notification">
+	{$ADDRESS_COUNT}
+</div>

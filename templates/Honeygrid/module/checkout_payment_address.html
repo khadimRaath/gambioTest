@@ -1,0 +1,71 @@
+{load_language_text section="checkout_payment_address"}
+{load_language_text section="checkout_navigation" name="nav"}
+{load_language_text section="general" name="general"}
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/process_funnel.html" step=2}
+
+<h1>{$general.YOUR_ORDER}</h1>
+
+<br/>
+
+<form action="{$FORM_ACTION_URL}" method="post" id="checkout_address" class="form-horizontal">
+
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error type="danger"}
+	
+	<fieldset>
+
+		<legend>{$txt.title_current_address}</legend>
+
+		<div class="row">
+			<div class="col-md-12 indent-sm-1">
+				<p>{$txt.text_current_address}</p>
+				<address>{$ADDRESS_LABEL}</address>
+			</div>
+		</div>
+
+	</fieldset>
+
+	{if $addresses_data}
+		<fieldset>
+	
+			<legend>{$txt.title_old_addresses}</legend>
+
+			<ul class="list-group" data-gambio-widget="radio_selection" data-radio_selection-init="true">
+				{foreach item=address_data from=$addresses_data}
+					<ul class="list-group-item">
+						<div class="row">
+							<div class="col-xs-9 title radio">
+								<label for="ab_{$address_data.address_book_id}">
+									<input type="radio" id="ab_{$address_data.address_book_id}" name="address" value="{$address_data.address_book_id}"{if $address_data.address_book_id == $CURRENT_ADDRESS_BOOK_ID} checked="checked"{/if} />
+									<strong>{$address_data.firstname} {$address_data.lastname}</strong><br />
+									{$address_data.address}
+								</label>
+							</div>
+						</div>
+					</ul>
+				{/foreach}
+			</ul>
+	
+		</fieldset>
+	{/if}
+
+	{if $MODULE_new_address}
+		{$MODULE_new_address}
+	{/if}
+	
+	<input type="hidden" name="action" value="submit" />
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-4 col-md-3">
+			<a href="{$BUTTON_BACK_LINK}" class="btn btn-default btn-block">{$nav.text_button_back}</a>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+			<input type="submit" class="btn btn-primary btn-block" value="{$nav.text_button_more}">
+		</div>
+	</div>
+
+	<p class="mandatory-info">
+		{$price_offer.text_required}
+	</p>
+
+</form>

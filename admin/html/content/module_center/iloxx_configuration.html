@@ -1,0 +1,138 @@
+{load_language_text section="iloxx"}
+<form action="{$form_action}" method="POST" class="gx-container" id="iloxx_configuration" data-gx-controller-off="iloxx/iloxx_config_controller">
+	<input type="hidden" name="page_token" value="{$page_token}">
+	<!-- Configuration -->
+	<table class="gx-configuration gx-configuration-table breakpoint-small">
+		<tr>
+			<th colspan="2">{$txt.configuration}</th>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.user_id}</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default"
+				       type="text"
+				       name="configuration[userid]"
+				       value="{$configuration.userid}"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.user_token}</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default"
+				       type="text"
+				       name="configuration[usertoken]"
+				       value="{$configuration.usertoken}"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.os_label_acquired}</td>
+			<td class="dataTableContent_gm">
+					<select name="configuration[oslabelacquired]">
+					{foreach from=$orders_status item=status}
+						<option value="{$status.id}" {if $status.id == $configuration.oslabelacquired}selected="selected"{/if}>{$status.text}</option>
+					{/foreach}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.os_tracking}</td>
+			<td class="dataTableContent_gm">
+				<select name="configuration[ostracking]">
+					{foreach from=$orders_status item=status}
+						<option value="{$status.id}" {if $status.id == $configuration.ostracking}selected="selected"{/if}>{$status.text}</option>
+					{/foreach}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.use_weight_options}</td>
+			<td class="dataTableContent_gm" data-gx-widget="checkbox">
+				<input type="radio" name="configuration[use_weight_options]" value="1" title="{$txt.yes}" {if $configuration.use_weight_options}checked{/if}>
+				<input type="radio" name="configuration[use_weight_options]" value="0" title="{$txt.no}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.default_ship_service}</td>
+			<td class="dataTableContent_gm">
+				<select name="configuration[default_ship_service]">
+					{foreach from=$ship_services item=service_name key=service_id}
+						<option value="{$service_id}" {if $service_id == $configuration.default_ship_service}selected="selected"{/if}>{$service_name}</option>
+					{/foreach}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.default_ship_service_cod}</td>
+			<td class="dataTableContent_gm">
+				<select name="configuration[default_ship_service_cod]">
+					{foreach from=$ship_services item=service_name key=service_id}
+						<option value="{$service_id}" {if $service_id == $configuration.default_ship_service_cod}selected="selected"{/if}>{$service_name}</option>
+					{/foreach}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.parcelservice_id}</td>
+			<td class="dataTableContent_gm">
+				<select name="configuration[parcelservice_id]">
+					<option value="0" {if $configuration.parcelservice_id == 0}selected="selected"{/if}>{$txt.parcelservice_none}</option>
+					{foreach from=$parcel_services item=parcel_service}
+						<option value="{$parcel_service->getId()}" {if $parcel_service->getId() == $configuration.parcelservice_id}selected="selected"{/if}>{$parcel_service->getName()}</option>
+					{/foreach}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">&nbsp;</td>
+			<td class="dataTableContent_gm">
+				<div class="pull-right"><input type="submit" value="{$txt.save}" class="btn btn-primary"></div>
+			</td>
+		</tr>
+	</table>
+</form>
+
+
+<form action="{$form_action_transactionlist}" method="post" class="gx-container" target="dlframe">
+	<input type="hidden" name="page_token" value="{$page_token}">
+	<table class="gx-configuration gx-configuration-table breakpoint-small">
+		<tr>
+			<th colspan="2">{$txt.day_end_list}</th>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.date}</td>
+			<td class="dataTableContent_gm">
+				<input
+					name="gdtl_date"
+					type="text"
+					value="{$gdtl_date}"
+					placeholder="YYYY-MM-DD"
+					data-gx-widget="datetimepicker"
+					data-datetimepicker-lang="de"
+					data-datetimepicker-format="Y-m-d"
+					data-datetimepicker-timepicker="false"
+					data-datetimepicker-day-of-week-start="1">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">{$txt.gdtl_type}</td>
+			<td class="dataTableContent_gm">
+				<select name="gdtl_type">
+					<option value="DPD">DPD</option>
+					<option value="Grosspaket">Gro&szlig;paket</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">&nbsp;</td>
+			<td class="dataTableContent_gm">
+				<div class="pull-right"><input type="submit" value="{$txt.retrieve}" class="btn btn-primary"></div>
+			</td>
+		</tr>
+	</table>
+</form>
+
+<p class="partnerinfo">
+	{$txt.partnerinfo} <a class="plink" target="_new" href="http://www.iloxx.de/net/Kooperationen/gambio.aspx">{$txt.here}</a>.
+</p>
+
+<iframe name="dlframe" src="" style="width:0;height:0;border:none;"></iframe>

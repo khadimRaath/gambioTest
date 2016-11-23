@@ -1,0 +1,43 @@
+{load_language_text section="box_categories"}
+{load_language_text section="general" name="general"}
+
+<div class="box box-categories panel panel-default">
+	<nav class="navbar-categories-left"
+		 data-gambio-widget="menu"
+		 data-menu-menu-type="vertical"
+		 data-menu-unfold-level="{$content_data.unfold_level}"
+		 data-menu-accordion="{$content_data.accordion_effect}"
+		 data-menu-show-all-link="{$content_data.display_show_all_link}"
+	>
+		
+		<ul class="level-1 nav">
+			{function name=menu level=1}
+				{foreach $data as $categories_item}
+					<li class="{if $categories_item.children|@count > 0}dropdown {if $content_data.cPathArray[$categories_item.data.id] || $level <= $content_data.unfold_level}open {/if}{/if}level-{$level}-child{if $content_data.active_category_id == $categories_item.data.id} active{/if}" data-id="{$categories_item.data.id}">
+						<a class="dropdown-toggle {if $categories_item.data.icon && $level === 1 && $categories_item.data.icon|strpos:"item_ltr" == false}has-image{/if}" href="{$categories_item.data.url}" title="{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}">
+							{if $categories_item.data.icon && $level === 1 && $categories_item.data.icon|strpos:"item_ltr" == false}<img src="{$categories_item.data.icon}" alt="" class="cat-image"/>{/if}
+							{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}{if $categories_item.data.products_count} ({$categories_item.data.products_count}){/if}
+						</a>
+
+						{if $categories_item.children|@count > 0}
+							<ul data-level="2" class="level-{$level+1} dropdown-menu dropdown-menu-child">
+								<li class="enter-category{if $content_data.display_show_all_link == 'true'} show{/if}">
+									<a class="dropdown-toggle" href="{$categories_item.data.url}" title="{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}" rel="nofollow">{$general.ENTER_CATEGORY}</a>
+								</li>
+
+								{menu data=$categories_item.children level=$level+1}
+							</ul>
+						{/if}
+
+					</li>
+				{/foreach}
+			{/function}
+
+			{menu data=$content_data.CATEGORIES_DATA}
+		</ul>
+
+	</nav>
+</div>
+
+
+

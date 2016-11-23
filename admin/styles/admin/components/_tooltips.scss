@@ -1,0 +1,52 @@
+/* 
+	Tooltips
+    ========================================================================== 
+
+	Basic styling for tooltips.
+	
+*/
+
+.qtip {
+	max-width:   800px;
+	padding:     $padding-small;
+	border:      none;
+	line-height: 1.8;
+	@include font();
+	@include border-radius($border-radius-base);
+	
+	.qtip-tip {
+		visibility: hidden;
+	}
+	
+	.qtip-content {
+		color:     $text-color-tooltip;
+		word-wrap: break-word;
+		
+		a {
+			color: $text-color-tooltip;
+		}
+	}
+	
+	.gx-tooltip {
+		tr {
+			background: none;
+			
+			td {
+				height:  auto;
+				padding: ($padding-small / 2) $padding-small;
+			}
+		}
+	}
+	
+	&.info {
+		background: $brand-primary;
+	}
+	
+	&.warning {
+		background: $brand-danger;
+	}
+}
+
+.tooltip-trigger {
+	cursor: pointer;
+}

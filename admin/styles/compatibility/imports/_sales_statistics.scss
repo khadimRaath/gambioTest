@@ -1,0 +1,66 @@
+// ----------------------------------------------------------------------------
+// SALES STATISTICS
+// ----------------------------------------------------------------------------
+
+.sales-statistics-menu-wrapper {
+  padding-top:      24px;
+  margin: 0;
+  background-color: $default-color;
+  border:           1px solid $main-nav-border-color;
+
+  select:not(.date-select) {
+    width: 170px;
+  }
+  select[multiple] {
+    height: 80px;
+  }
+  .date-select {
+    margin-left: 8.5px;
+    width:       49px;
+  }
+
+  .span6 {
+    padding: 0;
+
+    &.left-column {
+      padding: 0 12px 0 24px;
+    }
+
+    &.right-column {
+      padding: 0 24px 0 12px;
+    }
+
+    .grid {
+      margin: 0;
+
+      .span12 {
+        height:        48px;
+        padding:       8px 24px;
+        border-bottom: 1px solid $border-color-light;
+
+        div {
+          line-height: 35px;
+        }
+
+        &:first-of-type {
+          padding-top: 8px;
+        }
+        &:last-of-type {
+          padding-bottom: 12px;
+        }
+
+        .span8, .span4 {
+          padding: 0;
+        }
+      }
+    }
+  }
+
+  .btn-wrapper {
+    padding: 24px;
+
+    input[type="submit"] {
+      margin: 0 24px 0 0;
+    }
+  }
+}

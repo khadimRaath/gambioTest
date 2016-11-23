@@ -1,0 +1,14 @@
+<div class="current-price-container">
+	{$RICH_SNIPPET_ARRAY.offer_itemprop_price_start}{$PRODUCTS_PRICE}{$RICH_SNIPPET_ARRAY.offer_itemprop_price_end}
+	{if $PRODUCTS_VPE}
+		<br />
+		<span class="tax-shipping-text gm_products_vpe products-vpe">
+			{$PRODUCTS_VPE}
+		</span>
+		<br />
+	{/if}
+</div>
+{$RICH_SNIPPET_ARRAY.offer_itemprop_price_currency}
+<p class="tax-shipping-text text-small">
+	{$PRODUCTS_TAX_INFO}{$PRODUCTS_SHIPPING_LINK}
+</p>

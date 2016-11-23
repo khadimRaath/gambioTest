@@ -1,0 +1,20 @@
+{load_language_text section="box_filter"}
+{load_language_text section="messages_filter" name="error"}
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/top.html" class="filter" headline=$txt.heading_filter}
+<div id="filterbox-container">
+	<form name="search_filter" method="get" action="{$content_data.FORM_ACTION_URL}" data-gambio-widget="filter"
+		  data-gambio-_widget="filter"
+		  {if $content_data.FEATURE_DATA|@count == 0} data-filter-auto-update="false"{/if}>
+		{include file="get_usermod:{$tpl_path}boxes/box_filter_form_content.html"}
+		
+		<div class="preloader"></div>
+		
+		<div class="preloader-message">
+			<span>{$error.error}</span>
+		</div>
+		
+	</form>
+</div>
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"}

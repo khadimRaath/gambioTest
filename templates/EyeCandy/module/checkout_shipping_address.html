@@ -1,0 +1,69 @@
+{load_language_text section="checkout_shipping_address"}
+{load_language_text section="checkout_navigation" name="nav"}
+
+{if $LIGHTBOX == 'true'}<div id="lightbox_content" style="display:none">{/if}
+<div id="checkout_shipping" class="order_shipping{if $LIGHTBOX == 'true'} lightbox_block{/if}">
+	<div class="process_bar">
+		<ul>
+			<li><label><span>{$txt.text_shoppingcart}</span></label></li>
+			<li><label><span>{$txt.text_yourdata}</span></label></li>
+			<li class="active"><label><span>{$txt.text_shipandpay}</span></label></li>
+			<li><label><span>{$txt.text_confirm}</span></label></li>
+		</ul>
+	</div>
+
+
+	<h1>
+		{$txt.heading_address}
+	</h1>
+
+	<form action="{$FORM_ACTION_URL}" method="post" id="checkout_address">
+		
+		<h2 class="underline overline">
+			<img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" /> {$txt.title_current_address}
+		</h2>
+		<p>
+			{$txt.text_current_address}<br /><p class="address">{$ADDRESS_LABEL}</p>
+		</p>
+	
+		{if $addresses_data}
+			<h2 class="underline overline">
+				<img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" /> {$txt.title_old_addresses}
+			</h2>
+			<p>
+				{$txt.text_old_addresses}
+			</p>
+	
+			<table class="checkout_addresses" border="0" width="100%" cellspacing="0" cellpadding="0">
+				{foreach item=address_data from=$addresses_data}
+					<tr>
+						<td class="address_selection">
+							<div style="float: right;">
+								<input type="radio" id="ab_{$address_data.address_book_id}" name="address" value="{$address_data.address_book_id}"{if $address_data.address_book_id == $CURRENT_ADDRESS_BOOK_ID} checked="checked"{/if} />
+							</div>
+							<label for="ab_{$address_data.address_book_id}">
+								<strong>{$address_data.firstname} {$address_data.lastname}</strong><br />
+								{$address_data.address}
+							</label>
+						</td>
+					</tr>
+				{/foreach}
+			</table>
+			
+		{/if}
+		<br />
+	
+		
+		{if $MODULE_new_address}
+			{$MODULE_new_address}
+		{/if}
+	
+		<input type="hidden" name="action" value="submit" />
+	
+		{* TODO: write action_page_back handler *}
+		<div class="back_button"><a href="{$BUTTON_BACK_LINK}" class="button_grey_big button_set_big action_page_back"><span class="button-outer"><span class="button-inner">{$nav.text_button_back}</span></span></a></div>
+		<div class="continue_button"><a href="{page_url}#" class="button_green_big button_set_big action_submit"><span class="button-outer"><span class="button-inner"><img src="{$tpl_path}img/icons/icon-white-shoppingcart.png" alt="" style="margin-right:10px; float:left" />{$nav.text_button_more}</span></span></a></div>
+
+	</form>
+</div>
+{if $LIGHTBOX == 'true'}</div>{/if}

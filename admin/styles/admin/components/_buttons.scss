@@ -1,0 +1,58 @@
+/* 
+	Buttons
+    ========================================================================== 
+
+	Button styling uses the Bootstrap classes and overrides some styles in order to make them 
+	look like the Gambio Admin theme. 
+	
+	bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_buttons.scss
+	
+*/
+
+.btn {
+	@include component-colors($btn-default-bg, $btn-default-color);
+	
+	&:hover {
+		@include component-colors($btn-default-bg, $btn-default-color, true);
+	}
+	
+	&.btn-primary {
+		@include component-colors($btn-primary-bg, $btn-primary-color);
+		
+		&:hover {
+			@include component-colors($btn-primary-bg, $btn-primary-color, true);
+		}
+	}
+	
+	&.btn-success {
+		@include component-colors($btn-success-bg, $btn-success-color);
+		
+		&:hover {
+			@include component-colors($btn-success-bg, $btn-success-color, true);
+		}
+	}
+	
+	&.btn-info {
+		@include component-colors($btn-info-bg, $btn-info-color);
+		
+		&:hover {
+			@include component-colors($btn-info-bg, $btn-info-color, true);
+		}
+	}
+	
+	&.btn-warning {
+		@include component-colors($btn-warning-bg, $btn-warning-color);
+		
+		&:hover {
+			@include component-colors($btn-warning-bg, $btn-warning-color, true);
+		}
+	}
+	
+	&.btn-danger {
+		@include component-colors($btn-danger-bg, $btn-danger-color);
+		
+		&:hover {
+			@include component-colors($btn-danger-bg, $btn-danger-color, true);
+		}
+	}
+}

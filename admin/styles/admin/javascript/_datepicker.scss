@@ -1,0 +1,227 @@
+/* 
+	jQuery Datepicker
+    ========================================================================== 
+
+	Additional styling for the jQuery Datepicker plugin. 
+	
+*/
+
+.ui-datepicker {
+	display:          none;
+	width:            auto !important;
+	padding:          0;
+	margin:           5px 0 0 0;
+	position:         absolute;
+	left:             0;
+	top:              0;
+	background-clip:  padding-box;
+	background-color: $body-bg;
+	border:           3px solid rgba(0, 0, 0, 0.2);
+	border-radius:    $border-radius-base;
+	white-space:      normal;
+	text-align:       left;
+	
+	th, td {
+		height:      auto;
+		line-height: 30px;
+		text-align:  center;
+		width:       auto;
+	}
+	
+	.ui-datepicker-header {
+		background:    $brand-primary;
+		border:        none;
+		border-radius: 0;
+		font-weight:   normal;
+		font-size:     $font-size-large;
+		padding:       0;
+		
+		.ui-datepicker-title {
+			border:      0;
+			height:      35px;
+			line-height: 30px;
+			margin-top:  .4em;
+			text-align:  center;
+			width:       210px;
+			
+			span {
+				&.ui-datepicker-month,
+				&.ui-datepicker-year {
+					color:       $component-active-color;
+					font-size:   floor($font-size-base * 1.17);
+					font-weight: bold;
+				}
+			}
+		}
+		
+		.ui-datepicker-prev,
+		.ui-datepicker-next {
+			font-size:       12px;
+			background:      none;
+			border:          0;
+			border-radius:   0;
+			cursor:          pointer;
+			height:          41px;
+			line-height:     41px;
+			text-align:      center;
+			text-decoration: none;
+			top:             0;
+			width:           41px;
+			
+			&:hover {
+				background: tint($brand-primary, 20%);
+			}
+			
+			&:after {
+				color:       $component-active-color;
+				font-family: FontAwesome;
+			}
+			
+			span {
+				background:  none;
+				height:      28px;
+				width:       14px;
+				margin-top:  7px;
+				top:         0;
+				font-weight: normal;
+			}
+		}
+		
+		.ui-datepicker-next {
+			border-left: 1px solid darken($brand-primary, 10%);
+			right:       0;
+			
+			&:after {
+				content: "\f054";
+			}
+		}
+		
+		.ui-datepicker-prev {
+			border-right: 1px solid darken($brand-primary, 10%);
+			left:         0;
+			
+			&:after {
+				content: "\f053";
+			}
+		}
+		
+		.ui-datepicker-month {
+			margin-right: 5px;
+			min-width:    0;
+			width:        37%;
+			max-width:    37%;
+		}
+		
+		.ui-datepicker-year {
+			min-width: 0;
+			width:     37%;
+			max-width: 37%;
+		}
+		
+	}
+	
+	table.ui-datepicker-calendar {
+		border-color: darken($brand-primary, 10%);
+		margin:       0;
+		
+		thead {
+			th {
+				background:  darken($brand-primary, 3%);
+				color:       $component-active-color;
+				font-size:   12px;
+				font-weight: bold;
+				text-align:  center;
+				line-height: 35px;
+				border:      0;
+				border-top:  1px solid darken($brand-primary, 10%);
+				padding:     0;
+				
+				span {
+					color: $component-active-color;
+				}
+			}
+		}
+		
+		tbody {
+			tr:nth-child(even) {
+				background: $body-bg;
+			}
+			
+			a {
+				color:      $text-color;
+				border:     none;
+				background: none;
+			}
+			
+			td, a {
+				text-align: center;
+				padding:    4px 1px;
+			}
+			
+			td {
+				border-right: 1px solid darken($body-bg, 10.5%);
+				line-height:  22px;
+				
+				&:last-child {
+					border-right: 0;
+				}
+				
+				&:hover {
+					background: $body-bg-dark;
+				}
+				
+				&.ui-datepicker-today {
+					background: $body-bg-dark;
+					
+					a {
+						font-weight: 700;
+					}
+				}
+				
+				&.ui-datepicker-current-day {
+					background: $brand-primary;
+					a {
+						font-weight: bold;
+						color:       $component-active-color;
+					}
+				}
+				
+				&.ui-state-disabled {
+					background-color: $body-bg-dark;
+					@include opacity(1);
+					
+					span {
+						@include opacity(0.5);
+					}
+				}
+				
+				&.ui-datepicker-week-col {
+					&:hover {
+						background: $body-bg;
+					}
+				}
+				
+				span {
+					border:     none;
+					background: none;
+					text-align: center;
+				}
+				
+				a {
+					color:           $text-color;
+					display:         block;
+					height:          100%;
+					text-decoration: none;
+					width:           100%;
+				}
+			}
+		}
+	}
+}
+
+.ui-datepicker-trigger {
+	min-width: inherit;
+	width:     27px;
+	padding:   0;
+	margin:    0;
+}

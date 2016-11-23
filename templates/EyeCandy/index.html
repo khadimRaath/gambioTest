@@ -1,0 +1,81 @@
+{load_language_text section="index"}{$HEAD}
+
+		{pre_black_container}
+
+		{if $smarty.const.SHOP_OFFLINE}
+			{html_shop_offline}
+		{else}
+			
+		{$TOPBAR}
+		{$COOKIEBAR}
+		{$POPUP_NOTIFICATION}
+		
+		<div id="wrap_box" class="wrap_shop">
+			<noscript>
+				<div class="noscript_notice">
+					{$txt.text_noscript_notice}
+				</div>
+			</noscript>
+
+			{$TOP_NAVIGATION}
+			{$CATEGORIES_DROPDOWN}
+
+			<div id="container">
+				<div id="container_inner" class="clearfix">
+					<div id="header">
+						{if $gm_logo}<div id="shop_logo">{$gm_logo}</div>{/if}
+					</div>
+
+					{$CATEGORIES_TOP}
+					{$CONTENT_TOP}
+
+					<div id="head_toolbox">
+						<div id="head_toolbox_inner">
+							{$TOP_SEARCH}
+
+							{$navtrail}
+
+							{$SHOPPING_CART_HEAD}
+						</div>
+					</div>		
+
+					<div id="main" class="clearfix">
+						{if $BANNER}<div id="shop_top_banner">{$BANNER}</div>{/if}
+						<div id="main_inside">
+							{$IMGSLIDER}
+							{$main_content}
+
+						</div>
+					</div>
+
+					<div id="left" class="clearfix">
+						{gm_menuboxes first=1 last=100 html='<div id="gm_box_pos_[COUNTER]" class="gm_box_container">[CONTENT]</div>'}
+						{gm_menuboxes first=101 last=200 html='<div id="gm_box_pos_[COUNTER]" class="gm_box_container">[CONTENT]</div>'}
+					</div>
+
+					{$TRUSTED_SHOPS_REVIEW_STICKER}
+
+					{if $COPYRIGHT_FOOTER}
+						<div id="shopsoftware_by_gambio">
+							{$COPYRIGHT_FOOTER}
+						</div>
+					{/if}
+				</div>
+			</div>
+
+			{gm_footer}
+
+			{$CATEGORIES_SUBMENUS}
+
+			{$SHOPPING_CART_DROPDOWN}
+
+			{$LOGIN_DROPDOWN}
+			{$INFOBOX_DROPDOWN}
+			{$CURRENCIES_DROPDOWN}
+			{$LANGUAGES_DROPDOWN}
+			{$COUNTRIES_DROPDOWN}
+		</div>
+
+		{/if}
+
+{$BOTTOM}

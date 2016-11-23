@@ -1,0 +1,72 @@
+.newsletter-list-table {
+
+  .newsletter-receiver-row {
+    background: $background-color !important;
+    td {
+      border-top: 2px solid $border-color-light;
+    }
+  }
+
+  .gx-container {
+
+    .newsletter-action-btn-wrapper {
+      div.grid {
+        margin: 0;
+
+        .span12:first-of-type {
+          margin-top: 0;
+        }
+        .span12:last-of-type {
+          margin-bottom: 0;
+        }
+
+        .span12 {
+          height:  31px;
+          margin:  6px 0;
+          padding: 0;
+
+          button.btn {
+            width:   100%;
+            margin:  0;
+            padding: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+.newsletter-info-wrapper {
+  
+}
+
+//----------------------------------------------------------------------------------------------------------------------
+// EDIT NEWSLETTER PAGE
+//----------------------------------------------------------------------------------------------------------------------
+.newsletter-edit-table {
+  td {
+    padding-left: 24px;
+  }
+}
+
+form[name="edit_newsletter"] {
+
+  &:last-child {
+    margin-top: 24px;
+  }
+}
+
+.newsletter-edit, .newsletter-edit-table {
+  border-collapse: collapse;
+  border: none;
+  background-color: $background-color;
+  tr {
+    border: none;
+    background-color: $background-color;
+    
+    td {
+      border: none;
+      background-color: $background-color;
+    }
+  }
+}

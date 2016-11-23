@@ -1,0 +1,37 @@
+{* --------------------------------------------------------------
+   checkout_ipayment.html 2016-03-23
+   Gambio GmbH
+   http://www.gambio.de
+   Copyright (c) 2013 Gambio GmbH
+   Released under the GNU General Public License (Version 2)
+   [http://www.gnu.org/licenses/gpl-2.0.html]
+   --------------------------------------------------------------
+*}
+{load_language_text section="ipayment"}
+
+<h1>
+	<img src="https://ipayment.de/img/splash_logo.gif" alt="ipayment" title="ipayment" class="img-responsive" />
+</h1>
+
+{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$nonsilent_message type="info"}
+{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$silent_error type="danger"}
+
+<form action="{$action_url}" method="post" id="ipayment_form" class="form-horizontal" data-gambio-widget="ipayment">
+	{foreach from=$formfields item=value key=key name="formfields"}
+		<input type="hidden" name="{$key}" value="{$value}">
+	{/foreach}
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-4 col-md-3">
+			<a class="btn btn-default btn-block" href="{$back_url}" title="{$txt.back_button}">
+				{$txt.back_button}
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+			<button type="submit" class="btn btn-primary btn-block" title="{$txt.proceed_payment}">
+				{$txt.proceed_payment}
+			</button>
+		</div>
+	</div>
+
+</form>

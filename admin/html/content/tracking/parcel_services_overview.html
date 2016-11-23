@@ -1,0 +1,34 @@
+{load_language_text section="parcel_services"}
+{load_language_text section="lightbox_buttons" name="buttons"}
+<div class="table_wrapper">
+	<table cellpadding="0" cellspacing="0">
+		<tr>
+			<th>{$txt.parcel_services}</th>
+			<th class="button_col">&nbsp;</th>
+		</tr>
+		{if count($content_data.parcel_services_array) == 0}
+		<tr>
+			<td colspan="2">{$txt.no_parcel_services_created}</td>
+		</tr>
+		{/if}
+		{foreach item=parcel_service from=$content_data.parcel_services_array}
+		<tr>
+			<td>{$parcel_service->getName()} {if $parcel_service->getDefault() == 1}({$txt.default}){/if}</td>
+			<td>
+				<div class="icon_buttons">
+					<a href="tracking/parcel_service_edit.html?parcel_service_id={$parcel_service->getId()}" data-lightbox-lightbox_width="800px" data-close_button_position="none" data-shadow_close_onclick="false" data-background_color="#EFEFEF" class="open_lightbox"><img alt="" border="0" title="{$buttons.edit}" src="html/assets/images/legacy/icon_edit.png" /></a>
+					<a href="lightbox_confirm.html?buttons=cancel-delete&amp;section=parcel_services&amp;message=delete_parcel_service_confirm" data-lightbox-controller="tracking/delete_parcel_service" data-lightbox-setting_lightbox_width="460px" title="{$parcel_service->getName()|escape}" data-lightbox-param_parcel_service_id="{$parcel_service->getId()}" data-lightbox-param_page_token="{$content_data.page_token}" class="open_lightbox"><img alt="" border="0" title="{$buttons.delete}" src="html/assets/images/legacy/icon_delete.png" /></a>
+				</div>
+			</td>
+		</tr>
+		{/foreach}
+	</table>
+</div>
+<br />
+<div class="button_container">
+	<div class="button_left_container"></div>
+	<div class="button_right_container">
+		<a class="admin_button green open_lightbox" data-close_button_position="none" data-lightbox-lightbox_width="800px" data-shadow_close_onclick="false" data-background_color="#EFEFEF" href="tracking/parcel_service_edit.html?parcel_service_id=0">{$buttons.add}</a>
+	</div>
+	<div class="clear_both"> <!-- &nbsp; --> </div>
+</div>

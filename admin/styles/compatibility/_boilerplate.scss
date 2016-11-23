@@ -1,0 +1,734 @@
+// --------------------------------------------------------------------------
+// GX-Admin Stylesheet - Boilerplate
+//
+// This script contains UI styling that must be used for the administration
+// section of GX. UI positioning, grid system and basic element styling. Do
+// not include styling for jquery widgets (see "widgets.css" file).
+//
+// All the styling included in this file will be applied to the children of
+// an element containing the ".gx-container" class.
+//
+// @since v2.3.1.0
+// --------------------------------------------------------------------------
+
+// --------------------------------------------------------------------------
+// BASIC ELEMENT STYLING
+// --------------------------------------------------------------------------
+
+.gx-container {
+	
+	// --------------------------------------------------------------------------
+	// GENERAL
+	// --------------------------------------------------------------------------
+	
+	color: $text-color;
+	@include font(12px);
+	
+	hr {
+		margin:        10px 0;
+		border-top:    1px solid $border-color;
+		border-right:  none;
+		border-left:   none;
+		border-bottom: none;
+	}
+	
+	// --------------------------------------------------------------------------
+	// FORM
+	// --------------------------------------------------------------------------
+	
+	form {
+		display: block;
+		
+		fieldset {
+			border:  none;
+			margin:  $margin;
+			display: inline-block;
+		}
+	}
+	
+	a:focus {
+		outline: none;
+	}
+	
+	// --------------------------------------------------------------------------
+	// INPUT/SELECT/BUTTON/LABEL ELEMENTS
+	// --------------------------------------------------------------------------
+	
+	input,
+	select,
+	button {
+		height: 31px;
+	}
+	
+	.input-group {
+		.input-group-addon {
+			padding:       5px;
+			line-height:   normal;
+			font-size:     12px;
+			color:         $text-color-light;
+			border:        1px solid $border-color;
+			border-radius: 2px;
+		}
+	}
+	
+	input,
+	select,
+	button,
+	textarea {
+		display:          inline-block;
+		vertical-align:   middle;
+		padding:          5px;
+		color:            $text-color;
+		background-color: $background-color;
+		border:           1px solid $border-color;
+		@include box-sizing(border-box);
+		
+		&:disabled {
+			@include opacity($disabled-opacity);
+		}
+	}
+	
+	input[type="text"],
+	select,
+	textarea {
+		color:       $text-color-light;
+		padding:     5px;
+		font-family: $font-family;
+	}
+	
+	input[type=checkbox],
+	input[type=radio] {
+		width:  auto;
+		border: none;
+	}
+	
+	input[type="file"] {
+		padding:     5px;
+		border:      none;
+		font-family: $font-family;
+	}
+	
+	select {
+		padding-right: 15px;
+	}
+	
+	input[type="submit"],
+	input[type="button"],
+	button {
+		@include button-basic-style();
+	}
+	
+	input[type=text],
+	input[type=email],
+	input[type=password] {
+		border-radius: 2px;
+		
+		&:focus {
+			border-color: $primary-color;
+		}
+	}
+	
+	textarea {
+		border-radius: 2px;
+		
+		&:focus {
+			border-color: $primary-color;
+		}
+	}
+	
+	label {
+		margin:      0;
+		font-weight: normal;
+	}
+	
+	// --------------------------------------------------------------------------
+	// TABLE
+	//
+	// Defines the default table styling. Use the row-actions helper to display
+	// row actions on table row hover.
+	// --------------------------------------------------------------------------
+	
+	table {
+		vertical-align: middle;
+		border-spacing: 0;
+		width:          100%;
+		
+		a {
+			color:     $text-color;
+			font-size: 12px;
+			
+			&:not(.btn):hover {
+				color:           $text-color;
+				text-decoration: underline;
+			}
+		}
+		
+		input,
+		select {
+			padding: 6px;
+		}
+		
+		thead {
+			//  Table Header
+			th, td {
+				padding:          6px 12px;
+				border-bottom:    3px solid $table-color;
+				background-color: $background-color;
+				color:            $text-color-light;
+				text-align:       left;
+				font-size:        12px;
+				height:           33px;
+				
+				&:first-of-type {
+					padding-left: 24px;
+				}
+				
+				&:last-of-type {
+					padding-right: 24px;
+				}
+			}
+		}
+		
+		tbody {
+			tr {
+				&:nth-child(odd) {
+					background-color: adjust-lightness($background-color, -2.5);
+				}
+				&:nth-child(even) {
+					background-color: $background-color;
+				}
+				
+				&.highlight {
+					background-color: $highlight-color;
+				}
+				
+				// Table Body
+				td {
+					padding: 6px 12px;
+					color:   $text-color;
+					height:  48px;
+					
+					.row-actions {
+						@include opacity(0);
+						@include transition(opacity 0.3s);
+						
+						.action-item {
+							display: inline-block;
+							margin:  0 12px 0 0;
+							
+							.fa {
+								font-size: 20px;
+								color:     $text-color-light;
+								cursor:    pointer;
+								
+								&:hover {
+									color: $link-color;
+								}
+							}
+							
+							&[disabled="disabled"] {
+								@include opacity($disabled-opacity);
+								.fa:hover {
+									color:  $text-color-light;
+									cursor: default;
+								}
+							}
+						}
+					}
+				}
+				
+				&:hover {
+					td {
+						.row-actions {
+							@include opacity(1);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// IMAGE
+	// --------------------------------------------------------------------------
+	
+	img:not(.untouched) {
+		margin:  $margin;
+		outline: none
+	}
+	
+	// --------------------------------------------------------------------------
+	// TYPOGRAPHY
+	// --------------------------------------------------------------------------
+	
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+		color:  $gambio-blue;
+	}
+	
+	h1 {
+		font-size:     22px;
+		margin-bottom: 12px;
+	}
+	
+	h2 {
+		font-size:     18px;
+		margin-bottom: 11px;
+	}
+	
+	h3 {
+		font-size:     15px;
+		margin-bottom: 10px;
+	}
+	
+	h4 {
+		font-size:     13px;
+		margin-bottom: 9px;
+	}
+	
+	h5 {
+		font-size:     11px;
+		margin-bottom: 8px;
+	}
+	
+	h6 {
+		font-size:     10px;
+		margin-bottom: 7px;
+	}
+	
+	p {
+		margin-bottom: 5px;
+	}
+	
+	a {
+		color:           $link-color;
+		text-decoration: none;
+	}
+	
+	a:hover {
+		color: adjust-lightness($link-color, -15);
+	}
+	a:not(.btn):hover {
+		text-decoration: underline;
+	}
+	
+	// --------------------------------------------------------------------------
+	// GRID SYSTEM
+	// --------------------------------------------------------------------------
+	
+	// --------------------------------------------------------------------------
+	// Grid must be a container <div> element that will contain child <div> elements
+	// in order to define the width within the parent element. The width of the parent
+	// is split into 12 sections, so use the corresponding span1-span12 class on the
+	// child elements.
+	// --------------------------------------------------------------------------
+	
+	.grid {
+		width:   100%;
+		@include box-sizing(border-box);
+		margin:  0 0 12px 0;
+		display: inline-block;
+		
+		.span1,
+		.span2,
+		.span3,
+		.span4,
+		.span5,
+		.span6,
+		.span7,
+		.span8,
+		.span9,
+		.span10,
+		.span11,
+		.span12 {
+			float:         left;
+			display:       inline-block;
+			word-wrap:     break-word;
+			padding-right: 24px;
+			margin:        0;
+			@include box-sizing(border-box);
+		}
+		
+		.span1 {
+			width: 8.33%;
+		}
+		
+		.span2 {
+			width: 16.66%;
+		}
+		
+		.span3 {
+			width: 24.99%;
+		}
+		
+		.span4 {
+			width: 33.32%;
+		}
+		
+		.span5 {
+			width: 41.65%;
+		}
+		
+		.span6 {
+			width: 49.98%;
+		}
+		
+		.span7 {
+			width: 58.31%;
+		}
+		
+		.span8 {
+			width: 66.64%;
+		}
+		
+		.span9 {
+			width: 74.97%;
+		}
+		
+		.span10 {
+			width: 83.3%;
+		}
+		
+		.span11 {
+			width: 91.63%;
+		}
+		
+		.span12 {
+			width: 99.96%;
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// COMPONENTS
+	// --------------------------------------------------------------------------
+	
+	// --------------------------------------------------------------------------
+	// BTN - STYLING BUTTONS
+	//
+	// Applies specific styling to button/input/a elements so that they look
+	// like buttons. Use one of the "btn-success", "btn-primary", "btn-danger"
+	// for applying colors to the button.
+	// --------------------------------------------------------------------------
+	
+	.btn {
+		border-width: 1px;
+		border-style: solid;
+		padding:      6px 12px;
+		margin:       0 0 12px 12px;
+		cursor:       pointer;
+		line-height:  normal;
+		
+		@include font(12px);
+		@include border-radius(2px);
+		@include component-colors($default-color, $text-color-light);
+		
+		&:hover {
+			@include component-colors-hover($default-color, $text-color-light);
+		}
+		
+		&:disabled {
+			@include opacity($disabled-opacity);
+			@include component-colors($default-color, $text-color-light);
+		}
+		
+		&.btn-icon {
+			padding:    5px;
+			min-width:  0;
+			background: none;
+			border:     none;
+			
+			&:hover {
+				background: none;
+			}
+			
+			&:focus {
+				box-shadow: inset 0 0 3px $gambio-blue;
+			}
+			
+			img {
+				margin: 4px;
+			}
+		}
+		
+		&.btn-small {
+			padding:   5px;
+			min-width: 0;
+		}
+		
+		&.btn-success {
+			@include component-colors($success-color);
+			
+			&:active {
+				@include box-shadow(inset 0 0 4px adjust-lightness($success-color, -10));
+			}
+			
+			&:focus {
+				@include box-shadow(inset 0 0 4px adjust-lightness($success-color, -10));
+			}
+			
+			&:hover {
+				@include component-colors-hover($success-color);
+			}
+			
+			&:disabled {
+				@include component-colors($success-color);
+			}
+		}
+		
+		&.btn-primary {
+			@include component-colors($primary-color);
+			
+			&:active {
+				@include box-shadow(inset 0 0 4px adjust-lightness($primary-color, -10));
+			}
+			
+			&:focus {
+				@include box-shadow(inset 0 0 4px adjust-lightness($primary-color, -10));
+			}
+			
+			&:hover {
+				@include force-component-colors-hover($primary-color); // fix for pixel-admin css styling bug
+			}
+			
+			&:disabled {
+				@include component-colors($primary-color);
+			}
+		}
+		
+		&.btn-danger {
+			@include component-colors($danger-color);
+			
+			&:active {
+				@include box-shadow(inset 0 0 4px adjust-lightness($danger-color, -10));
+			}
+			
+			&:focus {
+				@include box-shadow(inset 0 0 4px adjust-lightness($danger-color, -10));
+			}
+			
+			&:hover {
+				@include component-colors-hover($danger-color);
+			}
+			
+			&:disabled {
+				@include component-colors($danger-color);
+			}
+		}
+		
+		&.btn-warning {
+			@include component-colors($warning-color);
+			
+			&:active {
+				@include box-shadow(inset 0 0 4px adjust-lightness($warning-color, -10));
+			}
+			
+			&:focus {
+				@include box-shadow(inset 0 0 4px adjust-lightness($warning-color, -10));
+			}
+			
+			&:hover {
+				@include component-colors-hover($warning-color);
+			}
+			
+			&:disabled {
+				@include component-colors($warning-color);
+			}
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// BADGES
+	//
+	// Badges are <div> or <span> elements containing information. Useful for defining
+	// tags that describe something inside the app. (Similar to Twitter Bootstrap Framework).
+	// --------------------------------------------------------------------------
+	
+	.badge {
+		margin:      0;
+		padding:     3px 8px;
+		display:     inline-block;
+		font-weight: 400;
+		line-height: 12px;
+		text-shadow: none;
+		@include font(12px);
+		@include border-radius(0.25em);
+		@include component-colors($default-color, $text-color);
+	}
+	
+	.badge-success {
+		@include component-colors($success-color);
+	}
+	
+	.badge-primary {
+		@include component-colors($primary-color);
+	}
+	
+	.badge-danger {
+		@include component-colors($danger-color);
+	}
+	
+	.badge-warning {
+		@include component-colors($warning-color);
+	}
+	
+	// --------------------------------------------------------------------------
+	// TOOLBAR
+	//
+	// Tool bar must be a <div> container that will include control elements (button, input, select ...).
+	// It will place a frame around the controls.
+	// --------------------------------------------------------------------------
+	
+	.toolbar {
+		background:    tint($default-color, 60%);
+		border:        1px solid shade($default-color, 6.5%);
+		@include border-radius(2px);
+		padding:       5px;
+		margin-bottom: 15px;
+		overflow:      auto;
+		
+		* {
+			margin-bottom: 0px;
+		}
+		
+		.btn {
+			margin: 5px;
+		}
+		
+		.control-group {
+			margin: 5px;
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// COMPONENTS
+	// --------------------------------------------------------------------------
+	
+	// --------------------------------------------------------------------------
+	// SIMPLE CONTAINER
+	//
+	// Place this class in a <div> or other element and it will apply margin around
+	// it extinguish it from other elements.
+	// --------------------------------------------------------------------------
+	
+	.simple-container {
+		margin:   24px;
+		overflow: hidden;
+	}
+	
+	// --------------------------------------------------------------------------
+	// CONTROL GROUP
+	//
+	// Create a <div> with this class an put one label and an input/select elements
+	// inside in order to inline  them.
+	// --------------------------------------------------------------------------
+	
+	.control-group {
+		width:          100%;
+		display:        table;
+		vertical-align: middle;
+		overflow:       auto;
+		margin:         0 10px 10px 0;
+		
+		label {
+			display:        table-cell;
+			width:          20%;
+			padding-right:  10px;
+			font-weight:    bold;
+			color:          $text-color-light;
+			vertical-align: middle;
+		}
+		
+		input,
+		select {
+			display: table-cell;
+			width:   100%;
+			margin:  0;
+		}
+		
+		input[type=checkbox],
+		input[type=radio] {
+			margin: 0px 5px 0px 0px;
+			width:  auto;
+			border: none;
+		}
+		
+		input[type=checkbox] + label,
+		input[type=radio] + label {
+			margin-top: 6px;
+		}
+		
+		input[type=checkbox] + label,
+		input[type=checkbox],
+		input[type=radio] + label,
+		input[type=radio] {
+			width:   initial;
+			display: initial;
+			cursor:  pointer;
+			float:   left;
+		}
+		
+		textarea {
+			display: table-cell;
+			width:   100%;
+			@include font(12px); // Force theme font to textarea elements.
+		}
+		
+		.pull-right:first-child {
+			margin-right: 0px;
+		}
+		
+		.tooltip_icon {
+			float: inherit;
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// Block class will break the inline appearence of a control group
+	// and display the input element at the next line. Use this if you
+	// need more space for your input.
+	// --------------------------------------------------------------------------
+	
+	.control-group.block {
+		display: inline-block;
+		
+		label {
+			display:       inline-block;
+			margin-bottom: 5px;
+			width:         auto;
+		}
+	}
+	
+	// --------------------------------------------------------------------------
+	// PAGE HEADER
+	//
+	// Define a specific style just for page headers. Must be used only once in a
+	// page in order to create a unique header for the page.
+	// --------------------------------------------------------------------------
+	
+	.page-header {
+		background-color: $background-color;
+		font-weight:      normal;
+		font-size:        17px;
+		color:            $gambio-blue;
+		margin:           15px 0;
+		padding:          0 8px 8px 8px;
+	}
+	
+	// --------------------------------------------------------------------------
+	// SECTION HEADER
+	//
+	// Defines a different kind of section header display. Use it as a class
+	// into a header element (h1, h2, h3, h4, h5, h6). The header element will
+	// specify the font-size of the text but this class will extend its styling
+	// in order to be more prominent. Better use directly under .gx-container
+	// and not in deeply nested elements.
+	// --------------------------------------------------------------------------
+	
+	.section-header {
+		@extend .page-header;
+		border-bottom: 3px solid $gambio-blue;
+		color:         $text-color;
+		font-weight:   bold;
+		font-size:     12px;
+	}
+}

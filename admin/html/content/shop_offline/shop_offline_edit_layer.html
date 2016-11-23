@@ -1,0 +1,8 @@
+{load_language_text section="shop_offline"}
+{load_language_text section="notifications" name="notification"}
+<form data-gx-_widget="ckeditor">
+	<div class="formfields">
+		<label for="{$content_data.data_src}_msg[{$content_data.data_id}]">{$notification.offline_message_label}:</label><br />
+		<textarea name="{$content_data.data_src}_msg[{$content_data.data_id}]" {if $smarty.const.USE_WYSIWYG}class="wysiwyg"{/if}></textarea>
+	</div>
+</form>

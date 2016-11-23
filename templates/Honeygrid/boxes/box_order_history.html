@@ -1,0 +1,7 @@
+{load_language_text section="box_order_history"}
+
+{if $content_data.CONTENT}
+	{include file="get_usermod:{$tpl_path}snippets/box/default/top.html" class="order-history" headline=$txt.heading_order_history}
+	{$content_data.CONTENT}
+	{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"}
+{/if}

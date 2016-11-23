@@ -1,0 +1,129 @@
+{load_language_text section="payone" name="p1txt"}
+<h1 class="p1_ac">{$p1txt.heading_address_check}</h1>
+
+{if $content_data.billto_errorcode}
+<p>{$content_data.billto_errorcode} {$content_data.billto_errormessage}</p>
+{/if}
+
+{if $content_data.note_address_changed}
+<p class="p1_note">{$content_data.note_address_changed}</p>
+{/if}
+
+<form action="{$content_data.form_action}" method="POST">
+	{if $content_data.billto_corrected_street}
+	<table class="p1address">
+		{if $content_data.billto_customermessage}
+		<tr>
+			<td colspan="2" class="customermessage">
+				{$content_data.billto_customermessage}
+			</td>
+		</tr>
+		{/if}
+		<tr>
+			<td class="label">{$p1txt.lastnamefirstname}:</td>
+			<td>{$content_data.billto_address.entry_lastname}, {$content_data.billto_address.entry_firstname}</td>
+		</tr>
+		<tr>
+			<td class="label">{$p1txt.streetaddress}:</td>
+			<td>{$content_data.billto_address.entry_street_address}</td>
+		</tr>
+		<tr class="correction">
+			<td class="label">{$p1txt.correction}</td>
+			<td>
+				<input type="text" name="billto[street_address]" value="{$content_data.billto_corrected_street}">
+			</td>
+		</tr>
+		<tr>
+			<td class="label">{$p1txt.house_number}:</td>
+			<td>{$content_data.billto_address.entry_house_number}</td>
+		</tr>
+		<tr class="correction">
+			<td class="label">{$p1txt.correction}</td>
+			<td>
+				<input type="text" name="billto[house_number]" value="{$content_data.billto_corrected_house_number}">
+			</td>
+		</tr>
+		<tr>
+			<td class="label">{$p1txt.postcode}:</td>
+			<td>{$content_data.billto_address.entry_postcode}</td>
+		</tr>
+		<tr class="correction">
+			<td class="label">{$p1txt.correction}</td>
+			<td>
+				<input type="text" name="billto[postcode]" value="{$content_data.billto_corrected_zip}">
+			</td>
+		</tr>
+		<tr>
+			<td class="label">{$p1txt.city}:</td>
+			<td>{$content_data.billto_address.entry_city}</td>
+		</tr>
+		<tr class="correction">
+			<td class="label">{$p1txt.correction}:</td>
+			<td>
+				<input type="text" name="billto[city]" value="{$content_data.billto_corrected_city}">
+			</td>
+		</tr>
+	</table>
+	{/if}
+
+	{if $content_data.sendto_corrected_street}
+	<table class="p1address">
+		{if $content_data.sendto_customermessage}
+		<tr>
+			<td colspan="2" class="customermessage">
+				{$content_data.sendto_customermessage}
+			</td>
+		</tr>
+		{/if}
+		<tr>
+			<td class="label">{$p1txt.lastnamefirstname}:</td>
+			<td>{$content_data.sendto_address.entry_lastname}, {$content_data.sendto_address.entry_firstname}</td>
+		</tr>
+		<tr>
+			<td class="label">{$p1txt.streetaddress}:</td>
+			<td>{$content_data.sendto_address.entry_street_address}</td>
+		</tr>
+		<tr class="correction">
+			<td class="label">{$p1txt.correction}</td>
+			<td>
+				<input type="text" name="sendto[street_address]" value="{$content_data.sendto_corrected_street}">
+			</td>
+		</tr>
+		<tr>
+			<td class="label">{$p1txt.house_number}:</td>
+			<td>{$content_data.sendto_address.entry_house_number}</td>
+		</tr>
+		<tr class="correction">
+			<td class="label">{$p1txt.correction}</td>
+			<td>
+				<input type="text" name="sendto[house_number]" value="{$content_data.sendto_corrected_house_number}">
+			</td>
+		</tr>
+		<tr>
+			<td class="label">{$p1txt.postcode}:</td>
+			<td>{$content_data.sendto_address.entry_postcode}</td>
+		</tr>
+		<tr class="correction">
+			<td class="label">{$p1txt.correction}</td>
+			<td>
+				<input type="text" name="sendto[postcode]" value="{$content_data.sendto_corrected_zip}">
+			</td>
+		</tr>
+		<tr>
+			<td class="label">{$p1txt.city}:</td>
+			<td>{$content_data.sendto_address.entry_city}</td>
+		</tr>
+		<tr class="correction">
+			<td class="label">{$p1txt.correction}:</td>
+			<td>
+				<input type="text" name="sendto[city]" value="{$content_data.sendto_corrected_city}">
+			</td>
+		</tr>
+	</table>
+	{/if}
+
+	<p style="text-align: center;">
+		<input type="submit" value="{$p1txt.submit_addresses}">
+	</p>
+</form>
+

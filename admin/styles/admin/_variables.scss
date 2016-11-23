@@ -1,0 +1,53 @@
+/*
+	Variables
+    ==========================================================================
+
+	Define reused variables (do not override Bootstrap variables in this file).
+	
+	This file must only contain variables that are used by many different places. If this isn't the 
+	case, place the your variables to the top of the file that are referenced.
+
+*/
+
+// ----------------------------------------------------------------------------
+// COLORS
+// ----------------------------------------------------------------------------
+
+// Text colors
+$text-color-light: $gray-light;
+$text-color-inverse: invert($text-color);
+$text-color-tooltip: #FFFFFF;
+
+// Border colors
+$border-color: #E4E4E4;
+
+// Background colors
+$body-bg-dark: $gray-lighter;
+$table-filter-bg-color: #D7ECFD;
+
+// ----------------------------------------------------------------------------
+// POSITIONING
+// ----------------------------------------------------------------------------
+
+// Padding
+$padding-small: 12px;
+$padding-large: 2 * $padding-small;
+
+// Margin
+$margin-small: 12px;
+$margin-large: 2 * $margin-small;
+
+// z-indexes
+
+$zindex-main-header: $zindex-modal-background - 5;
+$zindex-content-header: $zindex-main-header - 2; 
+$zindex-main-menu: $zindex-modal-background - 6;
+$zindex-main-footer: $zindex-modal-background - 5;
+
+
+// ----------------------------------------------------------------------------
+// UI COMPONENTS
+// ----------------------------------------------------------------------------
+
+$header-height: 46px;
+$menu-width: 200px;

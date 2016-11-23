@@ -1,0 +1,18 @@
+{load_language_text section="box_manufacturers_info"}
+
+{if $content_data.NAME}
+	{include file="get_usermod:{$tpl_path}snippets/box/default/top.html" class="manufacturers_info" headline=$txt.heading_manufacturers_info}
+		
+	{if $content_data.IMAGE && file_exists($content_data.IMAGE)}
+		<img src="{$content_data.IMAGE}" alt="{$content_data.NAME}" class="img-responsive center-block" />
+	{/if}
+	{$content_data.NAME}
+	<br />
+	{if $content_data.URL}
+		{$content_data.URL}
+		<br />
+	{/if}
+	{$content_data.LINK_MORE}
+
+	{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"}
+{/if}

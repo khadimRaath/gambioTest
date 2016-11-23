@@ -1,0 +1,207 @@
+{load_language_text section="notifications"}
+{load_language_text section="shop_offline" name="shop_offline"}
+
+<div class="breakpoint-small add-margin bottom double">
+	<form class="gx-container" name="img_upload" action="gm_offline.php" method="post" enctype="multipart/form-data"
+		data-gx-widget="checkbox"
+		data-gx-extension="language_switcher"
+	    data-gx-controller="shop_offline/shop_offline"
+	>
+
+		<div class="ui-tabs" data-gx-widget="tabs ckeditor" >
+			<!-- Header -->
+			<div class="tab-headline-wrapper">
+				<a href="#status">{$shop_offline.status}</a>
+				<a href="#topbar">{$shop_offline.topbar}</a>
+				<a href="#popup">{$shop_offline.popup}</a>
+
+				<div class="pull-right languages buttonbar">
+					{foreach item=language from=$content_data.languages_array name=languagesArrayIterator1}
+					<a href="#{$language.languages_id}" class="language-selector language_switcher_{$language.code}">
+						<img src="../lang/{$language.directory}/{$language.image}" alt="{$language.name}" title="{$language.name}" style="margin: 0;" />
+					</a>
+					{/foreach}
+				</div>
+			</div>
+
+			<!-- Contents -->
+			<div class="tab-content-wrapper">
+				<!-- Shop Status -->
+				<div class="gx-category-details">
+					<div class="grid control-group">
+						<div class="span6">
+							<label>{$txt.actual_shop_state}:</label>
+						</div>
+						<div class="span6 text-right">
+							<input type="checkbox" name="shop_offline" value="checked"
+								data-checkbox-on_text="{$shop_offline.on}"
+								data-checkbox-off_text="{$shop_offline.off}"
+								data-checkbox-class-name="twisted"
+								{if $content_data.shop_offline_mode !== "checked"}
+									checked
+								{/if}
+							/>
+						</div>
+					</div>
+
+					<div style="margin-top: 48px;">
+						<span class="key-title">{$txt.offline_message_label}:</label>
+						{$content_data.offline_message}
+						{$content_data.offline_editor}
+							
+						{foreach item=language from=$content_data.languages_array name=languagesArrayIterator1}
+							<input type="hidden" value="{$content_data.topbar_message_content[$language.languages_id]|escape:'html'}"
+								   class="language_switcher_content_{$language.code}" name="topbar_msg_plain[0][{$language.languages_id}]" />
+						{/foreach}
+					</div>
+
+					<div class="text-right" style="margin-top: 24px;">
+						<button
+							class="btn btn-primary"
+							style="margin-bottom: 0;"
+							type="button"
+							data-gx-widget="event_mapper"
+							data-event_mapper-target-element="input[name='go']"
+							data-event_mapper-event-name="click"
+						>
+							{$txt.button_save}
+						</button>
+					</div>
+				</div>
+
+				<!-- TopBar -->
+				<div class="gx-category-details">
+					<div class="grid control-group">
+						<div class="span6">
+							<label for="topbar_enabled">{$txt.topbar_label}:</label>
+						</div>
+						<div class="span6 text-right">
+							<input type="checkbox" name="topbar_enabled" value="checked"
+								{if $content_data.topbar_checked === "checked"}
+									checked
+								{/if}
+							/>
+						</div>
+					</div>
+					<div class="grid control-group">
+						<div class="span6">
+							<label for="colorpicker">{$txt.colorpicker_label}:</label>
+						</div>
+						<div class="span6 text-right" data-gx-widget="colorpicker">
+							<div class="grid" style="margin-bottom: 0;">
+								<div class="span8">
+									<div class="picker color-preview" style="float:none; width: 30px; height: 30px;"></div>
+								</div>
+								<div class="span4" style="padding: 0;">
+									<input type="hidden" name="colorValueTopBar" value="{$content_data.topbar_color}" />
+									<input type="button" name="colorpicker" value="{$txt.colorpicker}" class="picker" style="margin: 0;"/>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					{* Only show topbar mode on EyeCandy based templates *}
+					{if $content_data.hide_topbar_mode !== true}
+						<div class="grid control-group">
+							<div class="span6">
+								<label for="topbar_mode[]">{$txt.display_mode}:</label>
+							</div>
+							<div class="span6 text-right">
+								<select name="topbar_mode[]" class="pull-right">
+									<option value="hideable" >
+										{$txt.hideable}
+									</option>
+									<option value="permanent"
+											{if $content_data.topbar_mode === "permanent"}
+												selected
+											{/if}
+									>
+										{$txt.permanent}
+									</option>
+								</select>
+							</div>
+						</div>
+					{else}
+						<input type="hidden" name="topbar_mode[]" value="hideable">
+					{/if}
+
+					<div style="margin-top: 48px; margin-bottom: 0;">
+						<span class="key-title">{$txt.topbar_message_label}:</span>
+					</div>
+
+					<div>
+						<textarea style="width: 100%; max-width: 100%;" name="topbar_msg_plain[0]" {if $smarty.const.USE_WYSIWYG == 'true'}class="wysiwyg"{/if}></textarea>
+						{foreach item=language from=$content_data.languages_array name=languagesArrayIterator1}
+							<input type="hidden" value="{$content_data.topbar_message_content[$language.languages_id]|escape:'html'}"
+								class="language_switcher_content_{$language.code}" name="topbar_msg_plain[0][{$language.languages_id}]" />
+						{/foreach}
+					</div>
+
+					<div class="text-right" style="margin-top: 24px;">
+						<button
+							class="btn btn-primary"
+							style="margin-bottom: 0;"
+							type="button"
+							data-gx-widget="event_mapper"
+							data-event_mapper-target-element="input[name='go']"
+							data-event_mapper-event-name="click"
+						>
+							{$txt.button_save}
+						</button>
+					</div>
+				</div>
+
+				<!-- Popup -->
+				<div class="gx-category-details">
+					<div class="grid control-group">
+						<div class="span6">
+							<label>{$txt.popup_label}:</label>
+						</div>
+						<div class="span6 text-right">
+							<input type="checkbox" name="popup_enabled" value="checked"
+								{if $content_data.popup_checked === "checked"}
+									checked
+								{/if}
+							/>
+						</div>
+					</div>
+
+					<div style="margin-top: 48px;">
+						<span class="key-title">{$txt.popup_message_label}:</span>
+					</div>
+
+					<div>
+						<textarea style="width: 100%; max-width: 100%;" name="popup_msg_plain[0]" {if $smarty.const.USE_WYSIWYG == 'true'}class="wysiwyg"{/if}></textarea>
+						{foreach item=language from=$content_data.languages_array name=languagesArrayIterator1}
+							<input type="hidden" value="{$content_data.popup_message_content[$language.languages_id]|escape:'html'}"
+								class="language_switcher_content_{$language.code}" name="popup_msg_plain[0][{$language.languages_id}]" />
+						{/foreach}
+					</div>
+
+					<div class="text-right" style="margin-top: 24px;">
+						<button
+							class="btn btn-primary"
+							style="margin-bottom: 0;"
+							type="button"
+							data-gx-widget="event_mapper"
+							data-event_mapper-target-element="input[name='go']"
+							data-event_mapper-event-name="click"
+						>
+							{$txt.button_save}
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<input type="hidden" value="{$content_data.page_token}" name="page_token">
+		<input
+			style="display: none;"
+			type="submit"
+			name="go"
+			class="button"
+			onClick="setTimeout(function() {literal}{$('[name=\'img_upload\']').submit()}{/literal}, 500); return false;"
+			value="{$txt.button_save}"
+		/>
+	</form>
+</div>

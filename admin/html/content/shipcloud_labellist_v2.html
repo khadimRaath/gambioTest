@@ -1,0 +1,88 @@
+{* --------------------------------------------------------------
+	shipcloud_labellist.html 2016-03-01
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*}
+
+<div class="" id="sc_labellist_container" data-gx-widget="checkbox">
+	{if $shipments}
+		<form action="" method="POST" id="sc_pickup">
+			<input type="hidden" name="page_token" value="{$page_token}">
+			<table class="labellist">
+				<tr class="">
+					<th>
+						<input class="pickup_checkbox_all" type="checkbox" data-single_checkbox>
+					</th>
+					<th>##created_at</th>
+					<th>##carrier_and_service/<br>##carrier_tracking_no</th>
+					<th>##shipment_price</th>
+					<th></th>
+				</tr>
+				{foreach from=$shipments item=shipment}
+				<tr class="">
+					<td class="">
+						<input class="pickup_checkbox" type="checkbox" name="pickup_shipments[]" value="{$shipment->id}/{$shipment->carrier}" data-single_checkbox>
+					</td>
+					<td class="">{$shipment->created_at}</td>
+					<td class="">{$shipment->carrier}/{$shipment->service}/<br>{$shipment->carrier_tracking_no}</td>
+					<td class="numeric_cell">{$shipment->price|string_format:"%.2f"}</td>
+					<td class="">
+						<div class="btn-group">
+							<a class="btn remove-margin-bottom label-link" href="{$shipment->label_url}" target="_new">##label</a>
+							<a class="btn remove-margin-bottom" href="{$shipment->tracking_url}" target="_new">##tracking</a>
+							<a class="btn remove-margin-bottom sc-del-label" href="#" data-shipment-id="{$shipment->id}">##delete_label</a>
+						</div>
+					</td>
+				</tr>
+				{/foreach}
+			</table>
+
+			<div class="labellist-toolbar">
+				<div class="pull-right pickup_time">
+					##pickup_time:
+					##pickup_between
+					<input
+						name="pickup_earliest"
+						type="text"
+						value="{$pickup_earliest}"
+						placeholder="YYYY-MM-DD HH:MM"
+						data-gx-widget="datetimepicker"
+						data-datetimepicker-lang="de"
+						data-datetimepicker-format="Y-m-d H:i"
+						data-datetimepicker-day-of-week-start="1"
+						data-datetimepicker-min-date="{$pickup_mindate}"
+						data-datetimepicker-max-date="{$pickup_maxdate}"
+						>
+					##pickup_and
+					<input
+						name="pickup_latest"
+						type="text"
+						value="{$pickup_latest}"
+						placeholder="YYYY-MM-DD HH:MM"
+						data-gx-widget="datetimepicker"
+						data-datetimepicker-lang="de"
+						data-datetimepicker-format="Y-m-d H:i"
+						data-datetimepicker-day-of-week-start="1"
+						data-datetimepicker-min-date="{$pickup_mindate}"
+						data-datetimepicker-max-date="{$pickup_maxdate}"
+						>
+				</div>
+				<div class="btn-group">
+					<button id="download_labels" class="btn btn-default">##download_labels</button>
+					<button id="order_pickups" class="btn btn-default">##order_pickups</button>
+				</div>
+			</div>
+			<div id="status-output" class="initially-hidden"></div>
+			<div id="pickup_result" class="initially-hidden"></div>
+			<div id="download_result" class="initially-hidden"></div>
+		</form>
+	{else}
+		##no_shipments
+	{/if}
+</div>
+
+

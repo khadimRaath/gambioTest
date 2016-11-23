@@ -1,0 +1,6 @@
+cache/
+templates_c/
+admin/backups/
+images/
+logfiles/
+uploads/

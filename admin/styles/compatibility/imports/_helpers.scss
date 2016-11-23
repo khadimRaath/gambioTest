@@ -1,0 +1,158 @@
+// --------------------------------------------------------------------------
+// COMPATIBILITY HELPERS
+// --------------------------------------------------------------------------
+
+//
+// NORMALIZE TABLE 
+//
+// Use this class on a table to remove paddings for table-structured HTML pages.
+//
+.normalize-table {
+  @include border-radius(0);
+  border: none;
+
+  tr {
+    background: none !important;
+
+    th, td {
+      background: none;
+      border:     none;
+      padding:    5px 0;
+    }
+
+    td {
+      select, input {
+        height: 30px; // Fix input height in normalized tables
+        margin: $margin;
+      }
+    }
+  }
+}
+
+//
+// ADD PADDING 10px
+//
+.add-padding-10 {
+  padding: 10px !important;
+}
+
+//
+// ADD PADDING TOP 20px
+//
+.add-padding-top-20 {
+  padding-top: 20px;
+}
+
+//
+// ADD PADDING TOP 24px
+//
+.add-padding-top-24 {
+  padding-top: 24px;
+}
+
+//
+// ADD PADDING RIGHT 24px
+//
+.add-padding-right-24 {
+  padding-right: 24px;
+}
+
+//
+// ADD PADDING BOTTOM 24px
+//
+.add-padding-bottom-24 {
+  padding-bottom: 24px;
+}
+
+//
+// ADD PADDING LEFT 24px
+//
+.add-padding-left-24 {
+  padding-left: 24px;
+}
+
+//
+// Use this for pages that do not require large content.
+//
+.breakpoint-small {
+  max-width: $breakpoint-width-small;
+}
+
+//
+// Use this for pages that have medium width content.
+//
+.breakpoint-large {
+  max-width: $breakpoint-width-large;
+}
+
+//
+// tables that share the page with a configuration box
+//
+.left-table {
+  width: $breakpoint-width-left-table;
+  max-width: $breakpoint-width-large;
+}
+
+//
+// ADD MARGIN TOP 24px
+//
+// Will set the top margin to 24px.
+//
+.add-margin-top-24 {
+  margin-top: 24px;
+}
+
+//
+// ADD MARGIN BOTTOM 24px
+//
+// Will set the bottom margin to 24px.
+//
+.add-margin-bottom-24 {
+  margin-bottom: 24px;
+}
+
+//
+// ADD MARGIN LEFT 24px
+//
+// Will set the left margin to 24px.
+//
+.add-margin-left-24 {
+  margin-left: 24px;
+}
+
+//
+// ADD MARGIN RIGHT 24px
+//
+// Will set the right margin to 24px.
+//
+.add-margin-right-24 {
+  margin-right: 24px;
+}
+
+//
+// REMOVE BORDER
+//
+.remove-border {
+  border: none !important;
+}
+
+//
+// SET DEFAULT BACKGROUND COLOR TO AN ELEMENT
+//
+.default-background {
+  background-color: $background-color !important;
+}
+
+//
+// HIDE AN ELEMENT. USE INSTEAD OF DISPLAY NONE IF THE HEIGHT AND WIDTH SHOULD NOT CHANGE
+//
+.hidden-visibility {
+  visibility: hidden;
+}
+
+//
+// CLEAR FLOATS
+//
+.clear-floats {
+  clear: both;
+}

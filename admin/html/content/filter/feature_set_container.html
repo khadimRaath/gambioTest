@@ -1,0 +1,40 @@
+{load_language_text section="feature_set"}
+<div id="feature_set_wrapper" {if $content_data.editable_values}class="editable_values"{/if}>
+	{if isset($content_data.lightbox_text)}
+		<div id="feature_set_text">{$txt[$content_data.lightbox_text]}</div>
+	{/if}
+	<span id="feature_set_top"></span>
+	<div id="feature_set_box_container">
+		{$content_data.feature_sets}
+	</div>
+	<div id="hidden_feature_set_box_container">
+		{$content_data.feature_sets_2}
+	</div>
+	{if $content_data.show_all_button || $content_data.add_set_button || $content_data.add_feature_select}
+		<div id="feature_set_buttons">
+			{if $content_data.add_feature_select}
+				<div id="feature_set_add_feature_select" {if empty($content_data.unselected_features)}style="visibility: hidden;"{/if}>
+					<select name="add_feature" style="width: 250px;">
+						<option value="0" selected="selected">{$txt.add_feature_box}</option>
+						{foreach key=feature_id item=feature from=$content_data.unselected_features}
+							{if !empty($feature.feature_admin_name)}
+								<option value="{$feature_id}">{$feature.feature_admin_name}</option>
+							{else}
+								<option value="{$feature_id}">{$feature.feature_name}</option>
+							{/if}
+						{/foreach}
+					</select>
+				</div>
+			{/if}
+			<div id="feature_set_show_all" class="show" {if $content_data.feature_sets_2_length == 0} style="display: none;" {/if}>
+				<span class="show">{$txt.show_all_feature_sets} (<span>{$content_data.feature_sets_2_length}</span>) <img src="html/assets/images/legacy/feature_set_arrow_down.png" alt="" /></span>
+				<span class="hide">{$txt.hide_feature_sets} (<span>{$content_data.feature_sets_2_length}</span>) <img src="html/assets/images/legacy/feature_set_arrow_up.png" alt="" /></span>
+			</div>
+			{if $content_data.add_set_button}
+				<div id="feature_set_add_container">
+					<a href="filter/feature_set_container.html?feature_set_id=0&amp;action=edit&amp;products_id={$content_data.products_id}&amp;categories_path={$content_data.categories_path}" title="{$txt.add_feature_set}" class="btn feature_set_lightbox_open">{$txt.add_feature_set}</a>
+				</div>
+			{/if}
+		</div>
+	{/if}
+</div>

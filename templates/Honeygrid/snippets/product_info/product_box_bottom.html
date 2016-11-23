@@ -1,0 +1,49 @@
+<div class="row">
+	
+	{$RICH_SNIPPET_ARRAY.offer_itemprop_in_stock}
+	{$RICH_SNIPPET_ARRAY.offer_itemprop_item_condition}
+	<input type="hidden" name="products_id" id="products-id" value="{$PRODUCTS_ID}" />
+	
+	<div class="input-number" data-type="float" data-stepping="{$QTY_STEPPING}">
+
+		{if $PRODUCTS_QUANTITY_UNIT}
+			<label class="control-label sr-only">
+				{$PRODUCTS_QUANTITY_UNIT}
+			</label>
+		{/if}
+
+		<div class="input-group">
+			<a class="btn btn-default btn-lg btn-minus"><span class="fa fa-minus"></span></a>
+			<input type="text" class="form-control input-lg pull-right js-calculate-qty" value="{$QUANTITY}" id="attributes-calc-quantity" name="products_qty"{if $DISABLED_QUANTITY} disabled="disabled"{/if} />
+			<a class="input-group-btn btn btn-default btn-lg btn-plus"><span class="fa fa-plus"></span></a>
+		</div>
+
+	</div>
+
+	<div class="button-container">
+		<input name="btn-add-to-cart" type="submit" class="btn btn-lg btn-buy btn-block js-btn-add-to-cart{if $DEACTIVATE_BUTTON == true} btn-inactive{/if}" value="{$txt.add_to_cart}" title="{$txt.add_to_cart}" />
+	</div>
+
+	{if $SHOW_WISHLIST}
+		<div class="col-xs-12 wishlist-container">
+			<a href="#" class="btn-wishlist" title="{$button.add_to_wishlist}">{$button.add_to_wishlist}</a>
+		</div>
+	{/if}
+
+	{if $GM_PRICE_OFFER!=''}
+	<div class="col-xs-12 price-offer-container">
+		<button class="btn-price-offer"
+				type="button">{$txt.text_price_offer}</button>
+	</div>
+	{/if}
+
+	{if $GM_TELL_A_FRIEND!=''}
+		<div class="col-xs-12 product-question-container">
+			<button class="btn-product-question"
+					type="button"
+					data-gambio-widget="product_question"
+					data-product_question-product-id="{$PRODUCTS_ID}">{$txt.text_tell_a_friend}</button>
+		</div>
+	{/if}
+
+</div>

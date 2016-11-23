@@ -1,0 +1,108 @@
+{load_language_text section="index"}{$HEAD}
+
+{if $smarty.const.SHOP_OFFLINE}
+	{html_shop_offline}
+{else}
+
+{$POPUP_NOTIFICATION}
+
+<div id="outer-wrapper" {if $TOPBAR && $TOPBAR !=''}class="topbar-active"{/if}>
+	<header id="header" class="navbar">
+		
+		{$TOP_NAVIGATION=$TOP_NAVIGATION|replace:"###COUNTRIES_DROPDOWN###":$COUNTRIES_DROPDOWN}
+		{$TOP_NAVIGATION=$TOP_NAVIGATION|replace:"###CURRENCIES_DROPDOWN###":$CURRENCIES_DROPDOWN}
+		{$TOP_NAVIGATION=$TOP_NAVIGATION|replace:"###LANGUAGES_DROPDOWN###":$LANGUAGES_DROPDOWN}
+		{$TOP_NAVIGATION=$TOP_NAVIGATION|replace:"###LOGIN_DROPDOWN###":$LOGIN_DROPDOWN}
+	
+		{assign var="showTopSearch" value={template_setting name="gx-show-search-top-nav"}}
+		{$TOP_NAVIGATION=$TOP_NAVIGATION|replace:"###TOP_SEARCH###":$TOP_SEARCH}
+
+		{$TOP_NAVIGATION}
+
+		<div class="inside">
+
+			<div class="row">
+	
+				{assign var="hideLogo" value={template_setting name="gx-hide-logo-col"}}
+				{assign var="hideSearch" value={template_setting name="gx-hide-search-col"}}
+				{assign var="hideCustom" value={template_setting name="gx-hide-custom-1-col"}}
+				{assign var="hideCart" value={template_setting name="gx-hide-cart-col"}}
+	
+
+					<div class="navbar-header" data-gambio-widget="mobile_menu">
+						{if !$hideLogo}
+							{include file="get_usermod:{$tpl_path}snippets/header/logo.html" logo_url=$logo_url logo_link=$logo_link}
+						{/if}
+						{include file="get_usermod:{$tpl_path}snippets/header/header_navbar_buttons.html"}
+					</div>
+
+	
+				{if !$hideSearch}
+					{$TOP_SEARCH}
+				{/if}
+
+				{if !$hideCustom}
+					{include file="get_usermod:{$tpl_path}snippets/header/header_custom_content.html" content={content_manager group=4321001}}
+				{/if}
+				
+				{if !$hideCart}
+					{$SHOPPING_CART_HEAD=$SHOPPING_CART_HEAD|replace:"###SHOPPING_CART_DROPDOWN###":$SHOPPING_CART_DROPDOWN}
+					{$SHOPPING_CART_HEAD}
+				{/if}
+
+			</div>
+			
+		</div>
+
+		{$TOPBAR}
+		{$COOKIEBAR}
+		
+		{if $CATEGORIES_TOP}
+			{$CATEGORIES_TOP=$CATEGORIES_TOP|replace:"###CONTENT_TOP###":$CONTENT_TOP}
+			{$CATEGORIES_TOP}
+		{else}
+			{$CONTENT_TOP}
+		{/if}
+
+	</header>
+
+	{include file="get_usermod:{$tpl_path}snippets/slider.html" slider=$IMGSLIDER}
+
+	<div id="wrapper">
+		<div class="row">
+			
+			<div id="main">
+				<div class="main-inside">
+					{include file="get_usermod:{$tpl_path}snippets/navigation/breadcrumb.html" breadcrumb=$navtrail}
+					{include file="get_usermod:{$tpl_path}snippets/banner.html" banner=$BANNER}
+					{$main_content}
+				</div>
+			</div>
+
+			<aside id="left">
+				{if ""|detect_page == 'Cat'}
+				{menuboxes first=1 last=100 exclude="content"}
+				{else}
+				{menuboxes first=1 last=100 exclude="content"}
+				{/if}
+			</aside>
+
+			<aside id="right">
+				{if ""|detect_page == 'Cat'}
+				{menuboxes first=101 last=200 exclude="content"}
+				{else}
+				{menuboxes first=101 last=200 exclude="content"}
+				{/if}
+			</aside>
+
+		</div>
+	</div>
+
+	{footer}
+	{$TRUSTED_SHOPS_REVIEW_STICKER}
+	
+</div>
+
+{/if}
+
+{$BOTTOM}

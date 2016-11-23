@@ -1,0 +1,155 @@
+<div class="accordion-block {if $edit_profile}accordion-block-open{/if}">
+	<div class="accordion-plus">&nbsp;</div>
+	<div class="accordion-head">##payment_experience_profiles</div>
+	<div class="accordion-body">
+		{if $experienceProfilesList}
+			<table class="exp_profiles">
+				<thead>
+					<tr>
+						<th>##exp_in_use</th>
+						<th>##exp_id</th>
+						<th>##exp_name</th>
+						<th>##exp_action</th>
+					</tr>
+				</thead>
+				<tbody>
+					{foreach from=$experienceProfilesList item=expProfile}
+						{if $expProfile->id == $smarty.get.exp_id}
+						<tr class="highlight">
+						{else}
+						<tr class="{if $expProfile->isOld}oldpep{/if}">
+						{/if}
+							<td style="text-align: center;">
+								{foreach from=$languages item=language}
+									{if $expProfile->id == $experienceProfile[$language.code]}
+										<span style="color: green; font-size: 1.5em;">&#x2714;</span><span class="pep_flag">{$flags[$language.code]}</span>
+									{/if}
+								{/foreach}
+							</td>
+							<td>{$expProfile->id}</td>
+							<td>{$expProfile->name}</td>
+							<td>
+								<form action="{$form_get_target}" method="GET" style="display: inline;">
+									<input type="hidden" name="do" value="{$do}">
+									<input type="hidden" name="exp_id" value="{$expProfile->id}">
+									<input class="btn" type="submit" value="##edit_profile">
+								</form>
+								<form action="{$form_get_target}?do={$do}/DeleteExperienceProfile" method="POST" style="display: inline;">
+									<input type="hidden" name="page_token" value="{$page_token}">
+									<input type="hidden" name="exp_id" value="{$expProfile->id}">
+									<input class="btn btn-danger" type="submit" value="##delete">
+								</form>
+
+								{foreach from=$languages item=language}
+									<form action="{$form_get_target}?do={$do}/SelectExperienceProfile" method="POST" style="display: inline;">
+										<input type="hidden" name="page_token" value="{$page_token}">
+										<input type="hidden" name="exp_id" value="{$expProfile->id}">
+										<input type="hidden" name="language" value="{$language.code}">
+										<input class="btn" type="submit" value="##select [{$language.code}]">
+									</form>
+								{/foreach}
+
+							</td>
+						</tr>
+					{/foreach}
+				</tbody>
+			</table>
+		{/if}
+		<form action="{$form_get_target}" method="GET" style="display: inline;">
+			<input type="hidden" name="do" value="{$do}">
+			<input type="hidden" name="exp_id" value="new">
+			<input class="btn" type="submit" value="##new_profile">
+		</form>
+
+
+		{if $edit_profile}
+			<h2 class="section-header">{if $currentExpProfile->id != ''}##edit_profile_with_id {$currentExpProfile->id}{else}##new_profile{/if}</h2>
+			<form action="{$form_get_target}?do={$do}/SaveExperienceProfile" method="POST" class="">
+				<input type="hidden" name="page_token" value="{$page_token}">
+				<input type="hidden" name="exp_bank_txn_pending_url" value="{$currentExpProfile->bank_txn_pending_url}">
+				<input type="hidden" name="exp_allow_note" value="0">
+				<fieldset>
+					{if $currentExpProfile->id != 'new'}<input type="hidden" name="exp_id" value="{$currentExpProfile->id}">{/if}
+					<div class="control-group">
+						<label for="exp_name">##exp_name</label>
+						<input type="text" name="exp_name" value="{$currentExpProfile->name}">
+					</div>
+					<div class="control-group">
+						<label for="exp_lp_type">##exp_lp_type</label>
+						<select name="exp_lp_type">
+							<option value="billing" {if $currentExpProfile->landing_page_type == 'billing'}selected="selected"{/if}>
+								##exp_lp_type_billing
+							</option>
+							<option value="login" {if $currentExpProfile->landing_page_type == 'login'}selected="selected"{/if}>
+								##exp_lp_type_login
+							</option>
+						</select>
+					</div>
+					{*
+					<div class="control-group">
+						<label for="exp_btpu">##exp_bank_txn_pending_url</label>
+						<input type="text" name="exp_bank_txn_pending_url" readonly="readonly" value="{$currentExpProfile->bank_txn_pending_url}">
+					</div>
+					<div class="control-group">
+						<label for="exp_allow_note">##exp_allow_note</label>
+						<input type="checkbox" name="exp_allow_note" value="1" id="exp_allow_note" {if $currentExpProfile->allow_note == true}checked="checked"{/if}>
+						<label for="exp_allow_note">##allow_note</label>
+					</div>
+					*}
+					<div class="control-group">
+						<label for="exp_no_shipping">##exp_no_shipping</label>
+						<input type="hidden" name="exp_no_shipping" value="{$currentExpProfile->no_shipping}">
+						<div class="note">##note_exp_no_shipping</div>
+					</div>
+					<div class="control-group">
+						<label for="exp_address_override">##exp_address_override</label>
+						<input type="hidden" name="exp_address_override" value="{$currentExpProfile->address_override}">
+						<div class="note">##note_exp_address_override</div>
+					</div>
+					<div class="control-group">
+						<label for="exp_brand_name">##exp_brand_name</label>
+						<input type="text" name="exp_brand_name" id="exp_brand_name" value="{$currentExpProfile->brand_name}">
+					</div>
+					<div class="control-group">
+						<label for="exp_logo_image">##exp_logo_image</label>
+						<input type="text" name="exp_logo_image" id="exp_logo_image" value="{$currentExpProfile->logo_image}" title="##tooltip_pex_logo_image">
+						<div class="note">##note_exp_logo_image</div>
+					</div>
+					<div class="control-group">
+						<label for="exp_locale_code">##exp_locale_code</label>
+						<select id="exp_locale_code" name="exp_locale_code">
+							<option value="AU" {if $currentExpProfile->locale_code == 'AU'}selected="selected"{/if}>AU</option>
+							<option value="AT" {if $currentExpProfile->locale_code == 'AT'}selected="selected"{/if}>AT</option>
+							<option value="BE" {if $currentExpProfile->locale_code == 'BE'}selected="selected"{/if}>BE</option>
+							<option value="BR" {if $currentExpProfile->locale_code == 'BR'}selected="selected"{/if}>BR</option>
+							<option value="CA" {if $currentExpProfile->locale_code == 'CA'}selected="selected"{/if}>CA</option>
+							<option value="CH" {if $currentExpProfile->locale_code == 'CH'}selected="selected"{/if}>CH</option>
+							<option value="CN" {if $currentExpProfile->locale_code == 'CN'}selected="selected"{/if}>CN</option>
+							<option value="DE" {if $currentExpProfile->locale_code == 'DE'}selected="selected"{/if}>DE</option>
+							<option value="ES" {if $currentExpProfile->locale_code == 'ES'}selected="selected"{/if}>ES</option>
+							<option value="GB" {if $currentExpProfile->locale_code == 'GB'}selected="selected"{/if}>GB</option>
+							<option value="FR" {if $currentExpProfile->locale_code == 'FR'}selected="selected"{/if}>FR</option>
+							<option value="IT" {if $currentExpProfile->locale_code == 'IT'}selected="selected"{/if}>IT</option>
+							<option value="NL" {if $currentExpProfile->locale_code == 'NL'}selected="selected"{/if}>NL</option>
+							<option value="PL" {if $currentExpProfile->locale_code == 'PL'}selected="selected"{/if}>PL</option>
+							<option value="PT" {if $currentExpProfile->locale_code == 'PT'}selected="selected"{/if}>PT</option>
+							<option value="RU" {if $currentExpProfile->locale_code == 'RU'}selected="selected"{/if}>RU</option>
+							<option value="US" {if $currentExpProfile->locale_code == 'US'}selected="selected"{/if}>US</option>
+						</select>
+					</div>
+					<input type="submit" class="" value="##save_profile">
+				</fieldset>
+			</form>
+		{/if}
+	</div>
+</div>
+
+{literal}
+<script>
+$(function() {
+	$('label[for="exp_no_shipping"]').on('dblclick', function(e) {
+		$('input[name="exp_no_shipping"], input[name="exp_address_override"]').attr('type', 'text');
+	});
+});
+</script>
+{/literal}

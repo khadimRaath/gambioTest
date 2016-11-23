@@ -1,0 +1,140 @@
+{load_language_text section="contact_us"}
+{load_language_text section="buttons" name="button"}
+
+{if $CONTENT_TEXT}
+	<p>
+		{$CONTENT_TEXT}
+	</p>
+{/if}
+
+<form id="callback-service"
+	  class="form-horizontal"
+	  data-gambio-widget="callback_service">
+
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error type="danger" hidden=true}
+
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error type="success" hidden=true}
+	
+	<fieldset>
+
+		<p class="mandatory-info">
+			{$txt.text_required}
+		</p>
+		
+		<div class="form-group mandatory">
+
+			<label for="name" class="control-label col-sm-3">
+				{$NAME}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text"
+					   placeholder="{$NAME}"
+					   id="name"
+					   name="name"
+					   class="form-control"
+					   value="" />
+			</div>
+
+		</div>
+
+		<div class="form-group">
+
+			<label for="email" class="control-label col-sm-3">
+				{$EMAIL}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input placeholder="{$EMAIL}"
+					   id="email"
+					   name="email"
+					   type="email"
+					   class="form-control"
+					   value="" />
+			</div>
+
+		</div>
+
+		<div class="form-group mandatory">
+
+			<label for="telephone" class="control-label col-sm-3">
+				{$TELEPHONE}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="tel"
+					   placeholder="{$TELEPHONE}"
+					   id="telephone"
+					   name="telephone"
+					   class="form-control"
+					   value="" />
+			</div>
+
+		</div>
+
+		<div class="form-group">
+
+			<label for="time" class="control-label col-sm-3">
+				{$TIME}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text"
+					   placeholder="{$TIME}"
+					   id="time"
+					   name="time"
+					   class="form-control form-type-datetime"
+					   value="" />
+			</div>
+
+		</div>
+
+		<div class="form-group">
+
+			<label for="{$id}" class="control-label col-sm-3">
+				{$MESSAGE}
+			</label>
+
+			<div class="col-sm-9 input-container">
+				<textarea placeholder="{$MESSAGE}" id="message" name="message" class="form-control">{$INPUT_TEXT_VALUE}</textarea>
+			</div>
+
+		</div>
+
+		{if $VALIDATION_ACTIVE == 'true'}
+			<div class="form-group mandatory">
+
+				<label for="captcha" class="control-label col-sm-3">
+					{$VALIDATION}
+				</label>
+
+				<div class="col-sm-9 col-lg-6 input-container">
+					{$GM_CAPTCHA}
+				</div>
+
+			</div>
+		{/if}
+
+	</fieldset>
+
+	{if $GM_PRIVACY_LINK != '0'}
+		<fieldset>
+			{if $show_privacy_checkbox}<input id="privacy_accepted" type="checkbox" name="privacy_accepted" value="1" /> {/if}
+			<label for="privacy_accepted">{$GM_PRIVACY_LINK}</label>
+		</fieldset>
+	{/if}
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-4 col-md-3">
+			<a class="btn btn-default btn-block history-back" href="{page_url}#" title="{$button.back}">
+				{$button.back}
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+			<button type="submit" class="btn btn-primary btn-block" title="{$button.send}">
+				{$button.send}
+			</button>
+		</div>
+	</div>
+	
+</form>

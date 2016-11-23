@@ -1,0 +1,20 @@
+version:
+1.1.4
+2010100721
+
+site:
+http://sourceforge.net/projects/phpqrcode/
+
+
+errors and changes:
+in file : qrencode.php
+  public function encodeString8bit($string, $version, $level)
+<   if(string == NULL) {
+>   if($string == NULL) {
+<$ret = $input->append($input, QR_MODE_8, strlen($string), str_split($string));
+>$ret = $input->append(/*$input,*/ QR_MODE_8, strlen($string), str_split($string));
+
+    class QRencode {
+
+<        public $eightbit = false;
+>        public $eightbit = true;

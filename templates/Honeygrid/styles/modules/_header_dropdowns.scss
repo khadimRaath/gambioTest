@@ -1,0 +1,196 @@
+/* Dropdowns
+   ========================================================================== */
+
+ul.dropdown-menu {
+	
+	border: none;
+	@include border-top-radius(0);
+	
+	@media (min-width: $grid-float-breakpoint) {
+		@include box-shadow($gx-dropdown-box-shadow);
+	}
+	
+	background-color: $gx-dropdown-bg;
+	@if ($gx-dropdown-bg-image-url and $gx-dropdown-bg-image-url != '' and $gx-dropdown-bg-image-url != "") {
+		background-image: url($gx-dropdown-bg-image-url);
+		@if ($gx-dropdown-bg-image-position) {
+			background-position: $gx-dropdown-bg-image-position;
+		}
+		@if ($gx-dropdown-bg-image-repeat) {
+			background-repeat: $gx-dropdown-bg-image-repeat;
+		}
+		@if ($gx-dropdown-bg-image-size) {
+			background-size: $gx-dropdown-bg-image-size;
+		}
+		@if ($gx-dropdown-bg-image-attachment) {
+			background-attachment: $gx-dropdown-bg-image-attachment;
+		}
+	}
+	
+	li {
+		
+		// forms within dropdowns
+		
+		form {
+			padding: $gx-topbar-link-padding 0;
+		}
+		.form-group {
+			padding:     $gx-topbar-link-padding 0;
+			padding-top: 0;
+			
+			> label {
+				color: $gx-dropdown-color;
+			}
+		}
+		
+		> a, span {
+			
+			// padding used for search 
+			// autosuggester and categories dropdown.
+			// menu dropdowns overwritten for mobile and desktops
+			color:            $gx-dropdown-color;
+			display:          block;
+			padding:          5px ($grid-gutter-width / 2);
+			
+			// disabled links
+			
+			&.disabled {
+				color: $gx-dropdown-disabled-color;
+				&:hover {
+					background-color: transparent;
+				}
+			}
+			
+			// apply hover styling for all dropdown menus except the cart dropdown
+			&:hover {
+				&:not(.cart-dropdown a){
+					background-color: $gx-dropdown-hover-bg;
+					@if ($gx-dropdown-hover-bg-image-url and $gx-dropdown-hover-bg-image-url != '' and $gx-dropdown-hover-bg-image-url != "") {
+						background-image: url($gx-dropdown-hover-bg-image-url);
+						@if ($gx-dropdown-hover-bg-image-position) {
+							background-position: $gx-dropdown-hover-bg-image-position;
+						}
+						@if ($gx-dropdown-hover-bg-image-repeat) {
+							background-repeat: $gx-dropdown-hover-bg-image-repeat;
+						}
+						@if ($gx-dropdown-hover-bg-image-size) {
+							background-size: $gx-dropdown-hover-bg-image-size;
+						}
+						@if ($gx-dropdown-hover-bg-image-attachment) {
+							background-attachment: $gx-dropdown-hover-bg-image-attachment;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	// arrow-tip above dropdown-layer
+	
+	&.arrow-top {
+		
+		@include border-top-radius($border-radius-base);
+		
+		> .arrow {
+			&,
+			&:after {
+				position:     absolute;
+				display:      block;
+				width:        0;
+				height:       0;
+				border-color: transparent;
+				border-style: solid;
+			}
+		}
+		> .arrow {
+			display:             none;
+			border-width:        $popover-arrow-outer-width;
+			right:               30px;
+			margin-left:         -$popover-arrow-outer-width;
+			border-top-width:    0;
+			border-bottom-color: $popover-arrow-outer-fallback-color; // IE8 fallback
+			border-bottom-color: $gx-dropdown-bg;
+			top:                 -$popover-arrow-outer-width;
+			&:after {
+				content:             " ";
+				top:                 1px;
+				margin-left:         -$popover-arrow-width;
+				border-top-width:    0;
+				border-bottom-color: transparent;
+				border-width:        $popover-arrow-width;
+				content:             "";
+			}
+		}
+		@media (min-width: $grid-float-breakpoint) {
+			margin-top:   10px;
+			right:        50%;
+			margin-right: -41px;
+			@include box-shadow(0 0 20px rgba(0, 0, 0, .35));
+			> .arrow {
+				display: block;
+			}
+		}
+	}
+	
+	// dropdown headers
+	// font-size of h4
+	
+	.dropdown-header {
+		padding:   ($grid-gutter-width / 2);
+		font-size: $font-size-h4;
+		color:     $gx-dropdown-color;
+	}
+	
+	// dropdown footer used in 
+	// cart and topbar dropdowns
+	
+	.dropdown-footer {
+		padding:          ($grid-gutter-width / 2);
+		margin-bottom:    -5px;
+		@include border-bottom-radius($border-radius-base);
+		
+		color:            $gx-dropdown-footer-color;
+		background-color: $gx-dropdown-footer-bg;
+		@if ($gx-dropdown-footer-bg-image-url and $gx-dropdown-footer-bg-image-url != '' and $gx-dropdown-footer-bg-image-url != "") {
+			background-image: url($gx-dropdown-footer-bg-image-url);
+			@if ($gx-dropdown-footer-bg-image-position) {
+				background-position: $gx-dropdown-footer-bg-image-position;
+			}
+			@if ($gx-dropdown-footer-bg-image-repeat) {
+				background-repeat: $gx-dropdown-footer-bg-image-repeat;
+			}
+			@if ($gx-dropdown-footer-bg-image-size) {
+				background-size: $gx-dropdown-footer-bg-image-size;
+			}
+			@if ($gx-dropdown-footer-bg-image-attachment) {
+				background-attachment: $gx-dropdown-footer-bg-image-attachment;
+			}
+		}
+		
+		// link list
+		// i.e. forgot password and create account
+		
+		> ul {
+			@include reset-list();
+			margin-left:  -15px;
+			margin-right: -15px;
+			margin-top:   ($grid-gutter-width / 2);
+			> li {
+				display: block;
+				> a {
+					display: block;
+					padding: 5px ($grid-gutter-width / 2);
+					&,
+					&:hover,
+					&:active,
+					&:focus {
+						color:            $dropdown-link-color;
+						background-color: transparent;
+					}
+				}
+			}
+		}
+	}
+}
+
+

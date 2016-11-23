@@ -1,0 +1,69 @@
+{load_language_text section="cart_shipping_costs"}
+{load_language_text name="order_details" section="order_details"}
+
+{assign var="content_data.show_shipping_weight_info" value=1}
+
+<div id="shipping-information-layer" class="hidden">
+	<form action="#" method="post">
+		<div class="form-horizontal shipping-calculation" data-gambio-_widget="shipping_calculator">
+
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3" for="cart-shipping-country">
+					{$txt.delivery_country}:
+				</label>
+			<span class="shipping-calculator-country col-xs-12 col-sm-9">
+				{if count($content_data.shipping_countries) == 1}
+					{foreach item=country_data from=$content_data.shipping_countries}
+						{$country_data.countries_name}
+						<input type="hidden" name="cart_shipping_country" value="{$country_data.countries_id}" />
+					{/foreach}
+				{else}
+					<select id="cart-shipping-country" name="cart_shipping_country" class="form-control">
+						{foreach item=country_data from=$content_data.shipping_countries}
+						<option value="{$country_data.countries_id}" {if $country_data.countries_id == $content_data.selected_country}selected="selected"{/if} title="{$country_data.countries_name}">
+						{$country_data.countries_name|truncate:80:"...":true}
+						</option>
+						{/foreach}
+					</select>
+				{/if}
+			</span>
+			</div>
+
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3" for="cart-shipping-module">
+					{$txt.shipping_module}:
+				</label>
+			
+			{include file="get_usermod:{$tpl_path}module/cart_shipping_costs_shipping_module_selection.html"}
+			</div>
+
+			{if $content_data.show_shipping_weight == 1}
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3">
+					{$order_details.shipping_weight}:
+				</label>
+				
+				{include file="get_usermod:{$tpl_path}module/cart_shipping_costs_shipping_weight_information.html"}
+			</div>
+			{/if}
+
+			{if count($content_data.shipping_modules) > 0}
+			<div class="form-group">
+				<label class="control-label col-xs-12 col-sm-3">
+					{$txt.shipping_costs}:
+				</label>
+				<span class="shipping-calculator-shipping-costs col-xs-12 col-sm-9 text-bold">
+					{$content_data.shipping_costs}
+				</span>
+				{if $content_data.shipping_costs_error != ''}
+				{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$content_data.shipping_costs_error type="danger"}
+				{/if}
+				<span class="shipping-calculator-gambioultra-info col-xs-12 col-sm-9 col-sm-offset-3">
+					{$content_data.ot_gambioultra_info_html|replace:"<br />":""}
+				</span>
+			</div>
+			{/if}
+
+		</div>
+	</form>
+</div>

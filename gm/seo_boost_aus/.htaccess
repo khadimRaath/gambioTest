@@ -1,0 +1,6 @@
+## Gambio SEO Boost
+## www.gambio.de
+
+<ifModule mod_headers.c>
+	Header set X-Content-Type-Options: nosniff
+</ifModule>

@@ -1,0 +1,19 @@
+/* 
+	Change Order Status Modal 
+    ========================================================================== 
+
+	Styles the order-status modal of the orders page. 
+	
+*/
+
+.status.modal {
+	.modal-body {
+		fieldset.status-group {
+			ul.status {
+				list-style: none;
+				margin:     0;
+				padding:    0;
+			}
+		}
+	}
+}

@@ -1,0 +1,158 @@
+.gx-configuration-box {
+  background-color: $default-color;
+  border-left:      1px solid $border-color-light;
+  padding:          24px;
+  position:         absolute;
+  top:              41px;
+  right:            0;
+  left:             78.6%;
+  bottom:           48px;
+  margin:           0;
+  min-width:        242px;
+  color:            $text-color;
+
+  .configuration-box-content {
+    min-width: 194px;
+    max-width: 364px;
+
+    #configuration-box-form {
+      margin: 0;
+    }
+
+    table.contentTable tr {
+      background-color: transparent;
+
+      td {
+        padding: 0px;
+        line-height: 1.6em;
+
+        .checkbox-switch-wrapper {
+          margin-top: 12px;
+          float:      none;
+        }
+
+        img {
+          margin: 0px;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+          width: 100%;
+          margin-top: 12px;
+          max-width: 364px;
+          min-width: 170px;
+        }
+      }
+    }
+
+    .configuration-box-header {
+      display:       inline-block;
+      margin-bottom: 24px;
+      width:         100%;
+
+      h2 {
+        margin: 0;
+        color:            $gambio-blue;
+        text-transform:   initial;
+        font-weight:      300;
+        @include font(18px);
+
+        & * {
+          padding: 0;
+          margin:  0;
+        }
+      }
+
+      button.close {
+        padding:     0;
+        cursor:      pointer;
+        border:      0;
+        height:      auto;
+        line-height: 16px;
+        margin:      0;
+        min-width:   unset;
+        float:       right;
+        font-size:   20px;
+        font-weight: 700;
+        color:       $text-color-dark;
+        @include opacity(0.2);
+        text-shadow: 0 1px 0 $component-color;
+        background:  none;
+        position:    relative;
+        top:         0;
+        right:       0;
+      }
+
+      button:focus {
+        outline: 0;
+      }
+
+      button::-moz-focus-inner {
+        border: 0;
+      }
+    }
+
+    .configuration-box-body {
+      text-align:    left !important;
+      padding:       0;
+      margin-bottom: 24px;
+
+      .configuration-box-description {
+        p {
+          margin: 0;
+        }
+      }
+
+      .configuration-box-form-content {
+        .options-title {
+          clear:         both;
+          display:       block;
+          font-weight:   bold;
+          color:         $text-color-light;
+          border-bottom: 1px solid $border-color-light;
+          margin:        24px 0 12px 0;
+          padding:       6px 0;
+        }
+
+        .grid {
+          margin: 0;
+        }
+
+        td {
+          color: $text-color-light;
+        }
+
+        &.editable, &.editable td {
+          color: $text-color;
+        }
+
+        .btn {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    .configuration-box-footer {
+      display: inline-block;
+      padding: 0;
+      width:   100%;
+
+      .button-container {
+        .btn {
+          display:       inline-block;
+          float:         right;
+          height:        31px;
+          line-height:   normal;
+        }
+      }
+    }
+  }
+}
+
+.boxCenterAndConfigurationWrapper {
+  .alert {
+    max-width: $breakpoint-width-large;
+    width: $breakpoint-width-left-table;
+  }
+}

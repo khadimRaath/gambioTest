@@ -1,0 +1,217 @@
+/*
+	---------------------------------------------------------------------------
+	THIS FILE IS DEPRECATED - MODIFY IT ONLY FOR FIXES IN EXISTING STYLE RULES. 
+	
+	DO NOT APPEND IT WITH NEW STYLING RULES, USE THE GX-ADMIN FILES INSTEAD. 
+	---------------------------------------------------------------------------
+*/
+.admin_info_box_button {
+	/**
+	 * Styles are deprecated in v2.5
+	 */
+	
+	/*cursor: pointer;*/
+	/*position: relative;*/
+	/*background: url(../../images/info-icon.png) no-repeat center -42px;		*/
+	/*width: 22px;*/
+	/*height: 22px;*/
+	/*display: block;*/
+	/*top: -5px;*/
+	/*margin: 0 -8px 0 0;*/
+}
+
+.admin_info_box_button.active {
+	/*background-position: center top;*/
+}
+
+/*
+	Triangle with Shadow
+*/
+
+.triangle-with-shadow-wrapper {
+	overflow: hidden;
+	height: 22px;
+	position:absolute;
+	left: 240px;
+	top: -22px;
+}
+
+.triangle-with-shadow-container {
+	position:relative;
+}
+
+.triangle-with-shadow {
+	width: 100px;
+	height: 80px;
+	position: relative;
+	overflow: hidden;
+	top: -58px;
+	left: 0px;
+}
+.triangle-with-shadow:after {
+	content: "";
+	position: absolute;
+	width: 25px;
+	height: 25px;
+	background: #fff;
+	-moz-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-webkit-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-o-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-ms-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	top: 75px;
+	left: 39px;
+	box-shadow: -1px -1px 10px -2px rgba(0,0,0,0.5);
+}
+
+
+#admin_info_arrow{
+	-moz-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-webkit-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-o-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	-ms-transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	transform: scale(1) rotate(45deg) translateX(0px) translateY(0px) skewX(0deg) skewY(0deg);
+	background-color: #fff;
+	box-shadow: 0 1px 10px rgba(0,0,0,1);
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	top: 160px;
+	left: 1185px;
+}
+
+#admin_info_wrapper{
+	position: absolute;
+	top: 160px;
+	right: 6px;
+	width: 314px;				
+	display: none;
+	z-index: 900;
+}
+
+#admin_info_wrapper .content{
+	padding: 5px 5px 0 5px;
+	background-color: #fff;
+	/*padding: 10px 2px 2px 2px;
+	background: #fff url('images/info_box_cross_top.png') no-repeat;*/
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	-moz-box-shadow: 0 1px 1px rgba(0,0,0,1);
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,1);
+	box-shadow: 0 1px 10px rgba(0,0,0,1);
+	color: #707070;
+	font-size: 12px;
+}
+
+#admin_info_wrapper .content .show_all {
+	padding: 12px 24px;
+	line-height: 24px;
+}
+
+#admin_info_wrapper .content .no_messages {
+	display: none;
+	line-height: 48px;
+	text-align: center;
+}
+
+.admin_info_box{
+	padding: 24px;
+	position: relative;
+}
+
+.admin_info_box a {
+	font-size: 12px;
+}
+
+.admin_info_box a.info_close{
+	position: absolute;
+	top: 10px;
+	right: 39px;
+	border-width: 0;
+}
+
+.admin_info_box.hidden a.info_close{
+	display: none;
+}
+
+.admin_info_box a.info_remove{
+	position: absolute;
+	top: 10px;
+	right: 24px;
+	border-width: 0;
+}
+
+.admin_info_box a.info_close img,
+.admin_info_box a.info_remove img{
+	border: 0;
+}
+
+.admin_info_box .info_headline{
+	margin: 0;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+.admin_info_box .info_text{
+	margin: 0;
+	font-size: 12px;
+	display: inline-block;
+	padding: 12px 0;
+	width: 100%;
+}
+
+.admin_info_box .info_loading{
+	visibility: hidden;
+	position: absolute;
+	bottom: 12px;
+	right: 24px;
+}
+
+.admin_info_box a.info_action_button:active {
+	top: 1px;
+	-moz-box-shadow: 0 0px 1px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 0px 1px rgba(0,0,0,0.5);
+	box-shadow: 0 0px 1px rgba(0,0,0,0.5);
+	outline: none;
+}
+
+.admin_info_box.hidden,
+.admin_info_box .hidden{
+	display: none;
+}
+
+.admin_info_box.error a.info_action_button{
+	display: none;
+}
+
+.admin_info_box.progress a.info_action_button{
+	visibility: hidden;
+}
+
+.admin_info_box.progress .info_loading{
+	visibility: visible;
+}
+
+.admin_info_box a,
+.admin_info_box a:visited {
+	color: #707070;
+}
+
+#header_version_info{
+	line-height: 17px;
+	float:right;
+	margin: 0 39px 0 0;
+	padding: 3px 33px 3px 10px;
+	background: #fff url(../../images/legacy/gm_head/icon_version_info.png) no-repeat right top;
+	font-size: 11px;
+	}
+
+#header_version_info.new_version{
+	background-position: right bottom;
+}
+
+#header_version_info.no_version_check{
+	background-image: none;
+	padding-right: 10px;
+}

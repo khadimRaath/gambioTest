@@ -1,0 +1,13 @@
+<div id="export_overview">
+	<div id="export_tab_headline_container">
+		{foreach from=$content_data.export_tabs key=type_id item=type name=export_tab_headline }
+			<a href="#" onclick="return false;" class="export_tab_headline {if $smarty.foreach.export_tab_headline.first}active{/if}" rel="tab_container_{$type_id}">{$type.name}</a>
+		{/foreach}
+		<div class="clear_both"> <!-- --> </div>
+	</div>
+	<div id="export_tab_content_container">
+		{foreach from=$content_data.export_tabs key=type_id item=type name=export_tab_content }
+			<div class="tab_container" id="tab_container_{$type_id}" {if !$smarty.foreach.export_tab_content.first}style="display: none;"{/if}>{$type.content}</div>
+		{/foreach}
+	</div>
+</div>

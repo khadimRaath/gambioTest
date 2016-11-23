@@ -1,0 +1,98 @@
+{load_language_text section="price_offer"}
+{load_language_text section="lang/german/gm_price_offer.php" name="price_offer_txt"}
+{load_language_text section="buttons" name="button"}
+
+<div class="billiger-gesehen clearfix">
+	<h1>&quot;{$PRODUCT_NAME}&quot;{$price_offer_txt.GM_PRICE_OFFER_TITLE}</h1>
+
+	{if $VVCODE_ERROR}<div class="price_offer_error">{$VVCODE_ERROR}<br /><br /></div>{/if}
+	{if $ERROR}<div class="price_offer_error">{$ERROR}<br /><br /></div>{/if}
+	{if $MAIL_OUT}<div class="price_offer_success">{$MAIL_OUT}<br /><br /></div>{/if}
+
+	<p>{$price_offer_txt.GM_PRICE_OFFER_TEXT}</p>
+
+	<div class="article-list-item clearfix">
+		<div class="article-list-item-inside clearfix">
+			<div class="article-list-item-image clearfix">
+				<img src="{$PRODUCT_IMAGE}" alt="{$PRODUCT_NAME}" title="{$PRODUCT_NAME}" class="price_offer_image" />
+			</div>
+			<div class="article-list-item-main clearfix">
+				<a href="{$BUTTON_BACK_LINK}"><span class="title">{$PRODUCT_NAME}</span></a>
+				<p>{$PRODUCT_SHORT_DESCRIPTION}</p>
+				<p>
+					{foreach from=$ATTRIBUTES item=attribut}
+						{$attribut.name}: {$attribut.value} </br>
+					{/foreach}
+				</p>
+				<p>
+					{foreach from=$PROPERTIES item=property}
+						{$property.name}: {$property.value} </br>
+					{/foreach}
+				</p>
+
+				<div class="article-list-item-price">
+					<span class="price"><a href="{$BUTTON_BACK_LINK}">{$PRODUCT_PRICE}</a></span><br />
+					<span class="tax-shipping-text">{$PRODUCTS_TAX_INFO}{if $PRODUCTS_SHIPPING_LINK}{$PRODUCTS_SHIPPING_LINK}{/if}</span>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="required_info">
+		{$txt.text_required}
+	</div>
+
+	<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+		<fieldset class="blocklabels_150">
+			<div class="input">
+				<label>{$txt.label_name}</label>
+				<input type="text" id="gm_price_offer_name" name="name" value="{$INPUT_NAME}" class="input-text" /> *
+			</div>
+			<div class="input">
+
+				<label>{$txt.label_email}</label>
+				<input type="text" id="gm_price_offer_email" name="email" value="{$INPUT_EMAIL}" class="input-text" /> *
+			</div>
+			<div class="input">
+				<label>{$txt.label_telephone}</label>
+				<input type="text" id="gm_price_offer_telephone" name="telephone" value="{$INPUT_TELEPHONE}" class="input-text" />
+			</div>
+			<div class="input">
+
+				<label>{$txt.label_price}</label>
+				<input type="text" id="gm_price_offer_price" name="price" value="{$INPUT_PRICE}" class="input-text" />
+			</div>
+			<div class="input">
+				<label>{$txt.label_offerer}</label>
+				<input type="text" id="gm_price_offer_offerer" name="offerer" value="{$INPUT_OFFERER}" class="input-text" />
+			</div>
+			<div class="input">
+
+				<label>{$txt.label_link}</label>
+				<input type="text" id="gm_price_offer_link" name="link" value="{$INPUT_LINK}" class="input-text" /> *
+			</div>
+			<div class="input">
+				<label>{$txt.label_message}</label>
+				<textarea class="input-textarea png-fix" id="gm_price_offer_message" name="message">{$INPUT_MESSAGE}</textarea>
+			</div>
+			{if $VALIDATION_ACTIVE == 'true'}
+			<div class="input vvcode">
+				<label>{$txt.label_captcha}</label>
+				{$GM_CAPTCHA}
+			</div>
+			{/if}
+		</fieldset>
+
+		{if $GM_PRIVACY_LINK != '0'}
+		<div id="gm_privacy">
+			{if $show_privacy_checkbox}<input type="checkbox" name="privacy_accepted" value="1"{if $privacy_accepted} checked="checked"{/if}/> {/if}
+			{$GM_PRIVACY_LINK}
+		</div>
+		{/if}
+
+		<div class="back_button"><a href="{$BUTTON_BACK_LINK}" class="button_grey_big button_set_big"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a></div>
+		<div class="send_button"><a href="{page_url}#" class="button_blue_big button_set_big action_submit"><span class="button-outer"><span class="button-inner">{$button.send}</span></span></a></div>
+
+	</form>
+</div>

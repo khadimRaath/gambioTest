@@ -1,0 +1,26 @@
+{load_language_text section="shared_shopping_cart_configuration"}
+{load_language_text section="buttons" name="button"}
+
+<form method="post"
+      action="admin.php?do=SharedShoppingCartConfiguration/Store"
+      class="gx-container">
+    <table class="gx-configuration gx-configuration-table breakpoint-small" data-gx-extension="visibility_switcher">
+        <tr class="visibility_switcher">
+            <td class="dataTableContent_gm" style="width: 200px !important;">{$txt.shared_shopping_cart_life_period}</td>
+            <td class="dataTableContent_gm">
+                <input class="input-default"
+                       type="number"
+                       name="life_period"
+                       value="{$life_period}"
+                       min="0"/>
+                <span class="fa-pull-right tooltip-icon" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+                    {$txt.shared_shopping_cart_life_period_info}
+                </span>
+            </td>
+        </tr>
+    </table>
+
+    <div class="gx-container breakpoint-small add-margin-top-24">
+        <input type="submit" value="{$button.save}" onclick="this.blur();" class="btn btn-primary pull-right">
+    </div>
+</form>

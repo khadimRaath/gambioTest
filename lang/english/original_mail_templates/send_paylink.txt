@@ -1,0 +1,7 @@
+Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME},
+
+to pay your order with order number {$ORDER_NR} by PayPal, please follow this link:
+
+{$PAY_LINK}
+
+If there are questions about your order, please answer this mail.

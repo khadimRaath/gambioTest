@@ -1,0 +1,355 @@
+/* PAYONE */
+#payone_checkout {
+  background: #eef;
+  padding: 0 1em;
+  overflow: auto;
+}
+
+.payone_pghead,
+.payone_data {
+  margin: auto;
+  width: 80%;
+  padding: 1ex;
+}
+
+.payone_pghead {
+  background: #ddd;
+  color: #555;
+}
+
+.payone_data, .payone_data_nocheck {
+  background: #eee;
+  margin-bottom: 1em;
+}
+
+#payone_checkout h1 {
+  text-align: center;
+}
+
+.p1_error {
+  font-weight: bold;
+  font-size: 1.3em;
+  background: #ff2e2e;
+  margin-top: 1ex;
+}
+
+#p1_error.p1_error_highlight {
+}
+
+td.p1-cc-label, td.p1-label {
+  padding-right: 1em;
+}
+
+table.payone_safeinv_data {
+  margin-top: 1em;
+}
+
+table.payone_safeinv_data td.p1-data {
+  padding: 1px;
+}
+
+table.payone_safeinv_data td.p1-label {
+  width: 10em;
+}
+
+table.payone_safeinv_data div.p1-invnote {
+  margin-top: 1em;
+  margin-left: 30px;
+}
+
+table.payone_safeinv_data input[type="checkbox"] {
+  display: inline;
+  min-width: 2em;
+  margin: 0 0 0 -30px;
+}
+
+table.payone_cc_data input,
+table.payone_cc_data select,
+table.payone_elv_data input,
+table.payone_elv_data select,
+table.payone_safeinv_data input,
+table.payone_safeinv_data select,
+table.payone_otrans_data input,
+table.payone_otrans_data select {
+  color: #000;
+  min-width: 15em;
+}
+
+table.payone_safeinv_data select.p1-dob {
+  width: 6em;
+  min-width: 6em;
+}
+
+table.payone_pseudodata {
+  display: none;
+}
+
+form.autosubmit input[type="submit"] {
+  display: block;
+  width: 25%;
+  margin: auto;
+  padding: 1em;
+}
+
+.module_option_checked table.payone_data_missing {
+  background: #faa;
+}
+
+div.data_valid {
+  background: #afa;
+}
+
+div.p1_finaldata_otrans,
+div.p1_finaldata_elv {
+  display: none;
+}
+
+table.payone_clearingdata {
+  width: 80%;
+  margin: auto;
+}
+
+table.payone_clearingdata td {
+  padding: .3ex .5ex;
+}
+
+table.payone_clearingdata td.p1_clearing_intro {
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 1ex inherit;
+}
+
+table.payone_clearingdata td.p1_clearing_label {
+  font-weight: bold;
+  width: 9em;
+}
+
+table.payone_clearingdata td.p1_clearing_label:after {
+  content: ":";
+}
+
+button.p1_checkdata {
+  display: none;
+}
+
+div.p1_continue_button {
+  float: right;
+  text-align: center;
+  padding: 5px 20px;
+  background-color: rgb(3, 208, 18);
+  background-image: url("backgrounds/gradients/gradient-reflection.png");
+  background-position: left center;
+  background-repeat: repeat-x;
+  border-color: rgb(3, 208, 18);
+  border-style: solid;
+  border-width: 1px;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+div.p1_continue_button:active
+{
+  background-color: #03d012;
+  background-image: url('backgrounds/gradients/gradient-reverse.png');
+  background-position: top;
+  background-repeat: repeat-x;
+}
+
+
+/* ---------------------------------------------------------- */
+
+h1.p1_ac {
+  text-align: center;
+}
+
+table.p1address {
+  background: #00395A;
+  width: 50%;
+  margin: 1em auto;
+}
+
+table.p1address td {
+  height: 1.5em;
+  color: #ffffff !important;
+  padding: 4px;
+}
+
+table.p1address td.label {
+  font-weight: bold;
+}
+
+table.p1address td.customermessage {
+  background: #3C8AB7;
+}
+
+table.p1address tr.correction td.label {
+  padding-left: 1em;
+}
+
+table.p1address input[type="text"] {
+  border: 1px solid #888;
+  color: #000;
+}
+
+table.p1address input[type="submit"] {
+  padding: 1ex 2ex;
+
+}
+
+/* ---------------------------------------------------------- */
+
+div.p1cr h1 {
+  text-align: center;
+}
+
+div.p1cr form#p1crconfirm {
+  display: block;
+  width: 70%;
+  padding: 1.5em;
+  margin: 1em auto;
+  background: #00395A;
+}
+
+div.p1cr form#p1crconfirm p {
+  color: #fff !important;
+}
+
+div.p1cr p.buttons {
+  text-align: center;
+  margin-top: 1.5em;
+}
+
+div.p1cr input.yesbutton, div.p1cr input.nobutton {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 0 0 2px #fff;
+  border: 1px solid #000;
+  padding: 1ex 1em;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+div.p1cr input.yesbutton {
+  background: #c9de96;
+  background: -moz-linear-gradient(top, #c9de96 0%, #8ab66b 44%, #398235 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#c9de96), color-stop(44%,#8ab66b), color-stop(100%,#398235));
+  background: -webkit-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%);
+  background: -o-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%);
+  background: -ms-linear-gradient(top, #c9de96 0%,#8ab66b 44%,#398235 100%);
+  background: linear-gradient(to bottom, #c9de96 0%,#8ab66b 44%,#398235 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#c9de96', endColorstr='#398235',GradientType=0 );
+}
+
+div.p1cr input.nobutton {
+  background: #eda3a4;
+  background: -moz-linear-gradient(top,  #eda3a4 0%, #a50002 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eda3a4), color-stop(100%,#a50002));
+  background: -webkit-linear-gradient(top,  #eda3a4 0%,#a50002 100%);
+  background: -o-linear-gradient(top,  #eda3a4 0%,#a50002 100%);
+  background: -ms-linear-gradient(top,  #eda3a4 0%,#a50002 100%);
+  background: linear-gradient(to bottom,  #eda3a4 0%,#a50002 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eda3a4', endColorstr='#a50002',GradientType=0 );
+}
+
+
+div.p1_elv_mandate {
+  border: 1px solid #000;
+  width: 70%;
+  margin: 1.5em auto;
+  padding: 1.5em;
+  color: #000;
+  font-size: 14px;
+}
+
+div.p1_elv_mandate_heading {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 1ex;
+}
+
+div.p1_elv_mandate_info {
+}
+
+div.p1_elv_mandate_text {
+  margin: 1ex 0;
+  height: 15em;
+  overflow: auto;
+  border: 1px solid #888;
+  padding: 1ex;
+
+}
+
+#main div.p1_elv_mandate_text p {
+  margin: 1ex 0;
+}
+
+#main div.p1_elv_mandate_text dl {
+  overflow: auto;
+  font: inherit;
+}
+
+#main div.p1_elv_mandate_text dt,
+#main div.p1_elv_mandate_text dd {
+  background: none;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  float: left;
+}
+
+#main div.p1_elv_mandate_text dt {
+  clear: left;
+  width: 15em;
+}
+
+
+div.p1_elv_mandate_checkbox {
+}
+
+#main div.p1_elv_mandate_checkbox label {
+  color: #000;
+  font-size: 14px;
+}
+
+div.p1_elv_mandate_checkbox input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+div.p1_elv_mandate .p1_required {
+  border: 2px solid #ff0000;
+  padding: 1ex;
+  background: #ffffaa;
+}
+
+div.p1_sepa_download {
+  border: 1px solid #ccc;
+  padding: 2ex;
+  color: #333;
+  font-size: 1.2em;
+  width: 80%;
+  margin: 2em auto;
+  text-align: center;
+}
+
+div.p1_sepa_download a {
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  display: inline-block;
+  padding: 1ex;
+  margin: 1ex auto;
+  border: 1px solid #333;
+
+  background: #dcdcdc;
+  background: -moz-linear-gradient(top,  #dcdcdc 0%, #787878 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dcdcdc), color-stop(100%,#787878));
+  background: -webkit-linear-gradient(top,  #dcdcdc 0%,#787878 100%);
+  background: -o-linear-gradient(top,  #dcdcdc 0%,#787878 100%);
+  background: -ms-linear-gradient(top,  #dcdcdc 0%,#787878 100%);
+  background: linear-gradient(to bottom,  #dcdcdc 0%,#787878 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dcdcdc', endColorstr='#787878',GradientType=0 );
+}
+/* END PAYONE */

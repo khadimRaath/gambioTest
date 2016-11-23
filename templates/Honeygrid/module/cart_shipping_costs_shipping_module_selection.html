@@ -1,0 +1,20 @@
+{load_language_text section="cart_shipping_costs"}
+
+<span class="shipping-calculator-shipping-modules col-xs-12 col-sm-9">
+	{if count($content_data.shipping_modules) == 0}
+		{$txt.no_shipping_module_available}
+	{elseif count($content_data.shipping_modules) == 1}
+		{foreach key=module_code item=module_data from=$content_data.shipping_modules}
+			{$module_data|strip_tags}
+			<input type="hidden" name="cart_shipping_module" value="{$module_code}" />
+		{/foreach}
+	{else}
+		<select class="form-control" id="cart-shipping-module" name="cart_shipping_module">
+			{foreach key=module_code item=module_data from=$content_data.shipping_modules}
+				<option value="{$module_code}" {if $module_code == $content_data.selected_module}selected="selected"{/if} title="{$module_data|strip_tags}">
+					{$module_data|strip_tags|truncate:80:"...":true}
+				</option>
+			{/foreach}
+		</select>
+	{/if}
+</span>

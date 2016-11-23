@@ -1,0 +1,17 @@
+{if $content_data.CATEGORIES_DATA|@count > 0}
+<div class="submenu_container" style="display:none;">
+	<div id="submenu_box_id_{$content_data.current_category_id}" class="submenu png-fix clearfix">
+		<div>
+			<ul>
+				{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+					<li id="menu_cat_id_{$categories_item.data.id}"{if $smarty.foreach.cat_data.last} class="last"{/if}>
+						<h4>
+							{if $categories_item.data.icon}<img src="{$categories_item.data.icon}" width="{$categories_item.data.icon_w}" height="{$categories_item.data.icon_h}" style="float: left; margin-right: 10px;" alt="" />{/if}<a href="{$categories_item.data.url}"{if $categories_item.children|@count > 0} class="parent"{/if}>{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}{if $categories_item.data.products_count} ({$categories_item.data.products_count}){/if}</a>
+						</h4>
+					</li>
+				{/foreach}
+			</ul>
+		</div>
+	</div>
+</div>
+{/if}

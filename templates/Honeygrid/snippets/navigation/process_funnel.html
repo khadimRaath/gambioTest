@@ -1,0 +1,21 @@
+{load_language_text section="checkout_payment" name="payment"}
+
+<ul class="checkout-processfunnel">
+
+	<li{if $step == 1} class="active"{/if}>
+		<span>1</span> {$payment.text_yourdata}
+	</li>
+
+	<li{if $step == 2} class="active"{/if}>
+		<span>2</span> {$payment.text_shipandpay}
+		
+	</li>
+
+	<li{if $step == 3} class="active"{/if}>
+		<span>3</span> {$payment.text_confirm}
+		
+	</li>
+
+</ul>
+
+<br style="clear:both">

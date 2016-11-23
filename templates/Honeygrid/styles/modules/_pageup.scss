@@ -1,0 +1,53 @@
+
+/* Pageup
+   ========================================================================== */
+
+.pageup {
+  max-height: 0;
+  overflow: hidden;
+  position: fixed;
+  bottom: $gx-pageup-vertical-space-bottom;
+  width: 60px;
+  height: 60px;
+  background-color: rgba(#fff, .7);
+  z-index: $gx-pageup-z-index;
+  padding-top: 10px;
+    
+  @if($gx-pageup-align-left == true) {
+    left: 25px;
+  }
+  @else {
+    right: 25px;
+    
+  }
+  @include opacity(0);
+  
+  &,
+  &:hover,
+  &:focus,
+  &:active {
+    text-decoration: none;
+    color: $brand-primary;
+  }
+  text-decoration: none;
+  @include border-radius(50%);
+  &,
+  &:before {
+    @include transition(300ms ease all);
+  	@extend .gm-icon-before;
+    content: '\e801';
+  	font-size: 40px;
+  	margin: 0 !important;
+  }
+  &:hover {
+  	background-color: #fff;
+  }
+  &.visible {
+    max-height: none;
+    @include box-shadow($gx-dropdown-box-shadow);
+    @include opacity(1);
+  }
+  &.transition {
+    max-height: none;
+  }
+}

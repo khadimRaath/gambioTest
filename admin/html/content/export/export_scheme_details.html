@@ -1,0 +1,20 @@
+{load_language_text section="export_schemes"}
+
+<div class="export_scheme_details">
+	<form id="export_scheme_details_form">
+		<input type="hidden" value="{$content_data.scheme->v_scheme_id}" name="scheme_id" id="input_scheme_id" />
+		<div class="export_scheme_details_navigation">
+			<a href="export_scheme_configuration.html" class="active" onclick="return false">{$txt.configuration_tab}</a>
+			<a href="export_scheme_fields.html" onclick="return false" {if $content_data.scheme->v_scheme_id == 0}style="display: none;"{/if}>{$txt.fields_tab}</a>
+			{if $content_data.export_type == 2 || $content_data.scheme->v_data_array.type_id == 2}
+				<a href="export_scheme_collective_fields.html" onclick="return false" {if $content_data.scheme->v_scheme_id == 0}style="display: none;"{/if}>{$txt.collective_fields_tab}</a>
+			{/if}
+			<a href="export_categories.html" onclick="return false" {if $content_data.scheme->v_scheme_id == 0}style="display: none;"{/if}>{$txt.categories_tab}</a>
+			<div class="profile_name">{$txt.profile}: <span>{$content_data.scheme->v_data_array.scheme_name|escape}</span></div>
+			<div class="clear_both"><!-- &nbsp; --></div>
+		</div>
+		<div class="export_scheme_details_content">
+			{$content_data.content}
+		</div>
+	</form>
+</div>

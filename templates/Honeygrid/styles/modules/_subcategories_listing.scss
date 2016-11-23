@@ -1,0 +1,24 @@
+.subcategories-listing-container {
+  overflow: hidden;
+  
+  .subcategories-listing,
+  .subcategories-listing li {
+    @include reset-list();
+    display: inline-block;
+    
+    >li {
+      padding: 0 15px 15px;
+    }
+  }
+
+  .subcategories-listing {
+    margin: 0 -15px 15px;
+    display: block;
+  
+    .subcategory-item {
+      @include make-xs-column($gx-sub-cat-col-sm);
+      @include make-sm-column($gx-sub-cat-col-md);
+      @include make-lg-column($gx-sub-cat-col-lg);
+    }
+  }
+}

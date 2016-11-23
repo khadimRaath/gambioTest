@@ -1,0 +1,141 @@
+{load_language_text section="general" name="general"}
+
+<div class="productlisting-filter-container" data-gambio-widget="product_listing_filter" data-product_listing_filter-target=".productlist-viewmode">
+	<form name="{$formname}" action="{$SORTING_FORM_ACTION_URL}" method="get" id="{$manufacturers_data.FORM.ID}">
+		<input type="hidden" name="view_mode" value="{$VIEW_MODE}" />
+
+		<div class="row">
+			
+			<div class="cols-xs-12{if $formname == "panel" && $MANUFACTURER_DROPDOWN} col-lg-7{else} col-lg-5{/if}">
+
+				{include file="get_usermod:{$tpl_path}snippets/product_listing/product_listing_hidden_fields.html"}
+				
+				<div class="jsPanelViewmode panel-viewmode clearfix {if $VIEW_MODE == 'tiled'}productlist-viewmode-grid{else}productlist-viewmode-list{/if} btn-group">
+					<a href="#" type="button" class="btn btn-default jsProductListingGrid productlisting-listing-grid{if $VIEW_MODE == 'tiled'} active{/if}" data-product_listing_filter-add="productlist-viewmode-grid" data-product_listing_filter-url-param="tiled">
+						<i class="fa fa-th"></i>
+					</a>
+					<a href="#" type="button" class="btn btn-default jsProductListingList productlisting-listing-list{if $VIEW_MODE != 'tiled'} active{/if}" data-product_listing_filter-add="productlist-viewmode-list" data-product_listing_filter-url-param="default">
+						<i class="fa fa-th-list"></i>
+					</a>
+				</div>
+
+				<a href="#filterbox-container" class="btn btn-default filter-button js-open-modal hidden-sm hidden-md hidden-lg" data-modal-type="alert" data-modal-settings='{literal}{{/literal}"title": "FILTER", "dialogClass": "box-filter"{literal}}{/literal}'>
+					<i class="fa fa-filter"></i>
+				</a>
+	
+	
+				<div class="btn-group dropdown custom-dropdown" data-dropdown-shorten="null">
+					<button type="button" class="btn btn-default dropdown-toggle">
+						<span class="dropdown-name">
+							{if !$SORT || $SORT === ''}{$txt.label_sort}
+							{elseif $SORT === 'price_asc'}{$txt.option_price_asc}
+							{elseif $SORT === 'price_desc'}{$txt.option_price_desc}
+							{elseif $SORT === 'name_asc'}{$txt.option_name_asc}
+							{elseif $SORT === 'name_desc'}{$txt.option_name_desc}
+							{elseif $SORT === 'date_asc'}{$txt.option_date_asc}
+							{elseif $SORT === 'date_desc'}{$txt.option_date_desc}
+							{elseif $SORT === 'shipping_asc'}{$txt.option_shipping_asc}
+							{elseif $SORT === 'shipping_desc'}{$txt.option_shipping_desc}
+							{/if}
+						</span>
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li><a rel="price_asc" href="#" title="{$txt.option_price_asc}">{$txt.option_price_asc}</a></li>
+						<li><a rel="price_desc" href="#" title="{$txt.option_price_desc}">{$txt.option_price_desc}</a></li>
+						<li class="divider"></li>
+						<li><a rel="name_asc" href="#" title="{$txt.option_name_asc}">{$txt.option_name_asc}</a></li>
+						<li><a rel="name_desc" href="#" title="{$txt.option_name_desc}">{$txt.option_name_desc}</a></li>
+						<li class="divider"></li>
+						<li><a rel="date_asc" href="#" title="{$txt.option_date_asc}">{$txt.option_date_asc}</a></li>
+						<li><a rel="date_desc" href="#" title="{$txt.option_date_desc}">{$txt.option_date_desc}</a></li>
+						<li class="divider"></li>
+						<li><a rel="shipping_asc" href="#" title="{$txt.option_shipping_asc}">{$txt.option_shipping_asc}</a></li>
+						<li><a rel="shipping_desc" href="#" title="{$txt.option_shipping_desc}">{$txt.option_shipping_desc}</a></li>
+					</ul>
+					<select name="listing_sort" class="jsReload input-select">
+						<option value=""{if !$SORT || $SORT == ''} selected="selected"{/if}>{$txt.label_sort}</option>
+						<option value="price_asc"{if $SORT == 'price_asc'} selected="selected"{/if}>{$txt.option_price_asc}</option>
+						<option value="price_desc"{if $SORT == 'price_desc'} selected="selected"{/if}>{$txt.option_price_desc}</option>
+						<option value="name_asc"{if $SORT == 'name_asc'} selected="selected"{/if}>{$txt.option_name_asc}</option>
+						<option value="name_desc"{if $SORT == 'name_desc'} selected="selected"{/if}>{$txt.option_name_desc}</option>
+						<option value="date_asc"{if $SORT == 'date_asc'} selected="selected"{/if}>{$txt.option_date_asc}</option>
+						<option value="date_desc"{if $SORT == 'date_desc'} selected="selected"{/if}>{$txt.option_date_desc}</option>
+						<option value="shipping_asc"{if $SORT == 'shipping_asc'} selected="selected"{/if}>{$txt.option_shipping_asc}</option>
+						<option value="shipping_desc"{if $SORT == 'shipping_desc'} selected="selected"{/if}>{$txt.option_shipping_desc}</option>
+					</select>
+				</div>
+
+				{if $formname == "panel" && $MANUFACTURER_DROPDOWN}
+
+					{foreach item=hidden from=$manufacturers_data.HIDDEN}
+						{if $hidden.VALUE != '' && $hidden.NAME != 'cat'}
+							<input type="hidden" name="{$hidden.NAME}" value="{$hidden.VALUE}" />
+						{/if}
+					{/foreach}
+
+					<div class="btn-group dropdown custom-dropdown" data-dropdown-shorten="null">
+						<button type="button" class="btn btn-default dropdown-toggle">
+						<span class="dropdown-name">
+							{foreach item=option from=$manufacturers_data.OPTIONS}
+								{if $manufacturers_data.DEFAULT == $option.VALUE}{$option.NAME}{/if}
+							{/foreach}
+						</span>
+							<span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu">
+							{foreach item=option from=$manufacturers_data.OPTIONS}
+								<li><a rel="{$option.VALUE}" href="#" title="{$option.NAME}">{$option.NAME}</a></li>
+							{/foreach}
+						</ul>
+
+						<select name="{$manufacturers_data.NAME}" size="1" class="jsReload manufactuers_selection input-select">
+							{foreach item=option from=$manufacturers_data.OPTIONS}
+								<option value="{$option.VALUE}"{if $manufacturers_data.DEFAULT == $option.VALUE} selected="selected"{/if}>
+									{$option.NAME}
+								</option>
+							{/foreach}
+						</select>
+					</div>
+
+				{/if}
+				
+				<div class="btn-group dropdown custom-dropdown" data-dropdown-shorten="null">
+					<button type="button" class="btn btn-default dropdown-toggle">
+						<span class="dropdown-name">
+							{if !$ITEM_COUNT || $ITEM_COUNT == ''}{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_1}{$out}
+							{else if $ITEM_COUNT == $COUNT_VALUE_1}{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_1}{$out}
+							{else if $ITEM_COUNT == $COUNT_VALUE_2}{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_2}{$out}
+							{else if $ITEM_COUNT == $COUNT_VALUE_3}{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_3}{$out}
+							{else if $ITEM_COUNT == $COUNT_VALUE_4}{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_4}{$out}
+							{else if $ITEM_COUNT == $COUNT_VALUE_5}{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_5}{$out}
+							{/if}
+						</span>
+						<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu">
+						<li>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_1}<a rel="{$COUNT_VALUE_1}" href="#" title="{$out}">{$out}</a></li>
+						<li>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_2}<a rel="{$COUNT_VALUE_2}" href="#" title="{$out}">{$out}</a></li>
+						<li>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_3}<a rel="{$COUNT_VALUE_3}" href="#" title="{$out}">{$out}</a></li>
+						<li>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_4}<a rel="{$COUNT_VALUE_4}" href="#" title="{$out}">{$out}</a></li>
+						<li>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_5}<a rel="{$COUNT_VALUE_5}" href="#" title="{$out}">{$out}</a></li>
+					</ul>
+					<select name="listing_count" class="jsReload input-select">
+						<option value="{$COUNT_VALUE_1}"{if $ITEM_COUNT == $COUNT_VALUE_1} selected="selected"{/if}>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_1}{$out}</option>
+						<option value="{$COUNT_VALUE_2}"{if $ITEM_COUNT == $COUNT_VALUE_2} selected="selected"{/if}>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_2}{$out}</option>
+						<option value="{$COUNT_VALUE_3}"{if $ITEM_COUNT == $COUNT_VALUE_3} selected="selected"{/if}>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_3}{$out}</option>
+						<option value="{$COUNT_VALUE_4}"{if $ITEM_COUNT == $COUNT_VALUE_4} selected="selected"{/if}>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_4}{$out}</option>
+						<option value="{$COUNT_VALUE_5}"{if $ITEM_COUNT == $COUNT_VALUE_5} selected="selected"{/if}>{$out=$general.PANEL_GRID_LIST_PRODUCTS_PER_PAGE|replace:"###PRODUCTS###":$COUNT_VALUE_5}{$out}</option>
+					</select>
+				</div>
+
+			</div>
+
+			<div class="cols-xs-12{if $formname == "panel" && $MANUFACTURER_DROPDOWN} col-lg-5{else} col-lg-7{/if}">
+				{include file="get_usermod:{$tpl_path}snippets/navigation/pagination.html" info=$NAVIGATION_INFO bar=$NAVIGATION}
+			</div>
+			
+		</div>
+
+	</form>
+</div>

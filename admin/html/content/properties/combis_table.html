@@ -1,0 +1,31 @@
+{load_language_text section="combis" name="combis"}
+<tr id="box_properties_combis_row_{$content_data.combis_table.products_properties_combis_id}" class="box_properties_combis_row" valign="top">
+    <td class="properties_table_combination">
+		{foreach item=combi_value from=$content_data.combis_table.combis_values name=combis_values}
+			{if !$smarty.foreach.combis_values.first}
+				<div class="combi_name_placeholder">/</div>
+			{/if}
+			<div class="combi_name_container">
+				{if $combi_value.properties_admin_name}
+					<div class="combi_name_text">{$combi_value.properties_admin_name}:</div>
+				{else}
+					<div class="combi_name_text">{$combi_value.properties_name}:</div>
+				{/if}
+				<div class="combi_name_value">{$combi_value.values_name}</div>
+			</div>
+		{/foreach}
+	</td>
+	<td class="properties_table_sortnr">{$content_data.combis_table.sort_order}&nbsp;</td>
+	<td class="properties_table_artnr">{$content_data.combis_table.combi_model}&nbsp;</td>
+	<td class="properties_table_ean">{$content_data.combis_table.combi_ean}&nbsp;</td>
+	<td class="properties_table_quantity">{$content_data.combis_table.combi_quantity}&nbsp;{$content_data.combis_table.products_quantity_unit_name}</td>
+	<td class="properties_table_weight">{$content_data.combis_table.combi_weight|string_format:"%.2f"} kg</td>
+	<td class="properties_table_price">{$content_data.combis_table.combi_price_formatted}&nbsp;</td>
+	<td class="properties_table_price_type">{if $content_data.combis_table.combi_price_type == 'calc'}+{else}={/if}</td>
+	<td class="properties_table_vpe">{$content_data.combis_table.vpe_value|string_format:"%.2f"}&nbsp;{$content_data.combis_table.products_vpe[$content_data.combis_table.products_vpe_id].products_vpe_name}</td>
+	<td class="properties_table_shipping_time">{$content_data.combis_table.shipping_status[$content_data.combis_table.combi_shipping_status_id].shipping_status_name}&nbsp;</td>
+	<td class="properties_table_image">{if $content_data.combis_table.combi_image != ""}<a href="../images/product_images/properties_combis_images/{$content_data.combis_table.combi_image}" target="blank"><img src="html/assets/images/legacy/icons/icon_jpg.jpg" style="border: 0;" /></a>{else}&nbsp;{/if}</td>
+	<td class="properties_table_button"><a href="properties/properties_combis_edit.html?products_id={$content_data.products_id}&amp;products_properties_combis_id={$content_data.combis_table.products_properties_combis_id}" title="{$combis.edit_combination}" class="properties_button button_propertie_combi_edit button_edit_pencil lightbox_open"> <!-- --> </a></td>
+	<td class="properties_table_button"><a href="properties/properties_combis_delete.html?products_id={$content_data.products_id}&amp;products_properties_combis_id={$content_data.combis_table.products_properties_combis_id}" title="{$combis.delete_combination}" class="properties_button button_propertie_combi_delete button_cancel_red_cross lightbox_open"> <!-- --> </a></td>
+	<td class="properties_table_button"><input type="checkbox" name="check_propertie[]" value="{$content_data.combis_table.products_properties_combis_id}" class="check_propertie" /></td>
+</tr>

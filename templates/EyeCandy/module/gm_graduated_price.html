@@ -1,0 +1,14 @@
+{load_language_text section="graduated_price"}
+
+<div class="gm_graduated_prices">
+	<dl>
+		<dt>{$txt.heading_graduated_price}:</dt>
+		<dd>
+			{foreach name=aussen item=module_data from=$module_content}
+				<div class="gm_graduated_prices_content">
+					{$module_data.QUANTITY} {if $module_data.UNIT != ''}{$module_data.UNIT}{else}{$txt.unit}{/if} {$txt.pieces} {$module_data.PRICE}{if $module_data.VPE} ({$module_data.VPE}){/if}
+				</div>
+			{/foreach}
+		</dd>
+	</dl>
+</div>

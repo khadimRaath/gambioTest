@@ -1,0 +1,8 @@
+{if $content_data.topbarNotification->isActive()}
+<div class="topbar_notification" style="background-color: {$content_data.topbarNotification->getColor()|escape}">
+	{$content_data.topbarNotification->getContentByLanguageId($languages_id)}
+	{if $content_data.topbarNotification->getMode() == 'hideable'}
+		<div class="hide_topbar_notification"></div>
+	{/if}
+</div>
+{/if}

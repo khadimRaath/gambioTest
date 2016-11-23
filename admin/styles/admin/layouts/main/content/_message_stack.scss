@@ -1,0 +1,15 @@
+/*
+	Message Stack 
+    ==========================================================================
+
+	Styling for the message-stack container. 
+
+*/
+
+.message-stack {
+	padding: $padding-large;
+	
+	&:empty {
+		margin-bottom: -$padding-large;
+	}
+}

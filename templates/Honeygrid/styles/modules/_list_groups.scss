@@ -1,0 +1,15 @@
+
+/* List Groups
+   ========================================================================== */
+
+ .list-group {
+ 	.list-group-item {
+ 		border-top: none;
+ 		border-left: none;
+ 		border-right: none;
+ 		padding-left: 0;
+ 		padding-right: 0;
+ 		padding-bottom: ($grid-gutter-width / 2);
+ 		margin-bottom: 0;
+ 	}
+ }

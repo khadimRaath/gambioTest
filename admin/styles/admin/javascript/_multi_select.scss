@@ -1,0 +1,130 @@
+/* 
+	Multi Select Widget
+    ========================================================================== 
+
+	Additional styling for the jQuery SumoSelect plugin. 
+	
+*/
+
+$multi-select-checkbox-width: 25px;
+
+.SumoSelect {
+	min-width:      50px;
+	width:          100%;
+	vertical-align: middle;
+	
+	> select {
+		display: none;
+	}
+	
+	.CaptionCont {
+		border-color: $input-border;
+		height:       31px;
+		
+		label {
+			i {
+				background-image: none;
+				margin-top:       7px;
+				margin-left:      15px;
+				@extend .fa;
+				@extend .fa-caret-down;
+			}
+		}
+		
+		span {
+			font-weight: normal;
+			line-height: 1.5;
+			
+			// SumoSelect has problems when setting an empty placeholder, thus CSS solution.
+			&.placeholder {
+				display: none;
+			}
+		}
+	}
+	
+	&:hover,
+	&:focus {
+		.CaptionCont {
+			box-shadow:   none;
+			border-color: $input-border;
+		}
+	}
+	
+	.optWrapper {
+		top:       32px !important;
+		width:     auto;
+		min-width: 130px;
+		
+		* {
+			cursor: default !important;
+		}
+		
+		&.multiple > .options li.opt.selected span i {
+			background-color: $brand-primary;
+			background-image: none;
+		}
+		
+		.options {			
+			li.opt {
+				padding-left: $multi-select-checkbox-width !important;
+				
+				label {
+					margin-bottom: 0;
+					font-weight:   normal;
+					line-height:   18px;
+				}
+				
+				&.selected {
+					span {
+						i {
+							@include add-fa-check();
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	.select-all {
+		height:  31px;
+		padding: 8px 0 3px $multi-select-checkbox-width;
+		
+		label {
+			margin-bottom: 0;
+			font-weight:   normal;
+		}
+		
+		&.selected {
+			span i {
+				background-color: $brand-primary;
+				background-image: none;
+				
+				@include add-fa-check();
+			}
+		}
+		
+		&.partial {
+			span i {
+				@include add-fa-check();
+			}
+		}
+
+		&.partial-select {
+			span i {
+				background-color: #ccc;
+			}
+		}
+	}
+	
+	.optWrapper.multiple > .options li.opt span,
+	.select-all > span {
+		width:       $multi-select-checkbox-width;
+		margin-left: -$multi-select-checkbox-width;
+		
+		i {
+			box-shadow:       none;
+			background-image: none;
+		}
+	}
+	
+}

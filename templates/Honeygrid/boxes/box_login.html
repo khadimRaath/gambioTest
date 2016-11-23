@@ -1,0 +1,45 @@
+{load_language_text section="box_login"}
+{load_language_text section="buttons" name="button"}
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/top.html" class="login" headline=$txt.heading_login}
+
+<form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+
+	<div class="form-group input-container">
+		<label class="control-label" for="{$content_data.FIELD_EMAIL_NAME}">
+			{$txt.text_email}
+		</label> 
+		<span class="input-container"> 
+			<input type="text" placeholder="{$txt.text_email}" name="{$content_data.FIELD_EMAIL_NAME}" id="{$content_data.FIELD_EMAIL_NAME}" class="form-control" /> 
+		</span> 
+	</div>
+
+	<div class="form-group input-container">
+		<label class="control-label" for="{$content_data.FIELD_PWD_NAME}">
+			{$txt.text_pwd}
+		</label> 
+		<span class="input-container"> 
+			<input type="password" placeholder="{$txt.text_pwd}" name="{$content_data.FIELD_PWD_NAME}" id="{$content_data.FIELD_PWD_NAME}" class="form-control" />
+		</span>
+	</div>
+
+	<button type="submit" class="btn btn-block btn-primary btn-sm" title="{$button.login}">
+		{$button.login}
+	</button>
+
+</form>
+	
+{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"
+buttons_text=[
+		$txt.text_create_account,
+		$txt.text_password_forgotten
+	]
+buttons_title=[
+		$txt.text_create_account,
+		$txt.text_password_forgotten
+	]
+buttons_url=[
+		$content_data.LINK_CREATE_ACCOUNT,
+		$content_data.LINK_LOST_PASSWORD
+	]
+}

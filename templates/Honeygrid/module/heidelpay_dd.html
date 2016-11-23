@@ -1,0 +1,97 @@
+<!--
+ Released under the GNU General Public License (Version 2)
+ [http://www.gnu.org/licenses/gpl-2.0.html]
+-->
+<link rel="stylesheet" media="all" type="text/css" href="{$tplPath}/assets/styles/heidelpayAfter.css"/>
+
+<form name='heidelpay' class='module_option_checked' action='{$formUrl}' method='post' onsubmit='return valGatewayForm();' autocomplete='off'>
+	<table class="newreg_{$pm}">
+		<colgroup>
+			<col width="145">
+			<col width="165">
+		</colgroup>
+		
+		{if ($heidel_iban == '2')}
+			<script type='text/javascript'>{literal}
+				document.addEventListener('DOMContentLoaded', function(){
+					$(document).ready(function(){
+						if(jQuery('#sepa_switch :selected').val() == 'iban'){ iban(); }
+						if(jQuery('#sepa_switch :selected').val() == 'noiban'){ noiban(); }
+
+						jQuery('#sepa_switch').change(function(){
+							if(jQuery('#sepa_switch :selected').val() == 'iban'){ iban(); }
+							if(jQuery('#sepa_switch :selected').val() == 'noiban'){ noiban(); }
+						});
+						
+						function iban(){
+							jQuery('#account').parent().parent().hide();
+							jQuery('#bankcode').parent().parent().hide();
+							jQuery('#iban').parent().parent().show();
+							jQuery('#bic').parent().parent().show();
+						}					
+						function noiban(){
+							jQuery('#account').parent().parent().show();
+							jQuery('#bankcode').parent().parent().show();
+							jQuery('#iban').parent().parent().hide();
+							jQuery('#bic').parent().parent().hide();
+						}
+						jQuery('#iban').on('input', function(){
+							if(jQuery(this).val().match(/^(D|d)(E|e)/)){
+								jQuery('#bic').parent().parent().fadeOut();
+								jQuery('#bic').attr('disabled', 'disabled');
+							}else{
+								jQuery('#bic').removeAttr('disabled');
+								jQuery('#bic').parent().parent().fadeIn();
+							}
+						});
+					});
+				});
+			{/literal}</script>		
+			<tr>
+				<td><label>{$smarty.const.HGW_TXT_ACC_SWITCH}*:</label></td>
+				<td><select id="sepa_switch" name="hpdd_sepa">
+					<option value="iban">{$smarty.const.HGW_TXT_ACC_SWITCH_IBAN}</option>
+					<option value="noiban">{$smarty.const.HGW_TXT_ACC_SWITCH_CLASSIC}</option>
+				</select></td>
+			</tr>
+		{/if}
+		
+		{if ($heidel_iban == '0') || ($heidel_iban == '2')}
+			<tr>
+				<td><label>{$smarty.const.HGW_TXT_ACC_NUMBER}*:</label></td>
+				<td><input type="text" class="text" value="" id="account" name="ACCOUNT.NUMBER" /></td>
+			</tr>			
+			<tr>
+				<td><label>{$smarty.const.HGW_TXT_ACC_BANK}*:</label></td>
+				<td><input type="text" class="text" value="" id="bankcode" name="ACCOUNT.BANK" /></td>
+			</tr>
+		{/if}
+		
+		{if ($heidel_iban == '1') || ($heidel_iban == '2')}
+			<tr>
+				<td><label>{$smarty.const.HGW_TXT_ACC_IBAN}*:</label></td>
+				<td><input type="text" class="text" value="" id="iban" name="ACCOUNT.IBAN" /></td>
+			</tr>			
+		{/if}		
+		
+		<tr>
+			<td><label>{$smarty.const.HGW_TXT_ACC_COUNTRY}*:</label></td>
+			<td><select id="cardBrand" name="ACCOUNT.COUNTRY">
+				{foreach key=ccode item=country from=$bankCountry[$pm]}
+					<option value='{$ccode}' >{$country}</option>
+				{/foreach}			
+			</select></td>
+		</tr>
+		<tr>
+			<td><label>{$smarty.const.HGW_TXT_CARDHOLDER}*:</label></td>
+			<td><input type="text" class="text" value="{if $user.first_name != ''}{$user.first_name}{/if} {if $user.last_name != ''}{$user.last_name}{/if}" id="cardHolder" name="ACCOUNT.HOLDER" /></td>
+		</tr>
+		<tr>
+			<td colspan='2' class="description">{$smarty.const.HGW_TXT_MAND}</td>
+		</tr>
+	</table>
+	{if $DbOnRg}<input type="hidden" name='CRITERION.DBONRG' value='{$DbOnRg}' />{/if}
+	<br/><br/>
+	<input type="button" value="{$smarty.const.HGW_BTN_CANCEL}" class="grey button left" onClick="location.href='ext/heidelpay/heidelpayGW_response.php?cancel=1'" />
+	<input type="submit" value="{$smarty.const.HGW_BTN_CONTINUE}" class="green button right" />
+</form>

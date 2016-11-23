@@ -1,0 +1,34 @@
+.popup-notification {
+	.mfp-container {
+		height: auto;
+
+		.mfp-content {
+			.modal-dialog {
+				max-width: 600px;
+
+				.modal-content {
+					.modal-header {
+						.title {
+							font-size:   16px;
+							font-weight: bold;
+							padding:     0;
+						}
+
+						.hide-popup-notification {
+							cursor:      pointer;
+							font-size:   16px;
+							line-height: 22px;
+							padding:     0;
+							text-align:  right;
+						}
+					}
+
+					.modal-body {
+						max-height: 500px;
+						overflow:   auto;
+					}
+				}
+			}
+		}
+	}
+}

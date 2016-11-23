@@ -1,0 +1,18 @@
+{extends file="../layouts/main/layout.html"}
+
+{block name="head"}
+	{include file="../layouts/main/partial/order_status_styles.html"}
+{/block}
+
+{block name="content"}
+	{load_language_text section="admin_invoices" name="admin_invoices"}
+	
+	<div class="orders">
+		<div class="toolbar">
+			<i class="fa fa-cogs fa-lg" data-toggle="modal" data-target=".settings.modal"></i>
+		</div>
+
+		{include file="./main_table.html"}
+		{include file="./settings_modal.html"}
+	</div>
+{/block}

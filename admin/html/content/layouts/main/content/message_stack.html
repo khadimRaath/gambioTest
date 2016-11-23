@@ -1,0 +1,16 @@
+{* The HTML comments are inserted between the HTML tags to prevent that spaces are printed.
+This trick is used to be able to use the CSS pseudo class ":empty" *}
+<div class="message-stack"><!--
+	{* The content of message stack can be filled either by PHP, JavaScript by providing a 
+	"message_stack" block in a child template. *}
+	{foreach $message_stack as $type => $messages}
+		{foreach $messages as $entry}
+		 --><div class="alert alert-{$type}">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				{$entry.message nofilter}
+			</div><!--	
+		{/foreach}
+	{/foreach}
+	
+	{block name="message_stack"}{/block}
+--></div>

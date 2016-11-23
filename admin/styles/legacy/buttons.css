@@ -1,0 +1,124 @@
+/*
+	---------------------------------------------------------------------------
+	THIS FILE IS DEPRECATED - MODIFY IT ONLY FOR FIXES IN EXISTING STYLE RULES. 
+	
+	DO NOT APPEND IT WITH NEW STYLING RULES, USE THE GX-ADMIN FILES INSTEAD. 
+	---------------------------------------------------------------------------
+*/
+.button_container{
+    margin: 5px 0 0 0;
+    height: 28px;
+	display: block;
+	width: 100%;
+}
+
+.button_left_container {
+    display: inline-block;
+	float: left;
+}
+
+.button_right_container{
+    display: inline-block;
+	float: right;
+}
+
+.button_right_container a{
+	margin: 0 0 0 10px;
+}
+
+.button_container .admin_button {
+	display: block;
+	color: #ffffff;
+	font-weight: bold;
+	margin: 0 10px 0 0;
+	padding: 6px 20px;
+	text-decoration: none;
+	font-size: 10px;
+	float: left;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #CBCBCB), color-stop(1, #616161) );
+	background: -moz-linear-gradient( center top, #CBCBCB 5%, #616161 100% );
+	background-image: -ms-linear-gradient(top, #CBCBCB 5%, #616161 100%);
+	background-image: linear-gradient(to bottom, #CBCBCB 5%, #616161 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#CBCBCB', endColorstr='#616161');
+	background-color: #616161;
+	border: 1px solid #676767;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.button_container .admin_button.active {
+	opacity: 0.3;
+	filter: Alpha(opacity=30);	
+	cursor: default;
+}
+
+.button_container .admin_button.disable {
+	opacity: 0.3;
+	filter: Alpha(opacity=30);	
+	cursor: default;
+}
+
+.button_right_container .admin_button {
+	margin: 0 0 0 10px;
+}
+
+.button_container .admin_button:hover,
+.button_container .admin_button:focus {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #AFAFAF), color-stop(1, #494949) );
+	background: -moz-linear-gradient( center top, #AFAFAF 5%, #494949 100% );
+	background-image: -ms-linear-gradient(top, #AFAFAF 5%, #494949 100%);
+	background-image: linear-gradient(to bottom, #AFAFAF 5%, #494949 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#AFAFAF', endColorstr='#494949');
+	background-color: #494949;
+}
+
+.button_container .admin_button.green {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7FE687), color-stop(1, #02830B) );
+	background: -moz-linear-gradient( center top, #7FE687 5%, #02830B 100% );
+	background-image: -ms-linear-gradient(top, #7FE687 5%, #02830B 100%);
+	background-image: linear-gradient(to bottom, #7FE687 5%, #02830B 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7FE687', endColorstr='#02830B');
+	background-color: #02830B;
+	border: 1px solid #03D012;
+}
+
+.button_container .admin_button.green:hover,
+.button_container .admin_button.green:focus {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #7ED284), color-stop(1, #006B08) );
+	background: -moz-linear-gradient( center top, #7ED284 5%, #006B08 100% );
+	background-image: -ms-linear-gradient(top, #7ED284 5%, #006B08 100%);
+	background-image: linear-gradient(to bottom, #7ED284 5%, #006B08 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7ED284', endColorstr='#006B08');
+	background-color: #006B08;
+}
+
+.button_container .admin_button.red {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #E67F7F), color-stop(1, #830303) );
+	background: -moz-linear-gradient( center top, #E67F7F 5%, #830303 100% );
+	background-image: -ms-linear-gradient(top, #E67F7F 5%, #830303 100%);
+	background-image: linear-gradient(to bottom, #E67F7F 5%, #830303 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#E67F7F', endColorstr='#830303');
+	background-color: #830303;
+	border: 1px solid #D20202;
+}
+
+.button_container .admin_button.red:hover,
+.button_container .admin_button.red:focus {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #D27E7E), color-stop(1, #6B0000) );
+	background: -moz-linear-gradient( center top, #D27E7E 5%, #6B0000 100% );
+	background: -moz-linear-gradient( center top, #D27E7E 5%, #6B0000 100% );
+	background-image: -ms-linear-gradient(top, #D27E7E 5%, #6B0000 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#D27E7E', endColorstr='#6B0000');
+	background-color: #6B0000;
+}
+
+.button_container .admin_button img {
+	border: 0px;
+	float: left;
+	margin: 0 5px 0 -10px;
+}
+
+.clear_both{
+    clear: both;
+}

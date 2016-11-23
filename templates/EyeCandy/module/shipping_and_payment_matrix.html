@@ -1,0 +1,18 @@
+{load_language_text section="shipping_and_payment_matrix"}
+
+<table cellpadding="5" cellspacing="0" border="0" id="shipping_and_payment_matrix">
+	<tr>
+		<th>{$txt.shipping_countries}</th>
+		<th>{$txt.shipping_costs}</th>
+		<th>{$txt.shipping_time}</th>
+		<th>{$txt.payment_methods}</th>
+	</tr>
+	{foreach item=row from=$content_data.content}
+	<tr>
+		<td>{$row.country}</td>
+		<td>{$row.shipping_info|nl2br}</td>
+		<td>{$row.shipping_time|nl2br}</td>
+		<td>{$row.payment_info|nl2br}</td>
+	</tr>
+	{/foreach}
+</table>

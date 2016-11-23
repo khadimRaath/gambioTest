@@ -1,0 +1,55 @@
+{load_language_text section="reviews"}
+{load_language_text section="buttons" name="button"}
+
+<h1>
+	{$txt.heading_product_reviews} 
+	<a href="{$PRODUCTS_LINK}" title="{$PRODUCTS_NAME}">
+		{$PRODUCTS_NAME}
+	</a>
+</h1>
+
+{$rich_snippet_content.review_itemprop_about}
+		
+<ul{$rich_snippet_content.review_itemscope}>
+
+	<dt>{$txt.title_rating}</dt>
+	<dd{$rich_snippet_content.review_itemprop_reviewRating}{$rich_snippet_content.rating_itemscope}>
+		{$RATING}
+		{$rich_snippet_content.rating_itemprop_ratingValue}
+	</dd>
+
+	<dt>{$txt.label_author}</dt>
+	<dd{$rich_snippet_content.review_itemprop_author}{$rich_snippet_content.author_itemscope}{$rich_snippet_content.author_itemprop_name}>
+		{$AUTHOR}
+	</dd>
+	
+	<dt>{$txt.label_date}</dt>
+	<dd>
+		{$rich_snippet_content.review_itemprop_datePublished}
+		{$DATE}
+	</dd>
+	
+	<dt>{$txt.label_text}</dt>
+	<dd{$rich_snippet_content.review_itemprop_reviewBody}>
+		{$REVIEWS_TEXT|default:'&nbsp;'}
+	</dd>
+	
+	<dt>{$txt.heading_product}</dt>
+	<dd>
+		<img src="{$IMAGE_URL}" title="{$PRODUCTS_NAME}" alt="{$PRODUCTS_NAME}" />
+	</dd>
+
+</ul>
+
+<div class="row">
+	<div class="col-xs-6 col-sm-4 col-md-3">
+		<a class="btn btn-default btn-block" href="{$BUTTON_BACK_LINK}" title="{$button.back}">
+			{$button.back}
+		</a>
+	</div>
+	<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+		<a class="btn btn-primary btn-block" href="{$PRODUCTS_LINK}" title="{$button.to_the_product}">
+			{$button.to_the_product}
+		</a>
+	</div>
+</div>

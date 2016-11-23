@@ -1,0 +1,23 @@
+<!--
+ Released under the GNU General Public License (Version 2)
+ [http://www.gnu.org/licenses/gpl-2.0.html]
+-->
+<form name='heidelpay' class='module_option_checked' action='{$formUrl}' method='post' onsubmit='return valGatewayForm();' autocomplete='off'>
+	<table class="newreg_{$pm}">
+		<colgroup>
+			<col width="145">
+			<col width="165">
+		</colgroup>	
+		<tr>
+			<td><label>{$smarty.const.HGW_TXT_MAIL}*:</label></td>
+			<td><input type="text" class="text" value="" id="cardVerification" name="CONTACT.EMAIL" /></td>
+		</tr>
+		<tr>
+			<td colspan='2' class="description">{$smarty.const.HGW_TXT_MAND}</td>
+		</tr>
+	</table>
+	{if $DbOnRg}<input type="hidden" name='CRITERION.DBONRG' value='{$DbOnRg}' />{/if}
+	<br/><br/>
+	<input type="button" value="{$smarty.const.HGW_BTN_CANCEL}" class="grey button left" onClick="location.href='ext/heidelpay/heidelpayGW_response.php?cancel=1'" />
+	<input type="submit" value="{$smarty.const.HGW_BTN_CONTINUE}" class="green button right" />
+</form>

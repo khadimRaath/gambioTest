@@ -1,0 +1,39 @@
+{$MODULE_error}
+
+{if $title|trim || $text|trim}
+<div class="content-page-index">
+	{if $title|trim}<h1>{$title}</h1>{/if}
+	{$text}
+</div>
+{/if}
+
+{$MODULE_upcoming_products}
+					
+{$MODULE_new_products}
+
+{if $title_center|trim || $text_center|trim}
+<div class="content-page-index">
+	{if $title_center|trim}<h2>{$title_center}</h2>{/if}
+	{$text_center}
+</div>
+{/if}
+
+{$specials_main}
+					
+<!-- #BOF YOOCHOOSE -->
+{if $MODULE_yoochoose_homepage_personalized != ''}
+	{$MODULE_yoochoose_homepage_personalized}
+{/if}
+{if $MODULE_yoochoose_homepage_topsellers != ''}
+	{$MODULE_yoochoose_homepage_topsellers}
+{/if}
+<!-- #EOF YOOCHOOSE -->
+					
+{$products_new_main}
+
+{if $title_bottom|trim || $text_bottom|trim}
+<div class="content-page-index">
+	{if $title_bottom|trim}<h2>{$title_bottom}</h2>{/if}
+	{$text_bottom}
+</div>
+{/if}

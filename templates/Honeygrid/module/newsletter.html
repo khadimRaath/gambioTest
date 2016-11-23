@@ -1,0 +1,98 @@
+{load_language_text section="newsletter"}
+{load_language_text section="address_book_process" name="address_book"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_title}</h1>
+
+{if !$form_send}
+
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$info_message type="danger"}
+
+	<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}" class="form-horizontal">
+		
+		<fieldset>
+
+			<div class="form-group mandatory">
+
+				<label for="{$INPUT_EMAIL_NAME}" class="control-label col-sm-3">
+					{$txt.label_email}
+				</label>
+
+				<div class="col-sm-9 col-lg-6 input-container">
+					<input type="email"
+						   placeholder="{$txt.label_email}"
+						   id="{$INPUT_EMAIL_NAME}"
+						   name="{$INPUT_EMAIL_NAME}"
+						   class="form-control"
+						   value="{$INPUT_EMAIL_VALUE}" />
+				</div>
+
+			</div>
+
+			<div class="form-group">
+
+				<label class="control-label col-sm-3">
+					{$txt.heading_title}
+				</label>
+
+				<div class="col-sm-9 input-container">
+					<span class="radio-inline">
+						<label for="{$INPUT_RADIO_NAME}-in">
+							<input type="radio" id="{$INPUT_RADIO_NAME}-in"  name="{$INPUT_RADIO_NAME}" value="{$INPUT_SUBSCRIBE_VALUE}" />
+							{$txt.text_in}
+						</label>
+					</span>
+					<br />
+					<span class="radio-inline">
+						<label for="{$INPUT_RADIO_NAME}-out">
+							<input type="radio" id="{$INPUT_RADIO_NAME}-out"  name="{$INPUT_RADIO_NAME}" value="{$INPUT_UNSUBSCRIBE_VALUE}" />
+							{$txt.text_out}
+						</label>
+					</span>
+				</div>
+
+			</div>
+
+			<div class="form-group mandatory">
+
+				<label for="{$INPUT_CODE_NAME}" class="control-label col-sm-3">
+					{$txt.label_captcha}
+				</label>
+
+				<div class="col-sm-9 col-lg-6 input-container">
+					<img src="{$VVIMG_URL}" alt="{$txt.label_captcha|escape:"html"}" title="{$txt.label_captcha|escape:"html"}" id="vvcode_image" />
+					<input type="text" placeholder="{$label}" id="{$INPUT_CODE_NAME}" name="{$INPUT_CODE_NAME}" class="form-control" value="" />
+				</div>
+
+			</div>
+
+			{if $GM_PRIVACY_LINK != '0'}
+				{if $show_privacy_checkbox}<input id="privacy_accepted" type="checkbox" name="privacy_accepted" value="1"{if $privacy_accepted} checked="checked"{/if}/> {/if}
+				<label for="privacy_accepted">{$GM_PRIVACY_LINK}</label>
+			{/if}
+	
+		</fieldset>
+
+		<div class="row">
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				&nbsp;
+			</div>
+			<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+				<button type="submit" class="btn btn-primary btn-block" title="{$button.send}">
+					{$button.send}
+				</button>
+			</div>
+		</div>
+
+		<p class="mandatory-info">
+			{$txt.text_must}
+		</p>
+		
+	</form>
+        
+{else}
+
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$info_message type="success"}
+		
+{/if}
+

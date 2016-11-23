@@ -1,0 +1,195 @@
+{load_language_text section="shop_offline"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="timer" name="timer"}
+{load_language_text section="shop_offline" name="shop_offline"}
+
+<form class="timer-table gx-container" action="#" method="post" data-gx-widget="lightbox" data-gx-extension="validator" style="border: 0;">
+	<table data-gx-extension="table_inline_edit" data-gx-widget="checkbox" class="breakpoint-large">
+		<thead>
+			<tr>
+				<th style="width: 10%;">
+					<span>{$txt.name}</span>
+					<div class="add-margin left" style="display: inline-block">&nbsp;</div>
+				</th>
+				<th style="width: 30%;">{$txt.datetime}</th>
+				<th style="width: 10%;">{$txt.set_offline}</th>
+				<th style="width: 10%;">{$txt.topbar}</th>
+				<th style="width: 10%;">{$txt.popup}</th>
+				<th style="width: 10%;">{$txt.status}</th>
+				<th style="width: 20%;">&nbsp;</th>
+			</tr>
+		</thead>
+		<tbody>
+		{foreach item=job_data from=$content_data.jobs_data_array key=job_id}
+			{assign var=due_date value=$job_data.ticket->getDueDate()}
+			{assign var=done_date value=$job_data.ticket->getDoneDate()}
+			<tr data-id="{$job_id}">
+				<!-- Name -->
+				<td>
+					<div>
+						<input type="text" name="name[{$job_id}]" value="{$job_data.ticket->getSubject()|escape}" class="validate" data-validator-validate="required" />
+					</div>
+					<div class="add-margin left" style="display: inline-block"></div>
+				</td>
+				<!-- Time -->
+				<td>
+					<div class="datepicker_wrapper cursor-pointer">
+						<input type="text" name="date[{$job_id}]" value="{$due_date->format('d.m.Y')}" data-jse-widget="datepicker" data-datepicker-gx-container class="validate" data-validator-validate="required" readonly/>&nbsp;
+					</div>
+					<div class="add-margin left" style="display: inline-block;"></div>
+					<div data-gx-widget="timepicker" data-timepicker-init-value="{$due_date->format('H')}:{$due_date->format('i')}" class="timepicker_wrapper">
+						<select name="hours[{$job_id}]"></select> <span class="time_picker_separator">:</span>
+						<select name="minutes[{$job_id}]"></select> <span class="time">{$txt.time}</span>
+					</div>
+				</td>
+				<!-- Offline -->
+				<td>
+					<input type="checkbox" title="{$txt.shop_offline_tooltip}" name="offline[{$job_id}]" value="checked" data-gx-extension="view_change" data-view_change-on=".offline_active" data-view_change-off=".offline_inactive" data-view_change-closest="tr" {if !$job_data.job->getShopActive()}checked {/if}/>
+					<div class="icon-position-fix">
+						<i class="fa fa-pencil icon cursor-pointer offline_active open_lightbox edit editmode" title="{$button.edit}" data-lightbox-href="shop_offline/shop_offline_edit_layer.html?src=offline&id={$job_id}" data-lightbox-controller="shop_offline/offline_layer_editor"></i>
+					</div>
+					<input type="hidden" name="offline_msg[{$job_id}]" value="{$job_data.job->getShopOfflineContent()|escape:'html'}"/>
+				</td>
+				<!-- Top-Bar -->
+				<td>
+					<div class="offline_inactive"{if !$job_data.job->getShopActive()} style="display: none;"{/if}>
+						<input type="checkbox" title="{$txt.topbar_tooltip}" name="topbar[{$job_id}]" class="offline_inactive" value="checked" {if $job_data.job->getTopbarActive()}checked {/if}/>
+						<div class="icon-position-fix">
+							<i class="fa fa-pencil icon offline_inactive open_lightbox edit cursor-pointer editmode" title="{$button.edit}" data-lightbox-href="shop_offline/shop_topbar_edit_layer.html?src=topbar&id={$job_id}" data-lightbox-controller="shop_offline/offline_layer_editor"></i>
+						</div>
+					</div>
+					{foreach item=language from=$content_data.language_reader}
+						<input type="hidden" name="topbar_msg[{$job_id}][{$language->getLanguageId()}]" value="{$job_data.job->getTopbarContent($language->getLanguageCode())|escape:'html'}"/>
+					{/foreach}
+					<input type="hidden" name="topbar_color[{$job_id}]" value="{$job_data.job->getTopbarColor()}"/>
+					<input type="hidden" name="topbar_mode[{$job_id}]" value="{$job_data.job->getTopbarMode()}"/>
+				</td>
+				<!-- Pop-Up -->
+				<td>
+					<div class="offline_inactive"{if !$job_data.job->getShopActive()} style="display: none;"{/if}>
+						<input type="checkbox" title="{$txt.popup_tooltip}" name="popup[{$job_id}]" class="offline_inactive" value="checked" {if $job_data.job->getPopupActive()}checked {/if}/>
+						<div class="icon-position-fix">
+							<i class="fa fa-pencil icon cursor-pointer offline_inactive open_lightbox edit editmode" title="{$button.edit}" data-lightbox-href="shop_offline/shop_popup_edit_layer.html?src=popup&id={$job_id}" data-lightbox-controller="shop_offline/offline_layer_editor"></i>
+						</div>
+					</div>
+					{foreach item=language from=$content_data.language_reader}
+						<input type="hidden" name="popup_msg[{$job_id}][{$language->getLanguageId()}]" value="{$job_data.job->getPopupContent($language->getLanguageCode())|escape:'html'}"/>
+					{/foreach}
+				</td>
+				<!-- Status -->
+				<td>
+					<div style="padding-bottom: 24px; cursor: help;" class="cursor-pointer tooltip_wrapper status {if $done_date->format('Y') != '-0001' && $done_date->format('Y') != '1000'}executed" title="{$txt.executed}" {elseif $due_date->format('YmdHi') < $smarty.now|date_format:"%Y%m%d%H%M"}delayed" title="{$txt.delayed}"{else}scheduled" title="{$txt.scheduled}"{/if}><i class="fa {if $done_date->format('Y') != '-0001' && $done_date->format('Y') != '1000'}fa-check{elseif $due_date->format('YmdHi') < $smarty.now|date_format:"%Y%m%d%H%M"}fa-hourglass-1{else}fa-clock-o{/if} icon"></i></div>
+				</td>
+				<!-- Actions -->
+				<td>
+					{if $done_date->format('Y') == '-0001' || $done_date->format('Y') == '1000'}
+						<div class="editmode text-right">
+	
+							<div class="icon-position-fix">
+								<i title="{$button.edit}" class="fa fa-pencil icon cursor-pointer defaultmode row_edit"></i>
+							</div>
+	
+							<input style="margin-top: 6px;" type="button" value="{$button.add}" class="btn btn-primary addmode row_add button-position-fix pull-right add-margin right" data-url="request_port.php?module=JobManager&action=save_shop_notice_job"/>
+							
+							<div class="icon-position-fix">
+								<i title="{$button.delete}" class="fa fa-trash-o icon cursor-pointer defaultmode row_delete" data-url="request_port.php?module=JobManager&action=delete_shop_notice_job"></i>
+							</div>
+							
+							<input type="button" class="btn btn-primary editmode row_save button-position-fix add-margin right quarter" style="display: inline-block;" value="{$button.save}" data-url="request_port.php?module=JobManager&action=save_shop_notice_job"></i>
+							<input class="btn btn-default editmode row_abort button-position-fix" type="button" value="{$button.cancel}">
+	
+							<div class="add-margin right"></div>
+						</div>
+					{/if}
+				</td>
+			</tr>
+		{/foreach}
+		</tbody>
+
+		<!-- Template -->
+		<tfoot style="display: none;">
+			<tr>
+				<!-- Name -->
+				<td>
+					<input type="text" name="name[]" value="" class="validate" data-validator-validate="required"/>
+				</td>
+				<!-- Time -->
+				<td>
+					<div class="datepicker_wrapper cursor-pointer">
+						<input type="text" name="date[]" value="" data-jse-_widget="datepicker" data-datepicker-gx-container class="validate" data-validator-validate="required" readonly/>
+					</div>
+					<div class="add-margin left" style="display: inline-block;"></div>
+					<div data-gx-_widget="timepicker" class="timepicker_wrapper cursor-pointer">
+						<select name="hours[]"></select> <span class="time_picker_separator">:</span>
+						<select name="minutes[]"></select> <span class="time">{$txt.time}</span>
+					</div>
+				</td>
+				<!-- Offline -->
+				<td>
+					<input type="checkbox" title="{$txt.shop_offline_tooltip}" name="offline[]" value="checked" data-gx-_extension="view_change" data-view_change-on=".offline_active" data-view_change-off=".offline_inactive" data-view_change-closest="tr" />
+					<div class="icon-position-fix">
+						<i class="fa fa-pencil icon cursor-pointer offline_active open_lightbox edit addmode" title="{$button.edit}" data-lightbox-href="shop_offline/shop_offline_edit_layer.html?src=offline&id=0" data-lightbox-controller="shop_offline/offline_layer_editor"></i>
+					</div>
+					<input type="hidden" name="offline_msg[]" value=""/>
+				</td>
+				<!-- Top-Bar -->
+				<td>
+					<div class="offline_inactive">
+						<input type="checkbox" title="{$txt.topbar_tooltip}" name="topbar[]" value="checked" />
+						<div class="icon-position-fix">
+							<i class="fa fa-pencil icon cursor-pointer open_lightbox edit addmode" title="{$button.edit}" data-lightbox-href="shop_offline/shop_topbar_edit_layer.html?src=topbar&id=0" data-lightbox-controller="shop_offline/offline_layer_editor"></i>
+						</div>
+					</div>
+					{foreach item=language from=$content_data.language_reader}
+						<input type="hidden" name="topbar_msg[][{$language->getLanguageId()}]" value=""/>
+					{/foreach}
+					<input type="hidden" name="topbar_color[]" value="#ffffff"/>
+					<input type="hidden" name="topbar_mode[]" value="hideable"/>
+				</td>
+				<!-- Pop-Up -->
+				<td>
+					<div class="offline_inactive">
+						<input type="checkbox" title="{$txt.popup_tooltip}" name="popup[]" value="checked" />
+						<div class="icon-position-fix">
+							<i class="fa fa-pencil icon cursor-pointer open_lightbox edit addmode" title="{$button.edit}" data-lightbox-href="shop_offline/shop_popup_edit_layer.html?src=popup&id=0" data-lightbox-controller="shop_offline/offline_layer_editor"></i>
+						</div>
+					</div>
+					{foreach item=language from=$content_data.language_reader}
+						<input type="hidden" name="popup_msg[][{$language->getLanguageId()}]" value=""/>
+					{/foreach}
+				</td>
+				<!-- Status -->
+				<td>
+					<div title="{$txt.scheduled}" style="padding-bottom: 24px;cursor: help;" class="cursor-pointer tooltip_wrapper status scheduled defaultmode"><i class="fa fa-clock-o icon"></i></div>
+				</td>
+				<!-- Actions -->
+				<td>
+					<div class="editmode text-right">
+						<div class="icon-position-fix">
+							<i title="{$button.edit}" class="fa fa-pencil icon cursor-pointer defaultmode row_edit"></i>
+						</div>
+
+						<div class="icon-position-fix">
+							<i title="{$button.delete}" class="fa fa-trash-o icon cursor-pointer defaultmode row_delete" data-url="request_port.php?module=JobManager&action=delete_shop_notice_job"></i>
+						</div>
+
+						<input class="editmode btn btn-primary row_save button-position-fix add-margin right quarter" type="button" value="{$button.save}" data-url="request_port.php?module=JobManager&action=save_shop_notice_job"/>
+						<input class="editmode btn row_abort newstyle button-position-fix" type="button" value="{$button.cancel}"/>
+
+						<input class="addmode btn btn-primary row_add button-position-fix pull-right add-margin right" type="button" value="{$button.add}" data-url="request_port.php?module=JobManager&action=save_shop_notice_job"/>
+						<div class="add-margin right"></div>
+					</div>
+				</td>
+			</tr>
+		</tfoot>
+
+	</table>
+
+	<!-- Cron Job -->
+	<div class="gx-container add-margin top">
+		<span class="key-title">{$timer.cronjob_url}</span>
+		<input class="cronjob_url add-margin left" style="width:600px;" type="text" name="name" value="{$content_data.cronjob_url}" readonly="readonly" onfocus="this.select()">
+		<div data-gx-widget="tooltip_icon" data-tooltip_icon-type="info" class="add-margin left">{$timer.tooltip_cronjob}</div>
+	</div>
+
+</form>

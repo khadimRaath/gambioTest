@@ -1,0 +1,13 @@
+{load_language_text section="paypalng"}
+{* 2.5_2014-08-11_1722 *}
+
+<h1>{$txt.heading_paypal_payment}<h1>
+
+{if $content_data.error}
+<p class="error">{$content_data.error}</p>
+{/if}
+
+{if $content_data.thankyou}
+<p class="success">{$txt.payment_received}</p>
+{/if}
+

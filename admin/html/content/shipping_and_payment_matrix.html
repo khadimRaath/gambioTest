@@ -1,0 +1,226 @@
+{load_language_text section="shipping_and_payment_matrix"}
+{load_language_text section="countries" name="countries"}
+<div id="shipping_and_payment_matrix_assistent">
+	<div class="heading">
+		{$txt.shipping_and_payment_matrix_title}
+	</div>
+	
+	<div id="shipping_and_payment_matrix_country_selection">
+		<div class="top_controls">
+			<div style="float: right;">
+				<input type="checkbox" id="show_only_enabled_countries" class="show_only_enabled_countries" value="1" checked="checked" />
+				<label for="show_only_enabled_countries">{$txt.show_only_enabled_countries}</label>
+			</div>
+			<b>{$txt.select_countries}:</b>
+		</div>
+		
+		<div id="country_selection_content_wrapper">
+			<table class="gx-configuration" width="100%" cellspacing="0" cellpadding="0" border="0">
+				<tr style="display: none"></tr>
+				<tr class="dataTableHeadingRow">
+					<td class="dataTableHeadingContent" style="width: 90%;">{$txt.country}</td>
+					<td class="dataTableHeadingContent center_header">
+						{$txt.status}<br/>
+						<img class="activate_all_countries status_button" title="{$txt.activate_all_countries}" alt="{$txt.activate_all_countries}" src="html/assets/images/legacy/icon_status_green.gif">
+						<img class="deactivate_all_countries status_button" title="{$txt.deactivate_all_countries}" alt="{$txt.deactivate_all_countries}" src="html/assets/images/legacy/icon_status_red.gif">
+					</td>
+				</tr>
+
+				{foreach key=country_code item=country_data from=$content_data.country_array}
+					<tr class="dataTableRow country_row{if $country_data.status == 1} enabled{else} disabled{/if}">
+						<td class="dataTableContent">
+							{$country_data.name}
+						</td>
+						<td class="dataTableContent">
+							<img class="activate_country status_button" rel="{$country_code}" id="{$country_code}_active" title="{$txt.active}" alt="{$txt.active}" src="html/assets/images/legacy/icon_status_green{if $country_data.status == 0}_light{/if}.gif">
+							<img class="deactivate_country status_button" rel="{$country_code}" id="{$country_code}_inactive" title="{$txt.inactive}" alt="{$txt.inactive}" src="html/assets/images/legacy/icon_status_red{if $country_data.status == 1}_light{/if}.gif">
+						</td>
+					</tr>
+				{/foreach}
+			</table>
+		</div>
+
+		<div class="bottom_control" style="height: 24px">
+			<a href="#" class="btn pull-right forward">{$txt.button_forward}</a>
+		</div>
+	</div>
+	
+	<div id="shipping_and_payment_matrix_info" class="hidden">
+		<div class="top_controls">
+			<div style="float: right;">
+				{foreach key=language_id item=language_data from=$content_data.language_array}
+					<img class="language_selection{if $language_id == $content_data.actual_language_id} selected_language{/if}" rel="{$language_id}" src="{$language_data.image}"/>
+				{/foreach}
+			</div>
+		</div>
+		
+		<div id="shipping_and_payment_content_wrapper">
+			<form id="shipping_and_payment_form">
+				<table class="gx-configuration" width="100%" cellspacing="0" cellpadding="0" border="0">
+					<tr style="display: none"></tr>
+					<tr class="dataTableHeadingRow">
+						<td class="dataTableHeadingContent">{$txt.country}</td>
+						<td class="dataTableHeadingContent">{$txt.shipping_info}</td>
+						<td class="dataTableHeadingContent">{$txt.shipping_time}</td>
+						<td class="dataTableHeadingContent">{$txt.payment_info}</td>
+					</tr>
+
+					{foreach key=language_id item=language_data from=$content_data.language_array}
+						{foreach key=country_code item=country_data from=$content_data.country_array}
+							<tr class="dataTableRow info_row lang_row_{$language_id} country_row_{$country_code}{if $country_data.status == 0 || $content_data.actual_language_id != $language_id} hidden{/if}{if $country_data.status == 0} inactive{/if}">
+								<td class="dataTableContent">{$country_data.name}</td>
+
+								<td class="dataTableContent">
+									<textarea class="shipping_info lang_{$language_id} country_{$country_code}" name="shipping_info[{$language_id}][{$country_code}]" {if $country_data.status == 0}disabled="disabled"{/if}>{$content_data.shipping_info_array[$language_id][$country_code]}</textarea>
+								</td>
+
+								<td class="dataTableContent">
+									<textarea class="shipping_time lang_{$language_id} country_{$country_code}" name="shipping_time[{$language_id}][{$country_code}]" {if $country_data.status == 0}disabled="disabled"{/if}>{$content_data.shipping_time_array[$language_id][$country_code]}</textarea>
+								</td>
+
+								<td class="dataTableContent">
+									<textarea class="payment_info lang_{$language_id} country_{$country_code}" name="payment_info[{$language_id}][{$country_code}]" {if $country_data.status == 0}disabled="disabled"{/if}>{$content_data.payment_info_array[$language_id][$country_code]}</textarea>
+								</td>
+							</tr>
+						{/foreach}
+					{/foreach}
+				</table>
+				<input type="hidden" name="page_token" value="{$content_data.page_token}" />
+			</form>
+		</div>
+		
+		<div class="bottom_control" style="height: 24px;">
+			<a href="#" class="btn btn-primary pull-right save">{$txt.button_save_and_close}</a>
+			<a href="#" class="btn pull-right back">{$txt.button_back}</a>
+		</div>
+		
+		<input type="hidden" id="actual_language_id" value="{$content_data.actual_language_id}"/>
+	</div>
+</div>
+
+{literal}
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		resize_tables();
+		toggle_visible_countries();
+		
+		function resize_tables()
+		{
+			var country_height = $(window).height() - 140 - $('#shipping_and_payment_matrix_country_selection div.top_controls').outerHeight(true) - $('#shipping_and_payment_matrix_country_selection div.bottom_control').outerHeight(true);
+			var info_height = $(window).height() - 180 - $('#shipping_and_payment_matrix_info div.top_controls').outerHeight(true) - $('#shipping_and_payment_matrix_info div.bottom_control').outerHeight(true);
+
+			$('#country_selection_content_wrapper').height(country_height);
+			$('#shipping_and_payment_content_wrapper').height(info_height);
+		}
+		
+		function toggle_visible_countries()
+		{
+			$('#shipping_and_payment_matrix_country_selection tr.country_row.disabled').toggle();
+		}
+		
+		$(window).bind('resize', resize_tables);
+		
+		$('.activate_all_countries').bind('click', function()
+		{
+			$('.activate_country').attr('src', 'html/assets/images/legacy/icon_status_green.gif');
+			$('.deactivate_country').attr('src', 'html/assets/images/legacy/icon_status_red_light.gif');
+			
+			$('.info_row').removeClass('inactive');
+			$('.info_row').show();
+			$('.info_row' + ' textarea').attr('disabled', '');
+			
+			return false;
+		});
+		
+		$('.deactivate_all_countries').bind('click', function()
+		{
+			$('.activate_country').attr('src', 'html/assets/images/legacy/icon_status_green_light.gif');
+			$('.deactivate_country').attr('src', 'html/assets/images/legacy/icon_status_red.gif');
+			
+			$('.info_row').addClass('inactive');
+			$('.info_row').hide();
+			$('.info_row' + ' textarea').attr('disabled', 'disabled');
+			
+			return false;
+		});
+		
+		$(".activate_country").bind("click", function()
+		{
+			var deactivator_id = this.id.substring(0, this.id.lastIndexOf('_')) + '_inactive';
+			
+			$('#' + deactivator_id).attr('src', 'html/assets/images/legacy/icon_status_red_light.gif');
+			$(this).attr('src', 'html/assets/images/legacy/icon_status_green.gif');
+			
+			$('.info_row.country_row_' + $(this).attr('rel')).removeClass('inactive');
+			$('.info_row.country_row_' + $(this).attr('rel')).show();
+			$('.info_row.country_row_' + $(this).attr('rel') + ' textarea').removeAttr('disabled');
+			
+			return false;
+		});
+		
+		$(".deactivate_country").bind("click", function()
+		{
+			var activator_id = this.id.substring(0, this.id.lastIndexOf('_')) + '_active';
+			
+			$('#' + activator_id).attr('src', 'html/assets/images/legacy/icon_status_green_light.gif');
+			$(this).attr('src', 'html/assets/images/legacy/icon_status_red.gif');
+			
+			$('.info_row.country_row_' + $(this).attr('rel')).addClass('inactive');
+			$('.info_row.country_row_' + $(this).attr('rel')).hide();
+			$('.info_row.country_row_' + $(this).attr('rel') + ' textarea').attr('disabled', 'disabled');
+			
+			return false;
+		});
+		
+		$('#shipping_and_payment_matrix_country_selection input.show_only_enabled_countries').bind("change", toggle_visible_countries);
+		
+		$('#shipping_and_payment_matrix_info img.language_selection').bind('click', function()
+		{
+			$('#shipping_and_payment_matrix_info img.language_selection').removeClass('selected_language');
+			$(this).addClass('selected_language');
+			
+			$('#actual_language_id').val($(this).attr('rel'));
+			$('.info_row').hide();
+			$('.info_row.lang_row_' + $('#actual_language_id').val() + ':not(.inactive)').show();
+		});
+		
+		$('#shipping_and_payment_matrix_country_selection a.btn.forward').bind("click", function()
+		{
+			$('#shipping_and_payment_matrix_country_selection').hide();
+			$('#shipping_and_payment_matrix_info').fadeIn();
+			
+			$('.info_row:not(.lang_row_' + $('#actual_language_id').val() +  ')').hide();
+			resize_tables();
+			
+			return false;
+		});
+		
+		$('#shipping_and_payment_matrix_info a.btn.back').bind("click", function()
+		{
+			$('#shipping_and_payment_matrix_info').hide();
+			$('#shipping_and_payment_matrix_country_selection').fadeIn();
+			resize_tables();
+			
+			return false;
+		});
+		
+		$("#shipping_and_payment_matrix_info a.btn.save").bind("click", function()
+		{
+			$.ajax({
+				data: 		$('#shipping_and_payment_form').serialize(),
+				url: 		"request_port.php?module=ShippingAndPaymentMatrixAssistent&action=save",
+				type: 		"POST",
+				timeout: 	2000,
+				dataType:	"text",
+				error: 		function(){ if(fb)console.log('error'); },
+				success: 	function(p_result)
+							{
+								$.lightbox_plugin('close', $('.lightbox_package').attr('id').replace('lightbox_package_', ''));
+							}
+			});
+			return false;
+		});
+	});
+</script>
+{/literal}

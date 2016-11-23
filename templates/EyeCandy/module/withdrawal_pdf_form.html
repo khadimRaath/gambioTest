@@ -1,0 +1,55 @@
+{load_language_text section="withdrawal"}
+<span style="font-size: 12px;"><b><u>{$txt.withdrawal_form}</u></b><br /><br /></span>
+{$txt.withdrawal_hint}
+<br /><br /><br />
+{$txt.to}:
+&nbsp;<br />&nbsp;<br />
+{$smarty.const.COMPANY_NAME}<br />
+{$smarty.const.TRADER_FIRSTNAME} {$smarty.const.TRADER_NAME}<br />
+{$smarty.const.TRADER_STREET} {$smarty.const.TRADER_STREET_NUMBER}<br />
+{$smarty.const.TRADER_ZIPCODE} {$smarty.const.TRADER_LOCATION}<br />
+{$smarty.const.STORE_COUNTRY_NAME}<br />
+{if $smarty.const.TRADER_FAX != '' || $smarty.const.STORE_OWNER_EMAIL_ADDRESS != ''}
+&nbsp;<br />
+{/if}
+{if $smarty.const.TRADER_FAX != ''}
+{$txt.fax}: {$smarty.const.TRADER_FAX}<br />
+{/if}
+{if $smarty.const.STORE_OWNER_EMAIL_ADDRESS != ''}
+{$txt.mail}: {$smarty.const.STORE_OWNER_EMAIL_ADDRESS}
+{/if}
+&nbsp;<br />&nbsp;<br />&nbsp;<br />
+{$txt.withdrawal_products_hint}
+&nbsp;<br />&nbsp;<br />
+<HR>
+&nbsp;<br />
+<HR>
+&nbsp;<br />
+<HR>
+&nbsp;<br />
+<HR>
+&nbsp;<br />
+<HR>
+&nbsp;<br />&nbsp;<br />&nbsp;<br />
+{$txt.ordered_on} / {$txt.delivered_on}
+&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />
+{$txt.first_last_name}
+&nbsp;<br />&nbsp;<br />
+<HR>
+&nbsp;<br />&nbsp;<br />&nbsp;<br />
+{$txt.address}
+&nbsp;<br />&nbsp;<br />
+<HR>
+&nbsp;<br />
+<HR>
+&nbsp;<br />
+<HR>
+&nbsp;<br />&nbsp;<br />
+&nbsp;<br />&nbsp;<br />
+______________&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_____________________________________________________
+&nbsp;<br />&nbsp;<br />
+{$txt.date}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$txt.signature}
+&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />&nbsp;<br />
+<HR>
+&nbsp;<br />
+{$txt.pdf_form_hint}

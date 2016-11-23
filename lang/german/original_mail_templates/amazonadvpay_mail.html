@@ -1,0 +1,39 @@
+<meta charset="UTF-8" />
+<div style="height: 100%; margin: 0 !important; padding: 0 !important; max-width: 9000px !important; background-color: #e5e5e5;">
+	<div style="margin-left: auto; margin-right: auto; width: 720px; padding-bottom: 5px; padding-top: 5px; color: #999999; text-align: right;">&nbsp;</div>
+
+	<div style="margin-left: auto; margin-right: auto; width: 630px; padding: 25px 45px 25px; background-color: white; margin-top: 15px; margin-bottom: 15px; display: block;">
+		<table align="center" border="0" cellpadding="4" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td>
+						{if $gm_logo_mail}
+						<div style="overflow: hidden; margin-bottom: 25px; display: block; float: right;">{$gm_logo_mail}</div>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+							Sehr geehrte/r {$NAME},<br />
+							<br />
+							leider k&ouml;nnen wir Ihre Bestellung vom {$ORDERDATE}, Bestellnummer {$ORDERS_ID}, nicht ausf&uuml;hren, 
+							da die Zahlung mit dem von Ihnen gew&auml;hlten Zahlungsmittel abgelehnt wurde. Bitte besuchen Sie 
+							http://payments.amazon.de/ und w&auml;hlen Sie dort eine andere Zahlungsweise f&uuml;r diese Bestellung.
+							<br />
+							<br />
+						</span></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		&nbsp;
+	</div>
+
+	<div style="padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #444444; font-family: arial; text-align: center;">
+		<br /><br />
+		<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$EMAIL_SIGNATURE_HTML}</span></span>
+		<br /><br />
+	</div>
+</div>

@@ -1,0 +1,133 @@
+{* --------------------------------------------------------------
+	shipcloud_form_multi.html 2016-07-20
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*}
+<div class="gx-container" id="sc_multi_container">
+	<form id="sc_multi_form" action="#" method="POST" class="container">
+		<div class="col-md-6">
+			<fieldset class="container-fluid">
+				<div class="row heading">##receivers_data ({$orders|@count})</div>
+				<div class="sc_orders row">
+					{foreach from=$orders item=order key=orders_id}
+					<div class="sc_order col-md-12">
+						<input type="hidden" name="orders[]" value="{$orders_id}">
+						<div class="sc_multi_quote pull-right container-fluid" id="sc_multi_quote_{$orders_id}"></div>
+						<div class="sc_multi_orders_id">{$orders_id} ({$orders_weights[$orders_id]} kg)</div>
+						{if $order->delivery.company}<div class="sc_multi_company">{$order->delivery.company}</div>{/if}
+						<div class="sc_multi_name">{$order->delivery.lastname}, {$order->delivery.firstname}</div>
+						{if $order->delivery.additional_address_info}<div class="sc_care_of">{$order->delivery.additional_address_info}</div>{/if}
+						<div class="sc_multi_street">{$order->delivery.street_address}{if $order->delivery.house_number} {$order->delivery.house_number}{/if}</div>
+						<div class="sc_multi_cpc">{$order->delivery.country_iso_code_2} {$order->delivery.postcode} {$order->delivery.city}</div>
+						<div class="sc_multi_email">{$order->customer.email_address}</div>
+					</div>
+					{/foreach}
+				</div>
+			</fieldset>
+		</div>
+
+		<div class="col-md-6">
+			<fieldset class="form-horizontal">
+				<div class="row heading">##package_data</div>
+				<div class="form-group">
+					<label class="col-md-3">##template</label>
+					<div class="col-md-9">
+						<select class="form-control" name="package_template" id="sc_package_template">
+							<option value="-1">##individual_values</option>
+							{foreach from=$package_templates.packages item=ptemplate key=pt_id}
+							<option
+								value="{$pt_id}"
+								{if $pt_id == $default_package_template}selected="selected"{/if}
+								data-weight="{$ptemplate.weight}"
+								data-height="{$ptemplate.height}"
+								data-width="{$ptemplate.width}"
+								data-length="{$ptemplate.length}">
+								{$ptemplate.name}
+							</option>
+							{/foreach}
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3">##package_weight</label>
+					<div class="col-md-9">
+						<input class="form-control price_value template_value" type="number" min="0.001" max="100" step="0.001" name="package[weight]" value="{$package.weight}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3">##package_dimensions</label>
+					<div class="col-md-3">
+						<input class="form-control price_value template_value package_dimensions" type="number" min="1" max="200" name="package[length]" value="{$package.length}">
+					</div>
+					<div class="col-md-3">
+						<input class="form-control price_value template_value package_dimensions" type="number" min="1" max="200" name="package[width]" value="{$package.width}">
+					</div>
+					<div class="col-md-3">
+						<input class="form-control price_value template_value package_dimensions" type="number" min="0.1" max="200" step="0.1" name="package[height]" value="{$package.height}">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3">##package_type</label>
+					<div class="col-md-9">
+						<select class="form-control package_type" name="package[type]">
+							<option value="parcel">##package_type_parcel</option>
+							<option value="parcel_letter">##package_type_parcel_letter</option>
+							<option value="letter">##package_type_letter</option>
+							<option value="books">##package_type_books</option>
+							<option value="bulk">##package_type_bulk</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-md-3">##service</label>
+					<div class="col-md-9">
+						<select class="form-control" name="service">
+							<option value="standard" {($service == 'standard') ? 'selected' : ''}>##service_standard</option>
+							<option value="returns" {($service == 'returns') ? 'selected' : ''}>##service_returns</option>
+							<option value="one_day" {($service == 'one_day') ? 'selected' : ''}>##service_one_day</option>
+							<option value="one_day_early" {($service == 'one_day_early') ? 'selected' : ''}>##service_one_day_early</option>
+							<option value="same_day" {($service == 'same_day') ? 'selected' : ''}>##service_same_day</option>
+						</select>
+					</div>
+				</div>
+				<table class="row carriers" data-gx-widget="checkbox">
+					<thead>
+						<tr>
+							<th class="col-md-1">&nbsp;</th>
+							<th class="col-md-7">##carrier</th>
+							<th class="col-md-2">##price</th>
+							<th class="col-md-2">&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						{foreach from=$carriers item=carrier}
+							{if $preselected_carriers.preselected_carriers[$carrier->name] == 1}
+							<tr>
+								<td class="col-md-1">
+									<input
+										{if $checked_carriers.checked_carriers[$carrier->name] == 1}checked="checked"{/if}
+										type="checkbox"
+										name="quote_carriers[]"
+										value="{$carrier->name}"
+										id="quote_carrier_{$carrier->name}"
+										data-single_checkbox
+										>
+								</td>
+								<td class="col-md-7"><label for="quote_carrier_{$carrier->name}">{$carrier->display_name}</label></td>
+								<td class="col-md-2"><div id="sc_quote_{$carrier->name}" class="sc_quote">&nbsp;</div></td>
+								<td class="col-md-2"><input class="create_label btn btn-primary" type="submit" name="{$carrier->name}" value="##create_label"></td>
+							</tr>
+							{/if}
+						{/foreach}
+
+					</tbody>
+				</table>
+				<input type="hidden" name="carrier" value="">
+			</fieldset>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,88 @@
+{* Orders Cancel Modal *}
+
+{load_language_text section="admin_buttons" name="admin_buttons"}
+
+<div class="cancel modal fade" tabindex="-1" role="dialog" data-gx-controller="orders/modals/cancel">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="{$admin_buttons.BUTTON_CLOSE}">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{$orders.TEXT_INFO_HEADING_MULTI_CANCEL_ORDER}</h4>
+			</div>
+			
+			<div class="modal-body">
+				<p>{$orders.TEXT_INFO_MULTI_CANCEL_INTRO}</p>
+
+				<br>
+				
+				<form class="form-horizontal" data-gx-widget="single_checkbox">
+					<fieldset>
+						{* Selected Order IDs *}
+						<div class="form-group">
+							<label class="col-md-7">{$orders.TEXT_SELECTED_ORDERS}</label>
+							<div class="col-md-5 selected-orders">
+								{* Dynamic Content *}
+							</div>
+						</div>
+						
+						{* Re-stock Products *}
+						<div class="form-group">
+							<label for="re-stock" class="col-md-7">{$orders.TEXT_INFO_RESTOCK_PRODUCT_QUANTITY}</label>
+							<div class="col-md-5">
+								<input type="checkbox" class="re-stock" />
+							</div>
+						</div>
+						
+						{* Re-ship Products *}
+						<div class="form-group">
+							<label for="re-ship" class="col-md-7">{$orders.TEXT_INFO_RESHIPP}</label>
+							<div class="col-md-5">
+								<input type="checkbox" class="re-ship" />
+							</div>
+						</div>
+
+						{* Re-activate Product *}
+						<div class="form-group">
+							<label for="re-activate" class="col-md-7">{$orders.TEXT_INFO_REACTIVATEARTICLE}</label>
+							<div class="col-md-5">
+								<input type="checkbox" class="re-activate" />
+							</div>
+						</div>
+
+						{* Notify Customer *}
+						<div class="form-group">
+							<label for="notify-customer" class="col-md-7">{$orders.ENTRY_NOTIFY_CUSTOMER}</label>
+							<div class="col-md-5">
+								<input type="checkbox" class="notify-customer" />
+							</div>
+						</div>
+
+						{* Send Comments *}
+						<div class="form-group">
+							<label for="send-comments" class="col-md-7">{$orders.ENTRY_NOTIFY_COMMENTS}</label>
+							<div class="col-md-5">
+								<input type="checkbox" class="send-comments" />
+							</div>
+						</div>
+
+						{* Cancellation Comments *}
+						<div class="form-group">
+							<label for="cancellation-comments" class="col-md-7">{$orders.TABLE_HEADING_COMMENTS}</label>
+							<div class="col-md-5">
+								<textarea class="cancellation-comments form-control"></textarea>
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			
+			<div class="modal-footer">
+				<button type="button"
+						class="btn btn-default"
+						data-dismiss="modal">{$admin_buttons.BUTTON_CANCEL}</button>
+				<button type="button" class="btn btn-primary send">{$admin_buttons.BUTTON_SAVE}</button>
+			</div>
+		</div>
+	</div>
+</div>

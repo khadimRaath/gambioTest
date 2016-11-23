@@ -1,0 +1,101 @@
+
+/* Stage Teaser Slider
+   ========================================================================== */
+
+
+// stage wrapping
+
+#stage {
+  clear: both;
+  @if ($gx-display-teaser-slider-xs != true) {
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+  }
+  
+  @if ($gx-display-teaser-slider-sm != true) {
+    @media (min-width: $screen-sm) and (max-width: $screen-sm-max) {
+      display: none;
+    }
+  }
+  
+  @if ($gx-display-teaser-slider-md != true) {
+    @media (min-width: $screen-md) and (max-width: $screen-md-max) {
+      display: none;
+    }
+  }
+  
+  @if ($gx-display-teaser-slider-lg != true) {
+    @media (min-width: $screen-lg) {
+      display: none;
+    }
+  }
+  
+  @if ($gx-body-wrap != true) {
+    @if ($gx-stage-wrap) {
+      @extend .container;
+      #slider {
+        @extend .row;
+      }
+    }
+  }
+}
+
+
+// swiper navigation
+
+#stage {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none;
+    @media (min-width: $grid-float-breakpoint) {
+      display: block;
+    }
+  }
+  .swiper-button-prev {
+    left: $grid-gutter-width;
+  }
+  .swiper-button-next {
+    right: $grid-gutter-width;
+  }
+  .swiper-pagination {
+
+  
+    // thumbnails
+    // only visible as img if thumbnails uploaded
+    // otherwise span-tags displayed as bullets
+
+    > img.swiper-pagination-bullet { 
+      @include border-radius(0);
+      @include opacity(1);
+      border: 2px solid rgba(255, 255, 255, 0);
+      background-color: transparent;
+      height: auto;
+      width: 50px;
+      @media (min-width: $grid-float-breakpoint) {
+        width: auto;
+      }
+      &.swiper-pagination-bullet-active,
+      &:active {
+        border-color: #fff;
+      }
+      &:hover {
+        border-color: $brand-primary;
+      }
+    }
+
+    // bullets
+
+    > span.swiper-pagination-bullet {
+      @include opacity(.7);
+      background-color : #fff;
+      &.swiper-pagination-bullet-active,
+      &:active {
+        @include opacity(1);
+        background-color: $brand-primary;
+      }
+    }
+
+
+  }
+}

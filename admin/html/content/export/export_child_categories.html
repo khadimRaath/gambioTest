@@ -1,0 +1,9 @@
+{foreach item=category from=$content_data.categories}
+<li>
+	<a class="checkbox {$category.state}_checked" id="csv_category_{$category.categories_id}" href="#"></a>
+	<input type="hidden" class="hidden_input" name="csv_category_state_{$category.categories_id}" value="{$category.state}"/>
+	<a class="csv_category_link csv_fold" rel="{$category.categories_id}" href="export_child_categories.html"><span class="csv_category_folder" style="background-image: url(html/assets/images/legacy/icons/folder.gif); background-position: 0px 3px; display: inline-block; height: 18px; width: 18px;"></span></a>
+	<span>{$category.categories_name|htmlentities_wrapper}</span>
+	<ul class="subtree"></ul>
+</li>
+{/foreach}

@@ -1,0 +1,18 @@
+{cart_products_qty out=productsCount}
+
+<button type="button" class="navbar-toggle" data-mobile_menu-target="#categories .navbar-collapse" 
+        data-mobile_menu-body-class="categories-open" data-mobile_menu-toggle-content-visibility>
+	<i class="gm-menu"></i>
+</button>
+
+<button type="button" class="navbar-toggle cart-icon" data-mobile_menu-location="shopping_cart.php">
+	<i class="gm-cart-basket"></i>
+	<span class="cart-products-count{if $productsCount == 0} hidden{/if}">
+		{$productsCount}
+	</span>
+</button>
+
+<button type="button" class="navbar-toggle" data-mobile_menu-target="#search" data-mobile_menu-body-class="search-open"
+		data-mobile_menu-toggle-content-visibility>
+	<i class="gm-search"></i>
+</button>

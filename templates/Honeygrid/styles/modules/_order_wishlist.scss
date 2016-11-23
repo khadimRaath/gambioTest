@@ -1,0 +1,45 @@
+.order-wishlist {
+  ul.row,
+  ul.row li {
+    @include reset-list();
+  }
+
+  
+  &.qty {
+    @media (min-width: $screen-md-min) {
+      min-width: 111px;
+    }
+
+    .loader {
+      display: none;
+    } 
+  }
+  
+  .loading {
+
+    td {
+      
+      position: relative;
+
+      .loader {
+        display: block;
+        width: 100%;
+        height: 99%;
+        position: absolute;
+        top: 0px;
+        background: rgba(255,255,255,0.7);
+        
+        &.spinner {
+          background: rgba(255,255,255,0.7) url(assets/images/loading.gif) no-repeat center center;
+        }
+
+      }
+      
+      &:last-of-type {
+        
+      }
+      
+    }
+  }
+
+}

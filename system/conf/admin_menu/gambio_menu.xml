@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<!-- {load_language_text section="admin_menu" use_fallback=$smarty.const.SHOW_UNTRANSLATED_MENUITEMS} -->
+<!-- {load_language_text section="module_center_module" name="module_center_module" use_fallback=$smarty.const.SHOW_UNTRANSLATED_MENUITEMS} -->
+<admin_menu>
+	<menugroup id="BOX_HEADING_FAVORITES" sort="10" background="favs.png" class="fa fa-heart" title="{$txt.BOX_HEADING_FAVS|escape}">
+	</menugroup>
+
+	<menugroup id="BOX_HEADING_ORDERS" sort="20" background="favs.png" class="fa fa-shopping-cart" title="{$txt.BOX_ORDERS|escape}">
+		<menuitem sort="10" link="admin.php" link_param="do=OrdersOverview" title="{$txt.BOX_ORDERS|escape}" />
+		{if 'MODULE_CENTER_OLDORDEROVERVIEW_INSTALLED'|gm_get_conf == '1'}
+		<menuitem sort="20" link="orders.php" title="{$txt.BOX_ORDERS_OLD|escape}" />
+		{/if}
+		{* <menuitem sort="30" link="FILENAME_ORDERS_STATUS" title="{$txt.BOX_ORDERS_STATUS|escape}" /> *}
+		<menuitem sort="30" link="withdrawals.php" title="{$txt.BOX_WITHDRAWALS|escape}" />
+	</menugroup>
+
+	<menugroup id="BOX_HEADING_CUSTOMERS" sort="30" background="kunden.png" class="fa fa-group" title="{$txt.BOX_HEADING_CUSTOMERS|escape}">
+		<menuitem sort="10" link="FILENAME_CUSTOMERS" title="{$txt.BOX_CUSTOMERS|escape}" />
+		<menuitem sort="20" link="FILENAME_CUSTOMERS_STATUS" title="{$txt.BOX_CUSTOMERS_STATUS|escape}" />
+		<menuitem sort="30" link="admin.php" link_param="do=Emails" title="{$txt.BOX_EMAILS|escape}" />
+		<menuitem sort="40" link="FILENAME_GM_INVOICING" title="{$txt.BOX_GM_INVOICING|escape}" />
+	</menugroup>
+
+	<menugroup id="BOX_HEADING_PRODUCTS" sort="40" background="artkatalog.png" class="fa fa-sitemap" title="{$txt.BOX_HEADING_PRODUCTS|escape}">
+		<menuitem sort="10" link="FILENAME_CATEGORIES" title="{$txt.BOX_CATEGORIES|escape}" />
+		{if 'MODULE_CENTER_PRODUCTATTRIBUTES_INSTALLED'|gm_get_conf == '1'}
+		<menuitem sort="20" link="FILENAME_PRODUCTS_ATTRIBUTES" title="{$txt.BOX_PRODUCTS_ATTRIBUTES|escape}" />
+		{/if}
+		<menuitem sort="30" link="FILENAME_SPECIALS" title="{$txt.BOX_SPECIALS|escape}" />
+		<menuitem sort="40" link="FILENAME_PROPERTIES" title="{$txt.BOX_PROPERTIES|escape}" />
+		<menuitem sort="50" link="FILENAME_MANUFACTURERS" title="{$txt.BOX_MANUFACTURERS|escape}" />
+		<menuitem sort="60" link="FILENAME_GM_FEATURE_CONTROL" title="{$txt.BOX_GM_FEATURE_CONTROL|escape}" />
+		<menuitem sort="70" link="FILENAME_PRODUCTS_VPE" title="{$txt.BOX_PRODUCTS_VPE|escape}" />
+		<menuitem sort="80" link="FILENAME_QUANTITYUNITS" title="{$txt.BOX_QUANTITYUNITS|escape}" />
+		<menuitem sort="90" link="FILENAME_GM_GPRINT" title="{$txt.BOX_GM_GPRINT|escape}" />
+		<menuitem sort="100" link="FILENAME_XSELL_GROUPS" title="{$txt.BOX_ORDERS_XSELL_GROUP|escape}" />
+		<menuitem sort="110" link="FILENAME_REVIEWS" title="{$txt.BOX_REVIEWS|escape}" />
+	</menugroup>
+
+	{if 'MODULE_CENTER_HERMES_INSTALLED'|gm_get_conf == '1'}
+	<menugroup id="BOX_HEADING_HERMES" sort="45" background="hermes.png" class="fa fa-truck" title="{$module_center_module.box_heading_hermes}">
+		<menuitem sort="10" link="hermes_list.php" title="{$module_center_module.box_hermes_shipping_orders}" />
+		<menuitem sort="20" link="hermes_collection.php" title="{$module_center_module.box_hermes_pick_up_requests}" />
+		<menuitem sort="30" link="hermes_info.php" title="{$module_center_module.box_hermes_account_infos}" />
+		<menuitem sort="40" link="hermes_config.php" title="{$module_center_module.box_hermes_configuration}" />
+	</menugroup>
+	{/if}
+
+	<menugroup id="BOX_HEADING_GAMBIO" sort="50" background="gambio.png" class="fa fa-magic" title="{$txt.BOX_HEADING_LAYOUT_DESIGN|escape}">
+		<menuitem sort="10" link="admin.php" link_param="do=TemplateConfiguration" title="{$txt.BOX_GM_STYLE_EDIT|escape}" />
+		<menuitem sort="20" link="FILENAME_GM_LOGO" title="{$txt.BOX_GM_LOGO|escape}" />
+		{if file_exists('mobile_configuration.php') }
+		<menuitem sort="25" link="mobile_configuration.php" title="MobileCandy" />
+		{/if}
+		<menuitem sort="30" link="FILENAME_GM_SLIDER" title="{$txt.BOX_GM_SLIDER|escape}" />
+		<menuitem sort="40" link="FILENAME_GM_LIGHTBOX" title="{$txt.BOX_GM_LIGHTBOX|escape}" />
+		<menuitem sort="60" link="FILENAME_CONTENT_MANAGER" title="{$txt.BOX_CONTENT|escape}" />
+		<menuitem sort="70" link="FILENAME_GM_OFFLINE" title="{$txt.BOX_GM_OFFLINE|escape}" />
+		<menuitem sort="80" link="FILENAME_GM_SCROLLER" title="{$txt.BOX_GM_SCROLLER|escape}" />
+		<menuitem sort="90" link="FILENAME_BANNER_MANAGER" title="{$txt.BOX_BANNER_MANAGER|escape}" />
+		<menuitem sort="100" link="FILENAME_CONFIGURATION" link_param="gID=4" title="{$txt.BOX_CONFIGURATION_4|escape}" />
+	</menugroup>
+
+	<menugroup id="BOX_HEADING_TOOLS" sort="60" background="hilfsprogr1.png" class="fa fa-wrench" title="{$txt.BOX_HEADING_TOOLS|escape}">
+		<menuitem sort="10" link="FILENAME_CLEAR_CACHE" title="{$txt.BOX_CACHE|escape}" />
+		<menuitem sort="20" link="timer.php" title="{$txt.BOX_TIMER|escape}" />
+		<menuitem sort="30" link="FILENAME_MODULE_NEWSLETTER" title="{$txt.BOX_MODULE_NEWSLETTER|escape}" />
+		<menuitem sort="40" link="FILENAME_GM_OPENSEARCH" title="{$txt.BOX_GM_OPENSEARCH|escape}" />
+		<menuitem sort="50" link="FILENAME_GM_LANG_EDIT" title="{$txt.BOX_GM_LANG_EDIT|escape}" />
+		<menuitem sort="60" link="FILENAME_BACKUP" title="{$txt.BOX_BACKUP|escape}" />
+		<menuitem sort="65" link="FILENAME_GM_BACKUP_FILES_ZIP" title="{$txt.BOX_GM_BACKUP_FILES_ZIP|escape}" />
+		<menuitem sort="70" link="FILENAME_SHOW_LOGS" title="{$txt.BOX_SHOW_LOGS|escape}" />
+		<menuitem sort="90" link="FILENAME_SERVER_INFO" title="{$txt.BOX_SERVER_INFO|escape}" />
+		<menuitem sort="100" link="FILENAME_GM_SQL" title="{$txt.BOX_GM_SQL|escape}" />
+
+		<menuitem sort="110" link="FILENAME_PRODUCTS_EXPECTED" title="{$txt.BOX_PRODUCTS_EXPECTED|escape}" />
+		{*<menuitem sort="120" link="FILENAME_GM_PRODUCT_EXPORT" title="{$txt.BOX_GM_PRODUCT_EXPORT|escape}" />*}
+	</menugroup>
+
+	{if 'MODULE_CENTER_MAGNALISTER_INSTALLED'|gm_get_conf == '1'}
+	<menugroup id="BOX_HEADING_MAGNALISTER" sort="65" class="fa fa-tachometer" background="../../includes/magnalister/images/magnalister_gambio_icon.png" title="{$module_center_module.box_magnalister_heading}">
+		{check_magna_execute}
+		{if isset($__ml_found) && !empty($__ml_found)}
+		<menuitem link="admin.php" link_param="do=EmbeddedModule/magnalister" title="{$module_center_module.box_magnalister_start}" sort="1" />
+		{$__ml_found}
+		{else}
+		<menuitem link="admin.php" link_param="do=EmbeddedModule/magnalister" title="{$module_center_module.box_magnalister_config}" />
+		{/if}
+	</menugroup>
+	{/if}
+
+	<menugroup id="BOX_HEADING_MODULES" sort="70" background="module.png" class="fa fa-puzzle-piece" title="{$txt.BOX_HEADING_MODULES|escape}">
+		<menuitem sort="10" link="admin.php" link_param="do=ModuleCenter" title="{$txt.BOX_MODULE_EXPORT|escape}" />
+		{if $content_data.display_old_module_center}
+		<menuitem sort="15" link="FILENAME_MODULE_EXPORT" title="{$txt.BOX_MODULE_EXPORT|escape} (alt)" />
+		{/if}
+		<menuitem sort="20" link="FILENAME_MODULES" link_param="set=shipping" title="{$txt.BOX_SHIPPING|escape}" />
+		<menuitem sort="30" link="FILENAME_MODULES" link_param="set=payment" title="{$txt.BOX_PAYMENT|escape}" />
+		<menuitem sort="40" link="FILENAME_MODULES" link_param="set=ordertotal" title="{$txt.BOX_ORDER_TOTAL|escape}" />
+	</menugroup>
+
+	{if 'MODULE_CENTER_MAILBEEZ_INSTALLED'|gm_get_conf == '1'}
+	<menugroup id="BOX_HEADING_MAILBEEZ" sort="75" background="../../images/icons/mailbeez_gambio_icon.png" class="fa fa-envelope" title="MailBeez">
+		{php}
+		if (function_exists('mailBeezMenu')) {
+		$template->assign("mailbeez_menu", mailBeezMenu());
+		}
+		{/php}
+		{if isset($mailbeez_menu) && !empty($mailbeez_menu)}
+		{$mailbeez_menu}
+		{else}
+		<menuitem link="mailbeez.php" link_param="" sort="1" title="{$txt.BOX_MAILBEEZ|default:'MailBeez Email-Marketing'}"/>
+		{/if}
+	</menugroup>
+	{/if}
+
+	<menugroup id="BOX_HEADING_STATISTICS" sort="80" background="statistik.png" class="fa fa-area-chart" title="{$txt.BOX_HEADING_STATISTICS|escape}">
+		<menuitem sort="10" link="FILENAME_WHOS_ONLINE" title="{$txt.BOX_WHOS_ONLINE|escape}" />
+		<menuitem sort="20" link="FILENAME_SALES_REPORT" title="{$txt.BOX_SALES_REPORT|escape}" />
+		<menuitem sort="30" link="FILENAME_STATS_PRODUCTS_PURCHASED" title="{$txt.BOX_PRODUCTS_PURCHASED|escape}" />
+		<menuitem sort="40" link="FILENAME_CAMPAIGNS_REPORT" title="{$txt.BOX_CAMPAIGNS_REPORT|escape}" />
+		<menuitem sort="50" link="FILENAME_GM_COUNTER" title="{$txt.BOX_GM_COUNTER|escape}" />
+		<menuitem sort="60" link="FILENAME_STATS_CUSTOMERS" title="{$txt.BOX_STATS_CUSTOMERS|escape}" />
+	</menugroup>
+
+	<menugroup id="BOX_HEADING_IMPORT_EXPORT" sort="90" class="fa fa-retweet" title="{$txt.BOX_IMPORT_EXPORT|escape}">
+		<menuitem sort="10" link="csv.php" title="{$txt.BOX_IMPORT|escape}" />
+		<menuitem sort="20" link="FILENAME_GM_MODULE_EXPORT" title="{$txt.BOX_GM_MODULE_EXPORT|escape}" />
+		<menuitem sort="30" link="csv_backend.php" title="{$txt.BOX_IMPORT_OLD|escape}" />
+	</menugroup>
+
+	{if ACTIVATE_SHOPGATE == 'true' || $smarty.const.MODULE_PAYMENT_INSTALLED|strpos:'shopgate.php' !== false}
+	<!-- {load_language_text section="shopgate" name="shopgate"} -->
+	<menugroup id="BOX_HEADING_SHOPGATE" sort="95" background="module.png" class="fa fa-mobile-phone fa-lg" title="{$shopgate.BOX_HEADING_SHOPGATE}">
+		<menuitem sort="10" link="FILENAME_SHOPGATE" link_param="sg_option=info" title="{$shopgate.BOX_SHOPGATE_INFO}" />
+		<menuitem sort="20" link="FILENAME_SHOPGATE" link_param="sg_option=config" title="{$shopgate.BOX_SHOPGATE_CONFIG}" />
+	</menugroup>
+	{/if}
+
+	{if $smarty.const.ACTIVATE_GIFT_SYSTEM == 'true'}
+	<menugroup id="BOX_HEADING_GV_ADMIN" sort="100" background="hilfsprogr2.png" class="fa fa-gift" title="{$txt.BOX_HEADING_GV_ADMIN|escape}">
+		<menuitem sort="10" link="FILENAME_COUPON_ADMIN" title="{$txt.BOX_COUPON_ADMIN|escape}" />
+		<menuitem sort="20" link="FILENAME_GV_QUEUE" title="{$txt.BOX_GV_ADMIN_QUEUE|escape}" />
+		<menuitem sort="30" link="FILENAME_GV_SENT" title="{$txt.BOX_GV_ADMIN_SENT|escape}" />
+		<menuitem sort="40" link="FILENAME_GV_MAIL" title="{$txt.BOX_GV_ADMIN_MAIL|escape}" />
+	</menugroup>
+	{/if}
+
+	<menugroup id="BOX_HEADING_SHOP_SETTINGS" sort="230" class="fa fa-cogs" title="{$txt.BOX_SHOP_SETTINGS|escape}">
+		<menuitem sort="10" link="admin.php" link_param="do=ShopKey" title="{$txt.BOX_SYSTEM_SETTINGS|escape}" />
+		<menuitem sort="20" link="FILENAME_CONFIGURATION" link_param="gID=1" title="{$txt.BOX_CONFIGURATION_1|escape}" />
+		<menuitem sort="30" link="FILENAME_GM_MISCELLANEOUS" title="{$txt.BOX_GM_MISCELLANEOUS|escape}" />
+		<menuitem sort="40" link="FILENAME_GM_LAWS" title="{$txt.BOX_GM_LAWS|escape}" />
+		<menuitem sort="50" link="FILENAME_CONFIGURATION" link_param="gID=17" title="{$txt.BOX_CONFIGURATION_17|escape}" />
+		<menuitem sort="60" link="FILENAME_CAMPAIGNS" title="{$txt.BOX_CAMPAIGNS|escape}" />
+		<menuitem sort="70" link="FILENAME_SHIPPING_STATUS" title="{$txt.BOX_SHIPPING_STATUS|escape}" />
+		<menuitem sort="80" link="parcel_services.php" title="{$txt.BOX_PARCEL_SERVICES|escape}" />
+		<menuitem sort="90" link="FILENAME_GM_PDF" title="{$txt.BOX_GM_PDF|escape}" />
+		<menuitem sort="100" link="FILENAME_GM_ID_STARTS" title="{$txt.BOX_GM_ID_STARTS|escape}" />
+		<menuitem sort="110" link="FILENAME_CONFIGURATION" link_param="gID=9" title="{$txt.BOX_CONFIGURATION_9|escape}" />
+		<menuitem sort="130" link="FILENAME_CONFIGURATION" link_param="gID=13" title="{$txt.BOX_CONFIGURATION_13|escape}" />
+
+		<menuitem sort="140" link="FILENAME_CONFIGURATION" link_param="gID=3" title="{$txt.BOX_CONFIGURATION_3|escape}" />
+		<menuitem sort="150" link="FILENAME_CONFIGURATION" link_param="gID=2" title="{$txt.BOX_CONFIGURATION_2|escape}" />
+
+		<menuitem sort="160" link="FILENAME_GM_SEO_BOOST" title="SEO" />
+		<menuitem sort="170" link="FILENAME_ZONES" title="{$txt.BOX_HEADING_ZONE|escape}" />
+		<menuitem sort="180" link="admin.php" link_param="do=ShopKey" title="{$txt.BOX_SYSTEM_SETTINGS|escape}" />
+	</menugroup>
+
+</admin_menu>

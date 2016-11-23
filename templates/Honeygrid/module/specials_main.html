@@ -1,0 +1,26 @@
+{load_language_text section="specials"}
+{load_language_text section="index" name="index"}
+
+{if $module_content != ''}
+	<h3>{$txt.heading_text}</h3>
+
+	{content_manager group=4321003}
+	
+	{if 'USE_SPECIAL_PRODUCT_SWIPER_ON_INDEX'|gm_get_conf === 'true'}
+		{assign var="template" value="snippets/product_listing/product_listing_swiper.html"}
+	{else}
+		{assign var="template" value="snippets/product_listing/product_listing.html"}
+	{/if}
+
+	{assign var="fullscreenPage" value={template_setting name="gx-index-full-width"}}
+	{product_listing products=$module_content 
+		id="specials" 
+		truncate=$TRUNCATE_PRODUCTS_NAME 
+		hoverable=true 
+		template=$template
+		showManufacturerImages=$showManufacturerImages 
+		showProductRibbons=$showProductRibbons 
+		showRating=$showRating
+		fullscreenPage=$fullscreenPage}
+{/if}
+

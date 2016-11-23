@@ -1,0 +1,23 @@
+// ----------------------------------------------------------------------------
+// MESSAGE-STACK ALERTS
+// ----------------------------------------------------------------------------
+
+.alert {
+  @include message-stack($background-color-warning-alert, $text-color-warning-alert, $border-color-warning-alert);
+  
+  .close{
+    top: 0;
+  }
+}
+
+.alert.alert-danger {
+  @include message-stack($background-color-danger-alert, $text-color-danger-alert, $border-color-danger-alert);
+}
+
+.alert.alert-success {
+  @include message-stack($background-color-success-alert, $text-color-success-alert, $border-color-success-alert);
+}
+
+.alert.alert-info {
+  @include message-stack($background-color-info-alert, $text-color-info-alert, $border-color-info-alert);
+}

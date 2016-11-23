@@ -1,0 +1,81 @@
+/* 
+	Header Search Box
+    ========================================================================== 
+
+	Styles for the admin header search box.  
+	
+*/
+
+// Placeholder style.
+@mixin placeholder-style {
+	padding-top:  2px;
+	padding-left: 4px;
+	color:        $header-text-color;
+	font-size:    $font-size-base;
+	font-weight:  normal;
+}
+
+> .search {
+	width: calc(100% - 650px); // 650 comes from .logo width and .actions width.
+	
+	// Input field.
+	.search-input {
+		padding:          0 0 0 $padding-large;
+		outline:          0;
+		color:            $header-text-color;
+		background-color: $header-bg-color;
+		border:           0;
+		width:            100%;
+		height:           46px;
+		font-size:        14px;
+		transition:       background-color 250ms linear;
+		
+		// Placeholder styles.
+		&::-webkit-input-placeholder {
+			@include placeholder-style;
+		}
+		
+		&:-moz-placeholder {
+			@include placeholder-style;
+		}
+		
+		&::-moz-placeholder {
+			@include placeholder-style;
+		}
+		
+		&:-ms-input-placeholder {
+			@include placeholder-style;
+		}
+		
+		// Focus state.
+		&:focus {
+			background-color: darken($header-bg-color, 10%);
+		}
+	}
+	
+	// Search list. 
+	.search-list {
+		display: none;
+		
+		// Visible state of search list.
+		&.active {
+			display:  block;
+			position: relative;
+			top:      -2px;
+		}
+		
+		// Search list item.
+		.search-list-item {
+			font-size: $font-size-large;
+			cursor:    pointer;
+			
+			a {
+				padding: ($padding-small / 2) $padding-large;
+				
+				.search-term-placeholder {
+					color: $header-bg-color;
+				}
+			}
+		}
+	}
+}

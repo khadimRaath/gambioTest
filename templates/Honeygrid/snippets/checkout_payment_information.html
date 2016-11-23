@@ -1,0 +1,12 @@
+<table>
+	{foreach item=info from=$payment_information_data}
+		<tr>
+			<td>
+				{$info.title}
+			</td>
+			<td>
+				{$info.field}
+			</td>
+		</tr>
+	{/foreach}
+</table>

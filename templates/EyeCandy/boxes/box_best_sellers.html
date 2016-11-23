@@ -1,0 +1,31 @@
+{load_language_text section="box_best_sellers"}
+
+{if $content_data.PRODUCTS_DATA || $style_edit_active}
+<div id="menubox_best_sellers" class="c_bestsellers content-box white clearfix">
+	<div id="menubox_best_sellers_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">{$txt.heading_best_sellers}</div>
+	</div>
+	<div id="menubox_best_sellers_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix article-list bestsellers">
+		
+		{foreach name=aussen item=products_item from=$content_data.PRODUCTS_DATA}
+		
+			<div class="article-list-item box_load_bestseller">
+				<div class="article-list-item-inside">
+					
+					<div class="article-list-item-text box_head">
+						<span id="bestseller-number_{$products_item.PRODUCTS_ID}" class="article-list-item-number flyover_item">{$products_item.COUNT}.</span>
+						<span id="bestseller-title_{$products_item.PRODUCTS_ID}" class="title flyover_item"><a href="{$products_item.PRODUCTS_LINK}"{if $products_item.PRODUCTS_META_DESCRIPTION != ''} title="{$products_item.PRODUCTS_META_DESCRIPTION|truncate:80:"..."|replace:'"':'&quot;'}"{/if}>{$products_item.PRODUCTS_NAME}</a></span>
+					</div>
+					<div class="article-list-item-price">
+						{$products_item.PRODUCTS_PRICE}<br />
+						{if $products_item.PRODUCTS_VPE}<span class="gm_products_vpe products-vpe">{$products_item.PRODUCTS_VPE}</span>{/if}
+					</div>
+				</div>
+			</div>
+		{/foreach}				
+
+		</div>
+	</div>
+</div>
+{/if}

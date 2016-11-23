@@ -1,0 +1,215 @@
+.ui-datepicker {
+  background-clip:  padding-box;
+  background-color: $body-bg;
+  display:          none;
+  left:             0;
+  position:         absolute;
+  text-align:       left;
+  padding:          0 !important;
+  border:           3px solid transparentize(#000, 0.8) !important;
+  margin:           5px 0 0 0;
+  width:            auto !important;
+  white-space:      normal;
+  border-radius:    3px;
+
+  th, td {
+    height:      auto;
+    line-height: 30px;
+    text-align:  center;
+    width:       auto;
+  }
+
+  .ui-datepicker-header {
+    background:    $brand-primary;
+    border:        none;
+    border-radius: 0;
+    font-weight:   normal;
+    font-size:     15px;
+    padding:       0 !important;
+
+    .ui-datepicker-title {
+      border:      0;
+      height:      35px;
+      line-height: 30px;
+      margin-top:  .4em;
+      text-align:  center;
+      width:       210px;
+
+      span {
+        &.ui-datepicker-month,
+        &.ui-datepicker-year {
+          color:       #fff;
+          font-size:   14px;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .ui-datepicker-prev,
+    .ui-datepicker-next {
+      font-size:     12px;
+      background:    none;
+      border:        0;
+      border-radius: 0;
+      cursor:        pointer;
+      height:        41px;
+      line-height:   41px;
+      text-align:    center;
+      top:           0;
+      width:         41px;
+
+      &:hover {
+        background: mix(#fff, $brand-primary, 20%);
+        text-decoration: none;
+      }
+
+      &:after {
+        color:       #fff;
+        font-family: FontAwesome;
+      }
+
+      span {
+        background:  none;
+        height:      28px;
+        width:       14px;
+        margin-top:  7px;
+        top:         0;
+        font-weight: normal;
+      }
+    }
+
+    .ui-datepicker-next {
+      border-left: 1px solid darken($brand-primary, 10%);
+      right:       0;
+
+      &:after {
+        content: "\f054";
+      }
+    }
+
+    .ui-datepicker-prev {
+      border-right: 1px solid darken($brand-primary, 10%);
+      left:         0;
+
+      &:after {
+        content: "\f053";
+      }
+    }
+
+    .ui-datepicker-month {
+      margin-right: 5px;
+      min-width:    0;
+      width:        37%;
+      max-width:    37%;
+    }
+
+    .ui-datepicker-year {
+      min-width: 0;
+      width:     37%;
+      max-width: 37%;
+    }
+
+  }
+
+  table.ui-datepicker-calendar {
+    border-color: darken($brand-primary, 10%);
+    margin:       0;
+
+    thead {
+      th {
+        background:  darken($brand-primary, 3%);
+        color:       #fff;
+        font-size:   12px;
+        font-weight: bold;
+        text-align:  center;
+        line-height: 35px;
+        border:      0;
+        border-top:  1px solid darken($brand-primary, 10%);
+        padding:     0;
+
+        span {
+          color: #fff;
+        }
+      }
+    }
+
+    tbody {
+      tr:nth-child(even) {
+        background: $body-bg;
+      }
+      
+      tr:nth-child(odd) {
+        background: mix(#000, $body-bg, 4%);
+      }
+
+      a {
+        color:      $text-color;
+        border:     none;
+        background: none;
+      }
+
+      td, a {
+        text-align: center;
+        padding:    4px 1px;
+      }
+
+      td {
+        border-right: 1px solid darken(#fff, 10.5%);
+        line-height:  22px;
+
+        &:last-child {
+          border-right: 0;
+        }
+
+        &:hover {
+          background: mix(#000, $body-bg, 9%);
+        }
+
+        &.ui-datepicker-today {
+          background: mix(#000, $body-bg, 9%);
+
+          a {
+            font-weight: 700;
+          }
+        }
+
+        &.ui-datepicker-current-day {
+          background: $brand-primary;
+          a {
+            font-weight: bold;
+            color:       #fff;
+          }
+        }
+
+        &.ui-state-disabled {
+          background: mix(#000, $body-bg, 4%);
+          @include opacity(1);
+
+          span {
+            @include opacity(0.5);
+          }
+        }
+
+        &.ui-datepicker-week-col {
+          &:hover {
+            background: $body-bg;
+          }
+        }
+
+        span {
+          border:     none;
+          background: none;
+          text-align: center;
+        }
+
+        a {
+          color:           $text-color;
+          display:         block;
+          height:          100%;
+          text-decoration: none;
+          width:           100%;
+        }
+      }
+    }
+  }
+}

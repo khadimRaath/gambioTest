@@ -1,0 +1,10 @@
+{load_language_text section="buttons" name="button"}
+
+{if $content_data.popupNotification->isActive()}
+<div class="popup_notification">
+	<div style="position:relative;">
+		<div class="hide_popup_notification"><a href="{page_url}#" class="icon_lightbox_close" title="{$button.close}">&nbsp;</a></div>
+	</div>
+	{$content_data.popupNotification->getContentByLanguageId($languages_id)}
+</div>
+{/if}

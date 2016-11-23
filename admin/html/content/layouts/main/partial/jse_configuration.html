@@ -1,0 +1,14 @@
+<script>
+	window.JSEngineConfiguration = {
+		environment  : '{$environment}',
+		appUrl       : '{$base_url}',
+		appVersion   : '{$shop_version}',
+		languageCode : '{$language_code}',
+		pageToken    : '{$page_token}',
+		cacheToken   : '{$cache_token}',
+		translations : {$translations nofilter},
+		registry	 : {
+			userId: {$_SESSION.customer_id}
+		}
+	};
+</script>

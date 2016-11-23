@@ -1,0 +1,58 @@
+{load_language_text section="checkout_shipping"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="postfinder" name="postfinder"}
+{load_language_text section="general" name="general"}
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/process_funnel.html" step=2}
+
+<h1>{$general.YOUR_ORDER}</h1>
+
+<br/>
+
+{if $error!=''}
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error type="danger"}
+{/if}
+
+<form action="{$FORM_ACTION_URL}" method="post" class="form-horizontal">
+
+	<input type="hidden" name="action" value="process" />
+
+	<fieldset>
+		<legend>{$txt.title_address}</legend>
+
+		{if $amazon_checkout_address}
+			{amazon_payment id='addressBookWidgetDiv'}
+		{else}
+			<div class="row">
+				<div class="col-md-12 indent-sm-1">
+					<address>{$ADDRESS_LABEL}</address>
+				</div>
+				<div class="col-md-12 indent-sm-1 space-1">
+					<a class="btn btn-default btn-sm" href="{'checkout_shipping_address.php'|xtc_href_link:'':'SSL'}">{$txt.text_address_change}</a>
+					{if $url_pfinder}
+						<a class="btn btn-default btn-sm" href="{$url_pfinder}">{$postfinder.btn_pfinder}</a>
+					{/if}
+				</div>
+			</div>
+		{/if}
+	</fieldset>
+
+	<fieldset data-gambio-widget="radio_selection" data-radio_selection-init="true">
+		<legend>{$txt.title_shipping}</legend>
+		<div class="row">
+			<div class="col-xs-12 indent-sm-1">
+				{$SHIPPING_BLOCK}
+			</div>
+		</div>
+	</fieldset>
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-3 col-md-3 btn-back">
+			<a href="{'shopping_cart.php'|xtc_href_link }" class="btn btn-default btn-block">{$button.back}</a>
+		</div>
+		<div class="col-xs-6 col-sm-3 col-md-3 col-md-offset-{if $amazon_checkout_address}1{else}6{/if} text-right btn-continue">
+			<input type="submit" class="btn btn-primary btn-block" value="{$button.continue}">
+		</div>
+	</div>
+
+</form>

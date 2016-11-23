@@ -1,0 +1,11 @@
+<script type="text/javascript" src="http://www.google.com/recaptcha/api/js/recaptcha_ajax.js"></script>
+<script type="text/javascript">
+	var RecaptchaOptions = new Array();
+	RecaptchaOptions["theme"] = "{$content_data.THEME}";
+	
+	function showRecaptcha(element)
+	{
+		Recaptcha.create("{$content_data.PUBLIC_KEY}", element, RecaptchaOptions);
+	}
+</script>
+{$content_data.SCRIPT}

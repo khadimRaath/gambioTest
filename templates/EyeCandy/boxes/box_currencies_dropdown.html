@@ -1,0 +1,12 @@
+
+<div id="currency" style="display:none;">
+	<div class="currency_container png-fix">
+		<div class="currency_content">
+			{foreach name=currencies item=currency_data from=$content_data.currencies_data}
+				{if $content_data.CURRENT_CURRENCY != $currency_data.id}
+					<a href="{$currency_data.link}" title="{$currency_data.text}">{$currency_data.id}</a>
+				{/if}
+			{/foreach}
+		</div>
+	</div>
+</div>

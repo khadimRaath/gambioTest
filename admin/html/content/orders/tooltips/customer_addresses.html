@@ -1,0 +1,60 @@
+{extends file="../../layouts/main/partial/tooltip.html"}
+
+{block name="content"}
+	{load_language_text section="orders" name="orders"}
+	
+	<div class="customer-addresses">
+		{if $has_separate_delivery_address}
+			<div class="delivery-address">
+				<div class="title">{$orders.TITLE_DELIVERY}</div>
+				<div>{$delivery.firstname} {$delivery.lastname}</div>
+				
+				{if $delivery.company != ''}
+					<div>{$delivery.company}</div>
+				{/if}
+				
+				<div>{$delivery.street} {$delivery.house_number}</div>
+				
+				{if $delivery.additional_address_info != ''}
+					<div>{$delivery.additional_address_info}</div>
+				{/if}
+				
+				<div>{$delivery.postcode} {$delivery.city}</div>
+				<div>{$delivery.country}</div>
+			</div>
+		{/if}
+		
+		<div class="billing-address">
+			<div class="title">
+				{if $has_separate_delivery_address}
+					{$orders.TITLE_INVOICE}
+				{/if}
+				
+				{if !$has_separate_delivery_address}
+					{$orders.TITLE_INVOICE} / {$orders.TITLE_DELIVERY}
+				{/if}
+			</div>
+			
+			<div>{$billing.firstname} {$billing.lastname}</div>
+			
+			{if $billing.company != ''}
+				<div>{$billing.company}</div>
+			{/if}
+		   
+			<div>{$billing.street} {$billing.house_number}</div>
+			
+			{if $billing.additional_address_info != ''}
+				<div>{$billing.additional_address_info}</div>
+			{/if}
+			
+			<div>{$billing.postcode} {$billing.city}</div>
+			<div>{$billing.country}</div>
+		</div>
+		
+		<div class="customer-email">
+			<a href="{$smarty.const.HTTP_SERVER}{$smarty.const.DIR_WS_ADMIN}admin.php?do=Emails&mailto={$customer_email}">
+				{$customer_email}
+			</a>
+		</div>
+	</div>
+{/block}

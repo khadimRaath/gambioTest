@@ -1,0 +1,31 @@
+{load_language_text section="wish_list"}
+{load_language_text section="buttons" name="button"}
+
+<div class="shopping_cart">
+
+	<h1>{$txt.heading_wish_list}</h1>
+
+	{if $cart_empty==true}
+		<div class="gift_cart_empty">
+			<p>{$txt.text_empty}</p>
+		    <div class="continue_button"><a href="{$BUTTON_BACK_URL}" class="button_grey_big button_set_big action_page_back"><span class="button-outer"><span class="button-inner">{$button.continue_shopping}</span></span></a></div>
+		</div>
+	{else}
+		{$FORM_ACTION}
+		{$HIDDEN_OPTIONS}
+		{$MODULE_order_details}
+
+		<div class="continue_button">
+			{* TODO: write action_page_back handler *}
+			<a href="{$BUTTON_BACK_URL}" class="button_grey_big button_set_big action_page_back"><span class="button-outer"><span class="button-inner">{$button.continue_shopping}</span></span></a>
+			&nbsp;<a href="{page_url}#" class="button_grey_big button_set_big button_update_wish_list action_page_back"><span class="button-outer"><span class="button-inner">{$button.update}</span></span></a>
+			&nbsp;<a href="{page_url}#" class="button_grey_big button_set_big button_delete_wish_list action_page_back" rel="{$txt.select_item_to_delete}"><span class="button-outer"><span class="button-inner">{$button.delete}</span></span></a>
+		</div>
+
+		{* TODO: use xtc_href_link plugin *}
+		<div class="checkout_button"><a href="{page_url}#" class="button_green_big button_set_big button_wish_list_to_cart"><span class="button-outer"><span class="button-inner"><img class="png-fix" src="{$tpl_path}img/icons/icon-white-shoppingcart.png" alt="" style="margin-right:10px; float:left" />{$button.add_to_cart}</span></span></a></div>
+		<input type="hidden" name="submit_target" value="cart">
+
+		{$FORM_END}
+	{/if}
+</div>

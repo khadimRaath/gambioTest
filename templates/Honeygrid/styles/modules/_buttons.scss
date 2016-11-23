@@ -1,0 +1,78 @@
+/* Buttons
+   ========================================================================== */
+
+.btn {
+	@include border-radius($gx-btn-border-radius);
+	text-transform: $gx-btn-text-transform;
+	
+	// primary
+	
+	&.btn-primary {
+		@include button-variant($gx-btn-primary-color, $gx-btn-primary-bg, $gx-btn-primary-border);
+		@if ($gx-btn-primary-bg-image-url and $gx-btn-primary-bg-image-url != '' and $gx-btn-primary-bg-image-url != "") {
+			background-image: url($gx-btn-primary-bg-image-url);
+			@if ($gx-btn-primary-bg-image-position) {
+				background-position: $gx-btn-primary-bg-image-position;
+			}
+			@if ($gx-btn-primary-bg-image-repeat) {
+				background-repeat: $gx-btn-primary-bg-image-repeat;
+			}
+			@if ($gx-btn-primary-bg-image-size) {
+				background-size: $gx-btn-primary-bg-image-size;
+			}
+			@if ($gx-btn-primary-bg-image-attachment) {
+				background-attachment: $gx-btn-primary-bg-image-attachment;
+			}
+		}
+	}
+	
+	// default
+	
+	&.btn-default {
+		@include button-variant($gx-btn-default-color, $gx-btn-default-bg, $gx-btn-default-border);
+		@if ($gx-btn-default-bg-image-url and $gx-btn-default-bg-image-url != '' and $gx-btn-default-bg-image-url != "") {
+			background-image: url($gx-btn-default-bg-image-url);
+			@if ($gx-btn-default-bg-image-position) {
+				background-position: $gx-btn-default-bg-image-position;
+			}
+			@if ($gx-btn-default-bg-image-repeat) {
+				background-repeat: $gx-btn-default-bg-image-repeat;
+			}
+			@if ($gx-btn-default-bg-image-size) {
+				background-size: $gx-btn-default-bg-image-size;
+			}
+			@if ($gx-btn-default-bg-image-attachment) {
+				background-attachment: $gx-btn-default-bg-image-attachment;
+			}
+		}
+	}
+	
+	// buy / call to action
+	
+	&.btn-buy {
+		@include button-variant($gx-btn-calltoaction-color, $gx-btn-calltoaction-bg, $gx-btn-calltoaction-border);
+		@if ($gx-btn-calltoaction-bg-image-url and $gx-btn-calltoaction-bg-image-url != '' and $gx-btn-calltoaction-bg-image-url = "") {
+			background-image: url($gx-btn-calltoaction-bg-image-url);
+			@if ($gx-btn-calltoaction-bg-image-position) {
+				background-position: $gx-btn-calltoaction-bg-image-position;
+			}
+			@if ($gx-btn-calltoaction-bg-image-repeat) {
+				background-repeat: $gx-btn-calltoaction-bg-image-repeat;
+			}
+			@if ($gx-btn-calltoaction-bg-image-size) {
+				background-size: $gx-btn-calltoaction-bg-image-size;
+			}
+			@if ($gx-btn-calltoaction-bg-image-attachment) {
+				background-attachment: $gx-btn-calltoaction-bg-image-attachment;
+			}
+		}
+		
+		&:focus {
+			outline:none;
+		}
+		
+		&.inactive {
+			opacity: 0.5;
+		}
+	}
+}

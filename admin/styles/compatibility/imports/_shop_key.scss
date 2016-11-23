@@ -1,0 +1,86 @@
+// --------------------------------------------------------------------------
+// SHOP KEY
+// --------------------------------------------------------------------------
+
+.shop-key-configuration {
+  h2 {
+    &.section-header {
+      margin-bottom: 0;
+      padding-left:   24px;
+      color:         $text-color-light;
+    }
+  }
+
+  .shop-key-form {
+    padding: 0;
+
+    .grid {
+      margin-bottom: 0;
+
+      &:nth-child(even) {
+        background-color: $background-color;
+      }
+
+      &:nth-child(odd) {
+        background-color: adjust-lightness($background-color, -2.5);
+      }
+
+      .control-group {
+        margin: 10px 10px 10px 24px;
+        width:  auto;
+
+        label {
+          font-weight: normal;
+          width:       300px;
+        }
+
+        input,
+        textarea {
+          width:     30%;
+          min-width: 250px;
+        }
+
+        .tooltip-icon {
+          display: table-cell;
+        }
+      }
+    }
+
+    .info-links {
+      .grid {
+        background-color: $background-color;
+        border-bottom:    0;
+        padding:          0;
+
+        div {
+          margin: 5px 0 5px 10px;
+
+          a {
+            color:     $text-color;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+
+    .button-container {
+      &.grid {
+        border-bottom: 0;
+        padding:       0;
+
+        .span12 {
+          margin:  0;
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+p {
+  &.shop-key-information {
+    padding-left:  15px !important;
+    padding-right: 15px !important;
+    text-align:    justify;
+  }
+}

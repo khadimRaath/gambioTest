@@ -1,0 +1,52 @@
+{load_language_text section="newsletter"}
+{load_language_text section="buttons" name="button"}
+
+<div id="account" class="password_double_opt_in">
+
+	<h1>{$txt.heading_title}</h1>
+
+	{$info_message}
+        
+        {if !$form_send}
+
+	<h2>
+		{$txt.heading_text}
+	</h2>
+
+	<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+		<fieldset class="blocklabels_150">
+			<div class="input">
+				<label>{$txt.label_email}</label>
+				<input type="text" name="{$INPUT_EMAIL_NAME}" value="{$INPUT_EMAIL_VALUE}" class="input-text" />
+			</div>
+			<div class="input">
+				<label>&nbsp;</label>
+				<input type="radio" name="{$INPUT_RADIO_NAME}" value="{$INPUT_SUBSCRIBE_VALUE}" /> {$txt.text_in}<br />
+				<input type="radio" name="{$INPUT_RADIO_NAME}" value="{$INPUT_UNSUBSCRIBE_VALUE}" /> {$txt.text_out}
+			</div>
+			<div class="input vvcode">
+				<label>{$txt.label_captcha}</label>
+				<img src="{$VVIMG_URL}" alt="" title="" width="240" height="50" /><br />
+				<input type="text" name="{$INPUT_CODE_NAME}" class="input-text" />
+			</div>
+		</fieldset>
+
+		{if $GM_PRIVACY_LINK != '0'}
+		<div id="gm_privacy">
+			{if $show_privacy_checkbox}<input type="checkbox" name="privacy_accepted" value="1"{if $privacy_accepted} checked="checked"{/if}/> {/if}
+			{$GM_PRIVACY_LINK}
+			<br />
+			<br />
+		</div>
+		{/if}
+
+		<a href="{$BUTTON_BACK_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+		<a href="{page_url}#" class="button_blue button_set action_submit"><span class="button-outer"><span class="button-inner">{$button.send}</span></span></a>
+
+	</form>
+        
+        {else}
+            <br /><br />
+            <a href="{$BUTTON_BACK_NL_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+        {/if}
+</div>

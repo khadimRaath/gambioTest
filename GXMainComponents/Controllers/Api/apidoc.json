@@ -1,0 +1,17 @@
+{
+	"_notice": "This file configures the ApiDoc utility, used for APIv2 reference production.",
+	
+	"name": "Gambio GX3 - API",
+	"version": "2.3.0",
+	"description": "Complete Reference of the Gambio GX3 RESTful API",
+	"title": "Gambio GX3 - API Reference",
+	"url": "http://shop.de/api.php/v2",
+	"header": {
+		"title": "Introduction",
+		"filename": "docs/REST/ApiV2DocHeader.md"
+	},
+	"footer": {
+		"title": "Appendices",
+		"filename": "docs/REST/ApiV2DocFooter.md"
+	}	
+}

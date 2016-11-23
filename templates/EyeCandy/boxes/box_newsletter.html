@@ -1,0 +1,21 @@
+{load_language_text section="box_newsletter"}
+{load_language_text section="buttons" name="button"}
+
+<div id="menubox_newsletter" class="c_newsletter content-box white clearfix">
+	<div id="menubox_newsletter_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">
+			{$txt.heading_guestnewsletter}
+		</div>
+	</div>
+	<div id="menubox_newsletter_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix">
+			<form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+				<label>{$txt.text_email}</label>
+				<input type="text" name="{$content_data.INPUT_NAME}" value="" class="input-text" />
+				<div class="input submit">
+					<a href="{page_url}#" class="button_blue button_set action_submit" title="{$txt.title_newsletter}"><span class="button-outer"><span class="button-inner">{$button.login}</span></span></a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

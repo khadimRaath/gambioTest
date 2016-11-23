@@ -1,0 +1,13 @@
+{if $content_data.topbarNotification->isActive()}
+<div class="topbar-notification"
+     style="background-color: {$content_data.topbarNotification->getColor()|escape};"
+     data-gambio-widget="notifications">
+		<span class="notification-content">
+			{$content_data.topbarNotification->getContentByLanguageId($languages_id)}
+		</span>
+		<span class="fa-stack hide-topbar-notification">
+			<i class="fa fa-circle fa-inverse fa-stack-2x"></i>
+			<i class="fa fa-close fa-stack-1x"></i>
+		</span>
+	</div>
+{/if}

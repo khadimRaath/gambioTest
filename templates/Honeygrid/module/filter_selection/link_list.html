@@ -1,0 +1,22 @@
+{load_language_text section="box_filter"}
+
+<fieldset>
+	<label class="control-label option-heading">
+		{$content_data.FEATURE_NAME}
+	</label>
+	{foreach name=features item=feature_value from=$content_data.FEATURE_VALUE_DATA}
+		<div class="form-group input-container">
+			{if $feature_value.VISIBLE == false && $feature_value.DISPLAY_MODE == 1}
+				<span class="inactive">
+					{$feature_value.NAME}
+				</span>
+			{else}
+				<a rel="filter_feature_value_{$content_data.FEATURE_ID}_{$feature_value.ID}" href="#" class="btn-link{if $feature_value.SELECTED} active{/if}">
+					{$feature_value.NAME}
+				</a>
+			{/if}
+			<input type="checkbox" style="display: none;" id="filter_feature_value_{$content_data.FEATURE_ID}_{$feature_value.ID}" name="filter_fv_id[{$content_data.FEATURE_ID}][]" value="{$feature_value.ID}"{if $feature_value.SELECTED} checked="checked"{/if}{if $feature_value.VISIBLE == false && $feature_value.DISPLAY_MODE == 1} disabled="disabled"{/if} />
+		</div>
+	{/foreach}
+	<input type="hidden" name="value_conjunction[{$content_data.FEATURE_ID}]" value="{$content_data.VALUE_CONJUNCTION}" />
+</fieldset>

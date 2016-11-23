@@ -1,0 +1,42 @@
+
+{if $content_data.CATEGORIES_DATA|@count > 0}
+<div id="megadropdown_box_id_{$content_data.current_category_id}" class="megadropdown clearfix" style="display:none">
+	<div class="megadropdown-shadow clearfix">
+		<div class="megadropdown-inside clearfix">
+			<ul>
+
+				{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+					{if $categories_item.children|@count > 0}{assign var="children_found" value="true"}{/if}
+				{/foreach}
+
+
+				{if $children_found}
+					{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+					<li class="top_li">
+						<a href="{$categories_item.data.url}">{$categories_item.data.name}</a>
+						{if $categories_item.children|@count > 0}
+						<ul>
+							{foreach item=children_item from=$categories_item.children}
+							<li class=""><a href="{$children_item.data.url}#{$children_item.data.id}">{$children_item.data.name}</a></li>
+							{/foreach}
+						</ul>
+						{/if}
+					</li>
+					{/foreach}
+					
+				{else}
+					<li>
+						<ul>
+							{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+							<li><a href="{$categories_item.data.url}">{$categories_item.data.name}</a></li>
+							{/foreach}
+						</ul>
+					</li>
+				{/if}
+
+			</ul>
+		</div>
+
+	</div>
+</div>
+{/if}

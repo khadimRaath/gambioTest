@@ -1,0 +1,14 @@
+
+<div id="country" style="display:none;">
+	<div class="country_container png-fix">
+		<div class="country_content">
+			{foreach item=country key=iso_code from=$content_data.country_data}
+				{if $content_data.URL|strpos:"?" !== false}
+					<a href="{$content_data.URL}&amp;switch_country={$iso_code}" title="{$country|escape:'html'}">{$country|escape:'html'}</a>
+				{else}
+					<a href="{$content_data.URL}?switch_country={$iso_code}" title="{$country|escape:'html'}">{$country|escape:'html'}</a>
+				{/if}
+			{/foreach}
+		</div>
+	</div>
+</div>

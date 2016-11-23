@@ -1,0 +1,107 @@
+/* 
+	jQuery UI Dialog Widget
+    ========================================================================== 
+
+	Additional styling for the jQuery UI dialog. 
+	
+*/
+
+.ui-widget-overlay {
+	z-index: $zindex-modal;
+	
+	&.ui-front {
+		background-color: $gray-base;
+		opacity:          0.5;
+	}
+}
+
+.ui-dialog {
+	&.ui-widget {
+		padding: 0;
+		border:  none;
+		@include font();
+		@include border-radius(2px);
+		@include box-shadow(0px 0px 8px transparentize($gray-base, 0.6));
+		
+		.ui-dialog-titlebar {
+			&.ui-widget-header {
+				height:           48px;
+				padding:          $padding-small $padding-large;
+				background-color: tint($border-color, 80%);
+				border:           none;
+				border-bottom:    1px solid tint($border-color, 10%);
+				
+				span {
+					&.ui-dialog-title {
+						color:       tint($gray-base, 13%);
+						font-size:   1.3em;
+						font-weight: normal;
+						margin:      0;
+					}
+				}
+				
+				button {
+					&.ui-dialog-titlebar-close {
+						border:           none;
+						background-color: transparent;
+						float:            right;
+						margin:           $margin-small/4 0 0 0;
+						right:            inherit;
+						padding:          0;
+						position:         initial;
+						top:              inherit;
+						
+						&:before {
+							content:     "×";
+							font-size:   ($font-size-base * 1.5);
+							font-weight: $close-font-weight;
+							line-height: 1;
+							color:       $close-color;
+							text-shadow: $close-text-shadow;
+							@include opacity(.2);
+							
+							&:hover,
+							&:focus {
+								color:           $close-color;
+								text-decoration: none;
+								cursor:          pointer;
+								@include opacity(.5);
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		.ui-dialog-content {
+			&.ui-widget-content {
+				padding: $padding-large;
+				
+				.modal-info-text {
+					margin: 0 0 $padding-large 0
+				}
+			}
+		}
+		
+		.ui-dialog-buttonpane {
+			&.ui-widget-content {
+				border-top: 1px solid tint($border-color, 10%);
+				clear:      both;
+				height:     48px;
+				margin:     0;
+				padding:    $padding-large/3 $padding-large;
+				
+				button {
+					border: 1px solid transparent;
+					margin: 0;
+					@include button-size($padding-base-vertical, $padding-base-horizontal, $font-size-base, $line-height-base, $btn-border-radius-base);
+					
+					@include component-colors($btn-default-bg, $btn-default-color);
+					&:hover {
+						@include component-colors($btn-default-bg, $btn-default-color, true);
+					}
+				}
+			}
+		}
+	}
+}

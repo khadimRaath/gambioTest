@@ -1,0 +1,56 @@
+/*
+	---------------------------------------------------------------------------
+	THIS FILE IS DEPRECATED - MODIFY IT ONLY FOR FIXES IN EXISTING STYLE RULES. 
+	
+	DO NOT APPEND IT WITH NEW STYLING RULES, USE THE GX-ADMIN FILES INSTEAD. 
+	---------------------------------------------------------------------------
+*/
+.product_tabs_wrapper{
+	border: 1px solid #ccc;
+	background: #efefef;
+	padding: 2px;
+	margin: 2px 0;
+}
+
+.product_tabs_headline{
+	width: 100%;
+	display: block;
+}
+
+.product_tab_box{
+	margin: 3px 0;
+	line-height: 16px;
+}
+
+.product_tab_headline{
+	margin-right: 15px;
+	display: block;
+	float: left;
+	height: 16px;
+	cursor: pointer;
+}
+
+.product_tab_box input,
+.product_tab_box textarea{
+	float: left;
+	display: none;
+}
+
+.product_tab_edit,
+.product_tab_delete{
+	display: block;
+	float: right;
+	margin: 0 2px;
+	cursor: pointer;
+}
+
+.product_tab_clear{
+	clear: both;
+	height: 1px;
+}
+
+.lightbox_package .article_tabs_container .row label,
+.lightbox_package .article_tabs_container .row input,
+.lightbox_package .article_tabs_container .row textarea {
+	float: none;
+}

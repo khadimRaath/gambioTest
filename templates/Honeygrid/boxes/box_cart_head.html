@@ -1,0 +1,21 @@
+{load_language_text section="box_cart"}
+
+<nav id="cart-container" class="navbar-cart" data-gambio-widget="menu cart_dropdown" data-menu-switch-element-position="false">
+	<ul class="cart-container-inner">
+		<li>
+			<a href="{'shopping_cart.php'|xtc_href_link}" class="dropdown-toggle">
+				<i class="gm-cart-basket"></i>
+				<span class="cart">
+					{$txt.heading_cart}<br />
+					<span class="products">
+						{$TOTAL}
+					</span>
+				</span>
+				<span class="cart-products-count{if $productsCount == 0} hidden{/if}">
+					{$productsCount}
+				</span>
+			</a>
+			###SHOPPING_CART_DROPDOWN###
+		</li>
+	</ul>
+</nav>

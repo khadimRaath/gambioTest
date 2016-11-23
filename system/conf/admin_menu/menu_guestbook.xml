@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<!-- {load_language_text section="admin_menu"} -->
+
+{if file_exists('gm_guestbook.php') }
+<admin_menu>
+	<menugroup id="BOX_HEADING_MODULES">
+		<menuitem sort="30" link="FILENAME_GM_GUESTBOOK" title="{$txt.BOX_GM_GUESTBOOK|escape}" />
+	</menugroup>
+</admin_menu>
+{/if}

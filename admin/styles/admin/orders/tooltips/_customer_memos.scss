@@ -1,0 +1,32 @@
+/* 
+	Order Item Tooltip 
+    ========================================================================== 
+
+	Tooltips contained in the order page
+	
+*/
+
+.gx-tooltip {
+	.customer-memos {
+		max-width: 600px;
+		
+		.memo {
+			border-bottom: 1px solid $text-color-tooltip;
+			
+			td {
+				vertical-align: top;
+				height:         auto;
+				padding:        $padding-small $padding-large;
+				
+				.poster,
+				.title {
+					font-weight: bold;
+				}
+			}
+			
+			&:last-of-type {
+				border-bottom: none;
+			}
+		}
+	}
+}

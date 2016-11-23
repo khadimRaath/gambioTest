@@ -1,0 +1,277 @@
+/* 
+	Main Header Info Box
+    ========================================================================== 
+
+	Style the info box component in the right corner of the main header. 
+	
+*/
+
+// Message headline font size. 
+$message-headline-font-size: 14px;
+
+// Message texts padding and margin styling.
+@mixin put-message-text-padding-margin {
+	padding: $padding-small $padding-large;
+	margin:  0;
+}
+
+// Info Box Animations 
+@-webkit-keyframes show-info-box {
+	0% {
+		-webkit-transform: translate(0, 0);
+		transform:         translate(0, 0);
+		z-index:           1;
+	}
+	50% {
+		top:               0;
+		-webkit-transform: translate(0, 50px);
+		transform:         translate(0, 50px);
+		z-index:           1
+	}
+	51% {
+		z-index: 2
+	}
+	100% {
+		top:               0;
+		-webkit-transform: translate(0, 35px);
+		transform:         translate(0, 35px);
+		z-index:           2;
+	}
+}
+
+@-webkit-keyframes hide-info-box {
+	0% {
+		top:               0;
+		-webkit-transform: translate(0, 35px);
+		transform:         translate(0, 35px);
+		z-index:           2;
+	}
+	50% {
+		top:               0;
+		-webkit-transform: translate(0, 50px);
+		transform:         translate(0, 50px);
+		z-index:           2
+	}
+	51% {
+		z-index: 1
+	}
+	100% {
+		top:               0;
+		-webkit-transform: translateY(-100%);
+		transform:         translateY(-100%);
+		z-index:           1;
+	}
+}
+
+// Needed for browsers without webkit
+@keyframes show-info-box {
+	0% {
+		-moz-transform: translate(0, 0);
+		-o-transform:   translate(0, 0);
+		transform:      translate(0, 0);
+		z-index:        1;
+	}
+	50% {
+		top:            0;
+		-moz-transform: translate(0, 50px);
+		-o-transform:   translate(0, 50px);
+		transform:      translate(0, 50px);
+		z-index:        1
+	}
+	51% {
+		z-index: 2
+	}
+	100% {
+		top:            0;
+		-moz-transform: translate(0, 35px);
+		-o-transform:   translate(0, 35px);
+		transform:      translate(0, 35px);
+		z-index:        2;
+	}
+}
+
+@keyframes hide-info-box {
+	0% {
+		top:            0;
+		-moz-transform: translate(0, 35px);
+		-o-transform:   translate(0, 35px);
+		transform:      translate(0, 35px);
+		z-index:        2;
+	}
+	50% {
+		top:            0;
+		-moz-transform: translate(0, 50px);
+		-o-transform:   translate(0, 50px);
+		transform:      translate(0, 50px);
+		z-index:        2
+	}
+	51% {
+		z-index: 1
+	}
+	100% {
+		top:            0;
+		-moz-transform: translateY(-100%);
+		-o-transform:   translateY(-100%);
+		transform:      translateY(-100%);
+		z-index:        1;
+	}
+}
+
+// Message items count.
+.info-box {
+	max-width:  $header-height;
+	max-height: $header-height;
+	overflow:   hidden;
+	
+	.notification-count {
+		position:       relative;
+		top:            -43px;
+		left:           26px;
+		padding:        1px 4px;
+		border-radius:  100%;
+		background:     $brand-alt;
+		font-size:      9px;
+		font-weight:    bold;
+		pointer-events: none;
+	}
+}
+
+// Tooltip.
+.info-box-popover {
+	border-radius:       0;
+	max-width:           304px;
+	
+	// Animation to hide the popover.
+	animation:           ease hide-info-box 0.7s;
+	animation-fill-mode: forwards;
+	will-change:         transform;
+	
+	// Message list.
+	.info-box-popover-content {
+		color:            $text-color-light;
+		background-color: $popover-bg;
+		min-width:        300px;
+		min-height:       150px;
+		padding:          0;
+		
+		// Message item.
+		.message {
+			border-top: 1px solid $popover-border-color;
+			width:      300px;
+			clear:      both;
+			
+			// First message item. 
+			&:not(.hidden):first-child {
+				border-top: 0;
+			}
+			
+			// Message headline.
+			.message-headline {
+				@include put-message-text-padding-margin;
+				font-size:      $message-headline-font-size;
+				font-weight:    bold;
+				padding-top:    $margin-large;
+				padding-bottom: 0;
+			}
+			
+			// Message body text.
+			.message-body {
+				@include put-message-text-padding-margin;
+				padding-bottom: $margin-large;
+			}
+			
+			// Message button.
+			.message-button {
+				float:         right;
+				min-width:     92px;
+				margin-right:  $margin-large;
+				margin-bottom: $margin-large;
+			}
+			
+			// Message action container.
+			.message-action-container {
+				float:    right;
+				margin:   $margin-small;
+				
+				// Message action elements.
+				.message-action {
+					cursor: pointer;
+					margin: 0 ($padding-small / 2);
+				}
+			}
+			
+			// Message of type 'info'.
+			&.info {
+				.message-headline {
+					color: $brand-warning;
+				}
+				
+				.message-button {
+					@include component-colors($brand-warning, $btn-warning-color, false);
+					
+					&:hover {
+						@include component-colors($brand-warning, $btn-warning-color, true);
+					}
+				}
+			}
+			
+			// Message of type 'warning'.
+			&.warning {
+				.message-headline {
+					color: $brand-danger;
+				}
+				
+				.message-button {
+					@include component-colors($brand-danger, $btn-danger-color, false);
+					
+					&:hover {
+						@include component-colors($brand-danger, $btn-danger-color, true);
+					}
+				}
+			}
+			
+			// Message of type 'success'.
+			&.success {
+				.message-headline {
+					color: $brand-success;
+				}
+				
+				.message-button {
+					@include component-colors($brand-success, $btn-success-color, false);
+					
+					&:hover {
+						@include component-colors($brand-success, $btn-success-color, true);
+					}
+				}
+			}
+		}
+		
+		// Hidden messages visibility checkbox.
+		.visibility-checkbox-container {
+			
+			// Checkbox container.
+			clear:       both;
+			display:     block;
+			padding:     $padding-small $padding-large;
+			line-height: $margin-large;
+			border-top:  1px solid $popover-border-color;
+			
+			// Checkbox label.
+			.visibility-checkbox-label {
+				line-height:   $margin-large;
+				margin-left:   $margin-small;
+				margin-bottom: 0;
+				font-weight:   normal;
+			}
+		}
+	}
+	
+	// Animation to show the popover.
+	&.active {
+		display:             block;
+		animation:           ease show-info-box 0.7s;
+		animation-fill-mode: forwards;
+		will-change:         transform;
+		z-index:             2;
+	}
+}

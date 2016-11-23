@@ -1,0 +1,36 @@
+{load_language_text section="image_processing"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="admin_general" name="general"}
+
+<table>
+	<tr>
+		<td class="dataTableHeadingContent">
+			<a href="{$image_options_page_link}">
+				{$txt.image_processing_tab_image_options}
+			</a>
+		</td>
+		<td class="dataTableHeadingContent">
+			{$txt.image_processing_title}
+		</td>
+	</tr>
+</table>
+
+<table class="gx-configuration" data-gx-controller="image_processing/image_processing">
+	<tr>
+		<td class="configuration-label">{$txt.image_processing_label}</td>
+		<td class="gx-container">
+			<button type="button" class="btn btn-primary js-process">{$button.execute}</button>
+
+			<div class="process-modal hidden">
+				<div class="progress progress-striped active">
+					<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+						0 / 0
+					</div>
+				</div>
+				
+				<p>{$txt.image_processing_text_info}</p>
+			</div>
+		</td>
+	</tr>
+</table>
+

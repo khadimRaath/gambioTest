@@ -1,0 +1,99 @@
+{literal}
+<style type="text/css">
+	#csv_categories {
+		width: 900px;
+		margin: 0 auto;
+	}
+	
+	a.checkbox
+	{
+		display: inline-block;
+		width: 18px;
+		height: 18px;
+		cursor: default;
+		background-image: url(html/assets/images/legacy/export_schemes/icon_checkboxes.png);
+	}
+	
+	a.checkbox.self_all_sub_checked
+	{
+		background-position: 0px 36px;
+		
+	}
+	
+	a.checkbox.self_some_sub_checked
+	{
+		background-position: 0px 54px;
+	}
+	
+	a.checkbox.self_no_sub_checked
+	{
+		background-position: 0px 18px;
+		
+	}
+	
+	a.checkbox.no_self_all_sub_checked
+	{
+		background-position: 0px 72px;
+	}
+	
+	a.checkbox.no_self_some_sub_checked
+	{
+		background-position: 0px 72px;
+	}
+	
+	a.checkbox.no_self_no_sub_checked
+	{
+		background-position: 0px 0px;
+	}
+	
+	#csv_categories_tree
+	{
+		padding-left: 0px;
+	}
+	
+	ul.subtree
+	{
+		list-style: none;
+	}
+</style>
+{/literal}
+
+{load_language_text section="export_schemes"}
+{load_language_text section="lightbox_buttons" name="buttons"}
+
+<div id="csv_categories">
+	<div class="content_headline">{$txt.categories_tab} <div class="tooltip" title="{$txt.tooltip_new_categories}"> <!-- --> </div></div>	
+	<div class="clear_both"> <!-- --> </div>
+	<form id="csv_categories_form">
+		<div>
+			<input type="hidden" id="csv_scheme_id" value="{$content_data.scheme->v_scheme_id}" name="scheme_id" />
+			<input type="checkbox" id="csv_select_all_categories" name="csv_select_all_categories"/> <label for="csv_select_all_categories">{$txt.select_all}</label>
+			<!--<input type="checkbox" id="csv_include_inactive_categories" name="csv_include_inactive_categories" checked="checked"/> <label for="csv_include_inactive_categories">Inaktive Kategorien einbeziehen</label>-->
+		</div>
+		<ul id="csv_categories_tree" class="subtree">
+		{foreach item=category from=$content_data.categories}
+		<li>
+			<a class="checkbox {$category.state}_checked" id="csv_category_{$category.categories_id}" href="#"></a>
+			<input type="hidden" class="hidden_input" name="csv_category_state_{$category.categories_id}" value="{$category.state}"/>
+			<a class="csv_category_link csv_fold" rel="{$category.categories_id}" href="export_child_categories.html"><span class="csv_category_folder" style="background-image: url(html/assets/images/legacy/icons/folder.gif); background-position: 0px 3px; display: inline-block; height: 18px; width: 18px;"></span></a>
+			<span>{$category.categories_name|htmlentities_wrapper}</span>
+			<ul class="subtree"></ul>
+		</li>
+		{/foreach}
+		</ul>
+		{literal}
+		<script type="text/javascript">
+			var all_checked = true;
+			$('#csv_categories_tree input.hidden_input').each(function ()
+			{
+				all_checked &= $(this).val() == 'self_all_sub';
+			});
+
+			if (all_checked)
+			{
+				$('#csv_select_all_categories').prop('checked', true);
+			}
+		</script>
+		{/literal}
+	</form>
+</div>

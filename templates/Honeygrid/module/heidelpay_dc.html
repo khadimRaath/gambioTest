@@ -1,0 +1,16 @@
+<!--
+ Released under the GNU General Public License (Version 2)
+ [http://www.gnu.org/licenses/gpl-2.0.html]
+-->
+<script type='text/javascript' src='{$tplPath}/assets/javascript/checkout/HeidelpayValAfterpayment.js'></script>
+<link rel="stylesheet" media="all" type="text/css" href="{$tplPath}/assets/styles/heidelpayAfter.css"/>
+
+<form id="checkout_payment">
+	<iframe id="paymentFrameIframe" src="{$frontendPaymentFrameUrl}" frameborder="0" scrolling="no">
+			Your Browser doesn\'t support iFrames
+	</iframe>
+	{if $DbOnRg}<input type="hidden" name='CRITERION.DBONRG' value='{$DbOnRg}' />{/if}
+	<br/><br/>
+	<input type="button" value="{$smarty.const.HGW_BTN_CANCEL}" class="grey button left" onClick="location.href='ext/heidelpay/heidelpayGW_response.php?cancel=1'" />
+	<input type="submit" value="{$smarty.const.HGW_BTN_CONTINUE}" class="green button right" />
+</form>

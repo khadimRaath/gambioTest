@@ -1,0 +1,69 @@
+{extends file="../layouts/main/layout.html"}
+
+{block name="head"}
+	{include file="../layouts/main/partial/order_status_styles.html"}
+{/block}
+
+{block name="content"}
+	{load_language_text section="admin_orders" name="admin_orders"}
+	{load_language_text section="orders" name="orders"}
+	{load_language_text section="gm_order_menu" name="gm_order_menu"}
+	
+	<div class="orders overview">
+		<div class="toolbar">
+			<i class="fa fa-cogs fa-lg" data-toggle="modal" data-target=".settings.modal"></i>
+		</div>
+
+		<table class="table table-main table-striped table-row-{$content.active_row_height}"
+			   data-gx-widget="single_checkbox multi_select"
+			   data-gx-controller="orders/overview/init orders/overview/events orders/overview/filter 
+			   						orders/overview/tooltips orders/overview/actions orders/overview/state"
+			   data-gx-extension="datatable_checkbox_mapping datatable_fixed_header datatable_custom_sorting
+								  datatable_fixed_row_actions datatable_loading_spinner datatable_responsive_columns 
+								  datatable_custom_pagination datatable_normalize_overflow datatable_default_actions"
+			   data-init-active-columns="{$content.active_columns}"
+			   data-init-page-length="{$content.page_length}"
+			   data-datatable_default_actions-row="{$content.default_row_action}"
+			   data-datatable_default_actions-bulk="{$content.default_bulk_action}"
+			   data-resize-layout="draw.dt">
+			<thead>
+				{include file="../layouts/main/partial/datatables_heading_row.html"}
+				{include file="../layouts/main/partial/datatables_filtering_row.html"}
+			</thead>
+			<tbody>
+				{* Content will be loaded dynamically (orders/overview/init.js) *}
+			</tbody>
+		</table>
+
+		{* Button Dropdown *}
+		<div class="bulk-action btn-group dropdown">
+			<button type="button" class="btn btn-default disabled">{* Dynamic Content *}</button>
+			<button type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown"
+					aria-haspopup="true" aria-expanded="false">
+				<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+			</button>
+			<ul class="dropdown-menu">
+				{* Dynamic Content *}
+			</ul>
+		</div>
+
+		{* Hidden fields for the max amount of invoices and packings slips bulk pdf's *}
+		<div class="hidden">
+			<span id="max-amount-invoices-bulk-pdf">{$content.max_amount_invoices_bulk_pdf}</span>
+			<span id="max-amount-packing-slips-bulk-pdf">{$content.max_amount_packing_slips_bulk_pdf}</span>
+		</div>
+
+		{* Include Modal Templates *}
+		{include file="./modals/add_tracking_number.html"}
+		{include file="./modals/bulk_download_error.html"}
+		{include file="./modals/bulk_email_invoice.html"}
+		{include file="./modals/bulk_email_order.html"}
+		{include file="./modals/bulk_error.html"}
+		{include file="./modals/change_status.html"}
+		{include file="./modals/cancel.html"}
+		{include file="./modals/delete.html"}
+		{include file="./modals/email_invoice.html"}
+		{include file="./modals/email_order.html"}
+		{include file="./modals/settings.html"}
+	</div>
+{/block}

@@ -1,0 +1,99 @@
+{load_language_text section="combis"}
+<div class="lightbox_properties lightbox_combis_defaults">
+    <div class="lightbox_combis_defaults_content">	
+        <div class="row">
+	        <div class="span_1_4">
+				<label for="combi_ean">{$txt.ean}:</label>
+	        </div>
+	        <div class="span_3_4">
+				<input id="combi_ean" name="combi_ean" type="text" value="{$content_data.combis.combi_ean}" size="20" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_quantity">{$txt.quantity}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="combi_quantity" name="combi_quantity" type="text" value="{$content_data.combis.combi_quantity}" size="15" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_weight">{$txt.weight}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="combi_weight" name="combi_weight" type="text" value="{$content_data.combis.combi_weight}" size="15" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label>{$txt.price_type}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <select name="combi_price_type" id="combi_price_type">
+			        <option value="calc">{$txt.calculate_price_from_properties}</option>
+			        <option value="fix" {if $content_data.combis.combi_price_type == "fix"}selected="selected"{/if}>{$txt.combi_fix_price}</option>
+		        </select>
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_price">{$txt.price}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="combi_price" name="combi_price" type="text" value="{$content_data.combis.combi_price|string_format:"%.2f"}" size="15" {if $content_data.combis.combi_price_type == "calc"}disabled="disabled"{/if} />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="vpe_value">{$txt.packing_unit} ({$txt.value}):</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="vpe_value" name="vpe_value" type="text" value="{$content_data.combis.vpe_value|string_format:"%.2f"}" size="15" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label>{$txt.packing_unit}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <select name="products_vpe_id" id="products_vpe_id">
+			        <option value="0"></option>
+			        {foreach item=item_array2 from=$content_data.products_vpe}
+			        {if $item_array2.products_vpe_id == $content_data.combis.products_vpe_id}
+			        <option value="{$item_array2.products_vpe_id}" selected="selected">{$item_array2.products_vpe_name}</option>
+			        {else}
+			        <option value="{$item_array2.products_vpe_id}">{$item_array2.products_vpe_name}</option>
+			        {/if}
+			        {/foreach}
+		        </select>
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label>{$txt.shipping_time}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <select name="shipping_status_id" id="shipping_status_id">
+			        <option value="0"></option>
+			        {foreach item=item_array2 from=$content_data.shipping_status}
+			        {if $item_array2.shipping_status_id == $content_data.combis.combi_shipping_status_id}
+			        <option value="{$item_array2.shipping_status_id}" selected="selected">{$item_array2.shipping_status_name}</option>
+			        {else}
+			        <option value="{$item_array2.shipping_status_id}">{$item_array2.shipping_status_name}</option>
+			        {/if}
+			        {/foreach}
+		        </select>
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="clear_both"> <!-- &nbsp; --> </div>
+    </div>
+</div>

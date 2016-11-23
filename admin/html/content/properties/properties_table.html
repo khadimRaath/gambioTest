@@ -1,0 +1,56 @@
+{load_language_text section="properties" name="properties"}
+<div class="properties_container_headline">
+    <a href="#" class="properties_button button_display_container"></a>
+
+        {foreach item=properties_name from=$content_data.properties_table.properties_names name=properties_names_array}
+            {if $properties_name.properties_admin_name || $properties_name.properties_name}
+                {if !$smarty.foreach.properties_names_array.first}
+                <div class="properties_container_headline_placeholder">/</div>
+                {/if}
+            {/if}   
+            {if $properties_name.properties_admin_name}
+                    <div class="properties_container_headline_text">{$properties_name.properties_admin_name|escape} ({$properties_name.properties_name})</div>
+            {else}
+                    <div class="properties_container_headline_text">{$properties_name.properties_name|escape}</div>
+            {/if}
+        {/foreach}
+
+    <a href="properties/properties_edit.html?properties_id={$content_data.properties_table.properties_id}" title="{$properties.property_edit}" class="properties_button button_propertie_edit button_edit_pencil lightbox_open"></a>
+    <a href="properties/properties_delete.html?properties_id={$content_data.properties_table.properties_id}" title="{$properties.property_delete}" class="properties_button button_propertie_delete button_cancel_red_cross lightbox_open"></a>
+    <a href="properties/properties_values_edit.html?properties_id={$content_data.properties_table.properties_id}&amp;properties_values_id=0" title="{$properties.property_value_add}" class="properties_button button_propertie_value_add button_add_green_plus lightbox_open">{$properties.value}</a>
+    <div class="properties_sort_order_value">{$content_data.properties_table.sort_order}</div>
+    <div class="properties_sort_order_text">#</div>
+    <div style="clear: both;"> <!-- --> </div>
+</div>
+<div class="properties_container_content">
+    <table cellpadding="2" cellspacing="0">
+    <tr>
+
+    {foreach item=properties_name from=$content_data.properties_table.properties_names}
+        <th class="properties_table_name">{$properties.value} ({$properties_name.code})</th>
+    {/foreach}
+
+    <th>{$properties.sort_order_short}</th>
+    <th>{$properties.products_model_short}</th>
+    <th colspan="3">{$properties.price}</th>
+    </tr>
+
+    {foreach item=properties_values from=$content_data.properties_table.properties_values}
+    <tr class="properties_values_id_{$properties_values.properties_values_id}">
+
+        {foreach item=values_name from=$properties_values.values_names}
+        <td class="properties_table_name">
+        {$values_name.values_name}&nbsp;
+        </td>
+        {/foreach}
+
+        <td class="properties_table_sortnr">{$properties_values.sort_order}&nbsp;</td>
+        <td class="properties_table_artnr">{$properties_values.value_model}&nbsp;</td>
+        <td class="properties_table_price">{$properties_values.value_price_formatted}&nbsp;</td>
+        <td class="properties_table_button"><a href="properties/properties_values_edit.html?properties_id={$content_data.properties_table.properties_id}&amp;properties_values_id={$properties_values.properties_values_id}" title="{$properties.property_value_edit}" class="properties_button button_propertie_value_edit button_edit_pencil lightbox_open"> <!-- --> </a></td>
+        <td class="properties_table_button"><a href="properties/properties_values_delete.html?properties_id={$content_data.properties_table.properties_id}&amp;properties_values_id={$properties_values.properties_values_id}" title="{$properties.property_value_delete}" class="properties_button button_propertie_value_delete button_cancel_red_cross lightbox_open"> <!-- --> </a></td>
+    </tr>
+    {/foreach}
+
+    </table>
+</div>

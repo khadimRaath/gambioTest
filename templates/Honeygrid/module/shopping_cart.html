@@ -1,0 +1,75 @@
+{load_language_text section="shopping_cart"}
+{load_language_text section="checkout_shipping" name="shipping"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="gift_cart" name="gift"}
+{load_language_text section="general" name="general_txt"}
+{load_language_text section="shared_shopping_cart" name="sharedCart"}
+		
+<h1 class="no-underline">{$txt.heading_cart}</h1>
+
+<div class="global-error-messages">
+	{include file="get_usermod:{$tpl_path}snippets/shopping_cart_messages.html"}
+</div>
+
+<div data-gambio-widget="product_cart_handler" data-product_cart_handler-actions="[]">
+
+	<div class="cart-empty{if $cart_empty != true} hidden{/if}" >
+		{include file="get_usermod:{$tpl_path}snippets/empty_cart.html"}
+	</div>
+
+	<div class="cart-not-empty{if $cart_empty == true} hidden{/if}" >
+
+		{$FORM_ACTION}
+			<div class="hidden-options">
+				{$HIDDEN_OPTIONS}
+			</div>
+
+			{$MODULE_order_details}
+
+			{* CHECKOUT-BUTTON *}
+		
+			<div class="shopping-cart-button col-xs-12 col-md-4 pull-right {if $MODULE_gift_cart != ''}has-gift-cart{/if}">
+				{include file="get_usermod:{$tpl_path}snippets/shopping_cart_button.html"}
+			</div>
+
+			<div class="alert alert-info info-message col-xs-12 col-md-7 {if $info_message_1 == ''}hidden{/if}">
+			{if $info_message_1 != ''}
+				{$info_message_1}{$min_order} {$info_message_2}{$order_amount}
+			{/if}
+			</div>
+		
+			{if $customer_status_allow_checkout == '1'}
+				<div class="shopping-cart-shipping-payment-text col-xs-12 col-md-8">
+					<span class="gm-chevron-right"></span> {$txt.text_about_shipping_and_payment}
+					<a class="grey_link js-open-modal" href="{$SHIPPING_AND_PAYMENT_INFO_LINK}"
+						   title="{$SHIPPING_AND_PAYMENT_CONTENT_TITLE}"
+                           data-modal-type="info"
+						   data-modal-settings='{literal}{{/literal}"title": "{$SHIPPING_AND_PAYMENT_CONTENT_TITLE}",
+						    "sectionSelector": ".content_text", "bootstrapClass": "modal-lg"{literal}}{/literal}'>
+						{$SHIPPING_AND_PAYMENT_CONTENT_TITLE}
+					</a>.
+				</div>
+			{/if}
+
+		</form>
+
+		{$KLARNA_WIDGET}
+
+	</div>
+
+</div>
+
+<div class="hidden">
+	{$MODULE_gift_cart}
+	{$MODULE_shared_cart}
+	{$cart_shipping_costs_selection}
+</div>
+
+
+<!-- #BOF YOOCHOOSE -->
+{if $MODULE_yoochoose_shopping_cart != ''}
+	<div class="yoochoose-container col-xs-12 col-md-8">
+		{$MODULE_yoochoose_shopping_cart}
+	</div>
+{/if}
+<!-- #EOF YOOCHOOSE -->

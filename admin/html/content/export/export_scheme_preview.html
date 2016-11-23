@@ -1,0 +1,26 @@
+{load_language_text section="export_schemes"}
+<div class="preview_headline">
+	{$txt.preview} 
+	<div class="tooltip" title="{$txt.tooltip_preview}"><!-- --></div> 
+</div> 
+<div class="clear_both"> <!-- --> </div>
+<div style="width: 100%; height: 177px; overflow: auto; text-align: left;">
+	<table cellspacing="1">
+		<tr>
+			{foreach key=key item=value from=$content_data.headline_data}
+				<th>{$value|htmlentities_wrapper}</th>
+			{/foreach}
+		</tr>
+		{foreach item=row from=$content_data.export_data}
+			<tr>
+				{foreach item=col from=$row}
+					<td>{$col}</td>
+				{/foreach}
+			</tr>
+		{/foreach}
+	</table>
+</div>
+<script type="text/javascript">
+	// Re-enable tooltip plugin (does not work otherwise).
+	$('.preview_headline .tooltip').tooltip_plugin();
+</script>

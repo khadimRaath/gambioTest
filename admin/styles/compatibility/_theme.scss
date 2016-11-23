@@ -1,0 +1,208 @@
+// ----------------------------------------------------------------------------
+// GX-Admin Stylesheet - Theme
+//
+// This file defines the colors, mixins and other specific stuff for the
+// administration section.
+//
+// @since v2.3.1.0
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// CONSTANTS DEFINITION
+// ----------------------------------------------------------------------------
+
+// Paths
+$fonts-path: "../fonts";
+$images-path: "../images";
+
+// Font-Awesome fonts path
+$fa-font-path: "#{$fonts-path}/font-awesome";
+
+$gambio-blue: #2196F3;
+$lila: #D500F9;
+$table-color: $gambio-blue;
+$highlight-color: #E8E8E8;
+
+$text-color: #212121;
+$text-color-light: #737373;
+$text-color-dark: #000000;
+$text-color-inverse: #FFFFFF;
+$text-color-info-alert: #3A87AD;
+$text-color-warning-alert: #AF8640;
+$text-color-danger-alert: #B94A48;
+$text-color-success-alert: #468847;
+$link-color: $gambio-blue;
+$infobox-text-color: #FBF289;
+
+$border-color: #B6B6B6;
+$border-color-light: #E4E4E4;
+$border-color-inverse: #FFFFFF;
+$border-color-info-alert: #BCE8F1;
+$border-color-warning-alert: #F6DEAC;
+$border-color-danger-alert: #EBCCD1;
+$border-color-success-alert: #D0E6BE;
+$infobox-border-color: #CDCDCD;
+$dropdown-border-color: #CCCCCC;
+$main-nav-border-color: #EDEDED;
+
+$background-color: #FFFFFF;
+$background-color-dark: #000000;
+$background-color-info-alert: #D9EDF7;
+$background-color-warning-alert: #F9F1C7;
+$background-color-danger-alert: #F2DEDE;
+$background-color-success-alert: #DFF0D8;
+$background-color-customers: #55C1DD;
+$component-color: #FFFFFF;
+$copyright-background-color: #5B5B5B;
+$paginator-background-color: #FBFBFB;
+
+$switcher-foreground-color: #FFFFFF;
+
+$default-color: #F5F5F5;
+$success-color: #5EBD5E;
+$primary-color: $gambio-blue;
+$danger-color: #E66554;
+$warning-color: #F5AE49;
+$infobox-color: #FDAC00;
+
+$header-action-hover-color: #098BEF;
+
+$margin: 0px 6px 6px 0px;
+$margin-bigger: 0px 12px 12px 0px;
+$header-height: 46px;
+
+$disabled-opacity: 0.35;
+
+$breakpoint-width-small: 675px;
+$breakpoint-width-large: 1350px;
+$breakpoint-width-left-table: 75.2%;
+// for the content on the left side of a configuration box
+
+$font-family: Roboto, "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+// Import Roboto Font
+@font-face {
+  font-family: 'Roboto';
+  font-style:  normal;
+  font-weight: 400;
+  src:         local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
+}
+
+// Import Roboto Bold
+@font-face {
+  font-family: 'Roboto';
+  font-style:  normal;
+  font-weight: 700;
+  src:         local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+}
+
+// Import Font Open Sans
+@font-face {
+  font-family: 'Open Sans';
+  font-style:  normal;
+  font-weight: 400;
+  src:         local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+// ----------------------------------------------------------------------------
+// MIXINS DEFINITION
+// ----------------------------------------------------------------------------
+
+@mixin font($size) {
+  font-family: $font-family;
+  font-size:   $size;
+}
+
+@mixin component-colors($color, $font-color: $component-color) {
+  $gradient-start: adjust-lightness($color, 0);
+  $gradient-end: adjust-lightness($color, -4);
+  $border-start: adjust-lightness($color, -9);
+  $border-end: adjust-lightness($color, -15);
+  @include background-image(linear-gradient($gradient-start, $gradient-end));
+  border-color: $border-start $border-start $border-end;
+  color:        $font-color;
+}
+
+@mixin component-colors-hover($color, $font-color: $component-color) {
+  $gradient-start: adjust-lightness($color, -2);
+  $gradient-end: adjust-lightness($color, -7);
+  $border-start: adjust-lightness($color, -10);
+  $border-end: adjust-lightness($color, -16);
+  @include background-image(linear-gradient($gradient-start, $gradient-end));
+  border-color: $border-start $border-start $border-end;
+  color:        $font-color;
+}
+
+// use this if your stylings are overridden by other external libraries (e.g. pixel-admin)
+@mixin force-component-colors($color, $font-color: $component-color) {
+  $gradient-start: adjust-lightness($color, 0);
+  $gradient-end: adjust-lightness($color, -4);
+  $border-start: adjust-lightness($color, -9);
+  $border-end: adjust-lightness($color, -15);
+  background-image: linear-gradient($gradient-start, $gradient-end) !important;
+  border-color:     $border-start $border-start $border-end !important;
+  color:            $font-color !important;
+}
+
+// use this if your stylings are overridden by other external libraries (e.g. pixel-admin)
+@mixin force-component-colors-hover($color, $font-color: $component-color) {
+  $gradient-start: adjust-lightness($color, -2);
+  $gradient-end: adjust-lightness($color, -7);
+  $border-start: adjust-lightness($color, -10);
+  $border-end: adjust-lightness($color, -16);
+  background-image: linear-gradient($gradient-start, $gradient-end) !important;
+  border-color:     $border-start $border-start $border-end !important;
+  color:            $font-color !important;
+}
+
+@mixin button-basic-style() {
+  cursor:          pointer;
+  padding:         6px 12px;
+  margin:          0 0 12px 12px; // Buttons should be always aligned to the right side, so the margin is different.
+  min-width:       92px;
+  height:          31px;
+  font-weight:     400;
+  text-align:      center;
+  text-decoration: none;
+  outline:         none;
+  
+  .btn-icon {
+    margin-right: 3px;
+  }
+  
+  @include box-sizing(border-box);
+  @include border-radius(2px);
+  @include font(12px);
+  @include component-colors($default-color, $text-color-light);
+
+  &:hover {
+    @include component-colors-hover($default-color, $text-color-light);
+  }
+
+  &:focus {
+    @include box-shadow(inset 0 0 4px adjust-lightness($default-color, -10));
+  }
+
+  &:active {
+    @include box-shadow(inset 0 0 4px adjust-lightness($default-color, -10));
+  }
+
+  &:disabled {
+    cursor: default;
+    @include box-shadow(none);
+    @include component-colors($default-color);
+  }
+}
+
+@mixin fixed-input-width() {
+  min-width: 170px;
+  width:     340px;
+  max-width: 510px;
+}
+
+@mixin message-stack($background-color, $font-color, $border-color) {
+  background:      $background-color;
+  border-color:    $border-color;
+  color:           $font-color;
+  background-size: 20px 20px;
+}

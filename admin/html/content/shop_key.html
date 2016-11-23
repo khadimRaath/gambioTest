@@ -1,0 +1,82 @@
+{load_language_text section="shop_key"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="admin_menu" name="menu"}
+
+<div class="shop-key-configuration gx-container breakpoint-small">
+	<h2 class="section-header">{$txt.page_sub_heading}</h2>
+	
+	<table>
+		<tr>
+			<td class="dataTableHeadingContent">
+				{$menu.BOX_CONFIGURATION_753}
+			</td>
+			<td class="dataTableHeadingContent">
+				<a href="gm_security.php">
+					{$menu.BOX_GM_SECURITY}
+				</a>
+			</td>
+			<td class="dataTableHeadingContent">
+				<a href="configuration.php?gID=15">
+					{$menu.BOX_CONFIGURATION_15}
+				</a>
+			</td>
+			<td class="dataTableHeadingContent">
+				<a href="configuration.php?gID=14">
+					{$menu.BOX_CONFIGURATION_14}
+				</a>
+			</td>
+			<td class="dataTableHeadingContent">
+				<a href="configuration.php?gID=10">
+					{$menu.BOX_CONFIGURATION_10}
+				</a>
+			</td>
+		</tr>
+	</table>
+
+	<form name="configuration"
+	      action="admin.php?do=ShopKey/Store"
+	      method="post"
+	      class="shop-key-form"
+	      data-gx-controller="shop_key/shop_key"
+	      data-gx-extension="visibility_switcher" >
+		<div class="grid">
+			<div class="span12 visibility_switcher">
+				<div class="control-group">
+					<label for="gambio-shop-key">{$txt.input_label}</label> 
+					<input id="gambio-shop-key" type="text" name="GAMBIO_SHOP_KEY" value="{$shop_key}"/>
+					<span class="tooltip-icon add-padding-left-24" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">{$txt.input_label_tooltip}</span>
+				</div>
+			</div>
+		</div>
+		<div class="grid">
+			<div class="span12">
+				<div class="control-group">
+					<label for="shop-key-data">{$txt.textarea_label}</label> 
+					<textarea id="shop-key-data" readonly="readonly" rows="10" cols="70" name="shop_key_data">{$shop_key_data}</textarea>
+				</div>
+			</div>
+		</div>
+		
+		<div class="info-links">
+			<div class="link-purpose grid">
+				<div class="span12">
+					<i class="fa fa-caret-right"></i>
+					<a class="show-shop-key-information" href="#">{$txt.link_purpose}</a>
+				</div>
+			</div>
+			<div class="link-request grid">
+				<div class="span12">
+					<i class="fa fa-caret-right"></i>
+					<a href="{$shop_key_request_link}" target="_blank">{$txt.link_request}</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="button-container grid">
+			<div class="span12">
+				<input type="submit" class="btn btn-primary pull-right" name="save" value="{$button.save}" />
+				<input type="submit" class="btn pull-right" name="delete" value="{$txt.delete_shop_key}" />
+			</div>
+		</div>
+	</form>
+</div>

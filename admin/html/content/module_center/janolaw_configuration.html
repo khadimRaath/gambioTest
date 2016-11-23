@@ -1,0 +1,117 @@
+{load_language_text section="janolaw_configuration"}
+{load_language_text section="buttons" name="button"}
+
+<table>
+	<tr>
+		<td class="dataTableHeadingContent">
+			<a href="{$info_page_link}">
+				{$txt.info_page}
+			</a>
+		</td>
+		<td class="dataTableHeadingContent">
+			{$txt.configuration}
+		</td>
+	</tr>
+</table>
+
+<form method="post"
+      action="admin.php?do=JanolawModuleCenterModule/Store"
+      name="modules"
+      class="janolaw-configuration gx-container"
+      data-gx-extension="visibility_switcher" >
+	<table class="gx-configuration" data-gx-widget="checkbox">
+		<tr>
+			<th colspan="2">{$txt.module_status}</th>
+		</tr>
+		<tr>
+			<td class="configuration-label">{$txt.status_label}</td>
+			<td>
+				<input type="radio" {if $configuration.MODULE_GAMBIO_JANOLAW_STATUS == "True"}checked="checked"{/if} value="True" name="MODULE_GAMBIO_JANOLAW_STATUS" />
+				<input type="radio" {if $configuration.MODULE_GAMBIO_JANOLAW_STATUS == "False"}checked="checked"{/if} value="False" name="MODULE_GAMBIO_JANOLAW_STATUS" />
+			</td>
+		</tr>
+	</table>
+
+	<table class="gx-configuration">
+		<tr>
+			<th colspan="2">{$txt.credentials}</th>
+		</tr>
+		<tr class="visibility_switcher">
+			<td class="configuration-label">
+				<label for="MODULE_GAMBIO_JANOLAW_USER_ID" class="section-description">
+					{$txt.user_id}
+				</label>
+			</td>
+			<td>
+				<input id="MODULE_GAMBIO_JANOLAW_USER_ID" type="text" value="{$configuration.MODULE_GAMBIO_JANOLAW_USER_ID}" name="MODULE_GAMBIO_JANOLAW_USER_ID" />
+				<span class="tooltip-icon" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+					{$txt.user_id_info}
+				</span>
+			</td>
+		</tr>
+		<tr class="visibility_switcher">
+			<td class="configuration-label">
+				<label for="MODULE_GAMBIO_JANOLAW_SHOP_ID" class="section-description">
+					{$txt.shop_id}
+				</label>
+			</td>
+			<td>
+				<input id="MODULE_GAMBIO_JANOLAW_SHOP_ID" type="text" value="{$configuration.MODULE_GAMBIO_JANOLAW_SHOP_ID}" name="MODULE_GAMBIO_JANOLAW_SHOP_ID" />
+				<span class="tooltip-icon" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+					{$txt.shop_id_info}
+				</span>
+			</td>
+		</tr>
+		{if $version_info.version > 0}
+			<tr class="visibility_switcher">
+				<td class="configuration-label">
+					<label class="section-description">{$txt.information}</label>
+				</td>
+				<td>
+					{$txt.version}: {$version_info.version}<br>
+					{$txt.multilang_subscription}: {if $version_info.multilang}{$txt.multilang_available}{else}{$txt.multilang_unavailable}{/if}
+				</td>
+			</tr>
+			{if $version_info.multilang == false}
+				<tr class="visibility_switcher">
+					<td class="section-description">
+						&nbsp;
+					</td>
+					<td>
+						{if $version_info.version < 3}{$txt.note_old_version}{else}{$txt.note_multilang_option}{/if}
+					</td>
+				</tr>
+			{/if}
+		{else}
+			<tr>
+				<td class="visibility_switcher">
+					&nbsp;
+				</td>
+				<td>
+					{$txt.note_credentials_invalid}
+				</td>
+			</tr>
+		{/if}
+	</table>
+
+	<table class="gx-configuration visibility_switcher" data-gx-widget="checkbox">
+		<tr>
+			<th colspan="2">{$txt.pdf_contents}</th>
+		</tr>
+		<tr>
+			<td class="configuration-label">{$txt.pdf_contents_label}</td>
+			<td>
+				<input {if $configuration.MODULE_GAMBIO_JANOLAW_USE_IN_PDF == "True"}checked="checked"{/if} type="radio" value="True" name="MODULE_GAMBIO_JANOLAW_USE_IN_PDF" />
+				<input {if $configuration.MODULE_GAMBIO_JANOLAW_USE_IN_PDF == "False"}checked="checked"{/if} type="radio" value="False" name="MODULE_GAMBIO_JANOLAW_USE_IN_PDF" />
+				<span class="tooltip-icon" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+					{$txt.pdf_contents_info}
+				</span>
+			</td>
+		</tr>
+	</table>
+
+	<div class="button-container">
+		<input type="submit" class="btn btn-primary pull-right" value="{$button.save}">
+		<a class="btn btn-default pull-right" href="#" onclick="history.go(-1)">{$button.back}</a>
+	</div>
+</form>

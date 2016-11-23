@@ -1,0 +1,41 @@
+/* 
+	Pace 
+    ========================================================================== 
+
+	Styling for the top loading bar (pace.js).
+	
+*/
+
+.pace {
+	-webkit-pointer-events: none;
+	pointer-events:         none;
+	
+	&.pace-inactive {
+		display: none;
+	}
+	
+	.pace-progress {
+		background: $brand-alt;
+		position:   fixed;
+		z-index:    2000;
+		top:        0;
+		right:      100%;
+		width:      100%;
+		height:     2px;
+	}
+	
+	.pace-progress-inner {
+		display:           block;
+		position:          absolute;
+		right:             0;
+		width:             100px;
+		height:            100%;
+		box-shadow:        0 0 10px $brand-alt, 0 0 5px $brand-alt;
+		opacity:           1.0;
+		-webkit-transform: rotate(3deg) translate(0px, -4px);
+		-moz-transform:    rotate(3deg) translate(0px, -4px);
+		-ms-transform:     rotate(3deg) translate(0px, -4px);
+		-o-transform:      rotate(3deg) translate(0px, -4px);
+		transform:         rotate(3deg) translate(0px, -4px);
+	}
+}

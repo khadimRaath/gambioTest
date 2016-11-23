@@ -1,0 +1,294 @@
+/* Shopping-Cart
+   ========================================================================== */
+
+#cart-container.navbar-cart {
+
+
+  // hide on mobile
+
+  display: none;
+  @media (min-width: $grid-float-breakpoint) {
+    display: block;
+  
+    @if ($gx-hide-cart-col == true) {
+      display: none;
+    }
+  }
+
+
+  // layout
+  @if ($gx-hide-cart-col != true) {
+    @include make-sm-column($gx-cart-col-sm);
+    @include make-md-column($gx-cart-col-md);
+    @include make-lg-column($gx-cart-col-lg);
+  }
+  @else {
+    display: none;
+  }
+
+  @include transition(300ms ease all);
+
+  height: $gx-cart-height;
+  margin: $gx-cart-margin-vertical 0;
+  padding: 0;
+
+
+  // cart list
+  // must be list because dropdown behavior 
+  // uses menu component
+
+  > ul {
+    
+    @include reset-list();
+
+    > li {
+
+
+      // header cart button
+      // always visible on desktop
+
+      > a.dropdown-toggle {
+
+        @include transition(300ms ease all);
+
+        height: $gx-cart-height;
+        padding: $gx-cart-padding-vertical 70px $gx-cart-padding-vertical ($grid-gutter-width / 2);
+        display: block;
+
+        .cart {
+          color: $gx-cart-text-color;
+          display: block;
+          float: right;
+          line-height: 15px;
+          margin-top: 4px;
+        }
+        .products {
+          display: block;
+          float: right;
+          clear: right;
+          font-size: $font-size-small;
+          font-weight: bold;
+        }
+        .gm-cart-basket {
+          color: $gx-cart-icon-color;
+          font-size: 40px;
+          position: absolute;
+          right: 10px;
+          top: inherit;
+          margin-top: -11px;
+        }
+      }
+
+
+      // change cart colors when dropdown opened
+
+      &.open > a.dropdown-toggle {
+        color: $brand-primary;
+      }
+
+      > ul.dropdown-menu {
+
+        width: 300px;
+        right: 0;
+        left: auto;
+        z-index: 1001;
+
+        // reset padding and margins because of transition bugs
+        padding: 0;
+        .dropdown-header {
+          margin-top: 5px;
+        }
+        .dropdown-footer {
+          margin-bottom: 0;
+        }
+
+        // reset arrow-dropdown margins
+
+        &.arrow-top {
+          margin-right: 0;
+          margin-top: 0;
+        }
+
+        // style empty card message
+
+        &.cart-empty {
+          > .cart-dropdown-inside {
+            padding: $grid-gutter-width;
+            text-align: center;
+          }
+        }
+
+        // cart content
+        // inside the dropdown
+
+        > .cart-dropdown-inside {
+
+          font-size: $font-size-small;
+
+          // list of products
+
+          ul.products-list {
+            @include reset-list();
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+            border-top: 1px solid $gx-dropdown-border-color;
+            > li {
+              @include clearfix();
+              display: block;
+              margin: 0;
+              border-top: 1px solid $gx-dropdown-border-color;
+              &:first-of-type {
+                border-top: none;
+              }
+              > a {
+                @include clearfix();
+                display: block;
+                padding: 5px 0;
+                color: $gx-dropdown-color;
+	            .products-vpe {
+		          color: $gx-dropdown-info-color;
+		          display: inline;
+		          font-size: 11px;
+		          padding: 0;
+	            }
+                .price {
+                  font-weight: 700;
+                  text-align: right;
+                }
+              }
+            }
+          }
+
+          // dropdown footer with totals and button
+
+          .total {
+            @include clearfix();
+            font-weight: bold;
+            .col-xs-8 {
+              text-align: right;
+              font-size: $font-size-h2;
+            }
+            .col-xs-4 {
+              padding-top: $font-size-small;
+              text-transform: uppercase;
+            }
+          }
+          .tax {
+            font-size: 11px;
+            color: $gx-dropdown-info-color;
+            padding-bottom: ($grid-gutter-width / 2);
+            text-align: right;
+            > a > span {
+              display: inline;
+              padding: 0;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.navbar-toogle {
+  &.cart-icon {
+    color: $gx-cart-icon-color;
+  }
+}
+
+
+// cart products count
+
+.cart-products-count {
+  background-color: $brand-primary;
+  height: 20px;
+  width: 20px;
+  padding: 1px;
+  text-decoration: none;
+  display: block;
+  color: #fff;
+  font-weight: 700;
+  font-size: 11px;
+  position: absolute;
+  left: auto;
+  border: 2px solid #fff;
+  text-align: center;
+  @include border-radius(50%);
+  right: 0;
+  top: 5px;
+  @media (min-width: $grid-float-breakpoint) {
+    right: 15px;
+    top: 18px;
+  }
+}
+
+
+// dropdown transitions
+// deactivated because they caused problems with
+// others menus events
+// 
+// @todo: transitions not working
+// @todo: cart laying above login-dropdown
+
+// @media (min-width: $grid-float-breakpoint) {
+//   .navbar-cart > ul {
+//     // copy/paste from categories
+//     > li > ul.dropdown-menu {
+//       height: 0;
+//       overflow: hidden;
+//       @include opacity(0);
+//       @include transition(300ms ease all);
+//     }
+//     > li.open {
+//       > ul.dropdown-menu {
+//         height: auto;
+//         overflow: visible;
+//         display: block !important;
+//         @include opacity(1);
+//       }
+//     }
+//     > li.transition {
+//       > ul.dropdown-menu {
+//         height: auto;
+//         overflow: visible;
+//         display: block !important;
+//       }
+//     }
+//   }
+// }
+
+
+// sticky behavior of cart
+
+#header {
+  @media (min-width: $grid-float-breakpoint) {
+    @if ($gx-body-wrap != true) {
+      @if ($gx-header-fixed) {
+        &.sticky {
+          .navbar-cart {
+            margin: $gx-cart-margin-vertical-sticky 0;
+            .dropdown-toggle {
+              padding-top: $gx-cart-padding-vertical-sticky;
+              padding-bottom: $gx-cart-padding-vertical-sticky;
+  
+              .cart {
+                color: $gx-cart-sticky-text-color;
+              }
+              .gm-cart-basket {
+                color: $gx-cart-sticky-icon-color;
+              }
+            }
+            @if ($gx-cart-height-sticky < $gx-cart-height) {
+              .dropdown-toggle {
+                height: $gx-cart-height-sticky !important;
+              }
+              @if ($gx-cart-height-sticky == 0) {
+                overflow: hidden !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html {$content_data.HTML_PARAMS}>
+	<head>
+		{* The following copyright announcement is in compliance
+		to section 2c of the GNU General Public License, and
+		thus can not be removed, or can only be modified
+		appropriately.
+
+		Please leave this comment intact together with the
+		following copyright announcement. *}
+		
+		<!--
+
+		=========================================================
+		Shopsoftware by Gambio GmbH (c) 2005-2016 [www.gambio.de]
+		=========================================================
+
+		Gambio GmbH offers you highly scalable E-Commerce-Solutions and Services.
+		The Shopsoftware is redistributable under the GNU General Public License (Version 2) [http://www.gnu.org/licenses/gpl-2.0.html].
+		based on: E-Commerce Engine Copyright (c) 2006 xt:Commerce, created by Mario Zanier & Guido Winger and licensed under GNU/GPL.
+		Information and contribution at http://www.xt-commerce.com
+
+		=========================================================
+		Please visit our website: www.gambio.de
+		=========================================================
+
+		-->
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		{$content_data.additional_html_array.head.top}
+		<base href="{$content_data.BASE_URL}" />
+		
+		{if $content_data.FAVICON}<link rel="shortcut icon" href="{$content_data.FAVICON}" type="image/x-icon" />{/if}
+		{if $content_data.FAVICON_IPAD}<link rel="apple-touch-icon" href="{$content_data.FAVICON_IPAD}" />{/if}
+		
+		{if $content_data.STYLE_EDIT_MODE == 'edit' ||  $content_data.STYLE_EDIT_MODE == 'sos'}
+		<link type="text/css" rel="stylesheet" href="StyleEdit/css/stylesheet.css" />
+		<link type="text/css" rel="stylesheet" href="StyleEdit/css/stylesheet_new.css" />
+		<!--[if IE]><link type="text/css" rel="stylesheet" href="StyleEdit/css/ie_stylesheet_new.css" /><![endif]-->
+		<link type="text/css" rel="stylesheet" href="StyleEdit/javascript/jquery/plugins/fancybox/jquery.fancybox-1.3.0.css" />
+		
+		{if $content_data.STYLE_EDIT_MODE == 'sos'}
+		<link type="text/css" rel="stylesheet" href="{$tpl_path}stylesheet.css" />
+		{/if}
+		{/if}
+		
+		{if $content_data.STYLE_EDIT_MODE != 'sos'}<link type="text/css" rel="stylesheet" href="{$tpl_path}gm_dynamic.css.php?{$content_data.CSS_PARAMS}" />{/if}
+		
+		{$content_data.additional_html_array.head.bottom}
+	</head>
+	<body{$content_data.additional_html_array.body.params}>	
+		{$content_data.additional_html_array.body.top}

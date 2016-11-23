@@ -1,0 +1,8 @@
+{load_language_text section="cross_selling"}
+
+{if count($module_content) > 0}
+	<div class="headline">{$txt.heading_text}</div><br />
+	{foreach key=key_data item=item_data from=$module_content}
+			{object_product_list product_list=$item_data.PRODUCTS id_prefix="cross_selling" truncate_products_name=$TRUNCATE_PRODUCTS_NAME}
+	{/foreach}
+{/if}

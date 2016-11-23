@@ -1,0 +1,10 @@
+		{include file="get_usermod:{$tpl_path}snippets/navigation/page_up.html" key="pageup"}
+		{include file="get_usermod:{$tpl_path}snippets/modal.html" key="layer"}
+
+		{$content_data.CONTENT}
+		
+		{if $content_data.PARSE_TIME}
+			{$content_data.PARSE_TIME}
+		{/if}
+	</body>
+</html>

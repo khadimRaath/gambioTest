@@ -1,0 +1,55 @@
+.panel-default {
+	clear:        both;
+	border-color: $gx-panel-border-color;
+	
+	.panel-heading {
+		@include box-shadow(inset 0 1px #FFFFFF);
+		border-bottom:    none;
+		color:            $gx-panel-header-color;
+		font-size:        16px;
+		
+		background-color: $gx-panel-header-bg;
+		// panel header background image
+		@if ($gx-panel-header-bg-image-url and $gx-panel-header-bg-image-url != "" and $gx-panel-header-bg-image-url != '') {
+			background-image: url($gx-panel-header-bg-image-url);
+			@if ($gx-panel-header-bg-image-position) {
+				background-position: $gx-panel-header-bg-image-position;
+			}
+			@if ($gx-panel-header-bg-image-repeat) {
+				background-repeat: $gx-panel-header-bg-image-repeat;
+			}
+			@if ($gx-panel-header-bg-image-size) {
+				background-size: $gx-panel-header-bg-image-size;
+			}
+			@if ($gx-panel-header-bg-image-attachment) {
+				background-attachment: $gx-panel-header-bg-image-attachment;
+			}
+		}
+	}
+	
+	.panel-body {
+		@include border-bottom-radius($border-radius-base);
+		
+		background-color: $gx-panel-bg;
+		// panel body background image
+		@if ($gx-panel-bg-image-url and $gx-panel-bg-image-url != "" and $gx-panel-bg-image-url != '') {
+			background-image: url($gx-panel-bg-image-url);
+			@if ($gx-panel-bg-image-position) {
+				background-position: $gx-panel-bg-image-position;
+			}
+			@if ($gx-panel-bg-image-repeat) {
+				background-repeat: $gx-panel-bg-image-repeat;
+			}
+			@if ($gx-panel-bg-image-size) {
+				background-size: $gx-panel-bg-image-size;
+			}
+			@if ($gx-panel-bg-image-attachment) {
+				background-attachment: $gx-panel-bg-image-attachment;
+			}
+		}
+	}
+	
+	.panel > nav {
+		margin: 5px 0;
+	}
+}

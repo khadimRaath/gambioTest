@@ -1,0 +1,72 @@
+/* 
+	jQuery DataTables
+    ========================================================================== 
+
+	Additional styling for the jQuery DataTables plugin. 
+	
+*/
+
+table.dataTable {
+	width:         100%;
+	margin-bottom: $margin-large;
+	table-layout:  fixed; // Cells must not resize depending their contents because the filtering elements are ruined.
+	
+	&, &.no-footer {
+		border-bottom: none;
+	}
+	
+	th, td {
+		box-sizing: border-box;
+	}
+	
+	thead {
+		tr {
+			th {
+				vertical-align: middle;
+				
+				&.sorting {
+					background-image: none;
+				}
+				
+				&.sorting_asc {
+					background-image: none;
+					
+					&:after {
+						content:        "\f0d8";
+						color:          $brand-primary;
+						font-family:    FontAwesome;
+						font-size:      16px;
+						margin-left:    5px;
+						vertical-align: middle;
+					}
+				}
+				
+				&.sorting_desc {
+					background-image: none;
+					
+					&:after {
+						content:        "\f0d7";
+						color:          $brand-primary;
+						font-family:    FontAwesome;
+						font-size:      16px;
+						margin-left:    5px;
+						vertical-align: middle;
+					}
+				}
+				
+				input, select {
+					font-weight: normal;
+				}
+			}
+		}
+	}
+}
+
+// Safari table resize fixes. Table should not resize.
+@supports (overflow:-webkit-marquee) and (justify-content:inherit) {
+	table.dataTable {
+		width:     auto;
+		min-width: 100%;
+		max-width: none;
+	}
+}

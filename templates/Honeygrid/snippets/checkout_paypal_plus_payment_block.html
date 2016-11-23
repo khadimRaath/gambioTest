@@ -1,0 +1,43 @@
+<ul class="list-group paypal3-plus-checkout" data-gambio-widget="radio_selection" data-radio_selection-init="true">
+	{assign var="paypal_position" value=$module_content|recursive_array_search:'paypal3'}
+	
+	{foreach name=payment_items item=module_data from=$module_content}
+		<li class="list-group-item {$module_data.id}{if $module_data.id === 'paypal3' && $module_data.module === ''}-plus{/if} {if $smarty.foreach.payment_items.iteration <= $paypal_position}above{/if}" {if $module_data.id === 'paypal3' && $module_data.module === ''}data-gambio-widget="paypal_checkout" data-paypal_checkout-third-party-payments-block="{get_paypal_third_party_payments_block|escape}"{/if}>
+			<div class="row payment_item_container">
+				<div class="{if $module_data.id == 'paypal3' && $module_data.module == ''}col-xs-12{else}col-xs-6 col-md-{if $module_data.fields != '' && $module_data.fields|@count > 0}4 with-form{else}9{/if}{/if} title radio  payment_item button_checkout_module">
+					<label>
+						<span class="control">{$module_data.selection}</span>
+						<span class="module-name">{$module_data.module}</span>
+						{if $module_data.description}
+							<span class="module-description">{$module_data.description}</span>
+						{/if}
+					</label>
+				</div>
+				{if $module_data.fields != '' && $module_data.fields[0].title != '' && $module_data.fields|@count > 0}
+					<div class="col-xs-12 col-md-7 checkout-payment-form">
+						<div class="well">
+							{foreach name=submodules item=method_data from=$module_data.fields}
+								<div class="form-group">
+									{if $method_data.title && $method_data.title != ''}
+										<label class="control-label col-xs-12 col-md-4">{$method_data.title}</label>
+									{/if}
+
+									{assign var="label" value=$method_data.title|replace:":":""}
+									<div class="col-xs-12 col-md-8">
+										{$method_data.field|replace:"class=\"gm_class_input\"":"class=\"form-control input-sm\" placeholder=\"$label\""|replace:"style=\"width:200px\"":""}
+									</div>
+								</div>
+							{/foreach}
+						</div>
+					</div>
+				{/if}
+
+				{if $module_data.id != 'paypal3' && $module_data.module != '' && $module_data.module_cost}
+					<div class="col-xs-5 {if $module_data.id != 'paypal3' && $module_data.module != ''}col-md-{if $module_data.fields != '' && $module_data.fields|@count > 0}6{else}2{/if}{/if} price text-right">
+						<p>{$module_data.module_cost}</p>
+					</div>
+				{/if}
+			</div>
+		</li>
+	{/foreach}
+</ul>

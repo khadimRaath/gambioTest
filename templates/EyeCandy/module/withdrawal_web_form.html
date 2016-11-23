@@ -1,0 +1,237 @@
+{load_language_text section="withdrawal"}
+
+{if $smarty.session.style_edit_mode != 'edit'}<link rel="stylesheet" type="text/css" href="gm/javascript/jquery/ui/datepicker/css/ui-lightness/jquery-ui-1.8.11.custom.css" media="all"/>{/if}
+
+{literal}
+
+<style type="text/css">
+
+	#withdrawal_wrapper .withdrawal_left_box label {
+		width: 90px !important;
+	}
+
+	#withdrawal_wrapper .withdrawal_right_box label {
+		width: 100px !important;
+	}
+
+	#withdrawal_wrapper .align_right_submitbutton {
+		text-align: right;
+	}
+
+</style>
+{/literal}
+{if $content_data.success}
+<div id="withdrawal_wrapper">
+	<h1>{$txt.withdrawal}{if $content_data.order->info.date_purchased} ({$txt.your_order_from} {$content_data.order->info.date_purchased|date_format:$smarty.const.DATE_FORMAT_SHORT}){/if}</h1>
+	<div class="text">{$txt.send_withdrawal_success}<br /><br /></div>
+</div>
+{else}
+<div id="withdrawal_wrapper">
+	<form id="create_account" action="{$content_data.FORM_ACTION_URL}" method="post" enctype="application/x-www-form-urlencoded" name="withdrawal_form">
+		<fieldset>
+			
+			<h1>{$txt.withdrawal}{if $content_data.order->info.date_purchased} ({$txt.your_order_from} {$content_data.order->info.date_purchased|date_format:$smarty.const.DATE_FORMAT_SHORT}){/if}</h1>
+			
+			<div class="text">{$txt.webform_info}<br /><br /></div>
+			
+			<h2 class="underline">{$txt.to}</h2>
+			
+			<div class="input content">
+				{$smarty.const.COMPANY_NAME}<br /> {$smarty.const.TRADER_FIRSTNAME} {$smarty.const.TRADER_NAME}<br />
+				{$smarty.const.TRADER_STREET} {$smarty.const.TRADER_STREET_NUMBER}<br />
+				{$smarty.const.TRADER_ZIPCODE} {$smarty.const.TRADER_LOCATION}<br /> 
+				{$smarty.const.STORE_COUNTRY_NAME}<br />
+				<br />
+				{if $smarty.const.TRADER_FAX != ''}
+				{$txt.fax}: {$smarty.const.TRADER_FAX}<br /> {/if} {if $smarty.const.STORE_OWNER_EMAIL_ADDRESS != ''}
+				{$txt.mail}: <a href="mailto:{$smarty.const.STORE_OWNER_EMAIL_ADDRESS}" class="linkNorm">{$smarty.const.STORE_OWNER_EMAIL_ADDRESS}</a>
+				{/if}
+			</div>
+			
+			<br style="clear: both;"/>
+
+			<h2 class="underline">{$txt.withdrawal}</h2>
+			
+			<div class="input content">
+				<textarea name="withdrawal_data[withdrawal_content]" id="withdrawal_form_content"
+						cols="30" rows="10" class="input-textarea">{if $smarty.post.withdrawal_data.withdrawal_content}{$smarty.post.withdrawal_data.withdrawal_content|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$txt.withdrawal_textarea_default|escape:'html'}
+{foreach from=$content_data.order->products item=product}
+
+{$product.qty} x {$product.name|escape:'html'} {if $product.model}({$product.model|escape:'html'}){/if}{foreach from=$product.attributes item=attribute}
+{if $attribute.option != ''} / {$attribute.option|escape:'html'}: {$attribute.value|escape:'html'}{/if}{/foreach}{foreach from=$product.properties item=property}{if $property.properties_name != '' } / {$property.properties_name|escape:'html'}: {$property.values_name|escape:'html'}{/if}{/foreach}{/foreach}{/if}</textarea>
+
+				<div class="withdrawal_form_mandatory"></div>
+				<br style="clear: both;"/>
+
+				<div class="withdrawal_textarea_hint">{$txt.withdrawal_textarea_hint|escape:'html'}</div>
+				<span class="class_error_message">{if $content_data.errors.withdrawal_content}{$txt.input_error}{/if}</span>
+			</div>
+			
+			<fieldset>
+				<table cellspacing="0" cellpadding="0" border="0">
+					<tr class="form_highlight">
+						<td class="col_0 form_highlight_left withdrawal_left_box">
+							<label for="withdrawal_form_switcher_order_on">{$txt.order}</label>
+							<input type="radio" name="withdrawal_form_switcher" id="withdrawal_form_switcher_order_on" value="ordered_on" class="withdrawal_form_switcher"{if !$smarty.post.withdrawal_data.delivery_date || $content_data.errors.order_date} checked="checked"{/if} />
+
+							<br style="clear: both;"/>
+
+							<label for="withdrawal_form_switcher_get_on">{$txt.get_on}</label>
+							<input type="radio" name="withdrawal_form_switcher" value="get_on" id="withdrawal_form_switcher_get_on" class="withdrawal_form_switcher"{if $smarty.post.withdrawal_data.delivery_date || $content_data.errors.delivery_date} checked="checked"{/if} />
+						</td>
+						<td class="col_1 form_highlight_right withdrawal_right_box">
+							<div id="withdrawal_form_ordered_on"{if $smarty.post.withdrawal_data.delivery_date || $content_data.errors.delivery_date} style="display: none;"{/if}>
+								<input type="text"
+										value="{if $smarty.post.withdrawal_data.order_date}{$smarty.post.withdrawal_data.order_date|escape:'html'}{else}{$content_data.order->info.date_purchased|date_format:'%d.%m.%Y'}{/if}"
+										name="withdrawal_data[order_date]"
+										id="withdrawal_form_withdrawal_date_orderd_on"
+										class="setDatepicker input-text"{if $smarty.post.withdrawal_data.delivery_date || $content_data.errors.delivery_date} disabled="disabled"{/if} /> <span class="withdrawal_form_mandatory"></span> 
+								<span class="class_error_message">{if $content_data.errors.order_date}{$txt.input_error}{/if}</span>
+							</div>
+
+							<div id="withdrawal_form_get_on"{if $smarty.post.withdrawal_data.order_date || $content_data.errors.order_date || !$smarty.post} style="display: none;"{/if}>
+								<input type="text"
+										value="{if $smarty.post.withdrawal_data.delivery_date}{$smarty.post.withdrawal_data.delivery_date|escape:'html'}{else}{$content_data.order->withdrawal_date|date_format:'%d.%m.%Y'}{/if}"
+										name="withdrawal_data[delivery_date]"
+										id="withdrawal_form_withdrawal_date_get_on"
+										class="setDatepicker input-text"{if $smarty.post.withdrawal_data.order_date || $content_data.errors.order_date || !$smarty.post} disabled="disabled"{/if} /> <span class="withdrawal_form_mandatory">*</span> 
+								<span class="class_error_message">{if $content_data.errors.delivery_date}{$txt.input_error}{/if}</span>
+							</div>
+						</td>
+				</table>
+			</fieldset>
+			
+			<h2 class="underline">{$txt.first_last_name}</h2>
+
+			<fieldset>
+				<table cellspacing="0" cellpadding="0" border="0">
+					<tr class="form_highlight">
+						<td class="col_0 form_highlight_left"><label for="withdrawal_form_salutation">{$txt.salutation}</label></td>
+						<td class="col_1 form_highlight_right">
+							<input type="radio" value="{$txt.male}" name="withdrawal_data[customer_gender]"{if $content_data.order->customer.gender =='m' || $smarty.post.withdrawal_data.customer_gender == $txt.male} checked="checked"{/if} /> {$txt.male}
+							<input type="radio" value="{$txt.female}" name="withdrawal_data[customer_gender]"{if $content_data.order->customer.gender =='f' || $smarty.post.withdrawal_data.customer_gender == $txt.female} checked="checked"{/if} /> {$txt.female}
+
+							<span class="withdrawal_form_mandatory"></span> 
+							<span class="class_error_message">{if $content_data.errors.customer_gender}{$txt.input_error}{/if}</span>
+						</td>
+					</tr>
+					<tr class="form_highlight">
+						<td class="col_0 form_highlight_left"><label for="withdrawal_form_customer_firstname">{$txt.firstname}</label></td>
+						<td class="col_1 form_highlight_right">
+							<input type="text"
+									value="{if $smarty.post.withdrawal_data.customer_firstname}{$smarty.post.withdrawal_data.customer_firstname|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$content_data.order->customer.firstname|escape:'html'}{/if}"
+									name="withdrawal_data[customer_firstname]"
+									id="withdrawal_form_customer_firstname"
+									class="input-text"> 
+							<span class="withdrawal_form_mandatory" />*</span> 
+							<span class="class_error_message">{if $content_data.errors.customer_firstname}{$txt.input_error}{/if}</span>
+						</td>
+					</tr>
+					<tr class="form_highlight">
+						<td class="col_0 form_highlight_left"><label for="withdrawal_form_customer_lastname">{$txt.lastname}</label></td>
+						<td class="col_1 form_highlight_right">
+							<input type="text"
+									value="{if $smarty.post.withdrawal_data.customer_lastname}{$smarty.post.withdrawal_data.customer_lastname|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$content_data.order->customer.lastname|escape:'html'}{/if}"
+									name="withdrawal_data[customer_lastname]"
+									id="withdrawal_form_customer_lastname" 
+									class="input-text" />
+							<span class="withdrawal_form_mandatory">*</span> 
+							<span class="class_error_message">{if $content_data.errors.customer_lastname}{$txt.input_error}{/if}</span>
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			
+			<h2 class="underline">{$txt.address}</h2>
+
+			<fieldset>
+				<table cellspacing="0" cellpadding="0" border="0">
+					<tr class="form_highlight">
+						<td class="col_0 form_highlight_left"><label for="withdrawal_form_customer_street_address">{$txt.street_and_number}</label></td>
+						<td class="col_1 form_highlight_right">
+							<input type="text"
+									value="{if $smarty.post.withdrawal_data.customer_street_address}{$smarty.post.withdrawal_data.customer_street_address|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$content_data.order->customer.street_address|escape:'html'}{/if}"
+									name="withdrawal_data[customer_street_address]"
+									id="withdrawal_form_customer_street_address"
+									class="input-text" />
+
+							<span class="withdrawal_form_mandatory"></span> 
+							<span class="class_error_message">{if $content_data.errors.customer_street_address}{$txt.input_error}{/if}</span>
+						</td>
+					</tr>
+					<tr class="form_highlight">
+						<td class="col_0 form_highlight_left">
+							<label for="withdrawal_form_customer_postcode">{$txt.zipcode}</label>
+							<label for="withdrawal_form_customer_city">{$txt.city}</label>
+						</td>
+						<td class="col_1 form_highlight_right">
+							<input type="text" name="withdrawal_data[customer_postcode]" value="{if $smarty.post.withdrawal_data.customer_postcode}{$smarty.post.withdrawal_data.customer_postcode|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$content_data.order->customer.postcode|escape:'html'}{/if}" class="input-text postal-code" /><input type="text" name="withdrawal_data[customer_city]" value="{if $smarty.post.withdrawal_data.customer_city}{$smarty.post.withdrawal_data.customer_city|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$content_data.order->customer.city|escape:'html'}{/if}" class="input-text city" />
+							<span class="withdrawal_form_mandatory"></span>
+							<span class="class_error_message">{if $content_data.errors.customer_postcode || $content_data.errors.customer_city}{$txt.input_error}{/if}</span>
+						</td>
+					</tr>
+					<tr class="form_highlight">
+						<td class="col_0 form_highlight_left"><label for="withdrawal_form_customer_country">{$txt.country}</label></td>
+						<td class="col_1 form_highlight_right">
+							<input type="text"
+									value="{if $smarty.post.withdrawal_data.customer_country}{$smarty.post.withdrawal_data.customer_country|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$content_data.order->customer.country|escape:'html'}{/if}"
+									name="withdrawal_data[customer_country]"
+									id="withdrawal_form_customer_country"
+									placeholder="{$txt.country_placeholder}" 
+									class="input-text" />
+						</td>
+					</tr>
+				</table>
+			</fieldset>
+			
+			<h2 class="underline">{$txt.ask_for_email}</h2>
+
+			<fieldset>
+				<table cellspacing="0" cellpadding="0" border="0">
+					<tr class="form_highlight">
+						<td class="col_0 form_highlight_left"><label for="withdrawal_form_customer_email">{$txt.your_email}</label></td>
+						<td class="col_1 form_highlight_right">
+							<input type="text"
+								value="{if $smarty.post.withdrawal_data.customer_email}{$smarty.post.withdrawal_data.customer_email|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$content_data.order->customer.email_address|escape:'html'}{/if}"
+								name="withdrawal_data[customer_email]"
+								id="withdrawal_form_customer_email" 
+								class="input-text" />
+							
+							<span class="withdrawal_form_mandatory">*</span> 
+							<span class="class_error_message">{if $content_data.errors.customer_email}{$txt.input_error}{/if}</span>
+						</td>
+				</table>
+			</fieldset>
+			
+			<h2 class="underline">{$txt.withdrawal_date}</h2>
+
+			<fieldset>
+				<table cellspacing="0" cellpadding="0" border="0">
+					<tr class="form_highlight">
+						<td class="col_1 form_highlight_right">
+							<input type="text"
+									value="{if $smarty.post.withdrawal_data.withdrawal_date}{$smarty.post.withdrawal_data.withdrawal_date|replace:'\"':'"'|replace:"\'":"'"|escape:'html'}{else}{$content_data.order->withdrawal_date|date_format:'%d.%m.%Y'}{/if}"
+									name="withdrawal_data[withdrawal_date]"
+									id="withdrawal_form_withdrawal_date"
+									class="setDatepicker input-text" /> 
+								
+							<span class="withdrawal_form_mandatory"></span> 
+							<span class="class_error_message">{if $content_data.errors.withdrawal_date}{$txt.input_error}{/if}</span>
+						</td>
+				</table>
+			</fieldset>
+			
+			<div class="align_right_submitbutton">
+				<a class="button_blue_big button_set_big action_submit" href="#">
+					<span class="button-outer">
+						<span class="button-inner">{$txt.sendwithdrawalbutton}</span>
+					</span>
+				</a>
+			</div>
+		</fieldset>
+	</form>
+
+	<div>{$txt.mandatory_fields}</div>
+
+</div>
+{/if}

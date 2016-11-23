@@ -1,0 +1,17 @@
+{* 
+	Include this partial template with the "$content.order_status_styles" variable and it will echo
+	a <style> section with the order status styling classes. This partial can be used in each 
+	page there are order-statuses displayed. 
+	
+	Use the "head" block to include this file.
+*}
+
+<style>
+	{foreach $content.order_status_styles as $style}
+		.label-{$style.id} {
+			color: {$style.color} !important;
+			background-color: {$style.background_color} !important;
+			background-image: none;
+		}
+	{/foreach}
+</style>

@@ -1,0 +1,22 @@
+/*
+	Bulk Email Order Modal
+    ==========================================================================
+
+	Styles the bulk email order modal in the orders overview.
+
+*/
+
+.bulk-email-order.modal,
+.bulk-email-invoice.modal {
+	.modal-body {
+		span.confirm-question {
+			display: inline-block;
+			line-height: $line-height-base * 2;
+			vertical-align: middle;
+		}
+
+		span.info {
+			float: right;
+		}
+	}
+}

@@ -1,0 +1,35 @@
+{load_language_text section="box_categories_top"}
+{load_language_text section="general" name="general"}
+
+{if $content_data.CAT_MENU_TOP}
+	{foreach name=cat_data key=counter item=content_item from=$content_data.CONTENT_LINKS_DATA}
+		<li class="dropdown custom topmenu-content{if $content_item.SELECTED} active{/if}" data-id="top_custom-{$counter}">
+			<a class="dropdown-toggle" href="{$content_item.URL}" target="{$content_item.URL_TARGET}" title="{$content_item.NAME}">
+				{$content_item.NAME}
+			</a>
+		</li>
+	{/foreach}
+{elseif $content_data.CONTENT_LINKS_DATA|@count > 0}
+	<div id="categories">
+		<div class="navbar-collapse collapse">
+			<nav class="navbar-default navbar-categories" data-gambio-widget="menu">
+				<ul class="level-1 nav navbar-nav">
+					{foreach name=cat_data key=counter item=content_item from=$content_data.CONTENT_LINKS_DATA}
+						<li class="level-1-child topmenu-content{if $content_item.SELECTED} active{/if}" data-id="top_custom-{$counter}">
+							<a class="dropdown-toggle" href="{$content_item.URL}" target="{$content_item.URL_TARGET}" title="{$content_item.NAME}">
+								{$content_item.NAME}
+							</a>
+						</li>
+					{/foreach}
+
+					<li class="dropdown dropdown-more" style="display: none">
+						<a class="dropdown-toggle" href="#" title="{$txt.CATEGORIES_NEXT}">
+							{$general.CATEGORIES_NEXT}
+						</a>
+						<ul class="level-2 dropdown-menu ignore-menu"></ul>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+{/if}

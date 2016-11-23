@@ -1,0 +1,48 @@
+.box {
+	&.box-bestsellers {
+		ol {
+			list-style: none;
+			padding:    0;
+			li {
+				@include clearfix();
+				.col-xs-8 {
+					padding-left: 0;
+				}
+				a {
+					color:           $text-color;
+					text-decoration: none;
+					@include clearfix();
+					display:         block;
+					padding:         10px 0;
+					
+					&:hover {
+						background-color: $gray-lighter;
+					}
+					.price {
+						font-weight: 900;
+						
+						.products-vpe {
+							font-size:   $font-size-small;
+							font-weight: normal;
+							color:       $gray-light;
+						}
+					}
+					
+					.img-thumbnail {
+						height:     61px;
+						width:      61px;
+						text-align: center;
+						
+						// Image vertical align trick (see .align-helper). 
+						img {
+							display:    inline-block;
+							max-width:  85%;
+							max-height: 85%;
+							margin:     auto;
+						}
+					}
+				}
+			}
+		}
+	}
+}

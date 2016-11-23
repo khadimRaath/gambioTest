@@ -1,0 +1,177 @@
+// --------------------------------------------------------------------------
+// COMPATIBILITY DASHBOARD
+// --------------------------------------------------------------------------
+
+//  Page title
+.dashboard-title {
+  background-image: none !important;
+  color:            $gambio-blue;
+  text-transform:   initial;
+  font-weight:      300;
+  @include font(18px);
+  padding:          24px 0 0 24px;
+  min-height:       41px;
+}
+
+// News wrapper
+.news-wrapper {
+  .dashboard-title {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+// Statistic widget boxes
+#statistic-grid {
+    // Widget box
+    .statistic-widget {
+        width: 18.71%;
+        white-space: nowrap;
+        min-height: 130px;
+        margin-right: 18.6px;
+        padding: 24px;
+        display: inline-block;
+        overflow: hidden;
+        box-sizing: border-box;
+
+        &:last-child {
+            margin-right: 0;
+        }
+
+        &:hover {
+            cursor:  pointer;
+            opacity: 0.8;
+        }
+
+        .icon-container {
+            opacity:        0.2;
+            width:          50px;
+            height:         50px;
+            padding:        19px 10px;
+            vertical-align: middle;
+            text-align:     center;
+            margin-top:     13px;
+            border-radius:  50%;
+
+            i {
+              color: #FFFFFF;
+            }
+
+            // Define background colors here...
+            &.green {
+              background-color: #30BBA2;
+            }
+
+            &.blue {
+              background-color: #3F6FC0;
+            }
+
+            &.yellow {
+              background-color: #FFC143;
+            }
+
+            &.turquoise {
+              background-color: #32BB9D;
+            }
+
+            &.red {
+              background-color: #FF5143;
+            }
+
+            &.lila {
+              background-color: #AE34BF;
+            }
+
+            &.orange {
+              background-color: #ED7C3D;
+            }
+
+            &.gray {
+              background-color: #808080;
+            }
+        }
+
+        .text-container {
+            opacity:      0.2;
+            padding-left: 10px;
+            padding-right: 0 !important;
+
+            .heading {
+                font-size:   20px;
+                color:       $text-color;
+                white-space: nowrap;
+            }
+            .subtext {
+                font-size:   16px;
+                color:       $text-color-light;
+                white-space: nowrap;
+            }
+            .small-text {
+                height:      20px;
+                font-size:   12px;
+                color:       $text-color-light;
+                white-space: nowrap;
+            }
+        }
+
+        .loader {
+            font-size: 4em;
+            color:     $gambio-blue;
+            position:  relative;
+            top:       10px;
+            left:      25px;
+        }
+    }
+
+    @media only screen and (max-width: 950px) {
+    	.statistic-widget {
+    		width: 100%;
+    	}
+    }
+
+
+    @media only screen and (min-width: 950px) and (max-width: 1299px){
+        .statistic-widget {
+            width: 46%;
+            margin-right: 24px;
+        }
+    }
+
+
+    @media only screen and (min-width: 1300px) and (max-width: 1640px){
+    	.statistic-widget {
+		    width: 19.5%;
+		    padding: 24px 20px;
+		    margin-right: 3px;
+    	}
+    }
+}
+
+.latest-orders-table {
+  padding: 24px;
+  width: 95% !important;
+}
+
+.compatibility-dashboard div.tab-headline-wrapper {
+    display: none;
+}
+
+.dashboard-chart {
+  margin-top: 24px;
+  margin-bottom: 6px;
+  overflow: hidden;
+}
+
+.dashboard-toggler {
+  color: $text-color-light;
+  font-size: 14px;
+  text-align: center;
+  margin-bottom: 12px;
+  position: relative;
+  top: -4px;
+  cursor: pointer;
+}
+
+.box-center-wrapper.charts {
+  margin-bottom: 0 !important;
+}

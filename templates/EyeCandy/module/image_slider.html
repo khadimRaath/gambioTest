@@ -1,0 +1,57 @@
+<div id="jcarousel_box" class="jcarousel-skin-tango" style="width:{$content_data.SET_WIDTH}px; height:{$content_data.SET_HEIGHT}px;">
+  <input type="hidden" name="time" id="jcarousel_slider_id" value="{$content_data.SLIDER_ID}" />
+  <div class="jcarousel-control">
+      {foreach name=imgPrev item=img_array from=$content_data.IMG_DATA}
+      {if $img_array.image_preview || $img_array.image_title_text}
+        <a href="#" id="slideImg_{$smarty.foreach.imgPrev.index+1}" style="visibility: hidden;">
+        {if $img_array.image_preview}
+          <img src="{$smarty.const.DIR_WS_IMAGES}slider_images/thumbnails/{$img_array.image_preview}" alt="{$img_array.image_alt_text}" />
+        {else}
+          {$img_array.image_title_text}
+        {/if}
+        </a>
+      {/if}
+      {/foreach}
+  </div>
+  <div id="jcarousel_image_box" style="width:{$content_data.SET_WIDTH}px; height:{$content_data.SET_HEIGHT}px;">
+    <ul style="height:{$content_data.SET_HEIGHT}px;">
+        {foreach name=imgBig item=img_array from=$content_data.IMG_DATA}
+        <li style="width:{$content_data.SET_WIDTH}px; height:{$content_data.SET_HEIGHT}px;">
+          {if $img_array.image_area_array|@sizeof > 0}   
+            <img usemap="#map1_{$smarty.foreach.imgBig.index+1}" class="slideImgControl" id="slideImgControl1_{$smarty.foreach.imgBig.index+1}" src="{$smarty.const.DIR_WS_IMAGES}slider_images/{$img_array.image_large}" alt="{$img_array.image_alt_text}" />
+            <map id="map1_{$smarty.foreach.imgBig.index+1}" name="map1_{$smarty.foreach.imgBig.index+1}">
+              {foreach item=area_array from=$img_array.image_area_array}
+                <area id="area1_{$area_array.image_area_id}" shape="{$area_array.image_area_shape}" coords="{$area_array.image_area_coords}" href="{$area_array.image_area_link_url}" alt="{$area_array.image_area_title}" title="{$area_array.image_area_title}" target="{$area_array.image_area_link_target}" />
+              {/foreach}
+            </map>
+          {elseif $img_array.link_url}
+            <a href="{$img_array.link_url}" target="{$img_array.link_target}">
+              <img class="slideImgControl" id="slideImgControl1_{$smarty.foreach.imgBig.index+1}" src="{$smarty.const.DIR_WS_IMAGES}slider_images/{$img_array.image_large}" title="{$img_array.image_title_text}" alt="{$img_array.image_alt_text}" />
+            </a>
+          {else}
+            <img class="slideImgControl" id="slideImgControl1_{$smarty.foreach.imgBig.index+1}" src="{$smarty.const.DIR_WS_IMAGES}slider_images/{$img_array.image_large}" title="{$img_array.image_title_text}" alt="{$img_array.image_alt_text}" />
+          {/if}
+        </li>
+        {/foreach}
+        {foreach name=imgBig item=img_array from=$content_data.IMG_DATA}
+        <li style="width:{$content_data.SET_WIDTH}px;height:{$content_data.SET_HEIGHT}px;">
+          {if $img_array.image_area_array|@sizeof > 0}   
+            <img usemap="#map2_{$smarty.foreach.imgBig.index+1}" class="slideImgControl" id="slideImgControl2_{$smarty.foreach.imgBig.index+1}" src="{$smarty.const.DIR_WS_IMAGES}slider_images/{$img_array.image_large}" alt="{$img_array.image_alt_text}" />
+            <map id="map2_{$smarty.foreach.imgBig.index+1}" name="map2_{$smarty.foreach.imgBig.index+1}">
+              {foreach item=area_array from=$img_array.image_area_array}
+                <area id="area2_{$area_array.image_area_id}" shape="{$area_array.image_area_shape}" coords="{$area_array.image_area_coords}" href="{$area_array.image_area_link_url}" alt="{$area_array.image_area_title}" title="{$area_array.image_area_title}" target="{$area_array.image_area_link_target}" />
+              {/foreach}
+            </map>
+          {elseif $img_array.link_url}
+            <a href="{$img_array.link_url}" target="{$img_array.link_target}">
+              <img class="slideImgControl" id="slideImgControl2_{$smarty.foreach.imgBig.index+1}" src="{$smarty.const.DIR_WS_IMAGES}slider_images/{$img_array.image_large}" title="{$img_array.image_title_text}" alt="{$img_array.image_alt_text}" />
+            </a>
+          {else}
+            <img class="slideImgControl" id="slideImgControl2_{$smarty.foreach.imgBig.index+1}" src="{$smarty.const.DIR_WS_IMAGES}slider_images/{$img_array.image_large}" title="{$img_array.image_title_text}" alt="{$img_array.image_alt_text}" />
+          {/if}
+        </li>
+        {/foreach}        
+    </ul>
+    
+  </div>
+</div>

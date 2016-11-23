@@ -1,0 +1,71 @@
+/* 
+	Boilerplate
+    ========================================================================== 
+
+	Contains the base styling of the Gambio Admin pages. 
+	
+*/
+
+// ----------------------------------------------------------------------------
+// LAYOUTS
+// ----------------------------------------------------------------------------
+
+@import "layouts/main/layout";
+
+// ----------------------------------------------------------------------------
+// COMPONENTS
+// ----------------------------------------------------------------------------
+
+@import "components/button_groups";
+@import "components/buttons";
+@import "components/dropdowns";
+@import "components/forms";
+@import "components/labels";
+@import "components/tables";
+@import "components/tooltips";
+@import "components/tooltip_icons";
+
+// ----------------------------------------------------------------------------
+// PAGES
+// ----------------------------------------------------------------------------
+
+@import "orders/orders";
+
+// ----------------------------------------------------------------------------
+// JAVASCRIPT
+// ----------------------------------------------------------------------------
+ 
+@import "javascript/datepicker";
+@import "javascript/daterangepicker";
+@import "javascript/datatables";
+@import "javascript/dialog";
+@import "javascript/modal";
+@import "javascript/multi_select";
+@import "javascript/pace";
+@import "javascript/single_checkbox";
+@import "javascript/switcher";
+
+// ----------------------------------------------------------------------------
+// GENERAL STYLES
+// ----------------------------------------------------------------------------
+
+body {
+	padding-top: $header-height;
+}
+
+.wrapper {
+	overflow: auto;
+	
+	& > .container-fluid > .row {
+		display: flex; // This will keep #main-menu and #main-content heights equal.
+		display: -ms-flexbox;
+		-ms-flex-direction: row;
+		-ms-flex-align: stretch;
+	}
+}
+
+.toolbar {
+	cursor: pointer;
+	float: right;
+	margin-bottom: $margin-large;
+}

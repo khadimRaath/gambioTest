@@ -1,0 +1,45 @@
+{load_language_text section="reviews"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_reviews}</h1>
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/pagination.html" bar=$NAVBAR}
+
+{foreach item=product from=$module_content}
+
+	<ul class="row">
+
+		<li class="col-sm-3">
+			<a href="{$product.PRODUCTS_LINK}" title="{$product.PRODUCTS_NAME}">
+				<img src="{$product.PRODUCTS_IMAGE}" alt="{$product.PRODUCTS_NAME}" title="{$product.PRODUCTS_NAME}" />
+			</a>
+		</li>
+
+		<li class="col-sm-3">
+			<a href="{$product.PRODUCTS_LINK}" title="{$product.PRODUCTS_NAME}">
+				{$product.PRODUCTS_NAME}
+			</a>
+			<br />
+			{$product.RATING}
+		</li>
+
+		<li class="col-sm-2">
+			{$txt.text_author} {$product.AUTHOR}
+		</li>
+
+		<li class="col-sm-4">
+			{$product.REVIEW_TEXT|truncate:150:" ..."}
+			<br />
+			<a href="{$product.PRODUCTS_LINK}" class="btn btn-primary" title="{$txt.text_reviews_link}">
+				{$txt.text_reviews_link}
+			</a>
+		</li>
+
+	</ul>
+
+{/foreach}
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/pagination.html" bar=$NAVBAR}
+
+
+

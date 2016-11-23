@@ -1,0 +1,42 @@
+
+/* Fieldset
+   ========================================================================== */
+
+body.page-login {
+
+	#main {
+
+		.row-login > div {
+			padding-top: ($grid-gutter-width / 2);
+			& + div {
+				.fieldset-content {
+					border-top: 1px solid $gray-lighter;
+					padding-top: $grid-gutter-width;
+				}
+			}
+			.fieldset-content {
+				margin-bottom: $grid-gutter-width;
+				@media (min-width: $screen-lg-min) {
+					min-height: 230px;
+					margin-bottom: 0;
+				}
+				h4 {
+					@include thick-heading();
+					margin-bottom: $grid-gutter-width;
+				}
+			}
+			@media (min-width: $screen-lg-min) {
+				&,
+				& + div {
+					.fieldset-content {
+						padding-top: 0;
+						border-top: none;
+					}
+				}
+				& + div {
+					border-left: 1px solid $gray-lighter;
+				}
+			}
+		}
+	}
+}

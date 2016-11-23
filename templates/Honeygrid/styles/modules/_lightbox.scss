@@ -1,0 +1,60 @@
+
+/* Lightbox Layer
+   ========================================================================== */
+
+.mfp-wrap {
+  &.iframe_layer {
+    .modal-dialog {
+      @extend .modal-lg;
+      .modal-body {
+        height: 360px;
+        -webkit-overflow-scrolling: touch;
+	      
+	    // iframe scrolling fix for iOS touch devices  
+        @media (max-width: 1024px) {
+        	overflow-y: auto;
+	        padding-bottom: 8px;
+	 
+	        > iframe {
+		        height: 98%;
+	        }
+        }
+	      
+        @media (min-height: 600px) {
+        	height: 500px;
+        }
+        @media (min-height: 800px) {
+        	height: 700px;
+        }
+      }
+    }
+  }
+  &.layer-medium {
+    .modal-dialog {
+      @extend .modal-md;
+      .modal-body {
+        height: 360px;
+        @media (min-height: 600px) {
+          height: 360px;
+        }
+        @media (min-height: 800px) {
+          height: 360px;
+        }
+      }
+    }
+  }
+}
+
+// Fix for crude modal behavior on small screen sizes
+@media (max-width: 450px) {
+	.product-question-modal {
+		.mfp-container {
+			height: auto;
+			
+			.modal-body {
+				max-height: 300px;
+				overflow-x: auto;
+			}
+		}
+	}
+}

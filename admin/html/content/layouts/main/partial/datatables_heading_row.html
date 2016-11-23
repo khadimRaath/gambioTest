@@ -1,0 +1,16 @@
+{* 
+	DataTables Header Template 
+	
+	This template will use the $content.columns variable which contains the serialized column definitions, 
+	in order to generate the table headings row of the thead element.
+*}
+
+<tr role="row">
+	<th data-column-name="checkbox"><input type="checkbox" class="bulk-selection" /></th>
+
+	{foreach $content.columns as $column}
+		<th data-column-name="{$column.name}">{$column.title}</th>
+	{/foreach}
+
+	<th data-column-name="actions">{include file="./datatables_page_navigation.html"}</th>
+</tr>

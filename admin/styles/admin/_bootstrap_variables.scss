@@ -1,0 +1,80 @@
+/* 
+	Bootstrap Variables
+	========================================================================== 
+
+	Override the Bootstrap variable values with new ones by using the same variable  
+	name as in the "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss". 
+	
+*/
+
+// ----------------------------------------------------------------------------
+// COLORS
+// ----------------------------------------------------------------------------
+
+$brand-primary: #2196F3;
+$brand-success: #5EBD5E;
+$brand-info: #5bc0de;
+$brand-warning: #f0ad4e;
+$brand-danger: #E66554;
+$brand-alt: #D500F9;
+
+// ----------------------------------------------------------------------------
+// TYPOGRAPHY
+// ----------------------------------------------------------------------------
+
+$font-family-sans-serif: 'Roboto', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-size-base: 12px;
+$font-size-small: 10px;
+
+// Import Roboto Font
+@font-face {
+	font-family: 'Roboto';
+	font-style:  normal;
+	font-weight: 400;
+	src:         local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v15/CWB0XYA8bzo0kSThX0UTuA.woff2) format('woff2');
+}
+
+// Import Roboto Bold
+@font-face {
+	font-family: 'Roboto';
+	font-style:  normal;
+	font-weight: 700;
+	src:         local('Roboto Bold'), local('Roboto-Bold'), url(https://fonts.gstatic.com/s/roboto/v15/d-6IYplOFocCacKzxwXSOFtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+}
+
+// Import Font Open Sans
+@font-face {
+	font-family: 'Open Sans';
+	font-style:  normal;
+	font-weight: 400;
+	src:         local('Open Sans'), local('OpenSans'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3VtXRa8TVwTICgirnJhmVJw.woff2) format('woff2'), url(https://fonts.gstatic.com/s/opensans/v10/cJZKeOuBrn4kERxqtaUH3T8E0i7KZn-EPnyo3HZu7kw.woff) format('woff');
+}
+
+// ----------------------------------------------------------------------------
+// COMPONENTS
+// ----------------------------------------------------------------------------
+
+// General
+
+$border-radius-base: 2px;
+
+// Tables 
+
+$table-cell-padding: 12px;
+$table-condensed-cell-padding: 6px;
+$table-bg-hover: #EBEBEB;
+
+// Forms
+
+$input-color: #777;
+
+// Buttons
+
+$btn-default-bg: #F5F5F5;
+$btn-default-color: #777;
+
+// Alerts 
+
+$alert-warning-bg: #F9F1C7;
+$alert-warning-border: #F6DEAC;
+$alert-warning-text: #AF8640;

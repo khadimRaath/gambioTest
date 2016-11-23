@@ -1,0 +1,11 @@
+<body bgcolor="#FFFFFF">
+	<table align="center">
+		<tr>
+		{foreach name=thumbnails item=images_data from=$images_data_array}
+			<td align=left style="{$images_data.style}">
+				<a href="popup_image.php?pID={$PRODUCTS_ID}&imgID={$images_data.image_nr}" target="_parent">{$images_data.img}</a>
+			</td>
+		{/foreach}
+		</tr>
+	</table>
+</body>

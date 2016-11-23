@@ -1,0 +1,39 @@
+.current span,
+.current a,
+.current a:visited,
+.current a:link,
+.current a:active,
+.current a:visited,
+.current a:hover,
+.current span,
+a.current,
+a.current:visited,
+a.current:link,
+a.current:active,
+a.current:visited,
+a.current:hover,
+a.parentOfCurrent,
+a.parentOfCurrent:visited,
+a.parentOfCurrent:link,
+a.parentOfCurrent:active,
+a.parentOfCurrent:visited,
+a.parentOfCurrent:hover,
+.parentOfCurrent span,
+.parentOfCurrent a,
+.parentOfCurrent a:visited,
+.parentOfCurrent a:link,
+.parentOfCurrent a:active,
+.parentOfCurrent a:visited,
+.parentOfCurrent a:hover {
+	font-style: italic !important;
+	color: #00137f !important;
+}
+.current span,
+.current a,
+.current a:visited,
+.current a:link,
+.current a:active,
+.current a:visited,
+.current a:hover {
+	font-size: 16px !important;
+}

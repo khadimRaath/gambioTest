@@ -1,0 +1,15 @@
+// --------------------------------------------------------------------------
+// GX SPECIALS TABLE
+// --------------------------------------------------------------------------
+
+table.specials {
+  tr.dataTableHeadingRow, tr.dataTableRow, tr.dataTableRowSelected {
+    &:nth-child(even) {
+      background-color: adjust-lightness($background-color, -2.5);
+    }
+
+    &:nth-child(odd) {
+      background-color: $background-color;
+    }
+  }
+}

@@ -1,0 +1,59 @@
+/* 
+	Admin Stylesheet
+    ========================================================================== 
+
+	Gambio Admin integrates completely the Bootstrap framework into the new pages 
+	through this file. 
+	
+	Default Bootstrap variables are overridden in the admin/_bootstrap_variables.scss file. 
+	
+	Default FontAwesome variables are overridden in the admin/_fontawesome_variables.scss file. 
+	
+	Directory Structure:
+	
+		- Components: specific styling for grouped components (forms, tables, buttons etc). 
+		- JavaScript: style JavaScript related elements (jquery, custom-widgets and so on).
+		- Layouts: style definition only for the page layouts (header, footer, menu, info_box and other main elements).
+		- Specific Pages: create a directory for each page that requires specific styling.  
+	
+	Notice: Please, only use SASS markup and not Compass. 
+	
+*/
+
+// ----------------------------------------------------------------------------
+// VARIABLES
+// ----------------------------------------------------------------------------
+
+// Override default Bootstrap variables.
+@import "admin/bootstrap_variables";
+
+// Override default FontAwesome variables.
+@import "admin/fontawesome_variables";
+
+// Include default Bootstrap variables.
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+
+// Define admin styling variables. 
+@import "admin/variables";
+
+// ----------------------------------------------------------------------------
+// FRAMEWORKS
+// ----------------------------------------------------------------------------
+
+// Bootstrap
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap";
+
+// Animate.css
+@import "../../../bower_components/animate-sass/animate";
+
+// FontAwesome
+@import "../../../bower_components/font-awesome/scss/font-awesome.scss"; 
+
+// ----------------------------------------------------------------------------
+// MAIN FILES
+// ----------------------------------------------------------------------------
+
+@import "admin/mixins";
+@import "admin/boilerplate";
+@import "admin/animations";
+@import "admin/helpers";

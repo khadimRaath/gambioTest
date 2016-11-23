@@ -1,0 +1,83 @@
+<?php
+/* --------------------------------------------------------------
+	admin_customers.lang.inc.php 2016-02-18
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2016 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+   --------------------------------------------------------------
+*/
+
+$t_language_text_section_content_array = array
+(
+	'ALL' => 'All',
+	'BUTTON_DELETE_GUEST_ACCOUNTS' => 'Delete guest accounts',
+	'ENTRY_COMMENTS' => 'Comments',
+	'ENTRY_MEMO' => 'Memo',
+	'ENTRY_NEW_PASSWORD' => 'New Password:',
+	'ENTRY_PASSWORD_CUSTOMER' => 'Password:',
+	'ENTRY_PAYMENT_UNALLOWED' => 'Unallowed payment modules:',
+	'ENTRY_SHIPPING_UNALLOWED' => 'Unallowed shipping modules:',
+	'GM_TITLE_CUSTOMER_UPLOAD_EMPTY' => 'There are no Files and no Upload Fields defined',
+	'GM_TITLE_CUSTOMER_UPLOAD_FIELD' => 'Upload-File',
+	'GM_TITLE_CUSTOMER_UPLOAD_FIELDS' => 'File-Upload at Registration',
+	'GM_TITLE_CUSTOMER_UPLOAD_FILE' => 'There are no Files',
+	'GM_TITLE_CUSTOMER_UPLOAD_FILE_DELETE' => 'delete',
+	'HEADING_DELETE_GUEST_ACCOUNTS' => 'Delete guest accounts',
+	'CONFIRM_DELETE_GUEST_ACCOUNTS' => 'Do you really want to delete all guest accounts?',
+	'HEADING_SUB_TITLE' => 'Customers',
+	'HEADING_TITLE' => 'Customers',
+	'HEADING_TITLE_SEARCH' => 'Search:',
+	'HEADING_TITLE_STATUS' => 'Customer Group',
+	'MAILBEEZ_CONVERSATIONS' => 'MailBeez - Conversations',
+	'MAILBEEZ_NOTIFICATIONS' => 'MailBeez - Notifications',
+	'MAILBEEZ_OVERVIEW' => 'MailBeez - Customer Insight',
+	'NEW_ORDER' => 'New order ?',
+	'PLEASE_SELECT' => 'Select One',
+	'TABLE_HEADING_ACCOUNT_CREATED' => 'Account Created',
+	'TABLE_HEADING_ACCOUNT_TYPE' => 'Account',
+	'TABLE_HEADING_ACTION' => 'Action',
+	'TABLE_HEADING_DATE_ADDED' => 'Date',
+	'TABLE_HEADING_DATE_LAST_LOGON' => 'Last Logon',
+	'TABLE_HEADING_FIRSTNAME' => 'First Name',
+	'TABLE_HEADING_GROUPIMAGE' => 'Icon',
+	'TABLE_HEADING_LASTNAME' => 'Last Name',
+	'TABLE_HEADING_NEW_VALUE' => 'New Status',
+	'TEXT_ACCOUNT' => 'Yes',
+	'TEXT_ALL_CUSTOMERS' => 'All Groups',
+	'TEXT_CREATE' => 'Create',
+	'TEXT_CUSTOMERS_ID' => 'Customer ID',
+	'TEXT_CUSTOMER_CREDIT' => 'Credit balance:',
+	'TEXT_DATE' => 'Date',
+	'TEXT_DATE_ACCOUNT_CREATED' => 'Account Created:',
+	'TEXT_DATE_ACCOUNT_LAST_MODIFIED' => 'Last Modified:',
+	'TEXT_DELETE_INTRO' => 'Are you sure you want to delete this customer?',
+	'TEXT_DELETE_REVIEWS' => 'Delete %s review(s)',
+	'TEXT_GUEST' => 'No',
+	'TEXT_INFORMATIONS' => 'Information',
+	'TEXT_INFO_ADMIN_HAS_NO_RIGHTS' => 'Hint! This admin does not have administration rights yet. You can manage the user rights via the following link: ',
+	'TEXT_INFO_COUNTRY' => 'Country:',
+	'TEXT_INFO_DATE_LAST_LOGON' => 'Last Logon:',
+	'TEXT_INFO_HEADING_DELETE_CUSTOMER' => 'Delete Customer',
+	'TEXT_INFO_HEADING_STATUS_CUSTOMER' => 'Customer Group',
+	'TEXT_INFO_NUMBER_OF_LOGONS' => 'Number of Logons:',
+	'TEXT_INFO_NUMBER_OF_REVIEWS' => 'Number of Reviews:',
+	'TEXT_INSERT_ELEMENT' => 'New Element',
+	'TEXT_IP_LOG_CUSTOMER_ADVERTISER' => 'Advertiser',
+	'TEXT_IP_LOG_CUSTOMER_IP' => 'Customers-IP',
+	'TEXT_IP_LOG_HOST' => 'Host',
+	'TEXT_IP_LOG_LAST_LOGIN' => 'Last Login',
+	'TEXT_IP_REFERER_URL' => 'Referer URL',
+	'TEXT_MARKED_ELEMENTS' => 'Marked Element',
+	'TEXT_NEW_MEMO' => 'New memo',
+	'TEXT_NO_CUSTOMER_HISTORY' => '--no modification yet--',
+	'TEXT_NONE_IN_LIST' => 'None in the list',
+	'TEXT_POSTER' => 'Poster',
+	'TEXT_SELECT' => '--Select--',
+	'TEXT_SHOW_CRONJOB_URL' => 'Cronjob-url for deleting guest accounts:',
+	'TEXT_TITLE' => 'Title',
+	'TEXT_MEMO' => 'Memo Text',
+	'TEXT_VOUCHER_CODE' => 'redeem voucher code:',
+	'TYPE_BELOW' => 'Type below'
+);

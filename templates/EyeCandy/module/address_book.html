@@ -1,0 +1,52 @@
+{load_language_text section="address_book"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="postfinder" name="postfinder"}
+
+<div id="account">
+
+	<h1>
+		{$txt.heading_address}
+	</h1>
+
+	{$error}
+
+	<h2 class="underline overline">
+		<img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" /> {$txt.title_standard}
+	</h2>
+	<p>
+		{$txt.text_standard}<br /><br />{$ADDRESS_DEFAULT}
+	</p>
+
+	<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" /> {$txt.title_addresses}</h2>
+
+	{foreach name=aussen item=addresses from=$addresses_data}
+	<div class="address-book-addresses" >
+		<div class="address-book-addresses-name">
+			{$smarty.foreach.aussen.iteration}. {$addresses.NAME}{if $addresses.PRIMARY=='1'} <em>({$txt.title_standard})</em>{/if}{if $addresses.IS_PACKSTATION || $addresses.IS_POSTFILIALE},
+			{$addresses.STREET}{if $addresses.HOUSENUMBER} {$addresses.HOUSENUMBER}{/if}, {$addresses.POSTCODE} {$addresses.CITY}{/if}
+		</div>
+		<div class="address-book-addresses-buttons" style="width: auto;">
+			{if $addresses.IS_PACKSTATION != 1 && $addresses.IS_POSTFILIALE != 1}
+				<a href="{$addresses.BUTTON_EDIT_URL}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.edit}</span></span></a>
+			{/if}
+			<a href="{$addresses.BUTTON_DELETE_URL}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.delete}</span></span></a>
+			{if $addresses.BUTTON_PFINDER_URL}
+				<a href="{$addresses.BUTTON_PFINDER_URL}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$postfinder.btn_pfinder}</span></span></a>
+			{/if}
+			{if $addresses.IS_PACKSTATION == 1}
+				<span class="packstation">Packstation</span>
+			{/if}
+			{if $addresses.IS_POSTFILIALE == 1}
+				<span class="packstation">Postfiliale</span>
+			{/if}
+		</div>
+	</div>
+	{/foreach}
+	<br />
+	<a href="{$BUTTON_BACK_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+	<a href="{$BUTTON_NEW_URL}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.new_address}</span></span></a>
+
+	<br />
+	<br />
+	{$ADDRESS_COUNT}
+</div>

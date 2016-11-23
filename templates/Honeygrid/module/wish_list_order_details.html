@@ -1,0 +1,84 @@
+{load_language_text section="order_details"}
+{load_language_text section="general" name="general"}
+{load_language_text section="buttons" name="button"}
+
+<div class="order-wishlist"data-gambio-widget="customizer" data-customizer-page="wish_list">
+
+	<table class="table table-responsive">
+	
+		<thead>
+			{include file="get_usermod:{$tpl_path}snippets/order/order_item.html"
+			is_wishlist=true
+			is_tablehead=true
+			}
+		</thead>
+
+		<tbody>	
+	
+			{foreach name=cart item=module_data from=$content_data.module_content}
+			
+				{assign var="p_model" value=""}
+				{if $module_data.PRODUCTS_MODEL && $module_data.PRODUCTS_MODEL != ''}
+					{assign var="p_model" value=$txt.text_model|cat:" "|cat:$module_data.PRODUCTS_MODEL}
+				{/if}
+				
+				{assign var="p_weight" value=""}
+				{if $module_data.GM_WEIGHT && $module_data.GM_WEIGHT != '' && $module_data.GM_WEIGHT != '0'}
+					{assign var="p_weight" value=$txt.text_weight|cat:" "|cat:$module_data.GM_WEIGHT|cat:" "|cat:$txt.text_weight_unit}
+				{/if}
+				
+				{assign var="p_shipping_time" value=""}
+				{if $module_data.PRODUCTS_SHIPPING_TIME && $module_data.PRODUCTS_SHIPPING_TIME != ''}
+					{assign var="p_shipping_time" value=$txt.text_shippingtime|cat:" "|cat:$module_data.PRODUCTS_SHIPPING_TIME}
+				{/if}
+				
+				{assign var="STR_attributes" value=""}
+				{if $module_data.ATTRIBUTES && $module_data.ATTRIBUTES != ''}
+					{foreach key=key_data item=item_data from=$module_data.ATTRIBUTES}
+						{assign var="STR_attributes" value=$STR_attributes|cat:$item_data.NAME|cat:": "|cat:$item_data.VALUE_NAME|cat:"<br />"}
+					{/foreach}
+				{/if}
+				
+				{include file="get_usermod:{$tpl_path}snippets/order/order_item.html"
+				is_wishlist=true
+				is_confirmation=false
+				
+				last=($smarty.foreach.cart.last) ? true : false
+				p_url=$module_data.PRODUCTS_LINK
+				p_name=$module_data.PRODUCTS_NAME
+				image_src={($module_data.PRODUCTS_IMAGE && $module_data.PRODUCTS_IMAGE != "") ? $module_data.PRODUCTS_IMAGE : ""}
+				image_alt={($module_data.IMAGE_ALT && $module_data.IMAGE_ALT != "") ? $module_data.IMAGE_ALT : $module_data.PRODUCTS_NAME}
+				image_title={($module_data.IMAGE_ALT && $module_data.IMAGE_ALT != "") ? $module_data.IMAGE_ALT : $module_data.PRODUCTS_NAME}
+				p_model=$p_model
+				show_p_model=$module_data.SHOW_PRODUCTS_MODEL
+				p_weight=$p_weight
+				p_shipping_time=$p_shipping_time
+				p_attributes=$STR_attributes
+				p_price_single=$module_data.PRODUCTS_SINGLE_PRICE
+				p_price_vpe={($module_data.PRODUCTS_VPE_ARRAY.vpe_text && $module_data.PRODUCTS_VPE_ARRAY.vpe_text != '') ? $module_data.PRODUCTS_VPE_ARRAY.vpe_text : ""}
+				p_shipping_info=$module_data.TAX_SHIPPING_INFO
+				p_unit={($module_data.UNIT && $module_data.UNIT != '') ? $module_data.UNIT : ""}
+						
+				tpl_box_delete=$module_data.BOX_DELETE
+				
+				p_hidden_name=$module_data.PRODUCTS_ID_INPUT_NAME
+				p_hidden_value=$module_data.PRODUCTS_ID_EXTENDED
+				p_hidden_qty_name=$module_data.PRODUCTS_OLDQTY_INPUT_NAME
+				p_hidden_qty_value=$module_data.PRODUCTS_QTY_VALUE
+				p_hidden_cart_delete_name=$module_data.PRODUCTS_CART_DELETE_INPUT_NAME
+				p_hidden_cart_delete_value=$module_data.PRODUCTS_ID_EXTENDED
+				p_error_id=$module_data.PRODUCTS_ID
+				tpl_properties=$module_data.PROPERTIES
+				
+				p_qty_name=$module_data.PRODUCTS_QTY_INPUT_NAME
+				p_qty_value=$module_data.PRODUCTS_QTY_VALUE
+				p_price_final=$module_data.PRODUCTS_PRICE
+				}
+					
+			{/foreach}
+
+		</tbody>
+
+	</table>
+	
+</div>

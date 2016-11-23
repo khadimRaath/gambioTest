@@ -1,0 +1,42 @@
+.cookie-bar {
+	display:  none;
+	left:     0;
+	margin:   0;
+	position: fixed;
+	width:    100%;
+	z-index:  3;
+	
+	&.top {
+		top: 0;
+	}
+	
+	&.bottom {
+		bottom: 0;
+	}
+	
+	.content {
+		display: table-cell;
+		float:   none;
+		
+		p {
+			display: inline-block;
+			margin: 0;	
+		}
+		
+		.btn {
+			margin: 5px 15px;
+		}
+	}
+	
+	.close-button {
+		cursor:     pointer;
+		display:    table-cell;
+		float:      none;
+		margin:     6px 0;
+		text-align: right;
+		
+		&.btn {
+			display: inline-block;
+		}
+	}
+}

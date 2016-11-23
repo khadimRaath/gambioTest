@@ -1,0 +1,33 @@
+{load_language_text section="checkout_confirmation"}
+{load_language_text section="buttons" name="button"}
+
+
+
+{if $masterpayment_payment_title!=''}
+	<h1>{$masterpayment_payment_title}</h1>
+{/if}
+
+<link type="text/css" rel="stylesheet" href="templates/{$tpl_path}/css/masterpayment.css" />
+
+{* todo: wird dieser container noch benötigt? wenn nicht, dann raus. ist bei standard-checkout-seiten auch rausgeflogen. *}
+<div class="order_confirm">
+
+	<div class="masterpayment_box">
+        
+        <iframe class="masterpayment_frame" allowtransparency="true" src="{$masterpayment_request_url}" scrolling="no" width="100%" height="500" frameborder="0">                             
+        
+            <p>
+            
+                <form name="masterpaymentForm" id="masterpaymentForm" action="{$masterpayment_request_url}" method="post">
+            
+                    <input class="masterpayment_submit_button" type="submit" name="sent" value="&raquo; {$masterpayment_button_text}" />
+                    
+                </form>
+                
+            </p>        
+        
+        </iframe>           
+
+	</div>
+    
+</div>

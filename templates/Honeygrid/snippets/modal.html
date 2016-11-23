@@ -1,0 +1,53 @@
+<div class="{$key}" style="display: none;">
+
+	{literal}
+
+		<div id="magnific_wrapper">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					{{#title}}
+					<div class="modal-header">
+						<h4 class="modal-title">{{title}}</h4>
+					</div>
+					{{/title}}
+	
+					<div class="modal-body">
+						{{{items.src}}}
+					</div>
+	
+					{{#showButtons}}
+					<div class="modal-footer">
+						{{#buttons}}
+						<button type="button" id="button_{{index}}_{{uid}}" data-index="{{index}}" class="btn {{class}}" >{{name}}</button>
+						{{/buttons}}
+					</div>
+					{{/showButtons}}
+				</div>
+			</div>
+		</div>
+	
+	
+		<div id="modal_prompt">
+			<div>
+				{{#content}}
+				<div class="icon">&nbsp;</div>
+				<p>{{.}}</p>
+				{{/content}}
+				<form name="prompt" action="">
+					<input type="text" name="input" value="{{value}}" autocomplete="off" />
+				</form>
+			</div>
+		</div>
+	
+		<div id="modal_alert">
+			<div class="white-popup">
+				{{#content}}
+				<div class="icon">&nbsp;</div>
+				<p>{{{.}}}</p>
+				{{/content}}
+			</div>
+		</div>
+
+	{/literal}
+	
+</div>

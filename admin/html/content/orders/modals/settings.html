@@ -1,0 +1,68 @@
+{load_language_text section="buttons" name="buttons"}
+{load_language_text section="admin_buttons" name="admin_buttons"}
+{load_language_text section="orders" name="orders"}
+
+<div class="settings modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="{$btn.close}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">{$admin_orders.SETTINGS}</h4>
+			</div>
+			<div class="modal-body"
+				 data-gx-widget="switcher"
+				 data-gx-controller="orders/modals/settings"
+				 data-settings-user-id="{$_SESSION.customer_id}">
+
+				<form class="form-horizontal order-settings">
+					<fieldset class="settings-group">
+						<legend>{$admin_orders.COLUMNS}</legend>
+						<ul class="settings">
+							{* Iterate over each available columns and set the sorting and visibility. *}
+							{foreach $content.columns as $column}
+								<li id="setting-{$column.name}">
+									<div class="form-group">
+										<label for="setting-value-{$column.name}" class="col-xs-6">{$column.title}</label>
+										<div class="col-xs-3 col-sm-2">
+											<input type="checkbox" id="setting-value-{$column.name}" class="form-control" />
+										</div>
+										<div class="col-xs-3">
+											<span class="sort-handle">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</span>
+										</div>
+									</div>
+								</li>
+							{/foreach}
+						</ul>
+					</fieldset>
+
+					<fieldset class="settings-group">
+						<legend>{$admin_orders.ROW}</legend>
+
+						<div class="form-group">
+							<label for="setting-value-row-height" class="col-xs-6 col-md-6 row-height">{$admin_orders.ROW_HEIGHT_LABEL}</label>
+							<div class="col-xs-4">
+								<select id="setting-value-row-height" class="SelectBox form-control">
+									{* Iterate over each selectable row height. *}
+									{foreach $content.row_heights as $row_height}
+										<option value="{$row_height}">{$admin_orders['ROW_HEIGHT_'|cat:$row_height|upper]}</option>
+									{/foreach}
+								</select>
+							</div>
+						</div>
+					</fieldset>
+
+					<fieldset class="modal-footer">
+						<a href="#" class="reset-action pull-left">{$admin_buttons.BUTTON_RESET_TO_DEFAULT_SETTINGS}</a>
+						<button type="button" class="btn btn-default" data-dismiss="modal">{$buttons.cancel}</button>
+						<button type="button" class="btn btn-primary submit-button">{$buttons.save}</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

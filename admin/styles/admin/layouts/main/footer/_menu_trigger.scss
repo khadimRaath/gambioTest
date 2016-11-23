@@ -1,0 +1,35 @@
+/*
+	Menu Trigger
+    ==========================================================================
+
+	The menu trigger offers the "collapse", "expand" and "expand-all" functionality 
+	for the main menu.
+
+*/
+
+.menu-trigger {
+	max-width:    80px;
+	min-width:    60px;
+	padding-left: $padding-small;
+	
+	#menu-trigger {
+		label, input {
+			display: none;
+		}
+		
+		label {
+			cursor: pointer;
+			
+			&:hover {
+				color: $link-color;
+			}
+			
+			i {
+				&:first-child {
+					text-align: center;
+					width:      10px;
+				}
+			}
+		}
+	}
+}

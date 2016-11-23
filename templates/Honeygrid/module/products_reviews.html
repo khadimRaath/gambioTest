@@ -1,0 +1,95 @@
+{load_language_text section="reviews"}
+{load_language_text section="buttons" name="button"}
+
+{if $module_content|@count > 0}
+	<div data-gambio-widget="more_text">
+		<h3>{$txt.heading_reviews}</h3>
+	
+		<ul class="list-group">
+			{foreach name=aussen key=key item=module_data from=$module_content}
+				<li class="rating-item list-group-item clearfix" {if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.product_itemprop_reviews}{$rich_snippet_content.$key.review_itemscope}{/if}>
+
+					<div class="rating-stars rating-stars-{$module_data.RATING_CLEAN * 10}" {if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.review_itemprop_reviewRating}{$rich_snippet_content.$key.rating_itemscope}{/if}>
+						
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<span class="fa fa-star"></span>
+						<div class="rating-stars-mask">
+							<div class="rating-stars-inside">
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+								<span class="fa fa-star"></span>
+							</div>
+						</div>
+
+						{if isset($rich_snippet_content.$key)}
+							{$rich_snippet_content.$key.rating_itemprop_ratingValue}
+						{/if}
+					</div>
+					<div class="rating-caption">
+						<span{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.review_itemprop_author}{$rich_snippet_content.$key.author_itemscope}{/if}>
+							<span{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.author_itemprop_name}{/if}>
+								{$module_data.AUTHOR}, 
+							</span>
+						</span>
+						<span>
+							{if isset($rich_snippet_content.$key)}
+								{$rich_snippet_content.$key.review_itemprop_datePublished}
+							{/if}
+							{$module_data.DATE}
+						</span>
+					</div>
+					<div class="rating-comment">
+						<div class="more-text-container">
+							{product_review long=$module_data.TEXT short=$module_data.TEXT|truncate:150:"" link="<a href=\"{$module_data.LINK}\" class=\"btn btn-default pull-right more-text-link\" title=\"{$txt.text_reviews_link}\">{$txt.text_reviews_link}</a>" out-remainder='review_remainder' out-link='review_link'}
+
+							<span class="more-text-split"{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.review_itemprop_reviewBody}{/if}>
+								{$module_data.TEXT}
+							</span>
+							<span class="more-text-full hide">
+								{$review_remainder}
+							</span>
+
+							<br />
+							{$review_link}
+						</div>
+					</div>
+
+				</li>
+			{/foreach}
+		</ul>
+	
+		<div class="row">
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				&nbsp;
+			</div>
+			<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-5 text-right">
+				<a class="btn btn-primary btn-block" href="{$BUTTON_LINK}" title="{$button.your_opinion}">
+					{$button.your_opinion}
+				</a>
+			</div>
+		</div>
+
+	</div>
+{else}
+	<div data-gambio-widget="more_text">
+		<h3>{$txt.heading_reviews}</h3>
+		
+		<p>{$txt.no_reviews}</p>
+
+		<div class="row">
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				&nbsp;
+			</div>
+			<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-5 text-right">
+				<a class="btn btn-primary btn-block" href="{$BUTTON_LINK}" title="{$button.your_opinion}">
+					{$button.your_opinion}
+				</a>
+			</div>
+		</div>
+	</div>
+{/if}

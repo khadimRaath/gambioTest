@@ -1,0 +1,16 @@
+{load_language_text section="box_order_history"}
+
+{if $content_data.CONTENT}
+	<div id="menubox_order_history" class="c_order_history content-box white clearfix">
+		<div id="menubox_order_history_head" class="c_boxhead content-box-header clearfix">
+			<div class="content-box-header-inner">
+				{$txt.heading_order_history}
+			</div>
+		</div>
+		<div id="menubox_order_history_body" class="content-box-main clearfix">
+			<div class="content-box-main-inner clearfix">
+		  {$content_data.CONTENT}
+			</div>
+		</div>
+	</div>
+{/if}

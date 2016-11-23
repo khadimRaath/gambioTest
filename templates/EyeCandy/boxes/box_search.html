@@ -1,0 +1,27 @@
+{load_language_text section="box_search"}
+{load_language_text section="buttons" name="button"}
+
+<div id="menubox_search" class="c_search content-box white clearfix">
+	<div id="menubox_search_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">
+			{$txt.heading_search}
+		</div>
+	</div>
+	<div id="menubox_search_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix">
+      <form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+				<input type="text" name="{$content_data.INPUT_NAME}" value="" class="input-text box-input-field" />
+				<div class="input submit">
+					<a href="{page_url}#" class="button_blue button_set action_submit" title="{$txt.title_search}"><span class="button-outer"><span class="button-inner">{$button.go}</span></span></a>
+				</div>
+				<div class="menubox_link">
+					<a href="{$content_data.LINK_ADVANCED}">{$txt.text_advanced_search}</a>
+					{if $content_data.GM_OPENSEARCH_TITLE}
+						<br />
+						<a href="{page_url}#" class="gm_opensearch button_opensearch" title="{$content_data.GM_OPENSEARCH_TITLE}">{$content_data.GM_OPENSEARCH_TEXT}</a> [<a href="{page_url}#" class="gm_opensearch_info button_opensearch">info</a>]
+					{/if}
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,235 @@
+
+/* Global Styles
+   ========================================================================== */
+
+
+// postfinder
+
+.page-postfinder ul.row,
+.page-postfinder ul.row li {
+  list-style: none;
+}
+
+ul.postfinder-head {
+  background-color: #ffcc00;
+  padding: 1ex 0;
+  color: #000000;
+  font-weight: bold;
+}
+
+ul.postfinder-body {
+  background-color: #fff2bf;
+  padding: 1ex 0;
+
+  li form fieldset {
+    margin: 0;
+  }
+}
+
+table.box-error {
+  @extend .container;
+  background: #c20400 !important;
+  border: 1px solid #a90300;
+  color: #ffffff;
+  display: block;
+  margin: 15px auto;
+  
+  @include border-radius($border-radius-base);
+  .errorBox {
+    padding: 15px;
+  }
+}
+
+table.box-warning {
+  @extend .container;
+  background: #D500F9 !important;
+  border: 1px solid #D500F9;
+  color: #ffffff;
+  margin: 15px auto;
+  
+  .warningBox {
+    padding: 15px;
+  }
+}
+
+
+// products display glyphicon
+// if no image found
+
+.no-image {
+  @include no-image-bg();
+  @include border-radius();
+  .glyphicon-picture,
+  .fa-picture-o {
+    font-size: 80px;
+    min-height: 130px;
+    text-align: center;
+    width: 100%;
+  }
+  
+  a, a:hover {
+    color: inherit;
+  }
+}
+
+
+// image responsive fix
+// needed for firefox and older IEs
+
+.img-responsive-fix {
+  width: 100%;
+}
+
+
+// icons
+// copy/paste from /css/fontello-html/assets/styles/legacy/gm.css
+// use this to attach icons to elements as :before
+
+.gm-icon-before {
+  font-family: "gm";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+// buttons
+
+.btn {
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  // unset for dropdown-toggles
+  &.dropdown-toggle {
+    text-transform: none;
+    letter-spacing: 0;
+  }
+	
+  &:focus {
+	  outline: none;
+  }	
+}
+
+// headlines
+
+h2, h3 {
+  border-bottom: 3px solid $gx-headline-border-color;
+  padding-bottom: 13px;
+  margin-bottom: 30px;
+  &.no-underline {
+    border-bottom: none;
+    margin-bottom: $line-height-base;
+    padding-bottom: 0;
+  }
+}
+
+
+// selection styling
+
+::selection {
+  background: $brand-primary; /* WebKit/Blink Browsers */
+  color: #fff;
+} 
+::-moz-selection {
+  background: $brand-primary; /* Gecko Browsers */
+  color: #fff;
+}
+
+
+// address blocks
+
+address {
+  font-style: italic;
+  font-weight: bold;
+}
+
+
+// additional text styles
+
+.text-bold {
+  font-weight: bold;
+}
+.text-small {
+  font-size: 11px;
+}
+
+
+// reset ul lists
+.list-reset {
+  @include reset-list();
+}
+
+// alert boxes with checkboxes
+// overwrite .checkbox definition
+
+.alert.checkbox {
+  padding-top: floor($grid-gutter-width / 2)
+}
+
+
+// indention classes
+
+@for $i from 0 through 4 {
+  .indent-#{$i} { 
+    padding-left: floor($i * $grid-gutter-width + 15);
+  }
+}
+
+
+// indention classes 
+// for each breakpoint
+
+@mixin make-indent($breakpoint, $pixels) {
+  @media (min-width: $pixels) {
+    @for $i from 0 through 4 {
+      .indent-#{$breakpoint}-#{$i} { 
+        padding-left: floor($i * $grid-gutter-width + 15);
+      }
+    }
+  }
+}
+@include make-indent(xs, $screen-xs-min);
+@include make-indent(sm, $screen-sm-min);
+@include make-indent(md, $screen-md-min);
+@include make-indent(lg, $screen-lg-min);
+
+
+// vertical spacing classes
+
+@for $i from 0 through 4 {
+  .space-#{$i} { 
+    margin-bottom: floor($i * $grid-gutter-width);
+  }
+}
+
+// Cross browser vertical image alignment.
+// http://stackoverflow.com/a/7310398
+.align-helper {
+	height: 100%;
+	display: inline-block;
+	vertical-align: middle;
+} 
+
+
+// Remove ouline css styling from links. 
+a:focus {
+	outline: none;
+}
+
+
+// TODO Move to correct position
+body:not(.filterbox-enabled) .productlisting-filter-container .filter-button {
+  display: none;
+}

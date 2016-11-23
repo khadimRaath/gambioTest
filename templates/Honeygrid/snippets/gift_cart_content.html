@@ -1,0 +1,40 @@
+{load_language_text section="gift_cart"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="popup" name="popup"}
+
+{if $GV_AMOUNT != ''}
+<div class="row">
+	<div class="col-xs-12">
+		<span class="gift-info-msg">{$txt.text_info}</span>
+		<br />
+		<span class="gift-balance-lbl">{$txt.voucher_balance}</span>
+		<span class="gift-balance">{$GV_AMOUNT}</span>
+	</div>
+</div>
+{/if}
+
+{if $COUPON_AMOUNT2 != ''}
+<span class="gift-status-msg">{$txt.voucher_redeemed}</span>
+<br />
+<span class="gift-amount">{$COUPON_AMOUNT2}</span>
+{/if}
+
+{if $C_FLAG == 'true'}
+<input name="{$INPUT_CODE_NAME}" id="{$INPUT_CODE_NAME}" placeholder="{$txt.text_input_value}" type="text" value="" class="form-control" />
+<input type="submit" value="{$button.redeem}" class="btn btn-primary" />
+{else}
+<div>
+	{$txt.create_account}
+</div>
+
+{/if}
+
+{$ERROR_MESSAGE}
+
+{if $COUPON_HELP_URL != ''}
+<span class="gift-status-msg2">{$txt.cart_coupon}</span>
+<a href="{$COUPON_HELP_URL}" title="{$txt.cart_coupon_info}" class="js-open-modal" data-modal-type="iframe" data-modal-settings='{literal}{{/literal}"title": "{$popup.title_coupon_help}", "dialogClass": "layer-medium"{literal}}{/literal}'>
+	{$txt.cart_coupon_info}
+</a>
+<span class="gift-status-msg3">{$REDEEMED_COUPON_UNDER_MIN_VALUE}</span>
+{/if}

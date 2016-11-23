@@ -1,0 +1,144 @@
+{* --------------------------------------------------------------
+	admin_paypal_configuration_first.html 2015-08-03
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*}
+<link rel="stylesheet" type="text/css" href="css/admin.css">
+{literal}
+<style>
+p.message { border: 1px solid #faa; background: #ffa; padding: 1ex 1em; }
+p.message_info { margin: 1px 0; border: 1px solid #E69138; background: #FFF2CC; color: #E69138; padding: 1ex 1em; }
+p.message_success { margin: 1px 0; border: 1px solid #6AA84F; background: #D9EAD3; color: #6AA84F; padding: 1ex 1em; }
+p.message_error { margin: 1px 0; border: 1px solid #A61C00; background: #F4CCCC; color: #A61C00; padding: 1ex 1em; }
+
+div.accordion-block { border: 1px solid #E2E2E2; margin: 5px 0; padding: 0 2em; background: #fff; }
+div.accordion-block-open { background: #F0F0F0; }
+div.accordion-block-open div.accordion-block-open { background: #fff; }
+div.accordion-head { font-size: 1.2em; font-weight: bold; cursor: pointer; padding: 2ex 0; }
+div.accordion-plus { float: right; border: 1px solid #E2E2E2; border-radius: 1em; height: 1.5em; width: 1.5em; line-height: 1.5; text-align: center; margin-top: 2ex;}
+div.accordion-body { display: none; margin: 1em 0;}
+div.accordion-block-open > div.accordion-body { display: block; }
+div.accordion-block-open > div.accordion-plus { display: none; }
+div.accordion-block-open > div.accordion-head { font-weight: bold; }
+div.accordion-block label { font-weight: normal !important; }
+div.accordion-block div.accordion-block div.accordion-head { font-size: 1.1em; font-weight: normal; }
+div.accordion-body fieldset { width: 99%; }
+
+/*
+div.accordion-block { border: 1px solid #E2E2E2; margin: 5px 0; padding: 0 2em; background: #fff; }
+div.accordion-block-open { background: #F0F0F0; }
+div.accordion-head { font-size: 1.2em; font-weight: bold; cursor: pointer; padding: 1ex 0; }
+*/
+
+.gx-container .control-group input[type="checkbox"].checkmark {display: none; }
+.gx-container .control-group input[type="checkbox"].checkmark + label {background-image: url('html/assets/images/legacy/OnOffSprite.png'); background-position: 0px 0px; background-repeat: no-repeat; height: 22px; min-width: 50px; margin: 0; padding: 0; font-weight: normal; }
+.gx-container .control-group input[type="checkbox"].checkmark:checked + label {background-position: 0px -23px; }
+.gx-container .control-group input[type="checkbox"].checkmark + label span {margin-left: 50px; line-height: 20px; }
+.gx-container .control-group input[type="checkbox"].checkmark + label span.off { display: inline; }
+.gx-container .control-group input[type="checkbox"].checkmark + label span.on { display: none; }
+.gx-container .control-group input[type="checkbox"].checkmark:checked + label span.off { display: none; }
+.gx-container .control-group input[type="checkbox"].checkmark:checked + label span.on { display: inline; }
+
+div.right_btn { text-align: right; }
+p.firstconfig_note { font-size: 1.1em; margin: 1em auto; }
+div.ibubble { display: table-cell; width: 2em; padding-left: 1ex; vertical-align: baseline; position: relative; overflow: visible; }
+div.ibubble-right { float: right; }
+div.ibubble div.i { cursor: pointer; position: absolute; top: .3ex; background-image: url('html/assets/images/legacy/info_icon.png'); background-repeat: no-repeat; width: 20px; height: 20px; }
+div.ibubble div.itip { display: none; position: absolute; right: 2.2em; top: 1ex; width: 30em; height: auto; background: #9DC2E0; border: 1px solid #000; border-radius: 1em; padding: 1em; border-top-right-radius: 0; }
+</style>
+{/literal}
+<div class="gx-container" id="pp3configfirst">
+	{foreach from=$messages item=message}
+		<p class="message_{$message.class}">{$message.text}</p>
+	{/foreach}
+
+	<p class="firstconfig_note">##first_config_note</p>
+
+	<div class="accordion-block accordion-block-open">
+		<div class="accordion-head">##cfg_credentials</div>
+		<form action="./admin.php?do={$do}/SaveFirstConfiguration" method="POST" class="grid">
+			<input type="hidden" name="page_token" value="{$page_token}">
+			<fieldset class="span12 fold">
+				<div class="control-group">
+					<label for="restapi-credentials-live-client_id">##cfg_client_id_live</label>
+					<input type="text" name="restapi-credentials-live-client_id" id="restapi-credentials-live-client_id"
+						value="{$clientid_live}">
+						<div class="ibubble" title="##tooltip_credentials">&nbsp;</div>
+				</div>
+				<div class="control-group">
+					<label for="restapi-credentials-live-secret">##cfg_secret_live</label>
+					<input type="text" name="restapi-credentials-live-secret" id="restapi-credentials-live-secret"
+						value="{$secret_live}">
+						<div class="ibubble" title="##tooltip_credentials">&nbsp;</div>
+				</div>
+				<div class="control-group">
+					<label>##cfg_use_paypal_plus</label>
+					<input type="hidden" value="0" name="use_paypal_plus">
+					<input type="checkbox" value="1" name="use_paypal_plus" id="use_paypal_plus" class="checkmark" {if $use_paypal_plus == '1'}checked="checked"{/if}>
+					<label for="use_paypal_plus"><span class="on">##do_use_paypal_plus</span><span class="off">##do_not_use_paypal_plus</span></label>
+					<div class="ibubble" title="##tooltip_paypal_plus">&nbsp;</div>
+				</div>
+			</fieldset>
+
+			<div class="firstconfig_defaults" style="display: none">
+				<h2 class="section-header">##first_config_defaults</h2>
+				<p class="firstconfig_note">##first_config_note_defaults</p>
+				<table>
+					<thead>
+						<tr><th>##firstconfig_item</th><th>##firstconfig_value</th></tr>
+					</thead>
+					<tbody>
+						<tr><td>##firstconfig_pex</td><td>##will_be_created_with_defaults</td></tr>
+						<tr>
+							<td>##firstconfig_webhook</td>
+							<td>
+								{if $create_webhook == '1'}##webhook_will_be_created{else}##webhook_not_possible{/if}
+								<input type="hidden" name="create_webhook" value="{$create_webhook}">
+							</td>
+						</tr>
+						<tr>
+							<td>##firstconfig_paypalplus</td>
+							<td>
+								{if $use_paypal_plus == '1'}##will_be_activated{else}##only_in_germany{/if}
+								<input type="hidden" name="use_paypal_plus_auto" value="{$use_paypal_plus}">
+							</td>
+						</tr>
+						<tr>
+							<td>##firstconfig_ecs</td>
+							<td>
+								{if $use_ecs == '1'}##will_be_activated{else}##no_because_guests_not_allwowed{/if}
+								<input type="hidden" name="use_ecs" value="{$use_ecs}">
+							</td>
+							</tr>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<br>
+			<input type="hidden" name="testhack" value="{$testhack}">
+			<div class="right_btn">
+				<input class="btn" type="submit" value="##cfg_save_first">
+			</div>
+		</form>
+	</div>
+
+	<a href="{$skip_firstconfig_link}">##skip_firstconfig</a>
+</div>
+
+{literal}
+<script>
+$(function() {
+	var ibubble_handler = function(e)
+	{
+		$('div.itip', this).fadeToggle();
+		$('div.itip').not($('div.itip', this)).fadeOut();
+	}
+	$('div.ibubble').prepend($('<div class="i">&nbsp;</div>'));
+});
+</script>
+{/literal}

@@ -1,0 +1,103 @@
+{load_language_text section="postfinder" name="postfinder"}
+
+<h1>{$postfinder.postfinder_heading}</h1>
+
+{if $error}{$error}{/if}
+
+<div class="pfinder_top">
+	<div class="pfinder_form">
+		<form action="{$FORM_ACTION}" method="GET">
+			{if $CHECKOUT_STARTED}
+			<input type="hidden" name="checkout_started" value="1">
+			{/if}
+			<p>{$postfinder.postfinder_intro}</p>
+			<table>
+				<tr>
+					<td><label for="street">{$postfinder.postfinder_label_street}</label></td>
+					<td><input type="text" name="street" placeholder="{$postfinder.postfinder_placeholder_street}" value="{$STREET}"></td>
+				</tr>
+				<tr>
+					<td><label for="streetno">{$postfinder.postfinder_label_streetno}</label></td>
+					<td><input type="text" name="streetno" placeholder="{$postfinder.postfinder_placeholder_streetno}" value="{$STREETNO}"></td>
+				</tr>
+				<tr>
+					<td><label for="zip">{$postfinder.postfinder_label_zip}</label></td>
+					<td><input type="text" name="zip" placeholder="{$postfinder.postfinder_placeholder_zip}" value="{$ZIP}"></td>
+				</tr>
+				<tr>
+					<td><label for="city">{$postfinder.postfinder_label_city}</label></td>
+					<td><input type="text" name="city" placeholder="{$postfinder.postfinder_placeholder_city}" value="{$CITY}"></td>
+				</tr>
+			</table>
+			<input type="submit" name="pfinder_search_pstation" value="{$postfinder.postfinder_search_pstation}">
+		</form>
+	</div>
+
+	<div class="address_book">
+		{foreach name=abook item=abentry from=$ABOOK}
+		<div class="abook_entry">
+			{$abentry.entry_firstname} {$abentry.entry_lastname}<br>
+			{$abentry.entry_street_address} {$abentry.entry_house_number}<br>
+			{$abentry.entry_postcode} {$abentry.entry_city}<br>
+			<a href="{$PAGE_URL}ab={$abentry.address_book_id}" class="use_ab_entry">{$postfinder.postfinder_use_address}</a>
+		</div>
+		{/foreach}
+	</div>
+</div>
+
+{if $NO_RESULT}
+	<p class="no_result">{$postfinder.postfinder_no_result}</p>
+{/if}
+{if $PACKSTATIONS}
+<table class="packstations">
+	<thead>
+		<tr>
+			<th>{$postfinder.postfinder_distance}</th>
+			<th>{$postfinder.postfinder_location}</th>
+			<th>{$postfinder.postfinder_psnumber}</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		{foreach name=pstations item=ps from=$PACKSTATIONS}
+		<tr>
+			<td>{$ps->distance} m</td>
+			<td>
+				{$ps->address->street} {$ps->address->streetNo}<br>
+				{$ps->address->zip} {$ps->address->city}
+				{if $ps->address->remark}
+					<br>{$ps->address->remark}
+				{/if}
+			</td>
+			<td>
+				{if $ps->automatType == 4}
+					Packstation&nbsp;{$ps->packstationId}
+				{else}
+					Filiale&nbsp;{$ps->depotServiceNo}
+				{/if}
+			</td>
+			<td>
+				<form action="{$FORM_ACTION}" method="POST">
+					{$postfinder.postfinder_postnumber}:&nbsp;<input type="text" name="postnumber" placeholder="1234567" size="10" maxlength="10"><br>
+					<input type="hidden" name="pszip" value="{$ps->address->zip}">
+					<input type="hidden" name="pscity" value="{$ps->address->city}">
+					{if $ps->automatType == 4}
+						<input type="hidden" name="psid" value="{$ps->packstationId}">
+						<input type="submit" name="ps2ab" value="{$postfinder.btn_ps2ab}">
+					{else}
+						<input type="hidden" name="depotid" value="{$ps->depotServiceNo}">
+						<input type="submit" name="branch2ab" value="{$postfinder.btn_ps2ab}">
+					{/if}
+				</form>
+			</td>
+		</tr>
+		{/foreach}
+	</tbody>
+</table>
+{/if}
+
+{if $RESULT}
+<pre>{$RESULT}</pre>
+{/if}
+
+

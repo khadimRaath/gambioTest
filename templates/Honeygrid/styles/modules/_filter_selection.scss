@@ -1,0 +1,15 @@
+.filter-selection-container {
+  .filter-selection,
+  .filter-item,
+  .filter-item li {
+    @include reset-list();
+  }
+  
+  .filter-selection {
+    display: inline-block;
+    
+    li {
+      display: inline-block;
+    }
+  }
+}

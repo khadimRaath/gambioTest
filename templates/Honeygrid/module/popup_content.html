@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>{$CONTENT_HEADING}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		{if $content_data.STYLE_EDIT_MODE != 'sos'}
+			<link type="text/css" rel="stylesheet" href="{$tpl_path}gm_dynamic.css.php?{$content_data.CSS_PARAMS}" />
+		{/if}
+
+		<!--[if lt IE 9]>
+		<link type="text/css" rel="stylesheet" href="{$tpl_path}styles/ie8.css" />
+		<![endif]-->
+
+		<style>
+		body {
+			padding-top: 0;
+		}
+		</style>
+	</head>
+	<body style="background: transparent; height: auto;">
+
+		<div id="content_page" class="popup_content">
+			{if $LIGHTBOX_MODE == '0'}
+				<h2>{$CONTENT_HEADING}</h2>
+			{/if}
+			<div class="content_text">{$HTML}</div>
+		</div>
+
+		{if $LIGHTBOX_MODE == '0'}
+			<p class="smallText" align="right">
+				<script type="text/javascript">
+				<!--
+				document.write('<a href="javascript:window.close()">{$TEXT_CLOSE_WINDOW}</a>')
+				// -->
+				</script>
+				<noscript>{$TEXT_CLOSE_WINDOW_NO_JS}</noscript>
+			</p>
+		{/if}
+
+	</body>
+</html>

@@ -1,0 +1,15 @@
+{* workarounds for old formatted messageStack messages *}
+
+{assign var="errorImageName" value=$message|regex_replace:"/(.+?)([a-z]+?)(\.gif.+)/s":"\\2"}
+
+{if $errorImageName === 'error' || $errorImageName === 'warning'}
+	{assign var="type" value="danger"}
+{elseif $errorImageName === 'success'}
+	{assign var="type" value="success"}
+{/if}
+
+{if $message || $hidden}
+	<div class="alert alert-{if $type}{$type}{else}info{/if} {if $hidden}hidden{/if}">
+		{$message|strip_tags|replace:"&nbsp;":""}
+	</div>
+{/if}

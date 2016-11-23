@@ -1,0 +1,26 @@
+{load_language_text section="box_currencies"}
+
+<div id="menubox_currencies" class="c_currencies content-box white clearfix">
+	<div id="menubox_currencies_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">
+			{$txt.heading_currencies}
+		</div>
+	</div>
+	<div id="menubox_currencies_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix">
+            <form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+				
+				<select class="currencies_selection input-select" name="currency" title="{$txt.title_currencies}">
+					{foreach name=currency item=currency_data from=$content_data.currencies_data}
+						<option value="{$currency_data.id}"{if $currency_data.id == $content_data.CURRENT_CURRENCY} selected="selected"{/if}>{$currency_data.text}</option>
+					{/foreach}
+				</select>
+
+				{foreach name=aussen item=hidden_data from=$content_data.hidden_get_variables_data}
+					<input type="hidden" name="{$hidden_data.KEY}" value="{$hidden_data.VALUE}" />
+				{/foreach}
+			
+			</form>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>{$CONTENT_HEADING}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="{$STYLESHEET}" />
+		<link type="text/css" rel="stylesheet" href="{$DYNAMIC_CSS}" />
+		<script type="text/javascript">
+			<!--
+			var i=0;
+			function resize() {literal}{{/literal}
+			  if (navigator.appName == 'Netscape') i=40;
+			  window.resizeTo({$IMAGE_WIDTH} + 105, {$IMAGE_HEIGHT} + 70 + i);
+			  self.focus();
+			{literal}}{/literal}
+			//-->
+		</script>
+		<style type="text/css">
+			{literal}
+			body {
+				font-family: Verdana, Arial, Helvetica, sans-serif;
+				font-size: 14px;
+
+			}
+			.headline {
+				font-weight: bold;
+				width:100%;
+				text-align: center;
+				border: none;
+				color: #FFFFFF;
+				background-color:#283758;
+				margin-bottom: 5px;
+			}
+			.image_box {
+				text-align: center;
+				margin-bottom: 10px;
+			}
+			{/literal}
+		</style>
+	</head>
+	<body onload="resize()">
+
+		<div class="headline">
+			{$PRODUCTS_NAME}
+		</div>
+
+		<div class="image_box">{$PRODUCT_IMAGE}</div>
+
+		<!-- thumbs -->
+		<center>
+		{if $MORE_IMAGES}
+			<iframe src="show_product_thumbs.php?pID={$PRODUCT_ID}&imgID={$IMAGE_ID}" width="{$IFRAME_WIDTH}" height="{$IFRAME_HEIGHT}" border="0" frameborder="0">
+				<a href="show_product_thumbs.php?pID={$PRODUCT_ID}&imgID={$IMAGE_ID}">More Images</a>
+			</iframe><br />
+		{/if}
+		<a href="#" onClick='window.close();'>{$smarty.const.TEXT_CLOSE_WINDOW}</a>
+		</center>
+
+	</body>
+</html>

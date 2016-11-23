@@ -1,0 +1,29 @@
+{load_language_text section="box_add_a_quickie"}
+{load_language_text section="buttons" name="button"}
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/top.html" class="add-a-quickie" headline=$txt.heading_add_a_quickie}
+
+<form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+
+	<fieldset>
+
+		<div class="form-group input-container">
+			<label class="control-label" for="{$content_data.INPUT_NAME}">
+				{$txt.text_quickie}
+			</label>
+			<div class="input-container">
+				<input type="text" class="form-control" name="{$content_data.INPUT_NAME}" id="{$content_data.INPUT_NAME}" placeholder="{$txt.input_placeholder}" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<button class="btn btn-primary btn-sm pull-right" type="submit" title="{$txt.title_add_a_quickie}">
+				{$button.go}
+			</button>
+		</div>
+
+	</fieldset>
+
+</form>
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"}

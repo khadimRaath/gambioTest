@@ -1,0 +1,26 @@
+{load_language_text section="index"} 
+{load_language_text section="new_products" name="product"}
+
+{if $module_content != ''}
+	{content_manager group=4321004}
+	
+	<h3>{$product.heading_text}</h3>
+
+	{if 'USE_NEW_PRODUCT_SWIPER_ON_INDEX'|gm_get_conf === 'true'}
+		{assign var="template" value="snippets/product_listing/product_listing_swiper.html"}
+	{else}
+		{assign var="template" value="snippets/product_listing/product_listing.html"}
+	{/if}
+
+	{assign var="fullscreenPage" value={template_setting name="gx-index-full-width"}}
+	{product_listing 
+		products=$module_content 
+		id="new-products-main" 
+		truncate=$TRUNCATE_PRODUCTS_NAME 
+		hoverable=true 
+		template=$template
+		showManufacturerImages=$showManufacturerImages 
+		showProductRibbons=$showProductRibbons 
+		showRating=$showRating
+		fullscreenPage=$fullscreenPage}
+{/if}

@@ -1,0 +1,82 @@
+{load_language_text section="checkout_shipping"}
+
+<div class="items">
+
+{if $FREE_SHIPPING && !$module_content}
+	<div class="shipping_item clearfix">
+		<div class="caption clearfix">
+			<p><span class="title">{$FREE_SHIPPING_TITLE} {$FREE_SHIPPING_ICON}</span></p>
+			<p><span class="title">{$module_data.module} {$module_data.icon}</span><br />{$FREE_SHIPPING_DESCRIPTION}</p>
+		</div>
+		<div class="price clearfix">
+			<p>&nbsp;</p>
+		</div>
+	</div>
+{else} 
+	<p>{$txt.text_shipping}</p>
+
+	{foreach name=aussen item=module_data from=$module_content}
+		{if $module_data.methods|@count > 0}
+			<div class="shipping_item clearfix{if $module_data.methods|@count == 1} button_checkout_module{/if}">
+				{foreach name=aussen item=method_data from=$module_data.methods}
+					{if $module_data.methods|@count == 1 && !$module_data.error}
+						<div class="radiobox clearfix">
+							{$method_data.radio_field}
+						</div>
+						<div class="caption clearfix">
+							<p><span class="title">{$module_data.module} {$module_data.icon}</span><br />{$method_data.title}</p>
+						</div>
+						<div class="price clearfix">
+							<p>{$method_data.price}</p>
+						</div>
+					{elseif $module_data.error}
+						<div class="radiobox clearfix">
+							&nbsp;
+						</div>
+						<div class="caption clearfix">
+							<p><span class="title">{$module_data.module} {$module_data.icon}</span><br /><span id="shipping_error">{$module_data.error}</span></p>
+						</div>
+						<div class="price clearfix">
+							<p>&nbsp;</p>
+						</div>
+					{else}
+						{if $smarty.foreach.aussen.first}
+							<div class="caption clearfix">
+								<p><span class="title">{$module_data.module} {$module_data.icon}</span></p>
+							</div>
+							<div class="price clearfix">
+								<p>&nbsp;</p>
+							</div>
+						{/if}
+						<div class="shipping_item_box button_checkout_module">
+							<div class="radiobox clearfix">
+								{$method_data.radio_field}
+							</div>
+							<div class="caption clearfix">
+								<p>{$method_data.title}</p>
+							</div>
+							<div class="price clearfix">
+								<p>{$method_data.price}</p>
+							</div>
+						</div>
+					{/if}
+				{/foreach}
+			</div>
+		{else}
+			<div class="shipping_item clearfix">
+				{if $module_data.error}
+					<div class="radiobox clearfix">
+						&nbsp;
+					</div>
+					<div class="caption clearfix">
+						<p><span class="title">{$module_data.module} {$module_data.icon}</span><br /><span id="shipping_error">{$module_data.error}</span></p>
+					</div>
+					<div class="price clearfix">
+						<p>&nbsp;</p>
+					</div>
+				{/if}
+			</div>
+		{/if}
+	{/foreach}
+{/if}
+</div>

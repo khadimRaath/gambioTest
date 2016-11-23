@@ -1,0 +1,157 @@
+// ----------------------------------------------------------------------------
+// ADMIN INFO BOX
+// ----------------------------------------------------------------------------
+
+// additional old styles are found in the file admin/html/assets/styles/legacy/admin_info_box.css
+
+// Position admin infobox wrapper under the infobox icon on header.
+#admin_info_wrapper {
+  right:       97px;
+  width:       328px;
+  position:    fixed;
+  display:     block;
+
+  @include animation(ease hideinfobox 0.7s);
+  @include animation-fill-mode(forwards);
+  will-change: transform;
+
+  #admin_info_inner_wrapper {
+    top:      14px;
+    right:    0px;
+    width:    300px;
+    position: relative;
+  }
+
+  // hide old school triangle
+  .triangle-with-shadow-wrapper {
+    display: none;
+  }
+
+  .content {
+    position:   relative;
+    padding:    0px;
+    background: $background-color;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.2);
+    @include border-radius(0);
+    top:        0px;
+    left:       10px;
+    border-top:     1px solid $infobox-border-color;
+    border-right:     1px solid $infobox-border-color;
+    border-bottom:     0;
+    border-left:     1px solid $infobox-border-color;
+    z-index:    0;
+  }
+
+  .content:after {
+    content:     '';
+    position:    absolute;
+    right:       14px;
+    top:         -9px;
+    width:       16px;
+    height:      16px;
+    background:  inherit;
+    -webkit-transform:   rotate(45deg);
+    -moz-transform:   rotate(45deg);
+    -o-transform:   rotate(45deg);
+    transform:   rotate(45deg);
+    box-shadow:  1px 1px 0px 0px $background-color, 3px 3px 0px 2px $background-color, -1px -1px 3px 0px rgba(0, 0, 0, 0.06);
+    border-top:  1px solid $infobox-border-color;
+    border-left: 1px solid $infobox-border-color;
+    z-index:     -1;
+  }
+
+  .admin_info_box {
+    border-bottom: 1px solid $infobox-border-color;
+    background: $background-color;
+    text-align: justify;
+
+    .info_headline {
+      color:     $infobox-color;
+      font-size: 14px;
+    }
+
+    .btn {
+      @include button-basic-style();
+      @include force-component-colors($infobox-color, $component-color);
+      margin: 0;
+      padding: 8px 12px;
+      font-size: 12px;
+      
+      &:hover {
+        @include force-component-colors-hover($infobox-color, $component-color);
+      }
+    }
+
+    &.warning {
+
+      .info_headline {
+        color: $danger-color;
+      }
+
+      .btn {
+        @include button-basic-style();
+        @include force-component-colors($danger-color, $component-color);
+        margin: 0;
+        padding: 8px 12px;
+        font-size: 12px;
+        
+        &:hover {
+          @include force-component-colors-hover($danger-color, $component-color);
+        }
+      }
+    }
+
+    &.error {
+      .info_headline {
+        color: $danger-color;
+      }
+    }
+
+    &.success {
+
+      .info_headline {
+        color: $success-color;
+      }
+
+      .btn {
+        @include button-basic-style();
+        @include force-component-colors($success-color, $component-color);
+        margin: 0;
+        padding: 8px 12px;
+        font-size: 12px;
+
+        &:hover {
+          @include force-component-colors-hover($success-color, $component-color);
+        }
+      }
+
+    }
+  }
+
+  &.active {
+    display:     block;
+    @include animation(ease showinfobox 0.7s);
+    @include animation-fill-mode(forwards);
+    will-change: transform;
+    top:         35px;
+    z-index:     2;
+  }
+  
+  .show_all {
+    border-bottom: 1px solid $infobox-border-color;
+  }
+}
+
+li {
+  a {
+    &.admin_info_box_button {
+      line-height: normal;
+      .active {
+        i {
+          color:       $infobox-text-color;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

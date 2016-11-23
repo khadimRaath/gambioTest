@@ -1,0 +1,277 @@
+{load_language_text section="product_listing"}
+{load_language_text section="product_info" name="info"}
+{load_language_text section="buttons" name="button"}
+
+
+{$FILTER_SELECTION}
+
+<div id="product_listing" class="product-listing">
+
+	{if $SEARCH_RESULT_PAGE == 1 || $CATEGORIES_HEADING_TITLE || $CATEGORIES_NAME}
+	<div class="categories_name">
+		{if $SEARCH_RESULT_PAGE == 1}
+			{if $KEYWORDS && $KEYWORDS != '%'}
+				<h1>{$txt.heading_search_result_plus_keywords} &quot;{$KEYWORDS}&quot;</h1>
+			{else}
+				<h1>{$txt.heading_search_result}</h1>
+			{/if}
+		{else}
+			{if $CATEGORIES_HEADING_TITLE || $CATEGORIES_NAME}
+				<h1>{$CATEGORIES_HEADING_TITLE|default:$CATEGORIES_NAME}</h1>
+			{/if}
+		{/if}
+	</div>
+	{/if}
+    
+        {if $CATEGORIES_DESCRIPTION || $CATEGORIES_IMAGE || $MANUFACTURER_DROPDOWN}
+            <div class="categories_description">
+                    {if $CATEGORIES_DESCRIPTION}
+                            {$CATEGORIES_DESCRIPTION}
+                    {/if}
+
+                    <div class="align_right">
+                            {if $CATEGORIES_IMAGE}
+                                    <img src="{$CATEGORIES_IMAGE}" alt="{$CATEGORIES_GM_ALT_TEXT|default:$CATEGORIES_NAME}" title="{$CATEGORIES_GM_ALT_TEXT|default:$CATEGORIES_NAME}" />
+                            {/if}
+                            {if $MANUFACTURER_DROPDOWN}
+                                    <br />
+                                    <br />
+                                    <form id="{$manufacturers_data.FORM.ID}" action="{$manufacturers_data.FORM.ACTION}" method="{$manufacturers_data.FORM.METHOD}">
+                                            {foreach name=hidden_fields item=hidden from=$manufacturers_data.HIDDEN}
+                                                    <input type="hidden" name="{$hidden.NAME}" value="{$hidden.VALUE}" />
+                                            {/foreach}
+
+                                            <span class="strong">{if $gm_manufacturers_id}{$txt.label_category}{else}{$txt.label_manufacturer}{/if}&nbsp;</span>
+
+                                            <select name="{$manufacturers_data.NAME}" size="1" class="manufactuers_selection input-select">
+                                            {foreach name=options item=option from=$manufacturers_data.OPTIONS}
+                                                    <option value="{$option.VALUE}"{if $manufacturers_data.DEFAULT == $option.VALUE} selected="selected"{/if}>{$option.NAME}</option>
+                                            {/foreach}
+                                            </select>
+                                    </form>
+                            {/if}
+                    </div>
+            </div>
+        {/if}
+
+	<!-- #BOF YOOCHOOSE -->
+	{if $MODULE_yoochoose_category_topsellers != ''}
+		{$MODULE_yoochoose_category_topsellers}
+	{/if}
+	<!-- #EOF YOOCHOOSE -->
+
+	<div class="panel clearfix">
+		<form name="panel" action="{$SORTING_FORM_ACTION_URL}" method="get">
+			{foreach name=hidden_fields item=hidden_data from=$get_params_hidden_data}
+				<input type="hidden" name="{$hidden_data.NAME}" value="{$hidden_data.VALUE}" />
+			{/foreach}
+			<div class="panel-sort clearfix">
+				<div class="input select">
+					<label>{$txt.label_sort}</label>
+					<select name="listing_sort" class="input-select">
+						<option value=""{if !$SORT || $SORT == ''} selected="selected"{/if}>{$txt.option_select}</option>
+						<option value="price_asc"{if $SORT == 'price_asc'} selected="selected"{/if}>{$txt.option_price_asc}</option>
+						<option value="price_desc"{if $SORT == 'price_desc'} selected="selected"{/if}>{$txt.option_price_desc}</option>
+						<option value="name_asc"{if $SORT == 'name_asc'} selected="selected"{/if}>{$txt.option_name_asc}</option>
+						<option value="name_desc"{if $SORT == 'name_desc'} selected="selected"{/if}>{$txt.option_name_desc}</option>
+						<option value="date_asc"{if $SORT == 'date_asc'} selected="selected"{/if}>{$txt.option_date_asc}</option>
+						<option value="date_desc"{if $SORT == 'date_desc'} selected="selected"{/if}>{$txt.option_date_desc}</option>
+						<option value="shipping_asc"{if $SORT == 'shipping_asc'} selected="selected"{/if}>{$txt.option_shipping_asc}</option>
+						<option value="shipping_desc"{if $SORT == 'shipping_desc'} selected="selected"{/if}>{$txt.option_shipping_desc}</option>
+					</select>
+				</div>
+			</div>
+			<div class="panel-itemcount clearfix">
+				<div class="input select">
+					<label>{$txt.label_itemcount}</label>
+					<select name="listing_count" class="input-select">
+						<option value="{$COUNT_VALUE_1}"{if $ITEM_COUNT == $COUNT_VALUE_1} selected="selected"{/if}>{$COUNT_VALUE_1}</option>
+						<option value="{$COUNT_VALUE_2}"{if $ITEM_COUNT == $COUNT_VALUE_2} selected="selected"{/if}>{$COUNT_VALUE_2}</option>
+						<option value="{$COUNT_VALUE_3}"{if $ITEM_COUNT == $COUNT_VALUE_3} selected="selected"{/if}>{$COUNT_VALUE_3}</option>
+						<option value="{$COUNT_VALUE_4}"{if $ITEM_COUNT == $COUNT_VALUE_4} selected="selected"{/if}>{$COUNT_VALUE_4}</option>
+						<option value="{$COUNT_VALUE_5}"{if $ITEM_COUNT == $COUNT_VALUE_5} selected="selected"{/if}>{$COUNT_VALUE_5}</option>
+					</select>
+				</div>
+			</div>
+
+
+			<div class="panel-viewmode clearfix">
+				{if $VIEW_MODE == 'tiled'}
+					<a href="{$VIEW_MODE_URL_DEFAULT}"><img class="png-fix" src="{$tpl_path}img/icons/view_mode_default_off.png" alt="" /></a>&nbsp;&nbsp;
+					<a href="{$VIEW_MODE_URL_TILED}"><img class="png-fix" src="{$tpl_path}img/icons/view_mode_tiled_on.png" alt="" /></a>
+				{else}
+					<a href="{$VIEW_MODE_URL_DEFAULT}"><img class="png-fix" src="{$tpl_path}img/icons/view_mode_default_on.png" alt="" /></a>&nbsp;&nbsp;
+					<a href="{$VIEW_MODE_URL_TILED}"><img class="png-fix" src="{$tpl_path}img/icons/view_mode_tiled_off.png" alt="" /></a>
+				{/if}
+			</div>
+
+		</form>
+		<div class="panel-pagination clearfix">
+			<p>{$NAVIGATION}</p>
+		</div>
+	</div>
+
+
+	{if $VIEW_MODE == 'tiled'}
+		{if $module_content != ''}
+			{object_product_list product_list=$module_content id_prefix="new_products" truncate_products_name=$TRUNCATE_PRODUCTS_NAME}
+		{/if}
+
+	{else}
+		<div class="article-list rows clearfix">
+		
+		{foreach name=aussen item=module_data from=$module_content}
+		<div class="article-list-item clearfix">
+			<form id="{$module_data.FORM_DATA.ID}" action="{$module_data.FORM_DATA.ACTION_URL}" method="{$module_data.FORM_DATA.METHOD}">
+				<div class="article-list-item-inside">
+					<div class="article-list-item-image" style="width:{$module_data.PRODUCTS_IMAGE_WIDTH}px;">
+						<div class="article-list-item-image-inline" style="width: {$module_data.PRODUCTS_IMAGE_W}px;">
+							{if $module_data.PRODUCTS_IMAGE!=''}<span id="prodlist_{$module_data.PRODUCTS_ID}" class="flyover_item"><a href="{$module_data.PRODUCTS_LINK}"><img src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_IMAGE_ALT|default:$module_data.PRODUCTS_NAME}" title="{$module_data.PRODUCTS_IMAGE_ALT|default:$module_data.PRODUCTS_NAME}" /></a></span>{/if}
+						</div>
+						{if $module_data.PRODUCTS_FSK18=='true'}<img src="{$tpl_path}img/ab18.png" alt="ab18.png" title="ab18.png" />{/if}
+					</div>
+					<div class="article-list-item-main">
+						<h2>
+							<a href="{$module_data.PRODUCTS_LINK}" class="product_link"{if $module_data.PRODUCTS_META_DESCRIPTION != ''} title="{$module_data.PRODUCTS_META_DESCRIPTION|truncate:80:"..."|replace:'"':'&quot;'}"{/if}>{$module_data.PRODUCTS_NAME}</a>
+						</h2>
+						<p>{$module_data.PRODUCTS_SHORT_DESCRIPTION}<br />
+							{if $module_data.GM_ATTRIBUTES}
+								{$module_data.GM_ATTRIBUTES}
+								{if !$module_data.GM_GRADUATED_PRICES}<br /><br />{/if}
+							{/if}
+							{if $module_data.GM_GRADUATED_PRICES}{$module_data.GM_GRADUATED_PRICES}{/if}
+						</p>
+
+					</div>
+
+					<div class="article-list-item-right">
+						<div class="article-list-item-price">
+							<span class="price">
+								<a href="{$module_data.PRODUCTS_LINK}">
+									<span class="gm_price" id="gm_attr_calc_price_{$module_data.PRODUCTS_ID}">
+										{$module_data.PRODUCTS_PRICE}
+										{if $module_data.PRODUCTS_VPE}
+											<br /><span class="gm_products_vpe">{$module_data.PRODUCTS_VPE}</span>
+										{/if}
+									</span>
+								</a>
+							</span>
+							<br />
+							{if ($module_data.PRODUCTS_TAX_INFO neq '' || $module_data.PRODUCTS_SHIPPING_LINK neq '') && $module_data.GM_PRODUCTS_QTY}
+								<span class="tax-shipping-text">{$module_data.PRODUCTS_TAX_INFO}{$module_data.PRODUCTS_SHIPPING_LINK}</span><br />
+							{/if}
+						</div>
+					</div>
+
+					<div class="article-list-item-bottom clearfix">
+						{if $module_data.PRODUCTS_SHIPPING_NAME || $module_data.PRODUCTS_QUANTITY || ($module_data.SHOW_PRODUCTS_WEIGHT && $module_data.PRODUCTS_WEIGHT)}
+						<div class="article-list-item-delivery">
+							<p>
+								{if $module_data.PRODUCTS_SHIPPING_NAME}
+                                                                    <span class="label">{$txt.text_shippingtime}</span>
+                                                                    {if $module_data.PRODUCTS_SHIPPING_IMAGE}
+                                                                            <span class="image_shippingtime"><img src="{$module_data.PRODUCTS_SHIPPING_IMAGE}" alt="{$module_data.PRODUCTS_SHIPPING_NAME}" /></span>
+                                                                    {/if}
+                                                                    {$module_data.PRODUCTS_SHIPPING_NAME}{if $module_data.PRODUCTS_SHIPPING_LINK_ACTIVE} <a class="abroad_shipping_info_link lightbox_iframe" href="popup_content.php?coID={$smarty.const.SHIPPING_INFOS}&amp;lightbox_mode=1">({$info.text_abroad_shipping_info})</a>{/if}{if $GM_SHOW_QTY_INFO == '1' && $module_data.GM_PRODUCTS_STOCK > 0},{/if}
+								{/if}
+								{if $module_data.PRODUCTS_QUANTITY}
+									<span class="products_stock"><span class="label">{$txt.text_products_stock}</span>{$module_data.GM_PRODUCTS_STOCK} {if $module_data.UNIT}{$module_data.UNIT}{else}{$txt.text_pieces}{/if}</span>{if ($GM_SHOW_QTY_INFO == '1' || $module_data.GM_PRODUCTS_STOCK > 0) && $module_data.SHOW_PRODUCTS_WEIGHT && $module_data.PRODUCTS_WEIGHT},{/if}
+								{/if}
+								{if $module_data.SHOW_PRODUCTS_WEIGHT && $module_data.PRODUCTS_WEIGHT}
+									<span class="label">{$info.text_weight}</span> <span id="gm_calc_weight_{$module_data.PRODUCTS_ID}">{$module_data.PRODUCTS_WEIGHT}</span> {$info.text_weight_unit}
+									{if $module_data.UNIT}
+										{$module_data.UNIT}
+									{else}
+										{$info.text_weight_qty_unit}
+									{/if}
+								{/if}
+							</p>
+						</div>
+						{/if}
+
+
+						<div style="width: auto; text-align: right;">
+							<div><span class="gm_checker_error" id="gm_checker_error_{$module_data.PRODUCTS_ID}"></span></div>
+							{if $module_data.GM_PRODUCTS_BUTTON_BUY_NOW && $module_data.GM_PRODUCTS_QTY}
+								
+								<a href="{$module_data.GM_PRODUCTS_BUTTON_BUY_NOW_URL}" class="button_green button_set action_add_to_cart"{if $module_data.PRODUCTS_NAME != ''} title="{$module_data.PRODUCTS_NAME|replace:'"':'&quot;'} {$txt.text_buy}"{/if}>
+									<span class="button-outer">
+										<span class="button-inner">{$button.add_to_cart}</span>
+									</span>
+								</a>
+								{if $module_data.QTY_DATA.VALUE != 1 || (($GM_SHOW_QTY == '1' && $module_data.GM_ATTRIBUTES) || ($GM_SHOW_QTY == '1' && $module_data.GM_HAS_ATTRIBUTES == '0'))}
+									<span class="quantity_container">
+										{if $module_data.UNIT}<label for="{$module_data.QTY_DATA.ID}" class="products_quantity_unit">{$module_data.UNIT}</label>{/if}
+										<input type="{$module_data.QTY_DATA.TYPE}" name="{$module_data.QTY_DATA.NAME}" id="{$module_data.QTY_DATA.ID}" class="article-count-input numeric input-text products_quantity {$module_data.QTY_DATA.CLASS}" value="{$module_data.QTY_DATA.VALUE}" />
+									</span>
+								{else}
+									<input type="hidden" name="{$HIDDEN_QTY_NAME}" value="{$module_data.QTY_DATA.VALUE}" />
+								{/if}
+								<input type="hidden" class="gm_products_id" name="products_id" value="{$module_data.PRODUCTS_ID}" />
+							{/if}
+						</div>
+
+
+					</div>
+				</div>
+			</form>
+		</div>
+
+		{/foreach}
+		</div>
+	{/if}
+
+	<div class="panel clearfix">
+		<form name="panel2" action="{$SORTING_FORM_ACTION_URL}" method="get">
+			{foreach name=hidden_fields2 item=hidden_data from=$get_params_hidden_data}
+				<input type="hidden" name="{$hidden_data.NAME}" value="{$hidden_data.VALUE}" />
+			{/foreach}
+			<div class="panel-sort clearfix">
+				<div class="input select">
+					<label>{$txt.label_sort}</label>
+					<select name="listing_sort" class="input-select">
+						<option value=""{if !$SORT || $SORT == ''} selected="selected"{/if}>{$txt.option_select}</option>
+						<option value="price_asc"{if $SORT == 'price_asc'} selected="selected"{/if}>{$txt.option_price_asc}</option>
+						<option value="price_desc"{if $SORT == 'price_desc'} selected="selected"{/if}>{$txt.option_price_desc}</option>
+						<option value="name_asc"{if $SORT == 'name_asc'} selected="selected"{/if}>{$txt.option_name_asc}</option>
+						<option value="name_desc"{if $SORT == 'name_desc'} selected="selected"{/if}>{$txt.option_name_desc}</option>
+						<option value="date_asc"{if $SORT == 'date_asc'} selected="selected"{/if}>{$txt.option_date_asc}</option>
+						<option value="date_desc"{if $SORT == 'date_desc'} selected="selected"{/if}>{$txt.option_date_desc}</option>
+						<option value="shipping_asc"{if $SORT == 'shipping_asc'} selected="selected"{/if}>{$txt.option_shipping_asc}</option>
+						<option value="shipping_desc"{if $SORT == 'shipping_desc'} selected="selected"{/if}>{$txt.option_shipping_desc}</option>
+					</select>
+				</div>
+			</div>
+			<div class="panel-itemcount clearfix">
+				<div class="input select">
+					<label>{$txt.label_itemcount}</label>
+					<select name="listing_count" class="input-select">
+						<option value="{$COUNT_VALUE_1}"{if $ITEM_COUNT == $COUNT_VALUE_1} selected="selected"{/if}>{$COUNT_VALUE_1}</option>
+						<option value="{$COUNT_VALUE_2}"{if $ITEM_COUNT == $COUNT_VALUE_2} selected="selected"{/if}>{$COUNT_VALUE_2}</option>
+						<option value="{$COUNT_VALUE_3}"{if $ITEM_COUNT == $COUNT_VALUE_3} selected="selected"{/if}>{$COUNT_VALUE_3}</option>
+						<option value="{$COUNT_VALUE_4}"{if $ITEM_COUNT == $COUNT_VALUE_4} selected="selected"{/if}>{$COUNT_VALUE_4}</option>
+						<option value="{$COUNT_VALUE_5}"{if $ITEM_COUNT == $COUNT_VALUE_5} selected="selected"{/if}>{$COUNT_VALUE_5}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="panel-viewmode clearfix">
+				{if $VIEW_MODE == 'tiled'}
+					<a href="{$VIEW_MODE_URL_DEFAULT}"><img class="png-fix" src="{$tpl_path}img/icons/view_mode_default_off.png" alt="" /></a>&nbsp;&nbsp;
+					<a href="{$VIEW_MODE_URL_TILED}"><img class="png-fix" src="{$tpl_path}img/icons/view_mode_tiled_on.png" alt="" /></a>
+				{else}
+					<a href="{$VIEW_MODE_URL_DEFAULT}"><img class="png-fix" src="{$tpl_path}img/icons/view_mode_default_on.png" alt="" /></a>&nbsp;&nbsp;
+					<a href="{$VIEW_MODE_URL_TILED}"><img class="png-fix" src="{$tpl_path}img/icons/view_mode_tiled_off.png" alt="" /></a>
+				{/if}
+			</div>
+
+		</form>
+		<div class="panel-pagination clearfix">
+			<p>{$NAVIGATION}</p>
+		</div>
+	</div>
+
+	<div class="panel-pagination-info">{$NAVIGATION_INFO}</div>
+	
+</div>
+

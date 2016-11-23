@@ -1,0 +1,85 @@
+
+/* Input Number-Spinner
+   ========================================================================== */
+
+ .input-number {
+
+ 	@extend .input-group;
+ 	padding-left: ($grid-gutter-width / 2) !important;
+ 	padding-right: ($grid-gutter-width / 2) !important;
+ 	padding-bottom: ($grid-gutter-width / 2) !important;
+
+ 	.input-group {
+	 	width: 100%;
+ 	}
+
+ 	.btn-plus,
+ 	.btn-minus {
+		@extend .input-group-btn;
+		font-size: $font-size-large;
+ 		width: 60px;
+ 	}
+ 	.btn-minus {
+ 		@include border-right-radius(0);
+ 		border-right: none;
+ 	}
+ 	.btn-plus {
+ 		@include border-left-radius(0);
+ 		border-left: none;
+ 	}
+ 	.form-control {
+	 	text-align: center;
+	 	padding-left: 0;
+ 	}
+ 	.input-group-addon {
+ 		border-left: none;
+ 		border-right: none;
+ 		color: #ccc;
+ 		line-height: $line-height-large;
+ 	}
+}
+
+@if ($gx-product-info-full-width == true and $gx-body-wrap != true) {
+	.input-number {
+	 	@media (min-width: $screen-lg-min) {
+
+	 		float: left !important;
+
+	 		.btn-minus,
+	 		.btn-plus {
+	 			position: absolute;
+	 			top: 1px;
+	 			z-index: 900;
+	 			right: 1px;
+	 			font-size: $font-size-small;
+	 			height: 23px;
+	 			width: 40px;
+	 			font-size: 10px;
+	 			padding: 5px 0;
+	 			border-right: none;
+	 			@include border-radius(0);
+			}
+	 		.btn-minus {
+	 			top: auto;
+	 			bottom: 1px;
+	 			border-bottom: none;
+			    border-bottom-right-radius: $border-radius-base;
+	 		}
+	 		.btn-plus {
+	 			border-top: none;
+	 			height: 22px;
+	 			border-left: 1px solid #ccc;
+			    border-top-right-radius: $border-radius-base;
+	 		}
+		    #attributes-calc-quantity {
+			    @include border-radius($border-radius-base)
+		    }
+	 		.form-control {
+	 			padding-right: 40px;
+	 		}
+	 		.input-group-addon {
+	 			display: none;
+	 		}
+	 	}
+	}
+}

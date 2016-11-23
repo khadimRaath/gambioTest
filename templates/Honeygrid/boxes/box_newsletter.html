@@ -1,0 +1,33 @@
+{load_language_text section="box_newsletter"}
+{load_language_text section="buttons" name="button"}
+
+
+<div class="box box-newsletter panel panel-default"{if $linkcrypter && $linkcrypter != ''} data-gambio-widget="link_crypter"{/if}>
+	<div class="panel-heading">
+		<h4 class="panel-title">{$txt.heading_guestnewsletter}</h4>
+	</div>
+	<div class="panel-body">
+
+		<form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}" data-jse-extensions="validator">
+
+			<fieldset>
+				
+				<div class="form-group input-container">
+					<span class="input-container"> 
+						<input type="text" placeholder="{$txt.text_email}" class="form-control validate" id="{$content_data.INPUT_NAME}" name="{$content_data.INPUT_NAME}" value="" data-validator-validate="required email" />
+						<i class="fa fa-envelope"></i>
+					</span> 
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-block btn-primary btn-sm" title="{$txt.title_newsletter}">
+						{$button.login}
+					</button>
+				</div>
+
+			</fieldset>
+
+		</form>	
+
+	</div>
+</div>

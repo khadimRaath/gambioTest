@@ -1,0 +1,17 @@
+{load_language_text section="box_content"}
+
+<div id="menubox_content" class="c_content content-box white clearfix">
+	<div id="menubox_content_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">
+			{$txt.heading_content}
+		</div>
+	</div>
+	<div id="menubox_content_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix">
+		{foreach item=content_array from=$content_data.CONTENT_LINKS_DATA}
+			<img src="{$tpl_path}/img/icon_arrow.gif" alt="" /> <a href="{$content_array.URL}"{if $content_array.URL_TARGET} target="{$content_array.URL_TARGET}"{/if}>{$content_array.NAME}</a><br />
+		{/foreach}
+		</div>
+	</div>
+</div>
+

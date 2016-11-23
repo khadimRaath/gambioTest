@@ -1,0 +1,132 @@
+/* 
+	jQuery Daterangepicker
+    ========================================================================== 
+
+	Additional styling for the jQuery Daterangepicker plugin. 
+	
+*/
+
+$daterangepicker-width: 550px;
+$daterangepicker-border-width: 3px; // Border is messing the container width. 
+
+.comiseo-daterangepicker {
+	width:         $daterangepicker-width + $daterangepicker-border-width * 2;
+	padding:       0;
+	border-radius: $border-radius-base;
+	border:        $daterangepicker-border-width solid rgba(0, 0, 0, .2);
+	background:    $body-bg;
+	
+	.comiseo-daterangepicker-main {
+		padding:    0;
+		background: none;
+		border:     none;
+		
+		.comiseo-daterangepicker-presets {
+			display: none; // We do not need the preset functionality.
+		}
+		
+		.comiseo-daterangepicker-calendar {
+			display: block;
+			height:  auto;
+			padding: 0;
+			border:  none;
+			
+			.ui-datepicker {
+				width:         $daterangepicker-width !important;
+				margin:        0;
+				border-radius: 0;
+				position:      initial;
+				
+				.ui-datepicker-group-last {
+					.ui-datepicker-calendar {
+						border-left: 1px solid darken($brand-primary, 10%);
+					}
+				}
+				
+				.ui-datepicker-title {
+					select {
+						background:         url(../images/gx-admin/icon-caret-down.png) no-repeat right 6px center $input-bg;
+						border:             1px solid darken($brand-primary, 10%);
+						border-radius:      $border-radius-base;
+						line-height:        15px;
+						padding:            $padding-small/4 15px $padding-small/4 $padding-small/4;
+						appearance:         none;
+						-moz-appearance:    none;
+						-webkit-appearance: none;
+					}
+					
+					.ui-datepicker-year {
+						width: 30%;
+					}
+				}
+				
+				.ui-datepicker-group {
+					table {
+						width: 100%;
+					}
+				}
+				
+				td.ui-state-highlight {
+					background:   $brand-primary !important;
+					border-color: $brand-primary;
+					
+					a {
+						background: none;
+					}
+				}
+				
+				.ui-datepicker-today {
+					background: lighten($brand-primary, 15%);
+					
+					a {
+						background: none;
+						color:      $component-active-color;
+					}
+				}
+				
+				.ui-state-disabled {
+					padding-top: $padding-small;
+				}
+			}
+		}
+	}
+	
+	.comiseo-daterangepicker-buttonpanel {
+		width:      100%;
+		padding:    10px $padding-small / 2;
+		background: $table-bg-accent;
+		border-top: 1px solid $border-color;
+		
+		button {
+			@extend .btn;
+			@extend .btn-sm;
+			@include font();
+			@include border-radius(2px);
+			
+			float:      right;
+			opacity:    1;
+			margin-top: 0;
+			
+			&:nth-child(2) {
+				display: none; // Hide the "Cancel" button (there's no plugin option for that).
+			}
+			
+			&.ui-priority-primary {
+				@extend .btn-primary;
+			}
+			
+			&.ui-priority-secondary {
+				@extend .btn-default;
+			}
+		}
+	}
+}
+
+.daterangepicker-wrapper {
+	// Position the icon inside the input field.
+	i {
+		float:        right;
+		margin-top:   -22px;
+		margin-right: 8px;
+	}
+}

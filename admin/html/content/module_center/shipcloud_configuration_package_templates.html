@@ -1,0 +1,70 @@
+{* --------------------------------------------------------------
+	shipcloud_configuration_package_templates.html 2016-02-08
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*}
+<div class="main">
+	<table style="margin-bottom:5px" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr class="dataTableHeadingRow">
+			<td class="dataTableHeadingContentText" style="width:1%; padding-right:20px; white-space: nowrap">
+				<a href="{$tab_urls.default}">##config_tab_default</a>
+			</td>
+		</tr>
+		<tr class="dataTableHeadingRow">
+			<td class="dataTableHeadingContentText" style="width:1%; padding-right:20px; white-space: nowrap">
+				##config_tab_package_templates
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="gx-container create-new-wrapper left-table">
+	<div class="create-new-container pull-right">
+		<a class="btn btn-success add-package-template">
+			<i class="fa fa-plus"></i>
+			##add_package_template
+		</a>
+	</div>
+</div>
+
+<div class="gx-container" id="sc_package_templates" data-gx-controller="shipcloud/package_template_controller">
+	<!-- Package Templates -->
+	<table class="gx-modules-table left-table no-footer">
+		<tr class="dataTableHeadingRow gx-container">
+			<td class="dataTableHeadingContent" style="width: 300px">##package_template_name</td>
+			<td class="dataTableHeadingContent" style="width: 70px">##package_template_weight</td>
+			<td class="dataTableHeadingContent" style="width: 70px">##package_template_length</td>
+			<td class="dataTableHeadingContent" style="width: 70px">##package_template_width</td>
+			<td class="dataTableHeadingContent" style="width: 70px">##package_template_height</td>
+			<td style="min-width: 70px"></td>
+		</tr>
+
+		{if empty($configuration.packages.packages)}
+		<tr class="gx-container no-hover">
+			<td colspan="6" class="text-center">##no_package_templates</td>
+		</tr>
+		{else}
+			{foreach from=$configuration.packages.packages item=package key=package_id}
+		<tr
+			class="sc_package_template_{$package_id} dataTableRow gx-container {if $package_id == $configuration.default_package}default_package{/if}"
+			data-gx-extension="link"
+			data-link-url="#{$package_id}">
+			<td class="dataTableContent">{$package.name}</td>
+			<td class="dataTableContent numeric_cell">{$package.weight}</td>
+			<td class="dataTableContent numeric_cell">{$package.length}</td>
+			<td class="dataTableContent numeric_cell">{$package.width}</td>
+			<td class="dataTableContent numeric_cell">{$package.height}</td>
+			<td></td>
+		</tr>
+			{/foreach}
+		{/if}
+	</table>
+</div>
+
+<div class="hidden">
+	{$configuration_box}
+</div>

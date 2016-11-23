@@ -1,0 +1,54 @@
+{load_language_text section="buttons" name="btn"}
+{load_language_text section="parcel_services" name="parcel_services"}
+
+<div class="add-tracking-number modal fade" tabindex="-1" role="dialog" 
+	 data-gx-controller="orders/modals/add_tracking_number">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{$parcel_services.TXT_PARCEL_TRACKING_SENDBUTTON_TITLE}</h4>
+			</div>
+
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<fieldset class="add-tracking-number-group">
+						<ul class="add-tracking-number">
+							<li class="tracking-number">
+								<div class="form-group">
+									<label for="tracking-number" class="col-md-4">
+										{$parcel_services.TXT_PARCEL_TRACKING_FORMHEADING}
+									</label>
+									
+									<div class="col-md-8">
+										<input type="text" name="tracking-number" id="tracking-number" class="form-control" />
+									</div>
+
+									<label for="delivery-service" class="col-md-4">
+										{$parcel_services.parcel_services}
+									</label>
+									
+									<div class="col-md-8">
+										<select id="delivery-service" class="form-control">
+											{foreach $content.parcel_services as $parcel_service}
+												<option value="{$parcel_service.id}" {($parcel_service.default) ? 'selected' : ''}>
+													{$parcel_service.name}
+												</option>
+											{/foreach}
+										</select>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</fieldset>
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">{$btn.cancel}</button>
+				<button type="button" class="btn btn-primary" id="store-tracking-number">{$btn.save}</button>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,19 @@
+div#export_overview {
+	div#import_container {
+		width: 710px;
+		
+		div[class^="span"] {
+			label {
+				display: inline;
+			}
+			input {
+				float: inherit;
+			}
+		}
+
+
+        #select_import_file {
+            padding: 0 5px;
+        }
+	}
+}

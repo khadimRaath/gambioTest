@@ -1,0 +1,35 @@
+{load_language_text section="box_specials"}
+
+{include file="get_usermod:{$tpl_path}snippets/box/headline_link/top.html" class="specials" headline=$txt.heading_specials link=$content_data.SPECIALS_LINK title=$txt.heading_specials icon_right="arrow-circle-right "}
+
+{if $content_data.box_content.PRODUCTS_IMAGE}
+	<div class="specials-image">
+		<a href="{$content_data.box_content.PRODUCTS_LINK}" title="{$content_data.box_content.PRODUCTS_IMAGE_ALT|default:$content_data.box_content.PRODUCTS_NAME}">
+			<img class="img-responsive" src="{$content_data.box_content.PRODUCTS_IMAGE}" alt="{$content_data.box_content.PRODUCTS_IMAGE_ALT|default:$content_data.box_content.PRODUCTS_NAME}" title="{$content_data.box_content.PRODUCTS_IMAGE_ALT|default:$content_data.box_content.PRODUCTS_NAME}" />
+		</a>
+	</div>
+{/if}
+<div>
+	<br />
+	<span class="specials-title">
+		<a href="{$content_data.box_content.PRODUCTS_LINK}"{if $content_data.box_content.PRODUCTS_META_DESCRIPTION != ''} title="{$content_data.box_content.PRODUCTS_META_DESCRIPTION|truncate:80:"..."|replace:'"':'&quot;'}"{else} title="{$content_data.box_content.PRODUCTS_IMAGE_ALT|default:$content_data.box_content.PRODUCTS_NAME}"{/if}>
+			{$content_data.box_content.PRODUCTS_NAME}
+		</a>
+	</span>
+	<br />
+	<br />
+	<span class="specials-price">
+		<a href="{$content_data.box_content.PRODUCTS_LINK}"{if $content_data.box_content.PRODUCTS_META_DESCRIPTION != ''} title="{$content_data.box_content.PRODUCTS_META_DESCRIPTION|truncate:80:"..."|replace:'"':'&quot;'}"{else} title="{$content_data.box_content.PRODUCTS_IMAGE_ALT|default:$content_data.box_content.PRODUCTS_NAME}"{/if}>
+			{$content_data.box_content.PRODUCTS_PRICE}
+		</a>
+	</span>
+	<br />
+	{if $content_data.box_content.PRODUCTS_VPE}
+		<span class="specials-vpe">
+			{$content_data.box_content.PRODUCTS_VPE}
+		</span>
+		<br />
+	{/if}
+</div>
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"}

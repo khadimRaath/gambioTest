@@ -1,0 +1,11 @@
+Sehr {if $GENDER == 'm'}geehrter Herr {elseif $GENDER == 'f'}geehrte Frau {else}geehrte(r) {/if}{$NAME},
+
+es wurde ein Account für Sie eingerichtet. Sie können sich mit folgenden Daten in unseren Shop einloggen.
+
+{if $COMMENTS}Anmerkungen: {$COMMENTS}{/if}
+
+Ihre Logindaten für unseren Shop:
+
+E-Mail: {$EMAIL}
+
+Ihr Passwort: {$PASSWORD}

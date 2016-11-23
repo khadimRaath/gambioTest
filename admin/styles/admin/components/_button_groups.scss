@@ -1,0 +1,28 @@
+/* 
+	Button Dropdown
+    ========================================================================== 
+
+	Additional styling for the button dropdown. 
+	
+*/
+
+.btn-group {
+	&.dropdown, &.dropup {
+		.btn {
+			&:not(.dropdown-toggle) {
+				width: 		   120px;
+				text-overflow: ellipsis;
+				overflow: 	   hidden;
+			}
+			
+			&.dropdown-toggle {
+				min-width: 33px;
+			}
+		}
+
+		.caret.caret-reversed {
+			transform: rotate(180deg);
+		}
+	}
+}
+

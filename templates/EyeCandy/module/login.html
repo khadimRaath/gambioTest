@@ -1,0 +1,64 @@
+{load_language_text section="login"}
+{load_language_text section="buttons" name="button"}
+
+<div class="login" id="account">
+	<h1>{$txt.heading_login}</h1>
+	{if $info_message!=''}
+		{$info_message}
+		<br />
+		<br />
+	{/if}
+	<div class="cols3">
+		{if $account_option=='account' or $account_option=='both'}
+		<div class="col first h300">
+			<div class="col-inside">
+				<div class="h200">
+					<h3>{$txt.title_new}</h3>
+
+					<p>{$txt.text_new}</p>
+				</div>
+				<div class="button-container"><a href="{$NEW_ACCOUNT_URL}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.register}</span></span></a></div>
+			</div>
+		</div>
+		{/if}
+		{if $account_option=='guest' or $account_option=='both'}
+		<div class="col h300">
+			<div class="col-inside">
+				<div class="h200">
+
+					<h3>{$txt.title_guest}</h3>
+					<p>{$txt.text_guest}</p>
+				</div>
+				<div class="button-container"><a href="{$GUEST_URL}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.buy_as_guest}</span></span></a></div>
+			</div>
+		</div>
+		{/if}
+		<div class="col last h300">
+			<div class="col-inside">
+				<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="post">
+					<div class="h200">
+						<h3>{$txt.title_returning}</h3>
+						<label>{$txt.text_email}</label><br />
+						<input type="text" class="input-text" name="{$INPUT_MAIL_NAME}" value="{$INPUT_MAIL_VALUE}" /><br />
+
+						<label>{$txt.text_password}</label><br />
+						<input type="password" class="input-text" name="{$INPUT_PASSWORD_NAME}" />
+						<p><a href="{$LINK_LOST_PASSWORD}">{$txt.text_lost_password}</a></p>
+					</div>
+					<div class="button-container"><a href="{page_url}#" class="button_blue button_set action_submit"><span class="button-outer"><span class="button-inner">{$button.login}</span></span></a></div>
+				</form>
+			</div>
+		</div>
+	</div>
+	{if $checkout_buttons|@count gt 0}
+	<div class="cols3">
+		<div class="col first h300">
+			{foreach name=cob item=cobutton from=$checkout_buttons}
+				{if $cobutton.script}{$cobutton.script}{else}
+				<a style="display: inline-block; vertical-align: middle;" href="{$cobutton.url}"><img src="{$cobutton.img}"></a>
+				{/if}
+			{/foreach}
+		</div>
+	</div>
+	{/if}
+</div>

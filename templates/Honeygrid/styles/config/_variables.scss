@@ -1,0 +1,633 @@
+/* Template Variables
+   ========================================================================== 
+  
+  Layout and functionality relevant variables for the template
+
+   */
+
+// Body Background
+
+$gx-body-bg-image-url:                           "" !default;
+$gx-body-bg-image-position:                      50% 50% !default;
+$gx-body-bg-image-repeat:                        no-repeat !default;
+$gx-body-bg-image-size:                          auto !default;
+$gx-body-bg-image-attachment:                    scroll !default;
+$gx-body-padding-top:                            0 !default;
+$gx-body-padding-bottom:                         0 !default;
+$gx-wrapper-bg:								     #fff !default;
+$gx-wrapper-bg-image-url:                        "" !default;       
+$gx-wrapper-bg-image-position:                   50% 50% !default;  
+$gx-wrapper-bg-image-repeat:                     no-repeat !default;
+$gx-wrapper-bg-image-size:                       auto !default;     
+$gx-wrapper-bg-image-attachment:                 scroll !default;   
+
+
+// Main Layout
+
+$gx-body-wrap:                           false !default;
+$gx-topbar-wrap:                         true !default;
+$gx-categories-wrap:                     true !default;
+$gx-center-categories:                   false !default;
+$gx-header-fixed:                        true !default;
+$gx-header-wrap:                         true !default;
+$gx-stage-wrap:                          false !default;
+$gx-footer-wrap:                         true !default;
+$gx-logo-horizontal:                     true !default;
+$gx-stage-below-header:				     false !default;
+
+$gx-hide-logo-col:                       false !default;
+$gx-hide-search-col:                     false !default;
+$gx-hide-custom-1-col:                   false !default;
+$gx-hide-cart-col:                       false !default;
+
+// Border Radius
+
+$gx-wrapper-border-radius:               0px !default; // works only for boxed layout
+$gx-cat-navbar-border-radius:            0px !default;
+$gx-cart-border-radius:                  0px !default;
+
+// Border Color
+
+$gx-headline-border-color:               #e7e7e7 !default;
+$gx-footer-boxes-border-color:           #bbbbbb !default;
+$gx-checkout-headline-border-color:      $brand-primary !default;
+$gx-pagination-border-color:             #e7e7e7 !default;
+$gx-product-list-border-color:           #eeeeee !default;
+$gx-product-info-border-color:           darken($gray-lighter, 10%) !default;
+
+// Main layout cols
+
+$gx-left-col-sm:                             4 !default;
+$gx-left-col-md:                             4 !default;
+$gx-left-col-lg:                             3 !default;
+
+$gx-right-col-sm:                            0 !default;
+$gx-right-col-md:                            0 !default;
+$gx-right-col-lg:                            0 !default;
+
+$gx-main-col-sm:                             12 - $gx-left-col-sm - $gx-right-col-sm !default;
+$gx-main-col-md:                             12 - $gx-left-col-md - $gx-right-col-md !default;
+$gx-main-col-lg:                             12 - $gx-left-col-lg - $gx-right-col-lg !default;
+
+
+// Full width pages
+// Left col with boxes will be hidden
+
+$gx-index-full-width:                    true !default;
+$gx-product-info-full-width:             true !default;
+$gx-product-listing-full-width:          false !default;
+$gx-shopping-cart-full-width:            true !default;
+$gx-checkout-full-width:                 true !default;
+
+
+// Fonts
+// load font css from google webfonts
+
+$gx-font-import-url:                         "https://fonts.googleapis.com/css?family=Roboto:400,700,300,900" !default;
+@if ($gx-font-import-url and $gx-font-import-url != "" and $gx-font-import-url != '') {
+  @import url($gx-font-import-url);
+}
+$gx-breadcrumb-color:                        #999 !default;
+
+// Buttons
+
+$gx-btn-border-radius:                       0px !default;
+$gx-btn-text-transform:                      uppercase !default;
+$gx-btn-primary-color:                       $btn-primary-color !default;
+$gx-btn-primary-bg:                          $btn-primary-bg !default;
+$gx-btn-primary-border:                      $btn-primary-border !default;
+$gx-btn-primary-bg-image-url:                "" !default;
+$gx-btn-primary-bg-image-position:           50% 50% !default;
+$gx-btn-primary-bg-image-repeat:             no-repeat !default;
+$gx-btn-primary-bg-image-size:               auto !default;
+$gx-btn-primary-bg-image-attachment:         scroll !default;
+$gx-btn-default-color:                       $btn-default-color !default;
+$gx-btn-default-bg:                          $btn-default-bg !default;
+$gx-btn-default-border:                      $btn-default-border !default;
+$gx-btn-default-bg-image-url:                "" !default;
+$gx-btn-default-bg-image-position:           50% 50% !default;
+$gx-btn-default-bg-image-repeat:             no-repeat !default;
+$gx-btn-default-bg-image-size:               auto !default;
+$gx-btn-default-bg-image-attachment:         scroll !default;
+
+// Teaser Slider
+
+$gx-display-teaser-slider-xs:                true !default;
+$gx-display-teaser-slider-sm:                true !default;
+$gx-display-teaser-slider-md:                true !default;
+$gx-display-teaser-slider-lg:                true !default;
+
+// Ribbons
+
+$gx-ribbon-new-bg:                           #515151 !default;
+$gx-ribbon-new-color:                        #FFFFFF !default;
+$gx-ribbon-special-bg:                       #F1544D !default;
+$gx-ribbon-special-color:                    #FFFFFF !default;
+$gx-ribbon-available-bg:                     #79A70A !default;
+$gx-ribbon-available-color:                  #FFFFFF !default;
+$gx-ribbon-recommendation-bg:                #337AB7 !default;
+$gx-ribbon-recommendation-color:             #FFFFFF !default;
+
+// Call to action                                                                         
+// applied to buy-buttons                                                                 
+
+$gx-btn-calltoaction-color:                  #fff !default;
+$gx-btn-calltoaction-bg:                     #2eae06 !default;
+$gx-btn-calltoaction-border:                 darken($gx-btn-calltoaction-bg, 5%) !default;
+$gx-btn-calltoaction-bg-image-url:           "" !default;
+$gx-btn-calltoaction-bg-image-position:      50% 50% !default;
+$gx-btn-calltoaction-bg-image-repeat:        no-repeat !default;
+$gx-btn-calltoaction-bg-image-size:          auto !default;
+$gx-btn-calltoaction-bg-image-attachment:    scroll !default;
+
+// Topbar
+// Copy/paste from bootstrap navbar settings
+
+$gx-navbar-topbar-color:                     #333 !default;
+$gx-navbar-topbar-bg:                        #eee !default;
+$gx-navbar-topbar-border:                    #ccc !default;
+$gx-navbar-topbar-link-color:                #9f9f9f !default;
+$gx-navbar-topbar-link-hover-color:          #000 !default;
+$gx-navbar-topbar-link-hover-bg:             #ddd !default;
+$gx-navbar-topbar-link-active-color:         #000 !default;
+$gx-navbar-topbar-link-active-bg:            #ddd !default;
+$gx-navbar-topbar-link-disabled-color:       #444 !default;
+$gx-navbar-topbar-link-disabled-bg:          transparent !default;
+
+$gx-topbar-height:                           30px !default;
+$gx-topbar-height-sticky:                    0 !default;
+$gx-topbar-link-padding:                     6px 15px !default;
+
+$gx-navbar-topbar-bg-image-url:                    "" !default;
+$gx-navbar-topbar-bg-image-position:               50% 50% !default;
+$gx-navbar-topbar-bg-image-repeat:                 no-repeat !default;
+$gx-navbar-topbar-bg-image-size:                   auto !default;
+$gx-navbar-topbar-bg-image-attachment:             scroll !default;
+
+$gx-navbar-topbar-link-hover-bg-image-url:         "" !default;
+$gx-navbar-topbar-link-hover-bg-image-position:    50% 50% !default;
+$gx-navbar-topbar-link-hover-bg-image-repeat:      no-repeat !default;
+$gx-navbar-topbar-link-hover-bg-image-size:        auto !default;
+$gx-navbar-topbar-link-hover-bg-image-attachment:  scroll !default;
+
+$gx-navbar-topbar-link-active-bg-image-url:        "" !default;
+$gx-navbar-topbar-link-active-bg-image-position:   50% 50% !default;
+$gx-navbar-topbar-link-active-bg-image-repeat:     no-repeat !default;
+$gx-navbar-topbar-link-active-bg-image-size:       auto !default;
+$gx-navbar-topbar-link-active-bg-image-attachment: scroll !default;
+
+// Header
+
+$gx-header-bg:                                     #fff !default;
+$gx-header-bg-mobile:                              #fff !default;
+$gx-header-bg-sticky:                              #fff !default;
+
+$gx-header-bg-mobile-image-url:                    "" !default;
+$gx-header-bg-mobile-image-position:               50% 50% !default;
+$gx-header-bg-mobile-image-repeat:                 no-repeat !default;
+$gx-header-bg-mobile-image-size:                   auto !default;
+$gx-header-bg-mobile-image-attachment:             scroll !default;
+$gx-header-bg-image-url:                           "" !default;
+$gx-header-bg-image-position:                      50% 50% !default;
+$gx-header-bg-image-repeat:                        no-repeat !default;
+$gx-header-bg-image-size:                          auto !default;
+$gx-header-bg-image-attachment:                    scroll !default;
+$gx-header-bg-sticky-image-url:                    "" !default;
+$gx-header-bg-sticky-image-position:               50% 50% !default;
+$gx-header-bg-sticky-image-repeat:                 no-repeat !default;
+$gx-header-bg-sticky-image-size:                   auto !default;
+$gx-header-bg-sticky-image-attachment:             scroll !default;
+
+$gx-show-search-top-nav:                     false !default;
+$gx-search-height:                           80px !default;
+$gx-search-height-sticky:                    60px !default;
+$gx-search-padding-vertical:                 22px !default;
+$gx-search-padding-vertical-sticky:          12px !default;
+$gx-search-margin-vertical:                  0 !default;
+$gx-search-margin-vertical-sticky:           0 !default;
+$gx-search-col-sm:                           5 !default;
+$gx-search-col-md:                           4 !default;
+$gx-search-col-lg:                           4 !default;
+
+$gx-custom-1-col-height:                     $gx-search-height !default;
+$gx-custom-1-col-height-sticky:              $gx-search-height-sticky !default;
+
+$gx-cart-height:                             60px !default;
+$gx-cart-height-sticky:                      60px !default;
+$gx-cart-padding-vertical:                   13px !default;
+$gx-cart-padding-vertical-sticky:            10px !default;
+$gx-cart-margin-vertical:                    10px !default;
+$gx-cart-margin-vertical-sticky:             0 !default;
+$gx-cart-col-sm:                             4 !default;
+$gx-cart-col-md:                             3 !default;
+$gx-cart-col-lg:                             2 !default;
+$gx-cart-icon-color:                         #333 !default;
+$gx-cart-text-color:                         #333 !default;
+$gx-cart-sticky-icon-color:                  #333 !default;
+$gx-cart-sticky-text-color:                  #333 !default;
+
+$gx-categories-height:                       $navbar-height !default;                /* Bootstrap */             
+$gx-categories-height-sticky:                0 !default;
+$gx-categories-transitions:                  false !default;
+$gx-categories-bg:                           transparent !default;
+$gx-categories-text-transformation:          uppercase !default;
+
+
+// Categories Navbar
+
+$gx-cat-navbar-bg-image-url:                    "" !default;
+$gx-cat-navbar-bg-image-position:               50% 50% !default;
+$gx-cat-navbar-bg-image-repeat:                 no-repeat !default;
+$gx-cat-navbar-bg-image-size:                   auto !default;
+$gx-cat-navbar-bg-image-attachment:             scroll !default;
+
+$gx-cat-navbar-link-hover-bg-image-url:         "" !default;
+$gx-cat-navbar-link-hover-bg-image-position:    50% 50% !default;
+$gx-cat-navbar-link-hover-bg-image-repeat:      no-repeat !default;
+$gx-cat-navbar-link-hover-bg-image-size:        auto !default;
+$gx-cat-navbar-link-hover-bg-image-attachment:  scroll !default;
+
+$gx-cat-navbar-link-active-bg-image-url:        "" !default;                                 
+$gx-cat-navbar-link-active-bg-image-position:   50% 50% !default;
+$gx-cat-navbar-link-active-bg-image-repeat:     no-repeat !default;
+$gx-cat-navbar-link-active-bg-image-size:       auto !default;
+$gx-cat-navbar-link-active-bg-image-attachment: scroll !default;
+
+
+// mobile menu sizes and paddings
+$gx-categories-mobile-height:                50px !default;
+$gx-categories-mobile-padding-vertical:      17px !default;
+
+// Mobile Color Theme with dropdown colors
+// (white background); default theme will 
+// have default navbar colors (dark)
+$gx-categories-mobile-dropdown-colors:       true !default;
+
+// mobile menu icons
+$gx-categories-mobile-icons:                 false !default;
+
+
+// Subcategory Listing
+$gx-sub-cat-col-sm:                           6 !default;
+$gx-sub-cat-col-md:                           6 !default;
+$gx-sub-cat-col-lg:                           6 !default;
+
+
+$gx-brand-width:                             180px !default;
+$gx-brand-width-mobile:                      100px !default;
+$gx-brand-width-sticky:                      180px !default;
+$gx-brand-height:                            80px !default;            /* $gx-topbar-height + $search-height + $gx-categories-height;*/
+$gx-brand-height-sticky:                     60px !default;
+
+$gx-header-height:                           150px !default;
+$gx-header-height-mobile:                    50px !default;
+$gx-header-height-sticky:                    60px !default;
+$gx-header-col-sm:                           3 !default;
+$gx-header-col-md:                           3 !default;
+$gx-header-col-lg:                           3 !default;
+
+$gx-header-custom-col-sm:                    0 !default; /* can be 0 to hide */
+$gx-header-custom-col-md:                    2 !default;
+$gx-header-custom-col-lg:                    3 !default;
+
+
+// Footer
+
+$gx-footer-min-height:                       400px !default;
+$gx-footer-color:                            #666 !default;
+$gx-footer-bg:                               #d1d1d1 !default;
+$gx-footer-bg-image-url:                     "" !default;
+$gx-footer-bg-image-position:                50% 50% !default;
+$gx-footer-bg-image-repeat:                  no-repeat !default;
+$gx-footer-bg-image-size:                    auto !default;
+$gx-footer-bg-image-attachment:              scroll !default;
+
+$gx-footer-header-min-height:                50px !default;
+$gx-footer-header-color:                     $gx-footer-color !default;
+$gx-footer-header-bg:                        #e7e7e7 !default;
+$gx-footer-header-bg-image-url:              "" !default;
+$gx-footer-header-bg-image-position:         50% 50% !default;
+$gx-footer-header-bg-image-repeat:           no-repeat !default;
+$gx-footer-header-bg-image-size:             auto !default;
+$gx-footer-header-bg-image-attachment:       scroll !default;
+
+$gx-hide-footer-col-1:                       false !default;
+$gx-footer-col-1-lg:                         3 !default;
+$gx-footer-col-1-sm:                         6 !default;
+$gx-footer-col-1-xs:                         12 !default;
+$gx-hide-footer-col-2:                       false !default;
+$gx-footer-col-2-lg:                         3 !default;
+$gx-footer-col-2-sm:                         6 !default;
+$gx-footer-col-2-xs:                         12 !default;
+$gx-hide-footer-col-3:                       false !default;
+$gx-footer-col-3-lg:                         3 !default;
+$gx-footer-col-3-sm:                         6 !default;
+$gx-footer-col-3-xs:                         12 !default;
+$gx-hide-footer-col-4:                       false !default;
+$gx-footer-col-4-lg:                         3 !default;
+$gx-footer-col-4-sm:                         6 !default;
+$gx-footer-col-4-xs:                         12 !default;
+
+// Panels
+
+$gx-panel-header-color:                     $text-color !default;
+$gx-panel-header-bg:                        #f5f5f5 !default;
+$gx-panel-header-bg-image-url:              "" !default;
+$gx-panel-header-bg-image-position:         50% 50% !default;
+$gx-panel-header-bg-image-repeat:           no-repeat !default;
+$gx-panel-header-bg-image-size:             auto !default;
+$gx-panel-header-bg-image-attachment:       scroll !default;
+
+$gx-panel-border-color:                     #dddddd !default;
+$gx-panel-bg:                               #FFFFFF !default;
+$gx-panel-bg-image-url:                     "" !default;
+$gx-panel-bg-image-position:                50% 50% !default;
+$gx-panel-bg-image-repeat:                  no-repeat !default;
+$gx-panel-bg-image-size:                    auto !default;
+$gx-panel-bg-image-attachment:              scroll !default;
+
+
+// Product listing
+
+$gx-product-bg:                             #FFFFFF !default;
+$gx-product-bg-image-url:                   "" !default;
+$gx-product-bg-image-position:              50% 50% !default;
+$gx-product-bg-image-repeat:                no-repeat !default;
+$gx-product-bg-image-size:                  auto !default;
+$gx-product-bg-image-attachment:            scroll !default;
+
+$gx-gallery-bg:                             #eee !default;
+$gx-gallery-bg-image-url:                   "" !default;
+$gx-gallery-bg-image-position:              50% 50% !default;
+$gx-gallery-bg-image-repeat:                no-repeat !default;
+$gx-gallery-bg-image-size:                  auto !default;
+$gx-gallery-bg-image-attachment:            scroll !default;
+
+$gx-product-listing-col-xs:                  6 !default;
+$gx-product-listing-col-sm:                  6 !default;
+$gx-product-listing-col-md:                  4 !default;
+$gx-product-listing-col-lg:                  3 !default;
+$gx-product-listing-height:                  350px !default;
+$gx-price-tax-position:                      $grid-gutter-width !default;
+
+$gx-product-listing-image-height:            130px !default;
+$gx-product-listing-gallery-image-height:    75px !default;
+$gx-product-listing-gallery-width:           95px !default;
+
+
+// Mega dropdown
+
+$gx-megadropdown-block-width:                225px !default;
+$gx-megadropdown-block-count:                3 !default;
+$gx-categories-tab-padding:                  2px !default;
+$gx-megadropdown-heading-font-size:          18px !default;
+
+$gx-megadropdown-bg:                         #FFFFFF !default;
+$gx-megadropdown-bg-image-url:               "" !default;
+$gx-megadropdown-bg-image-position:          50% 50% !default;
+$gx-megadropdown-bg-image-repeat:            no-repeat !default;
+$gx-megadropdown-bg-image-size:              auto !default;
+$gx-megadropdown-bg-image-attachment:        scroll !default;
+$gx-megadropdown-color:                      $text-color !default;
+$gx-megadropdown-heading-border-color:       #E7E7E7 !default;
+
+// Dropdowns
+
+$gx-dropdown-color:                          $text-color !default;
+$gx-dropdown-info-color:                     #999999 !default;
+$gx-dropdown-footer-color:                   $text-color !default;
+$gx-dropdown-disabled-color:                 #999999 !default;
+$gx-dropdown-border-color:                   #EEEEEE !default;
+$gx-dropdown-bg:                             $dropdown-bg !default;
+$gx-dropdown-bg-image-url:                   ""!default;
+$gx-dropdown-bg-image-position:              50% 50% !default;
+$gx-dropdown-bg-image-repeat:                no-repeat !default;
+$gx-dropdown-bg-image-size:                  auto !default;
+$gx-dropdown-bg-image-attachment:            scroll !default;
+$gx-dropdown-hover-bg:                       #EEEEEE !default;
+$gx-dropdown-hover-bg-image-url:             ""!default;
+$gx-dropdown-hover-bg-image-position:        50% 50% !default;
+$gx-dropdown-hover-bg-image-repeat:          no-repeat !default;
+$gx-dropdown-hover-bg-image-size:            auto !default;
+$gx-dropdown-hover-bg-image-attachment:      scroll !default;
+$gx-dropdown-footer-bg:                      #EEEEEE !default;
+$gx-dropdown-footer-bg-image-url:            ""!default;
+$gx-dropdown-footer-bg-image-position:       50% 50% !default;
+$gx-dropdown-footer-bg-image-repeat:         no-repeat !default;
+$gx-dropdown-footer-bg-image-size:           auto !default;
+$gx-dropdown-footer-bg-image-attachment:     scroll !default;
+
+// Product Info
+
+$gx-product-info-details-bg:                  $gray-lighter !default;
+$gx-product-info-details-bg-image-url:        "" !default;
+$gx-product-info-details-bg-image-position:   50% 50% !default;
+$gx-product-info-details-bg-image-repeat:     no-repeat !default;
+$gx-product-info-details-bg-image-size:       auto !default;
+$gx-product-info-details-bg-image-attachment: scroll !default;
+
+$gx-product-info-details-color:               $text-color !default;
+$gx-product-info-details-note-color:          $gray-light !default;
+$gx-product-info-details-border-width:        0 !default;
+$gx-product-info-details-border-style:        none !default;
+$gx-product-info-details-border-color:        transparent !default;
+$gx-product-info-stage-height:                450px !default;
+$gx-product-info-stage-height-mobile:         300px !default;
+$gx-product-info-thumbnail-width:             100px !default;
+$gx-product-info-thumbnail-width-mobile:      50px !default;
+$gx-product-info-magnifier-z-index:           1000 !default;
+
+$gx-tab-color:                                #CCCCCC !default;
+$gx-tab-color-active:                         $text-color !default;
+$gx-tab-border-color:                         transparent !default;
+$gx-tab-border-color-active:                  #000000 !default;
+$gx-tab-container-border-color:               #E7E7E7 !default;
+
+$gx-tab-bg:                                   transparent !default;
+$gx-tab-bg-active:                            #FFFFFF !default;
+
+$gx-tab-bg-image-url:                         "" !default;
+$gx-tab-bg-image-position:                    50% 50% !default;
+$gx-tab-bg-image-repeat:                      no-repeat !default;
+$gx-tab-bg-image-size:                        auto !default;
+$gx-tab-bg-image-attachment:                  scroll !default;
+
+$gx-tab-bg-active-image-url:                  "" !default;
+$gx-tab-bg-active-image-position:             50% 50% !default;
+$gx-tab-bg-active-image-repeat:               no-repeat !default;
+$gx-tab-bg-active-image-size:                 auto !default;
+$gx-tab-bg-active-image-attachment:           scroll !default;
+
+$gx-product-info-img-bg:                      transparent !default;
+$gx-product-info-img-bg-image-url:            "" !default;
+$gx-product-info-img-bg-image-position:       50% 50% !default;
+$gx-product-info-img-bg-image-repeat:         no-repeat !default;
+$gx-product-info-img-bg-image-size:           auto !default;
+$gx-product-info-img-bg-image-attachment:     scroll !default;
+
+
+// Checkout
+
+$gx-checkout-headline-color:                     $brand-primary !default;
+
+$gx-checkout-table-color:                        $text-color !default;
+$gx-checkout-table-header-color:                 #999 !default;
+$gx-checkout-table-additional-info-color:        $gray !default;
+$gx-checkout-table-border-color:                 #e7e7e7 !default;
+
+$gx-checkout-table-bg:                           #f3f3f3 !default;
+$gx-checkout-table-bg-image-url:                 "" !default;
+$gx-checkout-table-bg-image-position:            50% 50% !default;
+$gx-checkout-table-bg-image-repeat:              no-repeat !default;
+$gx-checkout-table-bg-image-size:                auto !default;
+$gx-checkout-table-bg-image-attachment:          scroll !default;
+
+$gx-list-group-item-color:                       $text-color !default;
+$gx-list-group-item-color-active:                #FFFFFF !default;
+$gx-list-group-item-link-color:                  $brand-primary !default;
+$gx-list-group-item-link-color-active:           #FFFFFF !default;
+$gx-list-group-item-border-color:                $gray-lighter !default;
+$gx-list-group-item-border-color-active:         $brand-primary !default;
+$gx-list-group-item-bg:                          transparent !default;
+$gx-list-group-item-bg-image-url:                "" !default;
+$gx-list-group-item-bg-image-position:           50% 50% !default;
+$gx-list-group-item-bg-image-repeat:             no-repeat !default;
+$gx-list-group-item-bg-image-size:               auto !default;
+$gx-list-group-item-bg-image-attachment:         scroll !default;
+$gx-list-group-item-bg-active:                   $brand-primary !default;
+$gx-list-group-item-bg-active-image-url:         "" !default;
+$gx-list-group-item-bg-active-image-position:    50% 50% !default;
+$gx-list-group-item-bg-active-image-repeat:      no-repeat !default;
+$gx-list-group-item-bg-active-image-size:        auto !default;
+$gx-list-group-item-bg-active-image-attachment:  scroll !default;
+
+// Shopping Cart
+
+$gx-cart-border-color:                           #E7E7E7 !default;
+$gx-cart-table-head-color:                       #999 !default;
+$gx-cart-table-color:                            $text-color !default;
+$gx-cart-table-info-color:                       $grey !default;
+
+$gx-total-box-color:                             $text-color !default;
+$gx-total-box-border-color:                      #E7E7E7 !default;
+
+$gx-total-box-top-bg:                            $gx-panel-bg !default;
+$gx-total-box-top-bg-image-url:                  "" !default;
+$gx-total-box-top-bg-image-position:             50% 50% !default;
+$gx-total-box-top-bg-image-repeat:               no-repeat !default;
+$gx-total-box-top-bg-image-size:                 auto !default;
+$gx-total-box-top-bg-image-attachment:           scroll !default;
+
+$gx-total-box-bottom-bg:                         #EEEEEE !default;
+$gx-total-box-bottom-bg-image-url:               "" !default;
+$gx-total-box-bottom-bg-image-position:          50% 50% !default;
+$gx-total-box-bottom-bg-image-repeat:            no-repeat !default;
+$gx-total-box-bottom-bg-image-size:              auto !default;
+$gx-total-box-bottom-bg-image-attachment:        scroll !default;
+
+// Tables
+
+$gx-table-headline-color:                        #999999 !default;
+$gx-table-body-color-odd:                        $text-color !default;
+$gx-table-body-color-even:                       $text-color !default;
+$gx-table-border-color:                          #e7e7e7 !default;
+
+$gx-table-even-row-bg:                           transparent !default;
+$gx-table-odd-row-bg:                            #f9f9f9 !default;
+
+$gx-table-bg:                                    transparent !default;
+$gx-table-bg-image-url:                          "" !default;
+$gx-table-bg-image-position:                     50% 50% !default;
+$gx-table-bg-image-repeat:                       no-repeat !default;
+$gx-table-bg-image-size:                         auto !default;
+$gx-table-bg-image-attachment:                   scroll !default;
+
+// Alerts
+
+$gx-alert-danger-color:                          $alert-danger-text !default;
+$gx-alert-success-color:                         $alert-success-text !default;
+$gx-alert-info-color:                            $alert-info-text !default;
+
+$gx-alert-danger-border:                         $alert-danger-border !default;
+$gx-alert-success-border:                        $alert-success-border !default;
+$gx-alert-info-border:                           $alert-info-border !default;
+
+$gx-alert-danger-bg:                             $alert-danger-bg !default;
+$gx-alert-danger-bg-image-url:                   "" !default;
+$gx-alert-danger-bg-image-position:              50% 50% !default;
+$gx-alert-danger-bg-image-repeat:                no-repeat !default;
+$gx-alert-danger-bg-image-size:                  auto !default;
+$gx-alert-danger-bg-image-attachment:            scroll !default;
+
+$gx-alert-success-bg:                            $alert-success-bg !default;
+$gx-alert-success-bg-image-url:                  "" !default;
+$gx-alert-success-bg-image-position:             50% 50% !default;
+$gx-alert-success-bg-image-repeat:               no-repeat !default;
+$gx-alert-success-bg-image-size:                 auto !default;
+$gx-alert-success-bg-image-attachment:           scroll !default;
+
+$gx-alert-info-bg:                               $alert-info-bg !default;
+$gx-alert-info-bg-image-url:                     "" !default;
+$gx-alert-info-bg-image-position:                50% 50% !default;
+$gx-alert-info-bg-image-repeat:                  no-repeat !default;
+$gx-alert-info-bg-image-size:                    auto !default;
+$gx-alert-info-bg-image-attachment:              scroll !default;
+
+// GTC + Withdrawal Checkboxes
+
+$gx-checkbox-color:                              $alert-warning-text !default;
+$gx-checkbox-active-color:                       $alert-success-text !default;
+$gx-checkbox-border:                             $alert-warning-border !default;
+$gx-checkbox-active-border:                      $alert-success-border !default;
+
+$gx-checkbox-bg:                                 $alert-warning-bg !default;
+$gx-checkbox-bg-image-url:                       "" !default;
+$gx-checkbox-bg-image-position:                  50% 50%!default;
+$gx-checkbox-bg-image-repeat:                    no-repeat !default;
+$gx-checkbox-bg-image-size:                      auto !default;
+$gx-checkbox-bg-image-attachment:                scroll !default;
+
+$gx-checkbox-active-bg:                          $alert-success-bg !default;
+$gx-checkbox-active-bg-image-url:                "" !default;
+$gx-checkbox-active-bg-image-position:           50% 50%!default;
+$gx-checkbox-active-bg-image-repeat:             no-repeat !default;
+$gx-checkbox-active-bg-image-size:               auto !default;
+$gx-checkbox-active-bg-image-attachment:         scroll !default;
+
+// Shadows
+
+$gx-dropdown-box-shadow:                     0 12px 18px rgba(0,0,0,.35) !default;
+$gx-shopping-cart-total-box-shadow:          0 0 25px rgba(0, 0, 0, .35) !default;
+$gx-product-hover-box-shadow:                0 0 25px rgba(0, 0, 0, .35) !default;
+
+
+// Page-Up
+
+$gx-pageup-z-index:                              1020 !default;
+$gx-pageup-align-left:                           false !default;
+$gx-pageup-vertical-space-bottom:                25px !default;
+
+
+// Rating
+
+$gx-rating-stars-width:                          80px !default;
+
+
+// Font Awesome Path (Use without "gx" prefix)
+
+$fa-font-path:                                "assets/fonts/font-awesome" !default;
+
+
+// Social Media Colors
+
+$gx-twitter:                                     #00aced !default;
+$gx-facebook:                                    #3b5998 !default;
+$gx-googleplus:                                  #dd4b39 !default;
+$gx-pinterest:                                   #cb2027 !default;
+$gx-linkedin:                                    #007bb6 !default;
+$gx-youtube:                                     #bb0000 !default;
+$gx-vimeo:                                       #aad450 !default;
+$gx-tumblr:                                      #32506d !default;
+$gx-instagram:                                   #517fa4 !default;
+$gx-flickr:                                      #ff0084 !default;
+

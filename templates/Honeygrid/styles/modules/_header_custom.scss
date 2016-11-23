@@ -1,0 +1,63 @@
+/* Header Custom Area for Content Manager Entries
+   ========================================================================== */
+
+#custom-1 {
+  @include transition(300ms ease all);
+	@if ($gx-hide-custom-1-col != true) {
+		@include make-sm-column($gx-header-custom-col-sm);
+		@include make-md-column($gx-header-custom-col-md);
+		@include make-lg-column($gx-header-custom-col-lg);
+	}
+  display: none;
+  @media (min-width: $grid-float-breakpoint) {
+	  @if ($gx-hide-custom-1-col != true) {
+		  display: inline-block;
+	  }
+    overflow: hidden;
+    height: $gx-custom-1-col-height;
+    @if ($gx-header-custom-col-sm < 1) {
+      @media (max-width: $screen-sm-max) {
+        display: none;
+      }
+    }
+  }
+  .inside {
+    display: table;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    p {
+      @include clearfix();
+      margin: 0;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      img {
+        @include transition(300ms ease all);
+        @extend .img-responsive;
+        display: inline-block;
+        max-height: ($gx-custom-1-col-height - $grid-gutter-width);
+        width: auto;
+      }
+    }
+  }
+}
+
+#header {
+  @media (min-width: $grid-float-breakpoint) {
+    @if ($gx-body-wrap != true) {
+      @if ($gx-header-fixed) {
+        &.sticky {
+          #custom-1 {
+            @if ($gx-custom-1-col-height-sticky < $gx-custom-1-col-height) {
+              height: $gx-custom-1-col-height-sticky;
+              @if ($gx-custom-1-col-height-sticky == 0) {
+                overflow: hidden !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

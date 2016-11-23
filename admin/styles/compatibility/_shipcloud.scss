@@ -1,0 +1,237 @@
+/* --------------------------------------------------------------
+	_shipcloud.scss 2016-02-08
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*/
+
+#sc_single_container {
+	p {
+		background: green;
+	}
+}
+
+#sc_multi_form {
+	margin: 0;
+}
+
+#sc_single_form {
+	label {
+		width: 9em;
+	}
+
+	.sc_input_invalid {
+		border-color: #FF0000;
+		border-width: 2px;
+	}
+
+	#sc_quote {
+		display:     inline-block;
+		font-weight: bold;
+	}
+}
+
+table.sc_labellist {
+	font-size:  12px;
+	background: red;
+}
+
+#sc_labellist_container {
+	tr.deleted-shipment td {
+		text-decoration: line-through;
+	}
+}
+
+#sc_modal_content.sc_loading {
+	background: transparent url("../../../images/ajax-loader.gif") no-repeat scroll 50% 50%;
+	width:      100%;
+	height:     300px;
+}
+
+#sc_modal_content {
+	font-size: 12px;
+
+	table {
+		display: table;
+	}
+
+	div.labellist-toolbar {
+		background   : tint($default-color, 60%);
+		border       : 1px solid shade($default-color, 6.5%);
+		@include border-radius(2px);
+		padding      : 5px;
+		margin-bottom: 25px;
+		margin-top   : 15px;
+		overflow     : auto;
+
+		.btn {
+			margin: 0;
+		}
+	}
+
+	#download_result {
+		margin: 12px 0;
+	}
+
+	iframe.download_iframe {
+		border: none;
+		width : 1px;
+		height: 1px;
+	}
+}
+
+#sc_multi_container,
+#sc_single_container{
+	fieldset.with-padding-right {
+		padding-right: 24px;
+	}
+
+	.heading {
+		font-weight:   bold;
+		margin-bottom: 12px;
+		color:         $text-color-light;
+		padding:       0 12px 9px 12px;
+		border-bottom: 3px solid $gambio-blue;
+	}
+
+	.control-group {
+		padding: 0 12px;
+
+		.control-group {
+			margin: 0 3px 3px 0;
+		}
+		label {
+			width: 125px;
+		}
+
+		input[type="checkbox"] {
+			height: auto;
+		}
+
+		input[type="checkbox"] + label {
+			width: auto;
+			margin: 0;
+			line-height: 1;
+			font-weight: normal;
+		}
+
+		.span6.amount {
+			padding-right: 12px;
+		}
+	}
+
+	div.sc_orders {
+		overflow:   auto;
+		max-height: 500px;
+		div.sc_order {
+			background-color: #F9F9F9;
+			padding:          12px;
+			border-radius:    6px;
+			margin:           12px;
+			overflow:         auto;
+
+			.sc_multi_orders_id {
+				font-weight: bold;
+			}
+
+			.sc_multi_quote {
+				/* display:     none; */
+				color:       $gambio-blue;
+				font-weight: bold;
+			}
+
+			.sc_multi_quote.error {
+				background: #FF9494;
+			}
+		}
+		div.sc_order:nth-child(odd) {
+			clear: left;
+		}
+	}
+
+	#sc_quote {
+		display:     inline-block;
+		font-weight: bold;
+		color:       $gambio-blue;
+	}
+
+	.sc_quote {
+		max-width: 17em;
+	}
+
+	input[type="submit"] {
+		margin-bottom: 0;
+	}
+
+	.sc_carrier_name {
+		clear: left;
+		display: inline-block;
+		width: 10em;
+	}
+
+	.sc_quote_value {
+		display: inline-block;
+		width: 5em;
+		text-align: right;
+	}
+
+	input.package_dimensions {
+		width: 30%;
+		margin-right: 5%;
+
+		&:last-of-type {
+			margin-right: 0;
+		};
+	}
+}
+
+div.sc_package_template {
+	display: none;
+}
+
+div.sc_package_names {
+	margin-bottom: 1em;
+}
+
+div.sc_package_name {
+	cursor: pointer;
+	@include component-colors($default-color, $text-color-light);
+	margin: 1px 0;
+	padding: .1ex .5ex;
+	@include border-radius(2px);
+}
+
+div#sc_ptstanza {
+	display: block;
+	visibility: hidden;
+}
+
+#sc_configuration {
+	.sc-indented-label {
+		padding-left: 36px;
+	}
+
+	tr.sc_ptstanza {
+		display: none;
+	}
+}
+
+.package-form-data {
+  div.grid {
+	margin-bottom: 17px !important;
+  }
+}
+
+#sc_package_templates {
+	tr.default_package {
+		font-weight: bold;
+	}
+}
+
+#shipcloud_modal #pickup_submit {
+	margin-bottom: 0;
+}
+

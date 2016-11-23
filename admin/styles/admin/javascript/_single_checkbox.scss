@@ -1,0 +1,67 @@
+/* 
+	Single Checkbox Widget
+	========================================================================== 
+
+	Styles the single checkbox widget (single_checkbox.js). 
+	
+*/
+
+$single-checkbox-border-color: #B6B6B6;
+$single-checkbox-size: 14px;
+
+.single-checkbox {
+	display:          inline-block;
+	width:            $single-checkbox-size;
+	height:           $single-checkbox-size;
+	line-height:      $single-checkbox-size;
+	text-align:       center;
+	border:           1px solid $single-checkbox-border-color;
+	background-color: $body-bg;
+	cursor:           pointer;
+	border-radius:    2px;
+	@include user-select(none);
+	@include transition(border .2s ease);
+	
+	.fa {
+		font-size:      $font-size-base;
+		color:          $component-active-color;
+		visibility:     hidden;
+		vertical-align: top;
+	}
+	
+	&.focused {
+		border-color: $brand-primary;
+	}
+	
+	&.checked {
+		background-color: $brand-primary;
+		border:           1px solid $brand-primary;
+		
+		.fa {
+			visibility: visible;
+		}
+		
+		&:active:not(.disabled) {
+			background-color: $body-bg-dark;
+		}
+	}
+	
+	&.disabled {
+		cursor:           not-allowed;
+		background-color: $body-bg-dark;
+		border-color:     $single-checkbox-border-color;
+		
+		.fa {
+			color: $text-color-light;
+		}
+	}
+	
+	&:active {
+		background-color: $body-bg-dark;
+	}
+	
+	&:hover:not(.disabled) {
+		border-color: $brand-primary;
+		@include transition(border 0.2s ease);
+	}
+}

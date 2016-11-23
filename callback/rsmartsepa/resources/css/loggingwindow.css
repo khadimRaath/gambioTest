@@ -1,0 +1,89 @@
+/*
+  loggingwindow.css 2015-04-24 wem
+  Smart Payment Solutions GmbH
+  http://www.smart-payment-solutions.de/
+  Copyright (c) 2015 Smart Payment Solutions GmbH
+  Released under the GNU General Public License (Version 2)
+  [http://www.gnu.org/licenses/gpl-2.0.html]
+*/
+
+.mwmuc-loggingwindow-visible {
+    background-color: #ffffff;
+    border: solid 6px #c0c0c0;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+    overflow: hide;
+    -webkit-box-shadow: 4px 4px 7px #000000;
+    -moz-box-shadow: 4px 4px 7px #000000;
+    box-shadow: 4px 4px 7px #000000;
+}
+.mwmuc-loggingwindow-visible .mwmuc-loggingwindow-title {
+    background-color: #9e004b;
+    background-image: -moz-linear-gradient(left, #000080, #BA55D3);
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.00, #000080), color-stop(1.0, #BA55D3));
+    color: #ffffff;
+    font-size: larger;
+    font-weight: bolder;
+    padding-bottom: 6px;
+    padding-left: 3px;
+}
+.mwmuc-loggingwindow-visible .mwmuc-loggingwindow-titletext {
+    
+}
+.mwmuc-loggingwindow-visible .mwmuc-loggingwindow-titlebuttons {
+    position: absolute;
+    right: 10px;
+}
+.mwmuc-loggingwindow-visible .mwmuc-loggingwindow-titlebuttons-clearbutton {
+    cursor: pointer;
+    border: solid 1px #c0c0c0;
+    padding-left: 3px;
+    padding-right: 3px;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+}
+.mwmuc-loggingwindow-visible .mwmuc-loggingwindow-titlebuttons-hidebutton {
+    cursor: pointer;
+    border: solid 1px #c0c0c0;
+    padding-left: 5px;
+    padding-right: 5px;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+}
+.mwmuc-loggingwindow-visible .mwmuc-loggingwindow-content {
+    padding: 3px;
+    background-color: #ffffff;
+    color: #000000;
+    text-align: left;
+    font-family: monospace;
+    font-size: small;
+}
+.mwmuc-loggingwindow-invisible .mwmuc-loggingwindow-titlebuttons {
+    position: absolute;
+    right: 10px;
+}
+
+.mwmuc-loggingwindow-invisible .mwmuc-loggingwindow-titlebuttons-hidebutton {
+    cursor: pointer;
+    background-color: #990CBC;
+    background-image: -moz-linear-gradient(left, #000080, #BA55D3);
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(0.00, #000080), color-stop(1.0, #BA55D3));    
+    padding-right: 10px;
+    padding-left: 10px;
+    position: absolute;
+    left: -20px;
+    padding-bottom: 2px;
+    -webkit-border-radius: 0px 11px 11px 0px;
+    -moz-border-radius: 0px 11px 11px 0px;
+    border-radius: 0px 11px 11px 0px;
+    border-style: solid;
+    border-color: #c0c0c0;
+    border-width: 1px 1px 1px 0px;
+}
+
+.mwmuc-loggingwindow-invisible .mwmuc-loggingwindow-titlebuttons-clearbutton {
+    display: none;
+}

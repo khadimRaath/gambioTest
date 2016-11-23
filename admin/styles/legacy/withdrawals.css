@@ -1,0 +1,159 @@
+/*
+	---------------------------------------------------------------------------
+	THIS FILE IS DEPRECATED - MODIFY IT ONLY FOR FIXES IN EXISTING STYLE RULES. 
+	
+	DO NOT APPEND IT WITH NEW STYLING RULES, USE THE GX-ADMIN FILES INSTEAD. 
+	---------------------------------------------------------------------------
+*/
+#withdrawals_wrapper {
+	font-family: Verdana, sans-serif;
+	font-size: 10px;
+}
+
+#withdrawals_wrapper .withdrawal_list {
+	width: 100%; 
+	border-radius: 5px; 
+	border: 1px solid #717171;
+	font-family: Verdana,sans-serif;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_headline {
+	color: #fff;
+	background: #717171;
+	font-weight: bold;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_headline div {
+	float: left;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_headline, 
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_row {
+	padding-left: 20px;
+	height: 30px;
+	line-height: 30px;		
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_row:last-child {
+	border-bottom-left-radius: 5px; 
+	border-bottom-right-radius: 5px; 
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_row:nth-child(even) {
+	background: #eee;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_content {
+	display: block;
+	width: 300px;
+	float: left;
+	height: 30px;
+	line-height: 30px;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_date {
+	width: 180px;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_customer_name {
+	width: 520px;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_order_id {
+	width: 290px;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_buttons {
+	width: 48px;
+	text-align: center;
+}
+
+#withdrawals_wrapper .withdrawal_list .withdrawal_list_buttons a {
+	display: block;
+	float: left;
+	width: 18px;
+	height: 18px;
+	margin: 6px 3px 0 3px;
+}
+
+#withdrawals_wrapper .withdrawal_path {
+	text-align: right;
+	margin: 5px 0;
+}
+
+.row {
+	width: 100%;
+	display: block;
+	margin: 0 0 10px 0;
+}
+
+.row label {
+	width: 25%;
+	height: 25px;
+	line-height: 25px;
+	display: block;
+	font-size: 11px;
+	font-weight: bold;
+	float: left;
+}
+
+.row label[for] {
+	cursor: pointer;
+}
+
+.row input[type='text'],
+.row input[type='file'],
+.row select,
+.row textarea {
+	width: 65%;
+	height: 21px;
+	line-height: 21px;
+	font-size: 11px;
+	float: left;
+}
+
+
+.withdrawal_details table
+{
+	margin-bottom: 5px;
+}
+
+.withdrawal_details .withdrawal_table_content
+{
+	border: 1px solid lightgrey;
+}
+
+.withdrawal_details .withdrawal_table_content td
+{
+	padding: 5px 3px 5px 10px; 
+	vertical-align: top;
+}
+
+.withdrawal_details .withdrawal_table_content td div
+{
+	height: 120px;
+	overflow: auto;
+}
+
+.withdrawal_details .withdrawal_table_content td a
+{
+	width: 200px;
+}
+
+.withdrawal_details .withdrawal_table_content td label,
+.withdrawal_details .withdrawal_table_content td input,
+.withdrawal_details .withdrawal_table_content td a
+{
+	display: inline-block;
+}
+
+.withdrawal_details .withdrawal_table_content td label
+{
+	font-weight: bold;
+	width: 120px;
+}
+
+.withdrawal_details .withdrawal_table_content .save_order_id_confirm
+{
+	font-weight: bold;
+}

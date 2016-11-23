@@ -1,0 +1,21 @@
+{load_language_text section="box_add_a_quickie"}
+{load_language_text section="buttons" name="button"}
+
+<div id="menubox_add_a_quickie" class="c_add_quickie content-box white clearfix">
+	<div id="menubox_add_a_quickie_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">
+			{$txt.heading_add_a_quickie}
+		</div>
+	</div>
+	<div id="menubox_add_a_quickie_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix">
+			<form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+				<label>{$txt.text_quickie}</label><br /><br />
+				<input name="{$content_data.INPUT_NAME}" type="text" value="" class="input-text box-input-field" placeholder="{$txt.input_placeholder}"/>
+				<div class="input submit">
+					<a href="{page_url}#" class="button_blue button_set action_submit" title="{$txt.title_add_a_quickie}"><span class="button-outer"><span class="button-inner">{$button.go}</span></span></a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

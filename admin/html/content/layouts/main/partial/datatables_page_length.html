@@ -1,0 +1,10 @@
+{* Include this partial template to place the page length select box to your tables. *}
+{load_language_text section="admin_general" name="admin_general"}
+<span class="page-length form-inline">
+	<select class="length pull-right form-control">
+		<option value="20">20 {$admin_general.PER_PAGE}</option>
+		<option value="30">30 {$admin_general.PER_PAGE}</option>
+		<option value="50">50 {$admin_general.PER_PAGE}</option>
+		<option value="100">100 {$admin_general.PER_PAGE}</option>
+	</select>
+</span>

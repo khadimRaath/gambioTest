@@ -1,0 +1,270 @@
+/* Header Search
+   ========================================================================== */
+
+@media (max-width: $grid-float-breakpoint-max) {
+  #header {
+    #search {
+      display: none;
+    }
+  }
+}
+
+#search {
+
+  border-top: none;
+  @include transition(300ms ease all);
+  @media (min-width: $grid-float-breakpoint) {
+    @if ($gx-hide-search-col != true) {
+      @include make-sm-column($gx-search-col-sm);
+      @include make-md-column($gx-search-col-md);
+      @include make-lg-column($gx-search-col-lg);
+    }
+    @else {
+      display: none;
+    }
+    &.collapse {
+      padding: $gx-search-padding-vertical ($grid-gutter-width / 2);
+      margin: $gx-search-margin-vertical 0;
+    }
+  }
+  
+  .navbar-search-header {
+    margin: 0 ($grid-gutter-width / 2) ($grid-gutter-width / 2);
+    padding: ($grid-gutter-width / 2) 0;
+    border-bottom: 1px solid #eee;
+    font-size: 16px;
+    color: $text-color;
+    @media (min-width: $grid-float-breakpoint) {
+      display: none;
+    }
+  
+    @if ($gx-hide-search-col == true) {
+      display: none;
+    }
+  }
+  .input-group {
+    margin: 15px 0;
+    padding: 0 15px;
+    width: 100%;
+    @media (min-width: $grid-float-breakpoint) {
+      margin: 0;
+      padding: 0;
+    }
+  
+    @media (max-width: $grid-float-breakpoint-max) {
+      border-spacing: 0 15px;
+    }
+
+    .search-input {
+      height: 36px;
+      padding: 8px 12px;
+      @media (min-width: $grid-float-breakpoint) {
+        @include border-right-radius($border-radius-large);
+      }
+      
+      @media (max-width: $grid-float-breakpoint-max) {
+        // Reorders the input to the top of parent (http://tanalin.com/en/articles/css-block-order)
+        display: table-header-group; 
+      } 
+      
+      // remove x for clearing in IE
+      &::-ms-clear {
+        display: none;
+      }
+    }
+    .form-control-feedback {
+      font-size: 23px;
+      top: 1px !important;
+      color: #666;
+      display: none;
+      pointer-events: auto;
+      background-color: transparent;
+      border: none;
+      height: 100%;
+      line-height: 100%;
+      padding: 0px;
+      z-index: 3;
+      @media (min-width: $grid-float-breakpoint) {
+        display: block; 
+      }
+    }
+    .input-group-btn {
+      display: block;
+      width: auto;
+      margin-bottom: ($grid-gutter-width / 2);
+      @media (min-width: $grid-float-breakpoint) {
+        display: table-cell;
+        margin-bottom: 0;
+      }
+  
+      @media (max-width: $grid-float-breakpoint-max) {
+        display: table-footer-group; // Reorders the group to the bottom of parent.
+      }
+      
+      .dropdown-toggle {
+        color: #555;
+        height: 36px;
+        @include gradient-vertical(#eee, #dedede);
+        @extend .btn-block;
+        @media (min-width: $grid-float-breakpoint) {
+          @include border-left-radius($border-radius-large);
+          @include border-right-radius(0);
+          border-color: #CCCCCC;
+          border-right: 0;
+	      padding-left: 0;  
+	      padding-right: 0;
+        }
+	      
+	    // Bugfix for Firefox
+	    @media (max-width: $screen-md-max) {
+		    padding-left: 5px;
+		    padding-right: 5px;
+	    }
+      }
+      .dropdown-menu {
+        width: 100%;
+        
+        @media (min-width: $screen-sm-min) {
+          width: auto;
+        }
+      }
+    }
+  }
+  .navbar-search-footer {
+    padding: ($grid-gutter-width / 2);
+    background: $gray-lighter;
+    .btn-default {
+      background-color: transparent;
+    }
+    .btn-block + .btn-block {
+      margin-top: ($grid-gutter-width / 2);
+    }
+  }
+
+  form {
+
+    position: relative;
+
+  }
+
+  // search autosuggest results layer
+
+  #search-categories-id {
+    display: none;
+  }
+
+  .search-result-container {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    &.open {
+      height: auto;
+      padding: 5px 0;
+      @include box-shadow($gx-dropdown-box-shadow);
+    }
+    background-color: #fff;
+    z-index: 2;
+    #live-search-head,
+    a {
+      display: block;
+      padding: 5px ($grid-gutter-width / 2);
+      text-decoration: none;
+      color: $text-color;
+    }
+    a:hover {
+      background-color: #eee;
+    }
+    #live-search-head {
+      font-weight: bold;
+    }
+    .search-result {
+      
+      @include reset-list();
+      
+      li {
+        padding: 0 15px;
+        margin: 5px 0;
+  
+        .product-image {
+          max-height:  25px;
+          max-width: 25px;
+          float:  left;
+          margin: 0 5px;
+        }
+  
+        .fa-picture-o {
+          font-size: 25px;
+        }
+  
+        &.active {
+          background-color: #DDD;
+        }
+      }
+    }
+
+    @media (max-width: $grid-float-breakpoint-max) {
+      position: relative;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      display: none;
+    }
+
+  }
+  
+}
+
+
+// mobile search overlay
+
+@media (max-width: $grid-float-breakpoint-max) {
+  body.search-open {
+    overflow: hidden;
+    #header {
+      &,
+      > .inside,
+      > .inside > .row {
+        height: 100%;
+      }
+      #search {
+        display: block;
+        max-height: 100%;
+        height: calc(100% - 49px);
+        @if ($gx-categories-mobile-dropdown-colors) {
+          background: $dropdown-bg;
+        }
+        @else {
+          background: $navbar-default-bg;
+        }
+      }
+    }
+  }
+}
+
+
+// sticky behavior for search
+
+#header {
+  @media (min-width: $grid-float-breakpoint) {
+    @if ($gx-body-wrap != true) {
+      @if ($gx-header-fixed) {
+        &.sticky {
+          #search {
+            &.collapse {
+              padding: $gx-search-padding-vertical-sticky ($grid-gutter-width / 2);
+              margin: $gx-search-margin-vertical-sticky 0;
+              @if ($gx-search-height-sticky < $gx-search-height) {
+                height: $gx-search-height-sticky;
+                @if ($gx-search-height-sticky == 0) {
+                  overflow: hidden !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

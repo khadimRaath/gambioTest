@@ -1,0 +1,37 @@
+{load_language_text section="withdrawal"}
+{$txt.customer_greeting}
+
+{$txt.process_cancellation}
+
+{$txt.withdrawal_to}:
+
+{$smarty.const.COMPANY_NAME}
+{$smarty.const.TRADER_FIRSTNAME} {$smarty.const.TRADER_NAME}
+{$smarty.const.TRADER_STREET} {$smarty.const.TRADER_STREET_NUMBER}
+{$smarty.const.TRADER_ZIPCODE} {$smarty.const.TRADER_LOCATION}
+{$smarty.const.STORE_COUNTRY_NAME}
+
+{if $smarty.const.TRADER_FAX != ''}{$txt.fax}: {$smarty.const.TRADER_FAX}{/if}
+
+{if $smarty.const.STORE_OWNER_EMAIL_ADDRESS != ''}{$txt.mail}: {$smarty.const.STORE_OWNER_EMAIL_ADDRESS}{/if}
+
+
+
+{$txt.withdrawal_yourData}:
+
+{$CUSTOMER_GENDER}
+{$CUSTOMER_NAME}
+{$CUSTOMER_STREET_ADDRESS}
+{$CUSTOMER_POSTCODE} {$CUSTOMER_CITY}
+{$CUSTOMER_COUNTRY}
+
+{if $ORDER_DATE}{$txt.order_date}: {$ORDER_DATE}{/if}
+{if $DELIVERY_DATE}{$txt.deliverydate_t}: {$DELIVERY_DATE}{/if}
+
+{$txt.withdrawal_date}: {$WITHDRAWAL_DATE}
+
+{$txt.withdrawal}:
+{$WITHDRAWAL_CONTENT}
+
+
+{$EMAIL_SIGNATURE_TEXT}

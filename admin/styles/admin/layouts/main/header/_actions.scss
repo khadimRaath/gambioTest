@@ -1,0 +1,56 @@
+/* 
+	Main Header Actions 
+    ========================================================================== 
+
+	Style the actions component in the right corner of the main header. 
+	
+*/
+
+$header-actions-size: 46px;
+$header-actions-icon-font-size: $font-size-base * 1.25; 
+
+.actions {
+	width: 450px;
+	
+	.offline-notice-label {
+		float:            right;
+		color:            $label-color;
+		background-color: $brand-alt;
+		margin-right:     $margin-small;
+		margin-top:       $margin-small;
+		font-size:        $font-size-small;
+		line-height:      $line-height-small;
+	}
+	
+	ul {
+		float:         right;
+		overflow:      auto;
+		padding-left:  0;
+		margin-right:  $margin-small;
+		margin-bottom: 0;
+		
+		li {
+			list-style: none;
+			float:      left;
+			
+			&:hover {
+				background: darken($header-bg-color, 5%);
+			}
+			
+			i {
+				color:       $header-text-color;
+				font-size:   $header-actions-icon-font-size;
+				width:       $header-actions-size;
+				height:      $header-actions-size;
+				line-height: $header-actions-size;
+				text-align:  center;
+				cursor:      pointer;
+				@include transition(all 0.1s ease);
+				
+				&:hover {
+					font-size: $header-actions-icon-font-size * 1.25;
+				}
+			}
+		}
+	}
+}

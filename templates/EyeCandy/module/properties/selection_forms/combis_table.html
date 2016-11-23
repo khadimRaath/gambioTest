@@ -1,0 +1,30 @@
+
+<table>
+<tr>
+	<th>Artikeleigenschaften</th>
+	<th>Artikelnr.</th>
+	<th>Lager</th>
+	<th>Preis</th>
+	<th>&nbsp;</th>
+</tr>
+{foreach item=combis_item_array from=$content_data.PROPERTIES_COMBIS_DATA}
+<tr valign="top">
+	<td>
+		<table border="0" cellspacing=0 cellpadding=0>
+		{foreach item=item_array from=$combis_item_array.COMBIS_VALUES}
+		<tr>
+			<td>{$item_array.properties_name}:&nbsp;</td>
+			<td>{$item_array.values_name}&nbsp;</td>
+		</tr>
+		{/foreach}
+		</table>
+	</td>
+	<td>{$combis_item_array.combi_model}&nbsp;</td>
+	<td>{$combis_item_array.combi_quantity}&nbsp;</td>
+	<td>{$combis_item_array.combi_price_type} {$combis_item_array.combi_price}&nbsp;</td>
+	<td>
+		<input type="radio" name="products_properties_combis_id" value="{$combis_item_array.products_properties_combis_id}" />
+	</td>
+</tr>
+{/foreach}
+</table>

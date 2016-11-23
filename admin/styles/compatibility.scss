@@ -1,0 +1,25 @@
+/* --------------------------------------------------------------
+   compatibility.scss 2016-04-18
+   Gambio GmbH
+   http://www.gambio.de
+   Copyright (c) 2016 Gambio GmbH
+   Released under the GNU General Public License (Version 2)
+   [http://www.gnu.org/licenses/gpl-2.0.html]
+   -------------------------------------------------------------- */
+
+@import "compass";
+@import "compass/css3";
+@import "compass/utilities";
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/variables"; // Default _variables.scss
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/mixins";
+@import "../../../bower_components/animate-sass/animate";
+@import "../../../bower_components/bootstrap-sass/assets/stylesheets/bootstrap/progress-bars";
+@import "compatibility/theme";
+@import "../../../bower_components/font-awesome/scss/font-awesome.scss"; // Default Font-Awesome
+@import "compatibility/boilerplate";
+@import "compatibility/helpers";
+@import "compatibility/js_extensions";
+@import "compatibility/js_widgets";
+@import "compatibility/fixes";
+@import "compatibility/compatibility";
+@import "compatibility/shipcloud";

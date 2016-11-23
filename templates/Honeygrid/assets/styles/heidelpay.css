@@ -1,0 +1,99 @@
+body form input.instyle_error{ border: 1px solid red; }
+body form .hp_error{ display: none; }
+.errorText {font-size: 12px;}
+
+#checkout_payment .payment_item .input .newreg_cc table tr td,
+#checkout_payment .payment_item .input .newreg_dc table tr td,
+#checkout_payment .payment_item .input .newreg_dd table tr td,
+#checkout_payment .payment_item .input .newreg_pay table tr td{
+	padding: 4px 0 0 0;
+}
+
+#checkout_payment .payment_item .input .newreg_cc table tr td.description,
+#checkout_payment .payment_item .input .newreg_dc table tr td.description,
+#checkout_payment .payment_item .input .newreg_dd table tr td.description,
+#checkout_payment .payment_item .input .newreg_pay table tr td.description{
+	padding: 10px 0;
+	font-weight: bold;
+}
+
+#checkout_payment .payment_item .input .newreg_cc .text,
+#checkout_payment .payment_item .input .newreg_dc .text,
+#checkout_payment .payment_item .input .newreg_dd .text,
+#checkout_payment .payment_item .input .newreg_pay .text{
+	width: 160px;
+}
+
+#checkout_payment .payment_item .input .newreg_cc select,
+#checkout_payment .payment_item .input .newreg_dc select,
+#checkout_payment .payment_item .input .newreg_dd select,
+#checkout_payment .payment_item .input .newreg_pay select{
+	width: 166px;
+}
+
+#checkout_payment .payment_item .input .newreg_cc #cardExpMonth,
+#checkout_payment .payment_item .input .newreg_cc #cardExpYear,
+#checkout_payment .payment_item .input .newreg_dc #cardExpMonth,
+#checkout_payment .payment_item .input .newreg_dc #cardExpYear{
+	width: 83px;
+	text-align: center;
+}
+
+.gateway{ width: 100%; }
+.gateway .gatewayError{ display: none; }
+.gateway .gatewayError{ width: 300px; margin: auto auto 15px auto; padding: 14px 50px 14px 55px; border: 1px solid red; background-color: #F7E9E9; color: #8A1F11; display: none; }
+.gateway .gatewayError h3{ border-bottom: 1px solid red; margin: 0 0 10px 0; padding: 0 0 5px 0; }
+
+.gateway form{ width: 310px; margin: auto; padding: 14px 50px 14px 55px; cursor: default; }
+.gateway form .auto_redirect{ font-size: 14px; }
+.gateway form input{ width: 160px; border: 1px solid #666; }
+.gateway form select{width: 163px;}
+.gateway form input.button{ width: 123px; }
+
+.gateway form .exp_date select{width: 61px;}
+.gateway .description,
+#checkout_payment .payment_item .description{ font-size: 11px; }
+
+.gateway .button{
+    background-image: url("../backgrounds/gradients/gradient-reflection.png");
+    background-position: left center;
+    background-repeat: repeat-x;
+    border-style: solid;
+    border-width: 1px;
+    color: #FFFFFF;
+    display: inline-block;
+    font-size: 14px;
+    text-decoration: none;
+	padding: 3px 8px;
+}
+.green.button{
+	background-color: #337ab7; border-color: #2d6da3; color: #fff; letter-spacing: 1px; text-transform: uppercase;
+}
+
+.gateway .left{ float: left; }
+.gateway .right{ float: right; }
+
+.heidelpay_success{
+	padding: 20px 0 0 30px;
+	font-size: 13px;
+	color: #666;
+	border-top: 1px dotted #BFBFBF;
+}
+.heidelpay_success h3{ margin: 10px 0 15px -26px; }
+.heidelpay_success h3 img{ padding-right: 10px; }
+
+
+#paymentFrameIframe, #paymentFrameIframe_cc, #paymentFrameIframe_dc {
+	min-width: 200px;
+	max-width: 100%;
+	min-height: 190px;
+	max-height: 200px;
+	border: none;
+	background-color: transparent !important;
+	background-image: none;
+	left: 20px;
+}
+
+.control-label {
+	display: none;
+}

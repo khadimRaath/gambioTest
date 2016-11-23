@@ -1,0 +1,306 @@
+{load_language_text section="address_book_process"}
+{load_language_text section="checkout_new_address" name="new_address"}
+{load_language_text section="create_account" name="account"}
+
+<fieldset>
+	
+	<legend>
+		{$new_address.title_new_address}
+	</legend>
+
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$new_address.text_new_address type="info"}
+
+	{if $gender == '1'}
+		<div class="form-group{if $form_data.gender.required == '1'} mandatory{/if}{if $error_gender} has-error{/if}">
+	
+			<label class="col-sm-3 control-label">
+				{$txt.label_gender}
+			</label>
+	
+			<div class="col-sm-9 col-lg-6">
+				<span class="radio-inline">
+					<label for="{$form_data.gender.name}-m">
+						<input type="radio" id="{$form_data.gender.name}-m"  name="{$form_data.gender.name}" value="{$form_data.gender.m.value}"{if $form_data.gender.m.checked == '1'} checked="checked"{/if} />
+						{$txt.gender_male}
+					</label>
+				</span>
+				<span class="radio-inline">
+					<span class="">
+						&nbsp;
+					</span>
+					<label for="{$form_data.gender.name}-f">
+						<input type="radio" id="{$form_data.gender.name}-f" name="{$form_data.gender.name}" value="{$form_data.gender.f.value}"{if $form_data.gender.f.checked == '1'} checked="checked"{/if} />
+						{$txt.gender_female}
+					</label>
+				</span>
+			</div>
+	
+			{if $error_gender}
+				<div class="help-block">
+					<span class="col-sm-3">
+						&nbsp;
+					</span>
+					<span class="col-sm-9 help-block">
+						{$error_gender}
+					</span>
+				</div>
+			{/if}
+	
+		</div>
+	{/if}
+
+	<div class="form-group{if $form_data.firstname.required == '1'} mandatory{/if}{if $error_first_name} has-feedback has-error{/if}">
+
+		<label for="{$form_data.firstname.name}" class="control-label col-sm-3">
+			{$txt.label_firstname}
+		</label>
+
+		<div class="col-sm-9 col-lg-6 input-container">
+			<input type="text" placeholder="{$txt.label_firstname}" id="{$form_data.firstname.name}" name="{$form_data.firstname.name}" class="form-control" value="{$form_data.firstname.value}" />
+			{if $error_first_name}
+				<span class="help-block">
+					{$error_first_name}
+				</span>
+			{/if}
+		</div>
+
+	</div>
+
+	<div class="form-group{if $form_data.lastname.required == '1'} mandatory{/if}{if $error_last_name} has-feedback has-error{/if}">
+
+		<label for="{$form_data.lastname.name}" class="control-label col-sm-3">
+			{$txt.label_lastname}
+		</label>
+
+		<div class="col-sm-9 col-lg-6 input-container">
+			<input type="text" placeholder="{$txt.label_lastname}" id="{$form_data.lastname.name}" name="{$form_data.lastname.name}" class="form-control" value="{$form_data.lastname.value}" />
+			{if $error_last_name}
+				<span class="help-block">
+					{$error_last_name}
+				</span>
+			{/if}
+		</div>
+
+	</div>
+
+	{if $company=='1'}
+		<div class="form-group{if $form_data.company.required == '1'} mandatory{/if}{if $error_company} has-feedback has-error{/if}">
+	
+			<label for="{$form_data.company.name}" class="control-label col-sm-3">
+				{$txt.label_company}
+			</label>
+	
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text" placeholder="{$txt.label_company}" id="{$form_data.company.name}" name="{$form_data.company.name}" class="form-control" value="{$form_data.company.value}" />
+				{if $error_company}
+					<span class="help-block">
+						{$error_company}
+					</span>
+				{/if}
+			</div>
+	
+		</div>
+	{/if}
+
+	<div class="form-group{if $form_data.street_address.required == '1'} mandatory{/if}{if $error_street} has-feedback has-error{/if}">
+
+		<label for="{$form_data.street_address.name}" class="control-label col-sm-3">
+			{$txt.label_street_number}
+		</label>
+
+		{if $split_street_information == '1'}
+			<div class="col-sm-6 col-lg-4 input-container">
+				<input type="text"
+					   placeholder="{$txt.label_street}"
+					   id="{$form_data.street_address.name}"
+					   name="{$form_data.street_address.name}"
+					   class="form-control"
+					   value="{$form_data.street_address.value}" />
+
+				{if $error_street}
+					<span class="help-block">{$error_street}</span>
+				{/if}
+			</div>
+
+			<div class="col-sm-3 col-lg-2 input-container">
+				<input type="text"
+					   placeholder="{$txt.label_house_number}"
+					   id="{$form_data.house_number.name}"
+					   name="{$form_data.house_number.name}"
+					   class="form-control"
+					   value="{$form_data.house_number.value}" />
+
+				{if $error_house_number}
+					<span class="help-block">{$error_house_number}</span>
+				{/if}
+			</div>
+		{else}
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text" 
+					   placeholder="{$txt.label_street_number}" 
+					   id="{$form_data.street_address.name}" 
+					   name="{$form_data.street_address.name}" 
+					   class="form-control" 
+					   value="{$form_data.street_address.value}" />
+
+				{if $error_street}
+					<span class="help-block">
+						{$error_street}
+					</span>
+				{/if}
+			</div>
+		{/if}
+
+	</div>
+
+	{if $additional_address_info=='1'}
+		<div class="form-group">
+			<label for="{$form_data.additional_address_info.name}" class="control-label col-sm-3">
+				{$account.text_additional_info}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<textarea id="{$form_data.additional_address_info.name}"
+						  class="form-control"
+						  name="{$form_data.additional_address_info.name}"
+						  placeholder="{$account.text_additional_info}">{$form_data.additional_address_info.value}</textarea>
+			</div>
+		</div>
+	{/if}
+
+	{if $suburb=='1'}
+		<div class="form-group{if $form_data.suburb.required == '1'} mandatory{/if}">
+	
+			<label for="{$form_data.suburb.name}" class="control-label col-sm-3">
+				{$txt.label_suburb}
+			</label>
+	
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text" placeholder="{$txt.label_suburb}" id="{$form_data.suburb.name}" name="{$form_data.suburb.name}" class="form-control" value="{$form_data.suburb.value}" />
+			</div>
+		</div>
+	{/if}
+
+	<div class="element-set form-group{if $form_data.city.required == '1' || $form_data.postcode.required == '1'} mandatory{/if}{if $error_post_code || $error_city} has-feedback has-error{/if}">
+
+		<label for="{$form_data.postcode.name}" class="control-label col-sm-3">
+			{$txt.label_code} / {$txt.label_city}
+		</label>
+
+		<div class="col-sm-3 col-lg-2">
+			<input type="text" placeholder="{$txt.label_code}" name="{$form_data.postcode.name}" id="{$form_data.postcode.name}" class="form-control" value="{$form_data.postcode.value}" />
+			{if $error_post_code}
+				<span class="help-block">
+					{$error_post_code}
+				</span>
+			{/if}
+		</div>
+
+		<div class="col-sm-6 col-lg-4">
+			<input type="text" placeholder="{$txt.label_city}" name="{$form_data.city.name}" id="{$form_data.city.name}" class="form-control" value="{$form_data.city.value}" />
+			{if $error_city}
+				<span class="help-block">
+					{$error_city}
+				</span>
+			{/if}
+		</div>
+
+	</div>
+
+	{if $state=='1'}
+		<div class="form-group{if $form_data.state.required == '1'} mandatory{/if}{if $error_state} has-error{if $form_data.state.type != 'selection'} has-feedback{/if}{/if}">
+	
+			<label for="{$form_data.state.name}" class="control-label col-sm-3">
+				{$txt.label_state}
+			</label>
+	
+			<div class="col-sm-9 col-lg-6 input-container">
+				{if $form_data.state.type == 'selection'}
+					<select name="{$form_data.state.name}" id="{$form_data.state.name}" class="form-control">
+						{foreach key=zones item=zone_data from=$zones_data}
+							<option value="{$zone_data.id}"{if $zone_data.id == $form_data.state.value} selected="selected"{/if}>
+								{$zone_data.text}
+							</option>
+						{/foreach}
+					</select>
+				{else}
+					<input type="text" placeholder="{$txt.label_state}" id="{$form_data.state.name}" name="{$form_data.state.name}" class="form-control" value="{$form_data.state.value}" />
+				{/if}
+				{if $error_state}
+					<span class="help-block">
+						{$error_state}
+					</span>
+				{/if}
+			</div>
+	
+		</div>
+	{/if}
+
+	<div class="form-group{if $form_data.country.required == '1'} mandatory{/if}{if $error_country} has-error{/if}">
+
+		<label for="{$form_data.country.name}" class="control-label col-sm-3">
+			{$txt.label_country}
+		</label>
+
+		<div class="col-sm-9 col-lg-6 input-container">
+			<select name="{$form_data.country.name}" id="{$form_data.country.name}" class="form-control">
+				{foreach key=countries item=country_data from=$countries_data}
+					<option value="{$country_data.countries_id}"{if $country_data.countries_id == $form_data.country.value} selected="selected"{/if}>
+						{$country_data.countries_name}
+					</option>
+				{/foreach}
+			</select>
+			{if $error_country}
+				<span class="help-block">
+					{$error_country}
+				</span>
+			{/if}
+		</div>
+
+	</div>
+
+	{if $show_b2b_status}
+		<div class="form-group{if $form_data.b2b_status.required == '1'} mandatory{/if}{if $form_data.company.value != ''} disabled{/if}">
+	
+			<label class="col-sm-3 control-label">
+				{$txt.text_b2b_status}
+			</label>
+	
+			<div class="col-sm-9 col-lg-6 input-container">
+				<span class="radio-inline">
+					<label class="" for="{$form_data.b2b_status.name}-1">
+						<input type="radio" id="{$form_data.b2b_status.name}-1"  name="{$form_data.b2b_status.name}" value="1"{if $form_data.b2b_status.checked == '1' || $form_data.company.value != ''} checked="checked"{/if}{if $form_data.company.value != ''} disabled="disabled"{/if} />
+						{$txt.text_yes}
+					</label>
+				</span>
+				<span class="radio-inline">
+					<span>
+						&nbsp;
+					</span>
+					<label for="{$form_data.b2b_status.name}-0">
+						<input type="radio" id="{$form_data.b2b_status.name}-0" name="{$form_data.b2b_status.name}" value="0"{if $form_data.b2b_status.checked == '0' && $form_data.company.value == ''} checked="checked"{/if}{if $form_data.company.value != ''} disabled="disabled"{/if} />
+						{$txt.text_no}
+					</label>
+				</span>
+			</div>
+	
+		</div>
+	{else}
+		<input type="hidden" name="{$form_data.b2b_status.name}" value="{$form_data.b2b_status.checked}" />
+	{/if}
+
+	{if $GM_PRIVACY_LINK != '0'}
+		<div{if $error_privacy} class="has-error"{/if}>
+
+			{if $show_privacy_checkbox}<input id="privacy_accepted" type="checkbox" name="privacy_accepted" value="1"{if $privacy_accepted} checked="checked"{/if}/> {/if}
+			<label for="privacy_accepted">{$GM_PRIVACY_LINK}</label>
+
+			{if $error_privacy}
+				<span class="help-block">
+				{$error_privacy}
+			</span>
+			{/if}
+		</div>
+	{/if}
+</fieldset>
+

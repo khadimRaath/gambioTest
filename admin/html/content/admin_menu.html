@@ -1,0 +1,20 @@
+{foreach item=group from=$content_data.DATA}
+  <div class="leftmenu_head{if $group.active_class && $group.title !== "Favs"} {$group.active_class}{elseif $group.title == "Favs" && ($smarty.const.UNFOLD_FAVS_BOX == 'true' || $page_url|strpos:"/start.php") && $group.menuitems} current{/if}">
+      <div class="icon"><i class="{$group.class}"></i></div>
+	  <span>{$group.title}</span>
+  </div>
+  <div class="leftmenu_collapse leftmenu_collapse_opened"> </div>
+  <ul class="leftmenu_box{if $group.active_class && $group.title !== "Favs"} {$group.active_class}{elseif $group.title == "Favs" && ($smarty.const.UNFOLD_FAVS_BOX == 'true' || $page_url|strpos:"/start.php") && $group.menuitems} current{/if}" id="{$group.id}">
+  {foreach item=item from=$group.menuitems}
+    {if $group.title == "Favs"}
+      <li class="leftmenu_body_item{if $item.class} {$item.class}{/if}"><a class="fav_content_item" id="{$item.id}" href="{$item.link}">
+	      <!-- <i class="fa fa-angle-right"></i> -->
+	      {$item.title}</a></li>
+    {else}
+      <li class="leftmenu_body_item{if $item.class} {$item.class}{/if}"><a class="fav_drag_item" id="{$item.id}" href="{$item.link}">
+	      <!-- <i class="fa fa-angle-right"></i> -->
+	      {$item.title}</a></li>
+    {/if}
+  {/foreach}
+  </ul>
+{/foreach}

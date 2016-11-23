@@ -1,0 +1,16 @@
+<footer id="footer">
+	{if $HTML}
+		<div class="footer-header">
+			{$HTML}
+		</div>
+	{/if}
+	<div class="inside">
+		<div class="row">
+			<div class="footer-col-1">{menubox name=content}</div>
+			<div class="footer-col-2">{content_manager group=4321005}</div>
+			<div class="footer-col-3">{content_manager group=4321006}</div>
+			<div class="footer-col-4">{content_manager group=4321007}</div>
+		</div>
+	</div>
+	<div class="footer-bottom">{$COPYRIGHT_FOOTER}</div>
+</footer>

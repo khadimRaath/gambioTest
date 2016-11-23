@@ -1,0 +1,28 @@
+{load_language_text section="admin_labels" name="admin_labels"}
+<div data-gx-controller="layouts/main/header/search" data-search-customer-id="{$_SESSION.customer_id}"
+		data-search-recent-search-area="{$recent_search_area}">
+	{* Input field *}
+	<input type="text" class="search-input dropdown-toggle" placeholder="" data-toggle="dropdown">
+
+	{* Search entities list *}
+	<ul class="search-list dropdown-menu">
+		<li class="search-list-item" data-search-entity="orders">
+			<a> 
+				<span class="search-term-placeholder"></span>
+				<span>{$admin_labels.admin_search_in_label} {$admin_labels.admin_search_orders}</span> 
+			</a>
+		</li>
+		<li class="search-list-item" data-search-entity="customers">
+			<a> 
+				<span class="search-term-placeholder"></span>
+				<span>{$admin_labels.admin_search_in_label} {$admin_labels.admin_search_customers}</span> 
+			</a>
+		</li>
+		<li class="search-list-item" data-search-entity="categories">
+			<a> 
+				<span class="search-term-placeholder"></span>
+				<span>{$admin_labels.admin_search_in_label} {$admin_labels.admin_search_categories}</span> 
+			</a>
+		</li>
+	</ul>
+</div>

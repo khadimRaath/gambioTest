@@ -1,0 +1,157 @@
+/* --------------------------------------------------------------
+	_shipcloud.scss 2016-06-13
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*/
+
+#sc_modal_content.sc_loading {
+	background: transparent url("../../../html/assets/images/legacy/ajax-loader.gif") no-repeat scroll 50% 50%;
+	width:      100%;
+	height:     300px;
+}
+
+#sc_multi_container,
+#sc_single_container {
+	.heading {
+		font-weight:   bold;
+		margin-bottom: 12px;
+		color:         $text-color-light;
+		padding:       0 12px 9px 12px;
+		border-bottom: 3px solid #2196F3;
+	}
+
+	.row-spaced {
+		margin-bottom: 7px;
+	}
+
+	table.carriers {
+		margin-top: 1em;
+
+		td.checkbox {
+			padding-left: 15px;
+			padding-right: 10px;
+		}
+
+		tr th {
+			font-weight:   bold;
+			color:         $text-color-light;
+			padding:       0 12px 9px 12px;
+			border-bottom: 3px solid #2196F3;
+		}
+	}
+
+	#sc_quote {
+		display:     inline-block;
+		font-weight: bold;
+		color:       #2196F3;
+	}
+
+	.sc_quote {
+		max-width: 17em;
+	}
+}
+
+#sc_multi_container {
+	div.sc_orders {
+		overflow:   auto;
+		max-height: 500px;
+		div.sc_order {
+			background-color: #F9F9F9;
+			border-radius:    6px;
+			margin:           12px 0;
+			padding-top:      12px;
+			padding-bottom:   12px;
+			overflow:         auto;
+
+			.sc_multi_orders_id {
+				font-weight: bold;
+			}
+
+			.sc_multi_quote {
+				color:       #2196F3;
+				font-weight: bold;
+			}
+
+			.sc_multi_quote.error {
+				background: #FF9494;
+			}
+		}
+		div.sc_order:nth-child(odd) {
+			clear: left;
+		}
+	}
+
+	table.carriers {
+		tbody {
+			td {
+				height: 3em;
+			}
+		}
+	}
+
+	.sc_multi_quote {
+		.sc_quote_value {
+			padding: 0;
+		}
+	}
+}
+
+#sc_labellist_container {
+	table.labellist {
+		width: 100%;
+
+		th, td {
+			padding: 2px 5px;
+		}
+
+		th {
+			border-bottom: 3px solid #2196F3;
+		}
+
+		tr.deleted-shipment td {
+			text-decoration: line-through;
+		}
+
+		tr:nth-child(even) td {
+			background-color: #f9f9f9;
+		}
+
+		tr:hover {
+			background-color: #e8e8e8 !important;
+		}
+	}
+
+	div.labellist-toolbar {
+		background   : tint(#F5F5F5, 60%);
+		border       : 1px solid shade(#F5F5F5, 6.5%);
+		@include border-radius(2px);
+		padding      : 5px;
+		margin-bottom: 25px;
+		margin-top   : 15px;
+		overflow     : auto;
+
+		.btn {
+			margin: 0;
+		}
+	}
+
+	#download_result {
+		margin: 12px 0;
+	}
+
+	iframe.download_iframe {
+		border: none;
+		width : 1px;
+		height: 1px;
+	}
+
+	.initially-hidden {
+		display: none;
+	}
+}
+
+

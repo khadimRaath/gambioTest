@@ -1,0 +1,56 @@
+<?php if(count($activatedTypes) == 1): ?>
+	<input type="hidden" name="safeinv_type" value="<?= $paymentTypeCodeMapping[$activatedTypes[0]] ?>" id="p1_safeinv_type">
+<?php endif ?>
+<table class="payone_safeinv_data" data-gambio-widget="payone_checkout" data-payone_checkout-module="safeinv">
+	<?php if(count($activatedTypes) > 1): ?>
+		<tr class="datarow">
+			<td class="p1-label">
+				<label for="p1_safeinv_type">##safeinv_type</label>
+			</td>
+			<td>
+				<select name="safeinv_type" id="p1_safeinv_type">
+					<?php if($this->pg_config['types']['billsafe']['active'] == 'true'): ?>
+						<option value="BSV" <?= $safeInfTypeSelected === 'BSV' ? 'selected' : '' ?>>
+							<?php echo $this->pg_config['types']['billsafe']['name'] ?>
+						</option>
+					<?php endif ?>
+					<?php if($this->pg_config['types']['payolutioninvoicing']['active'] == 'true'): ?>
+						<option value="PYV" <?= $safeInfTypeSelected === 'PYV' ? 'selected' : '' ?>>
+							<?php echo $this->pg_config['types']['payolutioninvoicing']['name'] ?>
+						</option>
+					<?php endif ?>
+				</select>
+			</td>
+		</tr>
+	<?php endif ?>
+	<tr class="datarow">
+		<td class="p1-label">
+			##your_date_of_birth
+		</td>
+		<td>
+			<select name="p1-safeinv-doby" class="p1-dob">
+				<?php for($year = date('Y'); $year >= 1900; $year--): ?>
+					<option value="<?= $year ?>" <?= $customerDateOfBirth->format('Y') == $year ? 'selected' : '' ?>><?= $year ?></option>
+				<?php endfor ?>
+			</select>
+			<select name="p1-safeinv-dobm" class="p1-dob">
+				<?php for($month = 1; $month <= 12; $month++): ?>
+					<option value="<?= $month ?>" <?= $customerDateOfBirth->format('m') == $month ? 'selected' : '' ?>><?= $month ?></option>
+				<?php endfor ?>
+			</select>
+			<select name="p1-safeinv-dobd" class="p1-dob">
+				<?php for($day = 1; $day <= 31; $day++): ?>
+					<option value="<?= $day ?>" <?= $customerDateOfBirth->format('d') == $day ? 'selected' : '' ?>><?= $day ?></option>
+				<?php endfor ?>
+			</select>
+		</td>
+	</tr>
+	<tr class="datarow p1-safeinv-agreement p1-show-for-PYV">
+		<td class="p1-label">
+			<input type="checkbox" name="safeinv_agreement" value="1">
+		</td>
+		<td>
+			<?= $invoiceNote ?>
+		</td>
+	</tr>
+</table>

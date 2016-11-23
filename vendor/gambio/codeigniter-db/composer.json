@@ -1,0 +1,9 @@
+{
+    "name": "gambio/codeigniter-db",
+    "description": "CodeIgniterDB adapter so that you can use the database object within external applications.",
+	"version": "1.2.0",
+    "license": "GPL-2.0",
+    "require": {
+	    "php": ">=5.3.0"
+    }
+}

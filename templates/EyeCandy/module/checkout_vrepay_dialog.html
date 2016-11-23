@@ -1,0 +1,35 @@
+{load_language_text section="checkout_confirmation"}
+{load_language_text section="buttons" name="button"}
+
+<div{if $LIGHTBOX == 'true'} id="lightbox_content"{/if}>
+	<div id="gm_checkout_confirmation" class="checkout{if $LIGHTBOX == 'true'} lightbox_block{/if}">
+	
+		<div class="head">
+			<div id="iconizing_icon">
+				<img src="{$tpl_path}icons/bestellaufgeben.gif" />
+			</div>
+	
+			<div id="iconized_page_head">
+				{$txt.heading_confirmation}
+			</div>
+		</div>
+	
+		<div align="center">
+			<p>{$VREPAY_MESSAGE}</p>
+			<iframe src={$VREPAY_REDIRECT} {$IFRAME_LAYOUT}>
+				<p>{$txt.text_noframe}</p>
+			</iframe>
+	</div>
+		
+		<div class="navbar_line"><img src="{$tpl_path}img/checkout_bullet.gif" alt="" /></div>
+		<div class="navabar">
+			<div class="navabar_text">{$txt.text_shipping_info}</div>
+			<div class="navabar_text">{$txt.text_payment_info}</div>
+			<div class="navabar_text">{$txt.text_confirm}</div>
+			<div class="navabar_text_current">{$txt.text_finished}</div>
+		</div>
+		
+		<div id="footer">{$button.close}</div>
+	
+	</div>
+</div>

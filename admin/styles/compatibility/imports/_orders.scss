@@ -1,0 +1,793 @@
+// ----------------------------------------------------------------------------
+// ORDERS OVERVIEW
+// ----------------------------------------------------------------------------
+
+.gx-orders-table {
+  a, i {
+    display: inline-block;
+    &.order-status-icon {
+      font-size:   16px;
+      margin-left: 12px;
+    }
+  }
+
+  a.order-status-icon {
+    position: relative;
+    top:      3px;
+  }
+}
+
+#add_tracking_code_form,
+#update_orders_status_form {
+  label {
+    width: 40%;
+  }
+}
+
+#multi_delete_confirm_form,
+#delete_confirm_form {
+  label {
+    width: 80%;
+  }
+
+  &[name="specials"] {
+    label{
+      width: auto;
+    }
+  }
+}
+
+#multi_cancel_confirm_form {
+  label {
+    width: 60%;
+  }
+}
+
+.modal-info-text {
+  margin-bottom: 24px;
+  margin-top: 0;
+}
+
+.paginator {
+  select[name="status"] {
+    margin-right: 48px;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// ORDER TOOLTIP
+// ----------------------------------------------------------------------------
+.gx-qtip {
+
+  &.large {
+    max-width: 800px !important;
+  }
+
+  table {
+    tr {
+      background: none !important;
+
+      td {
+        color: $text-color-inverse;
+        height: auto !important;
+
+        &.total_price {
+          font-weight: bold;
+          border-top: 1px solid $text-color-inverse;
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// ORDERS EDIT
+// ----------------------------------------------------------------------------
+
+.orders-edit-page-wrapper {
+  padding: 0;
+}
+
+.orders-edit-warning {
+  strong {
+    margin-left:  16px;
+    margin-right: 16px;
+  }
+}
+
+.orders-edit-form {
+  padding-right: 0;
+
+  form {
+    margin-bottom: 0;
+    padding:       0;
+
+    table {
+      margin: 0;
+      td {
+        &.dataTableContent {
+          border-bottom: 0;
+
+          &.product-id {
+            padding-left: 0 !important;
+          }
+
+          &.save-button {
+            input[type="submit"] {
+              margin: 0;
+            }
+
+            padding-right: 0;
+            width:         30px;
+          }
+
+          &.add-button {
+            input[type="submit"] {
+              margin: 0;
+            }
+
+            padding-right: 0;
+            width:         30px;
+          }
+
+          &.update-stock {
+            .control-group {
+              margin-top: 5px;
+
+              .switcher {
+                span {
+                  line-height: 18px;
+                }
+              }
+            }
+          }
+
+          input[type="text"] {
+            height:    30px;
+            max-width: unset;
+            min-width: unset;
+            padding:   0 5px 0 5px;
+            width:     auto;
+
+            &[name="products_name"] {
+              width: 122px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.orders-edit-table {
+  width: 100%;
+
+  form {
+    margin: 0;
+  }
+
+  tr {
+    &.gx-container {
+      &.dataTableRow {
+        &:nth-child(odd) {
+          background-color: $background-color;
+        }
+
+        &:nth-child(even) {
+          background-color: adjust-lightness($background-color, -2.5);
+        }
+      }
+    }
+  }
+
+  td {
+    &.product-id {
+      width: 77px;
+    }
+
+    &.amount {
+      width: 60px;
+      &.search {
+        min-width: 157px;
+      }
+    }
+
+    &.product {
+      width: 161px;
+      &.search {
+        min-width: 500px;
+      }
+    }
+
+    &.product-nr,
+    &.costs {
+      width: 105px;
+      &.search {
+        min-width: 136px;
+      }
+    }
+
+    &.tax {
+      width: 83px;
+    }
+
+    &.final {
+      width: 68px;
+    }
+
+    &.save-button {
+      input[type="submit"] {
+        margin: 0;
+      }
+    }
+
+    &.update-stock {
+      &.attributes {
+        span {
+          margin-top: 8px;
+        }
+
+        input[type="submit"] {
+          &.add {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .button-container {
+    text-align:   right;
+    width:        422px;
+    padding-left: 0 !important;
+
+    div {
+      display: inline-block;
+
+      &.options-wrapper {
+        margin-right: 10px;
+      }
+
+      input {
+        margin: 0 !important;
+      }
+    }
+  }
+
+  .orders-edit-search {
+    input {
+      &.btn {
+        margin-left: 12px;
+        margin-top:  12px;
+      }
+    }
+  }
+}
+
+.orders-edit-properties {
+  margin-left:  16px;
+  margin-right: 16px;
+
+  .section-header {
+    border-bottom: 2px solid $gambio-blue;
+    color:         $text-color;
+    display:       inline-block;
+    font-weight:   bold;
+    font-size:     12px;
+    width:         100%
+  }
+
+  #properties_selection_container {
+    dd {
+      margin-bottom: 15px;
+    }
+
+    select {
+      background-color: $background-color;
+      font-size:        12px;
+    }
+  }
+
+  a {
+    &.button {
+      line-height: 17px;
+    }
+  }
+}
+
+.order-edit-content {
+  padding: 16px !important;
+
+  a {
+    &.btn {
+      border-style: solid;
+      border-width: 1px;
+      @include button-basic-style();
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// EDIT ORDER OTHER PAGE
+// ----------------------------------------------------------------------------
+
+.order-edit-other .frame-wrapper {
+  min-height: 270px;
+
+  .span2 {
+    &.cut-credit-balance {
+      padding-top: 7px;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// ORDER DETAILS CLASS
+// ----------------------------------------------------------------------------
+
+.order-details {
+
+  // Head
+  .head {
+    padding-bottom: 6px;
+    border-bottom:  3px solid $gambio-blue;
+    margin-bottom:  24px;
+
+    .head-item {
+      background:   $default-color;
+      padding:      24px;
+      margin-right: 24px;
+      height:       96px;
+
+      &.span2-odd {
+        width: 18.56% !important; // workaround to get the grid system to work with an odd number of elements
+      }
+
+      @media only screen and (max-width: 1599px) {
+        &.span2-odd {
+          margin-right: 1.42vw;
+        }
+      }
+
+      &:last-child {
+        border-right: none;
+        margin-right: 0;
+      }
+
+      .simple-container {
+        margin: 0;
+
+        .title {
+          color:     $text-color-light;
+          font-size: 12px;
+        }
+
+        label {
+          &.value {
+            b {
+              font-weight: 400;
+            }
+          }
+        }
+      }
+
+      i {
+        font-size:    24px;
+        margin-right: 10px;
+        color:        $gambio-blue;
+      }
+
+      .value {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .content {
+    &.grid {
+      .span6 {
+        margin-right:  24px;
+        padding-right: 0;
+        width:         49.1%;
+
+        &:last-child {
+          margin-right: 0;
+        }
+
+        .table-content {
+          table {
+            td {
+              &:last-of-type {
+                max-width: 137px;
+              }
+            }
+          }
+          
+          input {
+            width: 170px; //set the min-width for small inputs manually because they are generated by PHP automaticly
+          }
+
+          select {
+            width: 170px; //set the min-width for small selects manually because they are generated by PHP automaticly
+          }
+        }
+
+        .frame-wrapper {
+          .frame-content {
+            .grid {
+              margin: 0 0 24px 0;
+            }
+
+            .fa {
+              color: $text-color-light;
+                &.fa-check {
+                  color: $success-color;
+                }
+
+                &.fa-times {
+                  color: $danger-color;
+                }
+            }
+
+            .span6 {
+              margin-right:  0;
+              padding-right: 24px;
+              width:         49.98%;
+
+              .content {
+                padding-bottom: 24px;
+              }
+            }
+            
+            table {
+              &.klarna {
+                tr {
+                  background-color: transparent;
+                  
+                  td {
+                    &.main {
+  
+                      tr {
+                        &:nth-child(odd) {
+                          background-color: adjust-lightness($background-color, -2.5);
+                        }
+                      }
+                      
+                      p {
+                        &.message {
+                          margin: 12px 0;
+                        }
+                      }
+                      
+                      .klarna_actions {
+                        float: inherit;
+                        width: auto;
+                        
+                        button {
+                          margin: 12px 12px 12px 0;
+                          
+                          &[name="credit_part"] {
+                            margin-top: 0;
+                          }
+                        }
+                        
+                        table {
+                          margin: 24px 0;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      @media only screen and (max-width: 1599px) {
+        .span6 {
+          width: 100%
+        }
+      }
+    }
+  }
+
+  .footer {
+    margin-top: 24px;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// ARTICLE BOX
+// ----------------------------------------------------------------------------
+
+.article-table {
+  margin-bottom: 0;
+
+  .frame-wrapper {
+    .frame-content {
+      #order-details-table {
+        thead {
+          th {
+            padding: 0 0 0 24px;
+
+            &:last-child {
+              padding-right: 0;
+            }
+          }
+        }
+
+        tbody {
+          tr {
+            &#order-sum-row {
+              td {
+                padding: 6px 0 0 0;
+              }
+            }
+          }
+
+          td {
+            padding:        12px 0 0 24px;
+            vertical-align: top;
+
+            .grid {
+              margin-bottom: 0;
+
+              .products-name {
+                font-weight:   bold;
+                margin-bottom: 3px;
+              }
+
+              .properties-container {
+                margin-bottom: 12px;
+              }
+            }
+
+            &:last-child {
+              padding-right: 0;
+            }
+          }
+        }
+
+        tfoot {
+          .total {
+            padding: 0 24px 0 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// PAYPAL BOX
+// ----------------------------------------------------------------------------
+
+.paypal3 {
+  > div {
+    margin-bottom: 24px !important;
+  }
+
+  .paypal-header {
+    display:     block;
+    font-weight: bold;
+  }
+
+  .paypal-pay-id {
+    color: $gambio-blue;
+  }
+
+  .message {
+    height:      24px;
+    line-height: 24px;
+    padding:     0 24px;
+    border:      1px solid $border-color-info-alert;
+    background:  $background-color-info-alert;
+    color:       $alert-info-text;
+    margin:      12px 0;
+  }
+
+  table {
+    margin-top: 12px;
+
+    thead {
+      tr {
+        height: 36px !important;
+
+        th {
+          background-color: $default-color !important;
+          height:           24px !important;
+          padding:          0 24px !important;
+          line-height:      36px !important;
+          border:           0 !important;
+
+          .collapser {
+            margin-top: 12px !important;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        background-color: transparent !important;
+        height:           48px !important;
+        line-height:      24px !important;
+
+        td {
+          border-bottom: 1px solid $border-color-light !important;
+          padding:       0 24px !important;
+
+          pre {
+            width:      565px;
+            overflow-x: scroll;
+          }
+
+          input,
+          button {
+            margin: 0 !important;
+          }
+        }
+
+        td.price {
+          text-align: right;
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// CUSTOMERS BOX
+// ----------------------------------------------------------------------------
+
+.customers {
+  border-color: $background-color-customers;
+  .frame-head {
+    &.info {
+      background-color: $background-color-customers !important;
+      border-color: $background-color-customers;
+    }
+
+  }
+
+  .frame-content.customer-memos {
+    margin-top: -48px;
+
+    td {
+      padding-top: 12px !important;
+      padding-bottom: 12px !important;
+
+      .date,
+      .poster
+      {
+        display: block;
+        white-space: nowrap;
+      }
+
+      .poster
+      {
+        font-weight: bold;
+      }
+    }
+
+  }
+}
+
+// ----------------------------------------------------------------------------
+// WITHDRAWAlS BOX
+// ----------------------------------------------------------------------------
+
+.withdrawals {
+  .head-link {
+    border-color: $danger-color !important;
+    a {
+      color: $danger-color !important;
+    }
+  }
+
+  &.danger {
+    .head-link {
+      border-color: $border-color-inverse !important;
+      a {
+        color: $border-color-inverse !important;
+      }
+    }
+  }
+}
+
+
+// ----------------------------------------------------------------------------
+// INVOICE AND PACKINGSLIP BOX
+// ----------------------------------------------------------------------------
+
+.frame-wrapper {
+
+  &.invoices,
+  &.packingslips {
+
+    .frame-content {
+
+      .invoice-content,
+      .packingslip-content {
+        padding: 0;
+        background-color: $background-color;
+
+        a {
+          &.icon-container {
+            margin-right: 12px;
+
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+
+          .fa {
+            font-size: 20px;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// TABLE-CONTENT
+//
+// Is used to style some tables on the orders details page
+// ----------------------------------------------------------------------------
+
+.table-content {
+  &.frame-content {
+    table {
+      thead {
+        tr {
+          th {
+            padding: 0 0 0 24px;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          td {
+            padding: 0 0 0 24px;
+
+            &:last-child {
+              padding-right: 24px;
+            }
+
+            button {
+              margin: 8px 0 8px 0;
+            }
+
+            span {
+              &.btn {
+                margin:  0;
+                display: block;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// GX-CUSTOMIZER MODAL BOX
+// ----------------------------------------------------------------------------
+
+.show-details {
+  padding: 12px 0;
+}
+
+.gx-container {
+  .gm_gprint_order_set {
+    padding: 24px;
+
+    .gm_gprint_dropdown {
+      height: 26px !important;
+    }
+  }
+}

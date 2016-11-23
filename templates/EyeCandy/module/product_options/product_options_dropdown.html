@@ -1,0 +1,19 @@
+{if $options!=''}
+	<div class="attributes clearfix">
+		<dl>
+			{foreach name=outer item=options_data from=$options}
+				{if $options_data.DATA || $GM_HIDE_OUT_OF_STOCK == 'false'}
+					<dt>{$options_data.NAME}:</dt>
+					<dd>
+						<select class="input-select{if $PRICE_STATUS != 1} gm_attr_calc_input{/if}" name="id[{$options_data.ID}]">
+							{foreach key=key_data item=item_data from=$options_data.DATA}
+							<option value="{$item_data.ID}" title="{$item_data.TEXT|replace:'"':'&quot;'} {if $item_data.PRICE}{$item_data.PREFIX} {$item_data.PRICE}{/if}{if $GM_SHOW_STOCK == 'true' && $options_data.NAME != 'downloads'} {$GM_STOCK_TEXT_BEFORE|replace:'"':'&quot;'}{$item_data.GM_STOCK}{$GM_STOCK_TEXT_AFTER|replace:'"':'&quot;'}{/if}" {if !$chk} selected="selected" {$chk = true}{/if}>{$item_data.TEXT} {if $item_data.PRICE}{$item_data.PREFIX} {$item_data.PRICE}{/if}{if $GM_SHOW_STOCK == 'true' && $options_data.NAME != 'downloads'} {$GM_STOCK_TEXT_BEFORE}{$item_data.GM_STOCK}{$GM_STOCK_TEXT_AFTER}{/if}</option>
+							{/foreach}
+						</select>
+						{$chk = false}
+					</dd>
+				{/if}
+			{/foreach}
+		</dl>
+	</div>
+{/if}

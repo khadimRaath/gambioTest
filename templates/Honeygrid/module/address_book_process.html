@@ -1,0 +1,44 @@
+{load_language_text section="address_book_process"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_address}</h1>
+
+<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error type="danger"}
+
+	{$MODULE_address_book_details}
+
+	{if $delete=='1'}
+
+		{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$txt.text_delete type="success"}
+
+		<div class="row">
+			<div class="col-xs-12">
+				<h3>{$txt.title_delete}</h3>
+				<p>{$ADDRESS}</p>
+			</div>
+		</div>
+		<br />
+		<div class="row">
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				<a class="btn btn-default btn-block" href="{$BUTTON_BACK_URL}" title="{$button.back}">
+					{$button.back}
+				</a>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+				{if $SHOW_UPDATE_BUTTON}
+				<button type="submit" class="btn btn-primary btn-block" title="{$button.update}">
+					{$button.update}
+				</button>
+				{/if}
+
+				<a class="btn btn-danger btn-block" href="{$BUTTON_DELETE_URL}" title="{$button.delete}">
+					{$button.delete}
+				</a>
+			</div>
+		</div>
+
+	{$BUTTON_UPDATE_HIDDEN_FIELDS}
+	{/if}
+</form>

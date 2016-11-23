@@ -1,0 +1,37 @@
+{load_language_text section="checkout_payment"}
+{load_language_text section="buttons" name="button"}
+
+<!--
+ Released under the GNU General Public License (Version 2)
+ [http://www.gnu.org/licenses/gpl-2.0.html]
+-->
+{*
+{if (!$smarty.session.MOBILE_ACTIVE)}
+	<script type='text/javascript' src='gm/javascript/jquery/jquery.js'></script>
+{/if}
+*}
+<script type='text/javascript' src='{$tplPath}/javascript/checkout/HeidelpayValAfterpayment.js'></script>
+<link rel="stylesheet" media="all" type="text/css" href="{$tplPath}/css/heidelpay.css" />
+
+<div class='gateway'>
+	{if $notHp}
+		<div class="gatewayError" style="display: block;">
+			<h3>{$smarty.const.HGW_TXT_GW_ERROR}</h3>
+			<div>{$smarty.const.HGW_MSG_GLOB_ERR}</div>
+		</div>
+	{else}
+		<h2>{$smarty.const.HGW_TXT_DOPAYMENT}</h2>
+		<div class="gatewayError">
+			<h3>{$smarty.const.HGW_TXT_GW_ERROR}</h3>
+				{foreach key=class item=error from=$errors}
+					<div class="{$class}">{$error}</div>
+				{/foreach}
+		</div>
+		
+		{if $pm != ''}
+			{include file="{$docPath}{$tplPath}/module/heidelpay_{$pm}.html"}
+		{else}
+			{include file="{$docPath}{$tplPath}/module/heidelpay_submit.html"}				
+		{/if}
+	{/if}
+</div>

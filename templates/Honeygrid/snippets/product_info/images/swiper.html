@@ -1,0 +1,100 @@
+{if $swiperProducts}
+	<div class="productlist-swiper row">
+{/if}
+
+<div{if $hover === 'true'} data-gambio-{if $startWidget}widget{else}_widget{/if}="product_hover"{/if}>
+	<div id="{$swiperId}" class="swiper-container" data-gambio-{if $startWidget}widget{else}_widget{/if}="swiper" data-swiper-target="{$swiperTarget}" data-swiper-controls="{$swiperControls}" data-swiper-slider-options='{literal}{{/literal}{if $swiperImages}"breakpoints": [], {/if}"pagination": ".js-{$swiperId}-pagination", "nextButton": ".js-{$swiperId}-button-next", "prevButton": ".js-{$swiperId}-button-prev"{$swiperOptions}{literal}}{/literal}' {$additionalData}>
+		<div class="swiper-wrapper"{if $maxHeight} style="height: {$maxHeight}px;"{/if} >
+		
+			{if $swiperImages}
+
+				{foreach item=image_data from=$swiperImages}
+					{assign var="image_src" value=($image_data.IMAGE && $image_data.IMAGE != '') ? $image_data.IMAGE : "" }
+					{if $popup == 'true'}
+						{assign var="image_src" value=$image_src|replace:'info_images':'popup_images'}
+					{/if}
+				
+					{include file="get_usermod:{$tpl_path}snippets/product_info/images/swiper_image.html"
+					img_id={($image_data.IMAGE_NR) ? $image_data.IMAGE_NR : "0" }
+					img_prop=$itemProp
+					img_top={($image_data.PADDING_TOP) ? $image_data.PADDING_TOP : "0" }
+					img_src=$image_src 
+					img_alt=$image_data.IMAGE_ALT|default:$image_data.PRODUCTS_NAME
+					img_title=$image_data.IMAGE_ALT|default:$image_data.PRODUCTS_NAME
+					img_zoom={($image_data.ZOOM_IMAGE) ? $image_data.ZOOM_IMAGE : "" }
+					}
+				{/foreach}
+			
+			{elseif $swiperProducts}
+
+				{foreach item=product from=$swiperProducts}
+				
+					{if $product.PRODUCTS_META_DESCRIPTION}
+						{assign var="p_meta" value=$product.PRODUCTS_META_DESCRIPTION|truncate:80:"..."|replace:'"':'&quot;'}
+					{else}
+						{assign var="p_meta" value=$product.PRODUCTS_NAME}
+					{/if}
+					
+					{if $product.PRODUCTS_SHORT_DESCRIPTION}
+						{assign var="p_short_desc" value=$product.PRODUCTS_SHORT_DESCRIPTION|strip_tags|truncate:80:"..."|replace:'"':'&quot;'}
+					{else if $product.PRODUCTS_DESCRIPTION}
+						{assign var="p_short_desc" value=$product.PRODUCTS_DESCRIPTION|strip_tags|truncate:80:"..."|replace:'"':'&quot;'}
+					{else}
+						{assign var="p_short_desc" value=""}
+					{/if}
+
+					{product_images product_id=$product.PRODUCTS_ID out=imagetest p_name=$product.PRODUCTS_NAME p_image=$product.PRODUCTS_IMAGE}
+
+					{product_ribbons
+					product_id=$product.PRODUCTS_ID
+					out=arr_ribbons
+					}
+		
+					{include file="get_usermod:{$tpl_path}snippets/product_listing/product.html"
+					is_swiper="true"
+					ribbons=arr_ribbons
+					p_image={($product.PRODUCTS_IMAGE) ? $product.PRODUCTS_IMAGE : "" }
+					p_imgs=$imagetest
+					p_url=$product.PRODUCTS_LINK
+					p_img_title=$product.PRODUCTS_IMAGE_ALT|default:$product.PRODUCTS_NAME|replace:'"':'&quot;'
+					p_img_alt=$product.PRODUCTS_IMAGE_ALT|default:$product.PRODUCTS_NAME|replace:'"':'&quot;'
+					p_meta=$p_meta
+					p_name_full=$product.PRODUCTS_NAME
+					p_headline=$product.PRODUCTS_NAME|truncate:$content_data.TRUNCATE_PRODUCTS_NAME:"..."
+					p_short_desc=$p_short_desc
+					p_price=$product.PRODUCTS_PRICE
+					p_vpe={($product.PRODUCTS_VPE) ? $product.PRODUCTS_VPE : "" }
+					
+					data_index=$content_data.ID_PREFIX|cat:"_"|cat:$product.PRODUCTS_ID
+					}
+				
+				{/foreach}
+			
+			{/if}
+	
+		</div>
+		
+		<template>
+			{literal}
+				{{#.}}
+					<div class="swiper-slide {{className}}">
+						<div class="swiper-slide-inside">
+							<img {{{srcattr}}} alt="{{title}}" title="{{title}}" itemprop="image" />
+						</div>
+					</div>
+				{{/.}}
+			{/literal}
+		</template>
+		
+</div>
+
+	{if $swiperImages|@sizeof > 4}
+		<div class="js-{$swiperId}-button-prev swiper-button-prev"></div>
+		<div class="js-{$swiperId}-button-next swiper-button-next"></div>
+	{/if}
+		
+</div>
+
+{if $swiperProducts}
+	</div>
+{/if}

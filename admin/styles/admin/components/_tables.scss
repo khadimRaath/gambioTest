@@ -1,0 +1,203 @@
+/* 
+	Tables
+    ========================================================================== 
+
+	Table styling uses the Bootstrap classes and overrides some styles in order to make them 
+	look like the Gambio Admin theme. 
+	
+	bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_tables.scss
+	
+*/
+
+.table {
+	&.table-row-small {
+		thead {
+			tr {
+				th {
+					padding: ($padding-small / 3) $padding-small;
+				}
+			}
+		}
+		
+		tbody {
+			tr {
+				td {
+					padding: ($padding-small / 6) $padding-small;
+					
+					.dropdown, &.dropup {
+						& > button {
+							padding: ($padding-small / 6) ($padding-small / 2);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	&.table-row-medium {
+		thead {
+			tr {
+				th {
+					padding: ($padding-small / 2) $padding-small;
+				}
+			}
+		}
+		
+		tbody {
+			tr {
+				td {
+					padding: ($padding-small / 2) $padding-small;
+					
+					.dropdown, .dropup {
+						& > button {
+							padding: ($padding-small / 3) $padding-small;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	&.table-row-large {
+		thead {
+			tr {
+				th {
+					padding: $padding-small;
+				}
+			}
+		}
+		
+		tbody {
+			tr {
+				td {
+					padding: $padding-small;
+				}
+			}
+		}
+	}
+	
+	thead {
+		tr {
+			th {
+				background:  $body-bg;
+				border:      none;
+				color:       $text-color-light;
+				outline:     none;
+
+				&:first-of-type {
+					padding-left: $padding-large;
+				}
+				
+				&:last-of-type {
+					padding-right: $padding-large;
+				}
+			}
+			
+			&:first-child {
+				th {
+					border-bottom: 3px solid $brand-primary;
+				}
+			}
+		}
+	}
+	
+	tbody {
+		tr {
+			td {
+				white-space: nowrap;
+				border-top:  none;
+				
+				&:not(.actions) {
+					// This styling will might be overridden by datatable_normalize_overflow extension.
+					text-overflow: ellipsis;
+					overflow:      hidden;
+					
+					& > * {
+						
+						display:        inline-block;
+						max-width:      100%;
+						text-overflow:  ellipsis;
+						overflow:       hidden;
+						vertical-align: middle;
+						color:          $text-color;
+					}
+				}
+				
+				&.numeric {
+					text-align: right;
+				}
+				
+				&, .single-checkbox {
+					min-width:      14px;
+					vertical-align: middle;
+				}
+				
+				.visible-on-hover {
+					visibility: hidden;
+				}
+				
+				&.actions {
+					a {
+						text-decoration: none;
+					}
+					
+					.fa {
+						font-size:    2 * $font-size-base;
+						margin-right: $margin-large;
+						color:        $text-color-light;
+						cursor:       pointer;
+						
+						&:hover {
+							color: $link-color;
+						}
+					}
+					
+					.meta-icon {
+						margin: ($margin-small / 2) ($margin-small / 2) ($margin-small / 2) 0;
+						
+						&.fa {
+							font-size: 16px;
+							
+							&:hover {
+								color: $text-color-light;
+							}
+						}
+					}
+					
+					.hidden-columns-content {
+						cursor: default;
+					}
+				}
+				
+				&:first-of-type {
+					padding-left: $padding-large;
+				}
+				
+				&:last-of-type {
+					padding-right: $padding-large;
+				}
+			}
+			
+			&:hover {
+				td {
+					background: $body-bg-dark;
+				}
+				
+				.visible-on-hover {
+					visibility: visible;
+				}
+			}
+		}
+	}
+	
+	// The following style is working in cooperation with the datatable_extensions.js library.
+	&.table-fixed-header {
+		thead.fixed {
+			display:      table;
+			table-layout: fixed;
+			position:     fixed;
+			top:          $header-height;
+			z-index:      $zindex-content-header - 1;
+		}
+	}
+}

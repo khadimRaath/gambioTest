@@ -1,0 +1,130 @@
+{* --------------------------------------------------------------
+	itrk_configuration.html 2016-05-27
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*}
+{load_language_text section="itrecht"}
+
+<style>
+div.gx-container input.no-margin-submit { margin: 0 !important; }
+</style>
+
+<div class="main">
+	<table style="margin-bottom:5px" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr class="dataTableHeadingRow">
+			<td class="dataTableHeadingContentText" style="width:1%; padding-right:20px; white-space: nowrap">
+				{$txt.tab_config_page}
+			</td>
+		</tr>
+		<tr class="dataTableHeadingRow">
+			<td class="dataTableHeadingContentText" style="width:1%; padding-right:20px; white-space: nowrap">
+				<a href="{$url_info_page}">{$txt.tab_info_page}</a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<div class="gx-container">
+	<form action="{$save_action}" method="POST" class="gx-container" data-gx-widget="checkbox">
+		<input type="hidden" name="pageToken" value="{$page_token}">
+		<table class="gx-configuration gx-configuration-table breakpoint-small">
+			<tr>
+				<td class="dataTableContent_gm">{$txt.ITRECHTTXT_CONFIG_TOKEN}</td>
+				<td class="dataTableContent_gm">
+					<input id="token" name="token" type="text" value="{$token}" size="40">
+					<input class="no-margin-submit" type="submit" value="##ITRECHTTXT_CONFIG_GENERATE_TOKEN" name="gen_token">
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm">
+					{$txt.your_api_url}:
+				</td>
+				<td class="dataTableContent_gm">
+					<tt>{$api_url}</tt>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm">{$txt.ITRECHTTXT_CONFIG_USE_AGB_IN_PDF}</td>
+				<td class="dataTableContent_gm">
+					<input id="use_agb_in_pdf" type="checkbox" value="1" name="use_agb_in_pdf" {if $use_agb_in_pdf}checked="checked"{/if}>
+					<span class="fa-pull-right" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+						{$txt.ITRECHTTXT_PDF_CONDITIONS_WARNING}
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm">{$txt.ITRECHTTXT_CONFIG_USE_WITHDRAWAL_IN_PDF}</td>
+				<td class="dataTableContent_gm">
+					<input id="use_withdrawal_in_pdf" type="checkbox" value="1" name="use_withdrawal_in_pdf" {if $use_withdrawal_in_pdf}checked="checked"{/if}>
+					<span class="fa-pull-right" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+						{$txt.ITRECHTTXT_PDF_CONDITIONS_WARNING}
+					</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm" colspan="2">
+					<input class="btn btn-primary pull-right" type="submit" value="{$txt.ITRECHTTXT_CONFIG_SAVE}">
+				</td>
+			</tr>
+		</table>
+
+	</form>
+
+	<h2>{$txt.texts_received}</h2>
+	<table class="gx-configuration">
+		<thead>
+			<tr><th>##legal_text</th><th>##type_text</th><th>##type_html</th><th>##type_pdf</th><th>&nbsp;</th></tr>
+		</thead>
+		<tbody>
+			{foreach from=$files key=rtype item=lang}
+				{foreach from=$lang key=code item=lang_data}
+					<tr>
+						<td>{$rtype} ({$code})</td>
+						<td>
+							{if $lang_data['files']['txt'].file_exists}
+								<a href="{$lang_data['files']['txt']['file_url']}">{$lang_data['files']['txt']['file_date']}</a>
+							{else}
+								{$lang_data['files']['txt'].file}{$txt.not_received}
+							{/if}
+						</td>
+						<td>
+							{if $lang_data['files']['html'].file_exists}
+								<a href="{$lang_data['files']['html']['file_url']}">{$lang_data['files']['html']['file_date']}</a>
+							{else}
+								{$lang_data['files']['html'].file}{$txt.not_received}
+							{/if}
+						</td>
+						<td>
+							{if $lang_data['files']['pdf'].file_exists}
+								<a href="{$lang_data['files']['pdf']['file_url']}">{$lang_data['files']['pdf']['file_date']}</a>
+							{else}
+								{$lang_data['files']['pdf'].file}{$txt.not_received}
+							{/if}
+						</td>
+						<td>
+							{if $lang_data['files']['html']['file_exists']}
+								{if $lang_data['isConfigured']}
+									<span class="badge badge-success">{$txt.used_in_content_manager}</span>
+								{else}
+									<form action="{$use_in_cm_action}" method="post">
+										<input type="hidden" name="pageToken" value="{$page_token}">
+										<input type="hidden" name="lang" value="{$code}">
+										<input type="hidden" name="type" value="{$rtype}">
+										<input type="hidden" name="file" value="itrk_{$rtype}.php">
+										<input type="submit" name="use_in_cm" value="{$txt.use_in_content_manager}">
+									</form>
+								{/if}
+							{else}
+								<span class="badge badge-danger">{$txt.html_file_not_available}</span>
+							{/if}
+						</td>
+					</tr>
+				{/foreach}
+			{/foreach}
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,61 @@
+{load_language_text section="contact_us"}
+{load_language_text section="buttons" name="button"}
+
+<div id="gm_callback_service_success" class="callback_service">
+
+	<div id="gm_callback_service_error_message"></div>
+
+	{if $CONTENT_TEXT}
+		<div class="content_callback_service">{$CONTENT_TEXT}</div>
+		<br />
+	{/if}
+
+
+	<div class="required_info">
+		{$txt.text_required}
+	</div>
+
+	<form id="gm_callback_service_form" action="">
+		<fieldset class="blocklabels_150">
+			<div class="input">
+				<label>{$NAME}</label>
+				<input type="text" name="name" value="" class="input-text callback_service_fields" id="gm_callback_service_name" /> *
+			</div>
+			<div class="input">
+				<label>{$EMAIL}</label>
+				<input type="text" name="email" value="" class="input-text callback_service_fields" id="gm_callback_service_email" />
+			</div>
+			<div class="input">
+				<label>{$TELEPHONE}</label>
+				<input type="text" name="telephone" value="" class="input-text callback_service_fields" id="gm_callback_service_telephone" /> *
+			</div>
+			<div class="input">
+				<label>{$TIME}</label>
+				<input type="text" name="time" value="" class="input-text callback_service_fields" id="gm_callback_service_time" />
+			</div>
+			<div class="input">
+				<label>{$MESSAGE}</label>
+				<textarea name="message" class="input-textarea callback_service_fields">{$INPUT_TEXT_VALUE}</textarea>
+			</div>
+			{if $VALIDATION_ACTIVE == 'true'}
+			<div class="input vvcode">
+				<label>{$VALIDATION}</label>
+				{$GM_CAPTCHA}
+			</div>
+			{/if}
+		</fieldset>
+
+		{if $GM_PRIVACY_LINK != '0'}
+		<div id="gm_privacy">
+			{if $show_privacy_checkbox}<input id="privacy_accepted" type="checkbox" name="privacy_accepted" value="1" /> {/if}
+			<label for="privacy_accepted">{$GM_PRIVACY_LINK}</label>
+			<br />
+			<br />
+		</div>
+		{/if}
+
+		<div class="send_button"><a href="{page_url}#" class="button_blue_big button_set_big" id="gm_callback_service_send"><span class="button-outer"><span class="button-inner">{$button.send}</span></span></a></div>
+
+	</form>
+</div>
+<br />

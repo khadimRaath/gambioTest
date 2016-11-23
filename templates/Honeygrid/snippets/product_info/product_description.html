@@ -1,0 +1,77 @@
+{load_language_text section="product_info"}
+
+{assign var="ARR_PRODUCTS_DESCRIPTION" value="<div id=\"tabbed_description_part\">"|explode:$PRODUCTS_DESCRIPTION}
+
+{if ($GM_GPRINT && 'CUSTOMIZER_POSITION'|gm_get_conf === '1') || $ARR_PRODUCTS_DESCRIPTION[0]|trim !== ''}
+	{assign var="show_description_tab" value=true}
+{else}
+	{assign var="show_description_tab" value=false}
+{/if}
+
+{if $show_description_tab || $tabs|@count > 0 || ($GM_GPRINT && 'CUSTOMIZER_POSITION'|gm_get_conf !== '3')}
+	<div class="nav-tabs-container{if $tabs|@count > 0} has-multi-tabs{/if}" data-gambio-widget="tabs">
+
+		<!-- Nav tabs -->
+		<ul class="nav nav-tabs">
+			{if $show_description_tab}
+				<li class="active">
+					<a href="#" title="{$txt.text_description}">
+						{$txt.text_description}
+					</a>
+				</li>
+			{/if}
+			{foreach name=tabs_loop item=tab_item from=$tabs}
+				<li{if !$show_description_tab && $smarty.foreach.tabs_loop.first} class="active"{/if}>
+					<a href="#" title="{$tab_item.title}">
+						{$tab_item.title}
+					</a>
+				</li>
+			{/foreach}
+			{if $GM_GPRINT && 'CUSTOMIZER_POSITION'|gm_get_conf === '2'}
+				<li{if !$show_description_tab && $tabs|@count === 0} class="active"{/if}>
+					<a href="#" title="{$txt.text_customizer_tab}">
+						{$txt.text_customizer_tab}
+					</a>
+				</li>
+			{/if}
+		</ul>
+
+		<!-- Tab panes -->
+		<div class="tab-content">
+			{if $show_description_tab}
+				<div class="tab-pane active">
+					<div class="tab-heading">
+						<a href="#">{$txt.text_description}</a>
+					</div>
+					<div class="tab-body active">
+						{$ARR_PRODUCTS_DESCRIPTION[0]}
+
+						{include file="get_usermod:{$tpl_path}snippets/product_info/customizer.html" position=1}
+					</div>
+				</div>
+			{/if}
+			{foreach name=tabs_loop item=tab_item from=$tabs}
+				<div class="tab-pane{if !$show_description_tab && $smarty.foreach.tabs_loop.first} active{/if}">
+					<div class="tab-heading">
+						<a href="#">{$tab_item.title}</a>
+					</div>
+					<div class="tab-body{if !$show_description_tab && $smarty.foreach.tabs_loop.first} active{/if}">
+						{$tab_item.content}
+					</div>
+				</div>
+			{/foreach}
+
+			{if $GM_GPRINT && 'CUSTOMIZER_POSITION'|gm_get_conf === '2'}
+				<div class="tab-pane{if !$show_description_tab && $tabs|@count === 0} active{/if}">
+					<div class="tab-heading">
+						<a href="#">{$txt.text_customizer_tab}</a>
+					</div>
+					<div class="tab-body{if !$show_description_tab && $tabs|@count === 0} active{/if}">
+						{include file="get_usermod:{$tpl_path}snippets/product_info/customizer.html" position=2}
+					</div>
+				</div>
+			{/if}
+		</div>
+
+	</div>
+{/if}

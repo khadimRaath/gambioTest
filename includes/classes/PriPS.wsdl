@@ -1,0 +1,588 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://hermes_api.service.hlg.de" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns2="http://schemas.xmlsoap.org/soap/http" xmlns:ns1="http://exception.common.service.hlg.de" name="PriPSService" targetNamespace="http://hermes_api.service.hlg.de">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://prips.hermes_api.service.hlg.de" targetNamespace="http://prips.hermes_api.service.hlg.de" version="1.0">
+<xs:complexType name="ShippingStatus">
+<xs:sequence>
+<xs:element name="shippingId" nillable="true" type="xs:string"/>
+<xs:element name="statusText" nillable="true" type="xs:string"/>
+<xs:element name="statusDateTime" nillable="true" type="xs:dateTime"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="OrderRequestNonparcel">
+<xs:sequence>
+<xs:element name="acceptanceLiabilityLimit" nillable="true" type="xs:string"/>
+<xs:element name="acceptanceTermsAndConditions" nillable="true" type="xs:string"/>
+<xs:element name="collectionDesiredDate" nillable="true" type="xs:dateTime"/>
+<xs:element name="receiver" nillable="true" type="tns:Receiver"/>
+<xs:element name="shipper" nillable="true" type="tns:Shipper"/>
+<xs:element name="acceptanceIslandSurcharge" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Receiver">
+<xs:sequence>
+<xs:element name="paketShopId" nillable="true" type="xs:int"/>
+<xs:element name="addressAdd" nillable="true" type="xs:string"/>
+<xs:element name="houseNumber" nillable="true" type="xs:string"/>
+<xs:element name="countryCode" nillable="true" type="xs:string"/>
+<xs:element name="lastname" nillable="true" type="xs:string"/>
+<xs:element name="city" nillable="true" type="xs:string"/>
+<xs:element name="postcode" nillable="true" type="xs:string"/>
+<xs:element name="street" nillable="true" type="xs:string"/>
+<xs:element name="telephoneNumber" nillable="true" type="xs:string"/>
+<xs:element name="telephonePrefix" nillable="true" type="xs:string"/>
+<xs:element name="firstname" nillable="true" type="xs:string"/>
+<xs:element name="district" nillable="true" type="xs:string"/>
+<xs:element name="email" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Shipper">
+<xs:sequence>
+<xs:element name="addressAdd" nillable="true" type="xs:string"/>
+<xs:element name="email" nillable="true" type="xs:string"/>
+<xs:element name="houseNumber" nillable="true" type="xs:string"/>
+<xs:element name="countryCode" nillable="true" type="xs:string"/>
+<xs:element name="lastname" nillable="true" type="xs:string"/>
+<xs:element name="city" nillable="true" type="xs:string"/>
+<xs:element name="postcode" nillable="true" type="xs:string"/>
+<xs:element name="referenceAuctionNumber" nillable="true" type="xs:string"/>
+<xs:element name="street" nillable="true" type="xs:string"/>
+<xs:element name="telephoneNumber" nillable="true" type="xs:string"/>
+<xs:element name="telephonePrefix" nillable="true" type="xs:string"/>
+<xs:element name="firstname" nillable="true" type="xs:string"/>
+<xs:element name="shipperType" nillable="true" type="xs:string"/>
+<xs:element name="district" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="OrderConfirmationNonparcel">
+<xs:sequence>
+<xs:element name="orderNo" nillable="true" type="xs:string"/>
+<xs:element name="orderTotalPrice" nillable="true" type="tns:PriceItem"/>
+<xs:element name="shipments" nillable="true" type="tns:ArrayOfShipmentNonparcel"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="PriceItem">
+<xs:sequence>
+<xs:element name="amount" nillable="true" type="xs:decimal"/>
+<xs:element name="currencyCode" nillable="true" type="xs:string"/>
+<xs:element name="itemName" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOfShipmentNonparcel">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="ShipmentNonparcel" nillable="true" type="tns:ShipmentNonparcel"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShipmentNonparcel">
+<xs:sequence>
+<xs:element name="price" nillable="true" type="tns:ShipmentPrice"/>
+<xs:element name="shipmentDescription" nillable="true" type="xs:string"/>
+<xs:element name="shipmentType" nillable="true" type="xs:string"/>
+<xs:element name="shippingId" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShipmentPrice">
+<xs:sequence>
+<xs:element name="shippingPrice" nillable="true" type="tns:PriceItem"/>
+<xs:element name="shippingTotalPrice" nillable="true" type="tns:PriceItem"/>
+<xs:element name="surcharges" nillable="true" type="tns:ArrayOfPriceItem"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOfPriceItem">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="PriceItem" nillable="true" type="tns:PriceItem"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ListOfProducts">
+<xs:sequence>
+<xs:element name="numberOfProducts" type="xs:int"/>
+<xs:element name="products" nillable="true" type="tns:ArrayOfProduct"/>
+<xs:element name="dated" nillable="true" type="xs:dateTime"/>
+<xs:element name="labelAcceptanceTermsAndConditions" nillable="true" type="xs:string"/>
+<xs:element name="labelAcceptanceLiabilityLimit" nillable="true" type="xs:string"/>
+<xs:element name="urlTermsAndConditions" nillable="true" type="xs:string"/>
+<xs:element name="labelAcceptanceLiabilityLimitNonParcel" nillable="true" type="xs:string"/>
+<xs:element name="labelAcceptanceIslandSurcharge" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOfProduct">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="Product" nillable="true" type="tns:Product"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Product">
+<xs:sequence>
+<xs:element name="displayName" nillable="true" type="xs:string"/>
+<xs:element name="displayDescription" nillable="true" type="xs:string"/>
+<xs:element name="kind" nillable="true" type="xs:string"/>
+<xs:element name="imageUrl" nillable="true" type="xs:string"/>
+<xs:element name="validTo" nillable="true" type="xs:dateTime"/>
+<xs:element name="validFrom" nillable="true" type="xs:dateTime"/>
+<xs:element name="id" nillable="true" type="xs:string"/>
+<xs:element name="deliveryDestination" nillable="true" type="tns:ArrayOfDeliveryDestination"/>
+<xs:element name="feature" nillable="true" type="tns:ArrayOfFeature"/>
+<xs:element name="name" nillable="true" type="xs:string"/>
+<xs:element name="parcel" nillable="true" type="tns:Parcel"/>
+<xs:element name="url" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOfDeliveryDestination">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="DeliveryDestination" nillable="true" type="tns:DeliveryDestination"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="DeliveryDestination">
+<xs:sequence>
+<xs:element name="exclusions" nillable="true" type="xs:string"/>
+<xs:element name="grossAmountLabel" nillable="true" type="xs:string"/>
+<xs:element name="grossAmountEur" nillable="true" type="xs:decimal"/>
+<xs:element name="countryCode" nillable="true" type="xs:string"/>
+<xs:element name="parcelAmountLabel" nillable="true" type="xs:string"/>
+<xs:element name="parcelAmountEur" nillable="true" type="xs:decimal"/>
+<xs:element name="surcharges" nillable="true" type="tns:ArrayOfSurcharge"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOfSurcharge">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="Surcharge" nillable="true" type="tns:Surcharge"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Surcharge">
+<xs:sequence>
+<xs:element name="surchargeAmountEur" nillable="true" type="xs:decimal"/>
+<xs:element name="surchargeLabel" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOfFeature">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="Feature" nillable="true" type="tns:Feature"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Feature">
+<xs:sequence>
+<xs:element name="name" nillable="true" type="xs:string"/>
+<xs:element name="label" nillable="true" type="xs:string"/>
+<xs:element name="description" nillable="true" type="xs:string"/>
+<xs:element name="id" nillable="true" type="xs:string"/>
+<xs:element name="maximumAmountEur" nillable="true" type="xs:decimal"/>
+<xs:element name="optional" nillable="true" type="xs:string"/>
+<xs:element name="inconsistentId" nillable="true" type="tns:ArrayOf_xsd_nillable_string"/>
+<xs:element name="availability" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOf_xsd_nillable_string">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="string" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Parcel">
+<xs:sequence>
+<xs:element name="weightKgMax" nillable="true" type="xs:decimal"/>
+<xs:element name="weightKgMin" nillable="true" type="xs:decimal"/>
+<xs:element name="shortestPlusLongestEdgeCmMax" nillable="true" type="xs:decimal"/>
+<xs:element name="shortestPlusLongestEdgeCmMin" nillable="true" type="xs:decimal"/>
+<xs:element name="thirdEdgeCmMax" nillable="true" type="xs:decimal"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="OrderRequest">
+<xs:sequence>
+<xs:element name="shipper" nillable="true" type="tns:Shipper"/>
+<xs:element name="orderDetails" nillable="true" type="tns:OrderDetails"/>
+<xs:element name="receiver" nillable="true" type="tns:Receiver"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="OrderDetails">
+<xs:sequence>
+<xs:element name="handOverMode" nillable="true" type="xs:string"/>
+<xs:element name="collectionDesiredDate" nillable="true" type="xs:dateTime"/>
+<xs:element name="numberOfParcels" nillable="true" type="xs:int"/>
+<xs:element name="orderNo" nillable="true" type="xs:string"/>
+<xs:element name="parcelClass" nillable="true" type="tns:ArrayOf_xsd_nillable_string"/>
+<xs:element name="acceptanceTermsAndConditions" nillable="true" type="xs:string"/>
+<xs:element name="acceptanceLiabilityLimit" nillable="true" type="xs:string"/>
+<xs:element name="bulkgoods" nillable="true" type="tns:ArrayOf_xsd_boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ArrayOf_xsd_boolean">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="boolean" type="xs:boolean"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="ShippingLabelPdf">
+<xs:sequence>
+<xs:element name="orderNo" nillable="true" type="xs:string"/>
+<xs:element name="pdfData" type="xs:base64Binary"/>
+<xs:element name="shippingId" nillable="true" type="tns:ArrayOf_xsd_nillable_string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://hermes_api.service.hlg.de" xmlns:ns1="http://prips.hermes_api.service.hlg.de" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://hermes_api.service.hlg.de">
+<xs:import namespace="http://prips.hermes_api.service.hlg.de"/>
+<xs:element name="pripsCheckAvailability">
+<xs:complexType>
+<xs:sequence/>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsCheckAvailabilityResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="pripsCheckAvailabilityReturn" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsListOfProductsExDeu">
+<xs:complexType>
+<xs:sequence/>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsListOfProductsExDeuResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="pripsListOfProductsExDeuReturn" nillable="true" type="ns1:ListOfProducts"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsOrderForBicycles">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="orderRequestNonparcel" nillable="true" type="ns1:OrderRequestNonparcel"/>
+<xs:element name="numberOfBicycles" type="xs:int"/>
+<xs:element name="numberOfPackagingForBicycles" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsOrderForBicyclesResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="pripsOrderForBicyclesReturn" nillable="true" type="ns1:OrderConfirmationNonparcel"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsOrderForBulkyLuggage">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="orderRequestNonparcel" nillable="true" type="ns1:OrderRequestNonparcel"/>
+<xs:element name="numberOfBulkyLuggage" type="xs:int"/>
+<xs:element name="numberOfPackagingForSki" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsOrderForBulkyLuggageResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="pripsOrderForBulkyLuggageReturn" nillable="true" type="ns1:OrderConfirmationNonparcel"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsOrderForLuggage">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="orderRequestNonparcel" nillable="true" type="ns1:OrderRequestNonparcel"/>
+<xs:element name="numberOfLuggage" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsOrderForLuggageResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="pripsOrderForLuggageReturn" nillable="true" type="ns1:OrderConfirmationNonparcel"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsOrderPrintLabelPdf">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="orderRequest" nillable="true" type="ns1:OrderRequest"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsOrderPrintLabelPdfResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="pripsOrderPrintLabelPdfReturn" nillable="true" type="ns1:ShippingLabelPdf"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsReadShipmentStatus">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="shippingId" nillable="true" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="pripsReadShipmentStatusResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="pripsReadShipmentStatusReturn" nillable="true" type="ns1:ShippingStatus"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="exceptionItems">
+<xs:sequence>
+<xs:element maxOccurs="unbounded" minOccurs="0" name="exceptionItems" type="tns:exceptionObject"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="exceptionObject">
+<xs:sequence>
+<xs:element name="errorMessage" nillable="true" type="xs:string"/>
+<xs:element minOccurs="0" name="errorCode" type="xs:int"/>
+<xs:element minOccurs="0" name="errorType" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ns1="http://hermes_api.service.hlg.de" xmlns="http://exception.common.service.hlg.de" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://exception.common.service.hlg.de">
+<xs:import namespace="http://hermes_api.service.hlg.de"/>
+<xs:element name="exceptionItems" type="ns1:exceptionItems"/>
+<xs:element name="ServiceException" nillable="true" type="ns1:exceptionItems"/>
+<xs:element name="SecurityException" nillable="true" type="ns1:exceptionItems"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="ServiceException">
+    <wsdl:part element="ns1:ServiceException" name="ServiceException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsOrderForBulkyLuggage">
+    <wsdl:part element="tns:pripsOrderForBulkyLuggage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsReadShipmentStatus">
+    <wsdl:part element="tns:pripsReadShipmentStatus" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsOrderForLuggageResponse">
+    <wsdl:part element="tns:pripsOrderForLuggageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsCheckAvailabilityResponse">
+    <wsdl:part element="tns:pripsCheckAvailabilityResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsOrderForLuggage">
+    <wsdl:part element="tns:pripsOrderForLuggage" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsOrderForBulkyLuggageResponse">
+    <wsdl:part element="tns:pripsOrderForBulkyLuggageResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsOrderPrintLabelPdfResponse">
+    <wsdl:part element="tns:pripsOrderPrintLabelPdfResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsOrderPrintLabelPdf">
+    <wsdl:part element="tns:pripsOrderPrintLabelPdf" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsCheckAvailability">
+    <wsdl:part element="tns:pripsCheckAvailability" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsListOfProductsExDeuResponse">
+    <wsdl:part element="tns:pripsListOfProductsExDeuResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsOrderForBicyclesResponse">
+    <wsdl:part element="tns:pripsOrderForBicyclesResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsListOfProductsExDeu">
+    <wsdl:part element="tns:pripsListOfProductsExDeu" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsOrderForBicycles">
+    <wsdl:part element="tns:pripsOrderForBicycles" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="SecurityException">
+    <wsdl:part element="ns1:SecurityException" name="SecurityException">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="pripsReadShipmentStatusResponse">
+    <wsdl:part element="tns:pripsReadShipmentStatusResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="PriPS">
+    <wsdl:operation name="pripsReadShipmentStatus">
+      <wsdl:input message="tns:pripsReadShipmentStatus" name="pripsReadShipmentStatus">
+    </wsdl:input>
+      <wsdl:output message="tns:pripsReadShipmentStatusResponse" name="pripsReadShipmentStatusResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SecurityException" name="SecurityException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ServiceException" name="ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsOrderForLuggage">
+      <wsdl:input message="tns:pripsOrderForLuggage" name="pripsOrderForLuggage">
+    </wsdl:input>
+      <wsdl:output message="tns:pripsOrderForLuggageResponse" name="pripsOrderForLuggageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SecurityException" name="SecurityException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ServiceException" name="ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsListOfProductsExDeu">
+      <wsdl:input message="tns:pripsListOfProductsExDeu" name="pripsListOfProductsExDeu">
+    </wsdl:input>
+      <wsdl:output message="tns:pripsListOfProductsExDeuResponse" name="pripsListOfProductsExDeuResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SecurityException" name="SecurityException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ServiceException" name="ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsOrderForBulkyLuggage">
+      <wsdl:input message="tns:pripsOrderForBulkyLuggage" name="pripsOrderForBulkyLuggage">
+    </wsdl:input>
+      <wsdl:output message="tns:pripsOrderForBulkyLuggageResponse" name="pripsOrderForBulkyLuggageResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SecurityException" name="SecurityException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ServiceException" name="ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsOrderPrintLabelPdf">
+      <wsdl:input message="tns:pripsOrderPrintLabelPdf" name="pripsOrderPrintLabelPdf">
+    </wsdl:input>
+      <wsdl:output message="tns:pripsOrderPrintLabelPdfResponse" name="pripsOrderPrintLabelPdfResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SecurityException" name="SecurityException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ServiceException" name="ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsOrderForBicycles">
+      <wsdl:input message="tns:pripsOrderForBicycles" name="pripsOrderForBicycles">
+    </wsdl:input>
+      <wsdl:output message="tns:pripsOrderForBicyclesResponse" name="pripsOrderForBicyclesResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SecurityException" name="SecurityException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ServiceException" name="ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsCheckAvailability">
+      <wsdl:input message="tns:pripsCheckAvailability" name="pripsCheckAvailability">
+    </wsdl:input>
+      <wsdl:output message="tns:pripsCheckAvailabilityResponse" name="pripsCheckAvailabilityResponse">
+    </wsdl:output>
+      <wsdl:fault message="tns:SecurityException" name="SecurityException">
+    </wsdl:fault>
+      <wsdl:fault message="tns:ServiceException" name="ServiceException">
+    </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PriPSServiceSoapBinding" type="tns:PriPS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="pripsReadShipmentStatus">
+      <soap:operation soapAction="pripsReadShipmentStatus" style="document"/>
+      <wsdl:input name="pripsReadShipmentStatus">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pripsReadShipmentStatusResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityException">
+        <soap:fault name="SecurityException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsListOfProductsExDeu">
+      <soap:operation soapAction="pripsListOfProductsExDeu" style="document"/>
+      <wsdl:input name="pripsListOfProductsExDeu">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pripsListOfProductsExDeuResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityException">
+        <soap:fault name="SecurityException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsOrderForLuggage">
+      <soap:operation soapAction="pripsOrderForLuggage" style="document"/>
+      <wsdl:input name="pripsOrderForLuggage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pripsOrderForLuggageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityException">
+        <soap:fault name="SecurityException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsOrderForBulkyLuggage">
+      <soap:operation soapAction="pripsOrderForBulkyLuggage" style="document"/>
+      <wsdl:input name="pripsOrderForBulkyLuggage">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pripsOrderForBulkyLuggageResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityException">
+        <soap:fault name="SecurityException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsOrderPrintLabelPdf">
+      <soap:operation soapAction="pripsOrderPrintLabelPdf" style="document"/>
+      <wsdl:input name="pripsOrderPrintLabelPdf">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pripsOrderPrintLabelPdfResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityException">
+        <soap:fault name="SecurityException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsOrderForBicycles">
+      <soap:operation soapAction="pripsOrderForBicycles" style="document"/>
+      <wsdl:input name="pripsOrderForBicycles">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pripsOrderForBicyclesResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityException">
+        <soap:fault name="SecurityException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="pripsCheckAvailability">
+      <soap:operation soapAction="pripsCheckAvailability" style="document"/>
+      <wsdl:input name="pripsCheckAvailability">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="pripsCheckAvailabilityResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="SecurityException">
+        <soap:fault name="SecurityException" use="literal"/>
+      </wsdl:fault>
+      <wsdl:fault name="ServiceException">
+        <soap:fault name="ServiceException" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PriPSService">
+    <wsdl:port binding="tns:PriPSServiceSoapBinding" name="PriPSPort">
+      <soap:address location="https://hermesapi.hlg.de/hermes-api-prips-web/services/v15/PriPS"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

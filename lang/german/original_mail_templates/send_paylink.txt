@@ -1,0 +1,8 @@
+Sehr {if $GENDER == 'm'}geehrter Herr {elseif $GENDER == 'f'}geehrte Frau {else}geehrte(r) {/if}{$NAME},
+
+um Ihre Bestellung mit der Bestellnummer {$ORDER_NR} per PayPal zu
+bezahlen, folgen Sie bitte diesem Link:
+
+{$PAY_LINK}
+
+Bei Fragen zu Ihrer Bestellung antworten Sie bitte auf diese E-Mail.

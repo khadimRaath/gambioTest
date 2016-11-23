@@ -1,0 +1,57 @@
+{load_language_text section="parcel_services"}
+
+<div class="tab_wrapper lightbox_theme">
+	<div class="tab_headline_wrapper">
+		<span>{$txt.settings}</span>
+		<div class="current_context">{$txt.parcel_services}: <span>{if $content_data.parcel_service->getName()}{$content_data.parcel_service->getName()}{else}-{/if}</span></div>
+	</div>
+	<div class="tab_content_wrapper">
+		<form action="#" id="parcel_service_edit_form">
+			<div class="row">
+				<div class="span_1_6">
+					<label for="parcel_service_name">{$txt.name}</label>
+				</div>
+				<div class="span_4_6">
+					<input id="parcel_service_name" class="parcel_service_name validate_minlength_3" name="parcel_service[name]" type="text" title="{$txt.parcel_service_name_tooltip}" value="{$content_data.parcel_service->getName()}" />
+				</div>
+				<div class="span_1_6">
+					<input id="parcel_service_default_checkbox" class="default_checkbox" title="{$txt.parcel_service_checkbox_tooltip}" type="checkbox" name="parcel_service[default]" value="1"{if $content_data.parcel_service->getDefault()} checked="checked"{/if} /> <span class="checkbox_description"><label for="parcel_service_default_checkbox">{$txt.default}</label></span>
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			<div class="row url_descr">
+				<div class="span_5_6">
+					{$txt.tracking_number_hint} <div class="tooltip" title="{$txt.tracking_number_tooltip}"> <!-- &nbsp; --> </div>
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+			
+			<div class="language_contents">
+				{foreach item=language from=$content_data.languages_array}
+				<div class="language_content">
+					<div class="row">
+						<div class="span_1_6">
+							<label for="parcel_service_url_{$language.code}"><img src="../lang/{$language.directory}/admin/images/icon.gif" alt=""/> {$txt.parcel_service_url}</label>
+						</div>
+						<div class="span_4_6">
+							<input id="parcel_service_url_{$language.code}" class="parcel_service_url" title="{$txt.url_hint_tooltip}" name="parcel_service[url][{$language.languages_id}]" type="text" value="{$content_data.parcel_service->getUrlByLanguageId($language.languages_id)}"/>
+						</div>
+						<div style="clear: both;"><!-- --></div>
+					</div>
+					<div class="row">
+						<div class="span_1_6">
+							<label for="parcel_service_comment_{$language.code}"><img src="../lang/{$language.directory}/admin/images/icon.gif" alt=""/> {$txt.parcel_service_comment}</label>
+						</div>
+						<div class="span_4_6">
+							<textarea id="parcel_service_comment_{$language.code}" title="{$txt.comment_hint_tooltip}" name="parcel_service[comment][{$language.languages_id}]" style="height: 69px">{$content_data.parcel_service->getCommentByLanguageId($language.languages_id)}</textarea>
+						</div>
+						<div style="clear: both;"><!-- --></div>
+					</div>
+				</div>
+				<br /><br />
+				{/foreach}
+				<input type="hidden" class="page_token" name="page_token" value="{$content_data.page_token}" />
+			</div>
+		</form>
+	</div>
+</div>

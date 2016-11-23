@@ -1,0 +1,39 @@
+
+{if $content_data.CATEGORIES_DATA|@count > 0}
+<div id="megadropdown_box_id_{$content_data.current_category_id}" class="megadropdown clearfix" style="display:none">
+	<div class="megadropdown-shadow clearfix">
+		<div class="megadropdown-inside clearfix">
+			<ul>
+
+				{if $content_data.CATEGORIES_DATA|@has_children}
+				
+					{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+					<li class="top_li">
+						<a id="megadropdown_{$categories_item.data.id}" href="{$categories_item.data.url}">{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}{if $categories_item.data.products_count} ({$categories_item.data.products_count}){/if}</a>
+						{if $categories_item.children|@count > 0}
+						<ul>
+							{foreach item=children_item from=$categories_item.children}
+							<li class=""><a id="megadropdown_{$children_item.data.id}" href="{$children_item.data.url}" rel="{$children_item.data.id}">{$children_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}{if $children_item.data.products_count} ({$children_item.data.products_count}){/if}</a></li>
+							{/foreach}
+						</ul>
+						{/if}
+					</li>
+					{/foreach}
+					
+				{else}
+					<li>
+						<ul>
+							{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+							<li><a id="megadropdown_{$categories_item.data.id}" href="{$categories_item.data.url}">{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}{if $categories_item.data.products_count} ({$categories_item.data.products_count}){/if}</a></li>
+							{/foreach}
+						</ul>
+					</li>
+				{/if}
+
+			</ul>
+		</div>
+
+	</div>
+</div>
+{/if}
+{$content_data.categories_parents_ids}

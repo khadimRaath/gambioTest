@@ -1,0 +1,25 @@
+{load_language_text section="wish_list"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_wish_list}</h1>
+
+<div data-gambio-widget="product_cart_handler" 
+     data-product_cart_handler-update-url="shop.php?do=WishList" 
+     data-product_cart_handler-ajax-actions='{literal}{{/literal}"add": "shop.php?do=WishList/AddToCart", "delete": "shop.php?do=WishList/Delete", "refresh": "shop.php?do=WishList/Update" {literal}}{/literal}'>
+
+	<div class="cart-empty{if $cart_empty != true} hidden{/if}" >
+		{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$txt.text_empty type="info"}
+	</div>
+
+	<div class="cart-not-empty{if $cart_empty == true} hidden{/if}" >
+
+		{$FORM_ACTION}
+			<div class="hidden-options">
+				{$HIDDEN_OPTIONS}
+				<input type="hidden" name="submit_target" value="wishlist" class="force" />
+			</div>
+			
+			{$MODULE_order_details}
+		</form>
+	</div>
+</div>

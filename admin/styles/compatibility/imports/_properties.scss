@@ -1,0 +1,111 @@
+#box_properties {
+
+    // Reset
+    table, thead, tbody, th, tr, td {
+        border  : 0;
+        padding : 0;
+        margin  : 0;
+        border-spacing  : 0;
+        border-collapse : collapse;
+        background-image: none;
+    }
+
+    a.icon {
+        font-size: 14px;
+
+        &:not(.no-margin) {
+            margin: 0 12px;
+            padding: 12px 0 0 0;
+        }
+
+        background-image: none !important;
+        width: initial;
+        display: inline-block;
+        text-decoration: none;
+        font-weight: normal;
+        color: $text-color-light;
+
+        :hover {
+            color: #2b5872;
+        }
+    }
+
+    .text-container {
+        display: inline-block;
+        min-width: 80px;
+    }
+
+    .properties_table_headline {
+        display: none;
+    }
+
+    .properties_area_content {
+        font-size: 14px;
+        border: 1px solid whitesmoke;
+    }
+
+    .properties_table_container {
+
+        min-height: 48px;
+        border-bottom: 1px solid #F3F3F3;
+        padding: 12px;
+
+        &:nth-child(even) {
+          background-color: adjust-lightness($background-color, -2.5);
+        }
+
+        &:nth-child(odd) {
+          background-color: $background-color;
+        }
+
+        &:first {
+            border-bottom: 1px solid #E4E4E4;
+        }
+
+        &:last-child {
+            border: 0;
+        }
+
+        .properties_container_headline {
+            border: 0;
+        }
+
+        .properties_container_content {
+            padding: 12px;
+
+            table {
+                width: 100%;
+
+                th {
+                    padding: 0 12px;
+                    background-color: $gambio-blue;
+                }
+
+                td {
+                    padding: 0 12px;
+                    border: 0;
+                }
+
+                tr {
+
+                    height: 48px;
+                    border-bottom: 0;
+
+                    &:first-child {
+                        height: 24px;
+                    }
+
+                    &:nth-child(even) {
+                      background-color: #E6E6E6;
+                    }
+
+                    &:nth-child(odd) {
+                      background-color: #D2D2D2;
+                    }
+                }
+            }
+        }
+
+    }
+
+}

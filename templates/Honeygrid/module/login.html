@@ -1,0 +1,68 @@
+{load_language_text section="login"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_login}</h1>
+
+<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="post" class="">
+
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$info_message type="danger"}
+
+	<div class="row row-login">
+
+		{if $account_option=='account' or $account_option=='both'}
+			<div class="col-lg-4">
+				<div class="fieldset-content">
+					<h4>{$txt.title_new}</h4>
+					{$txt.text_new}
+				</div>
+				<div class="login-buttons">
+					<a href="{$NEW_ACCOUNT_URL}" class="btn btn-primary btn-block">{$button.register}</a>
+				</div>
+			</div>
+		{/if}
+		{if $account_option=='guest' or $account_option=='both'}
+			<div class="col-lg-4">
+				<div class="fieldset-content">
+					<h4>{$txt.title_guest}</h4>
+					{$txt.text_guest}
+				</div>
+				<div class="login-buttons">
+					<a href="{$GUEST_URL}" class="btn btn-default btn-block">{$button.buy_as_guest}</a>
+				</div>
+			</div>
+		{/if}
+		<div class="col-lg-4">
+			<div class="fieldset-content">
+				<h4>{$txt.title_returning}</h4>
+				<div class="form-group mandatory">
+					<input type="email" placeholder="{$txt.text_email}" id="{$INPUT_MAIL_NAME}" name="{$INPUT_MAIL_NAME}" class="form-control" value="{$INPUT_MAIL_VALUE}" />
+				</div>
+				<div class="form-group mandatory">
+					<input type="password" placeholder="{$txt.text_password}" id="{$INPUT_PASSWORD_NAME}" name="{$INPUT_PASSWORD_NAME}" class="form-control" value="" />
+				</div>
+				<a href="{$LINK_LOST_PASSWORD}" class="">{$txt.text_lost_password}</a>
+			</div>
+			<div class="login-buttons">
+				<input type="submit" name="" value="{$button.login}" class="btn btn-default btn-block">
+			</div>
+		</div>
+
+	</div>
+	
+	{if $checkout_buttons|@count > 0}
+	<div class="cols3">
+		<div class="col first h300">
+			{foreach name=cob item=cobutton from=$checkout_buttons}
+				{if $cobutton.script}
+					{$cobutton.script}
+				{else}
+					<a style="display: inline-block; vertical-align: middle;" href="{$cobutton.url}">
+						<img src="{$cobutton.img}">
+					</a>
+				{/if}
+			{/foreach}
+		</div>
+	</div>
+	{/if}
+
+</form>

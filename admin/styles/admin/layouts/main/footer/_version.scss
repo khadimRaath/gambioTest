@@ -1,0 +1,25 @@
+/* 
+	Main Footer Version
+    ========================================================================== 
+
+	Styling for the main footer version. 
+	
+*/
+
+.version {
+	max-width: 250px;
+	min-width: 210px;
+	padding:   0;
+	
+	i {
+		margin-left: $margin-small / 2;
+		
+		&.shop-key-valid {
+			color: $brand-success;
+		}
+		
+		&.shop-key-invalid {
+			color: $brand-danger;
+		}
+	}
+}

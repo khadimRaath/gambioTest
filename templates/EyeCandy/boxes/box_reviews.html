@@ -1,0 +1,44 @@
+{load_language_text section="box_reviews"}
+
+{if !$content_data.WRITE_URL}
+	<div id="menubox_reviews" class="c_reviews content-box white clearfix">
+		<div id="menubox_reviews_head" class="c_boxhead content-box-header clearfix">
+			<div class="content-box-header-inner">
+				<div class="menubox_heading">{$txt.heading_reviews}{$WRITE_URL}</div>
+				<a href="{$content_data.REVIEWS_LINK}">
+			<span class="png-fix circle_arrow_right" title="{$txt.heading_reviews}">
+				&nbsp;
+			</span>
+				</a>
+			</div>
+		</div>
+		<div id="menubox_reviews_body" class="content-box-main clearfix">
+			<div class="content-box-main-inner clearfix">
+				<a href="{$content_data.REVIEW_LINK}"> {$content_data.IMAGE}</a><br />
+				<br />
+				<a href="{$content_data.REVIEW_LINK}">{$content_data.TEXT|truncate:60:"..."}</a><br />
+				<a href="{$content_data.REVIEW_LINK}">{$content_data.STARS}</a>
+			</div>
+		</div>
+	</div>
+{else}
+	<div id="menubox_reviews" class="c_reviews content-box white clearfix">
+		<div id="menubox_reviews_head" class="c_boxhead content-box-header clearfix">
+			<div class="content-box-header-inner">
+				<div class="menubox_heading">{$txt.heading_reviews}</div>
+				<a href="{$content_data.REVIEWS_LINK}">
+			<span class="png-fix circle_arrow_right" title="{$txt.heading_reviews}">
+				&nbsp;
+			</span>
+				</a>
+			</div>
+		</div>
+		<div id="menubox_reviews_body" class="content-box-main clearfix">
+			<div class="content-box-main-inner clearfix">
+				<a href="{$content_data.WRITE_URL}"><img src="{$tpl_path}{$content_data.WRITE_IMG}" border="0" alt="{$content_data.WRITE_IMG_ALT}" title="{$content_data.WRITE_IMG_ALT}" /></a><br />
+				<br />
+				<a href="{$content_data.WRITE_URL}">{$content_data.WRITE_LINK_TEXT}</a>
+			</div>
+		</div>
+	</div>
+{/if}

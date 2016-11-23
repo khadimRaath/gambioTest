@@ -1,0 +1,93 @@
+{$address_label_customer}
+
+{if $PHONE}Telephone number: {$PHONE}
+{/if}
+{if $customer_vat}Vat No.: {$customer_vat}{/if}
+
+
+{if $PAYMENT_METHOD}Payment method: {$PAYMENT_METHOD}
+{/if}
+Order No.: {$oID}
+Date: {$DATE}
+{if $csID}Customer ID:{$csID}{/if}
+
+----------------------------------------------------------------------
+
+{if $NAME|trim == ''}
+Ladies and Gentlemen,
+{else}
+Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME},
+{/if}
+
+thank you for your order in our onlineshop.
+
+{if $PAYMENT_MODUL=='moneyorder'}
+Our bank details:
+{$smarty.const.MODULE_PAYMENT_MONEYORDER_PAYTO}
+{else}
+{$PAYMENT_INFO_TXT}
+{/if}
+
+{if $COMMENTS}
+Your Comments:
+{$COMMENTS}
+{/if}
+
+You ordered the following products:
+----------------------------------------------------------------------
+{foreach name=aussen item=order_values from=$order_data} 
+{$order_values.PRODUCTS_QTY} {if $order_values.UNIT}{$order_values.UNIT}{else}x{/if} {$order_values.PRODUCTS_NAME} {$order_values.PRODUCTS_PRICE}
+{foreach item=prop_item_array from=$order_values.PRODUCTS_PROPERTIES}
+ {$prop_item_array.properties_name}: {$prop_item_array.values_name}
+{/foreach}
+{if $order_values.PRODUCTS_ATTRIBUTES !=''}{$order_values.PRODUCTS_ATTRIBUTES}{/if}
+
+{$order_values.CHECKOUT_INFORMATION_TEXT}
+{if $order_values.PRODUCTS_SHIPPING_TIME neq ''}
+Shipping time: {$order_values.PRODUCTS_SHIPPING_TIME}
+{/if}
+
+{/foreach}
+
+{foreach name=aussen item=order_total_values from=$order_total}
+{$order_total_values.TITLE|trim} {$order_total_values.TEXT|trim}
+{/foreach}
+
+
+{if $address_label_payment}
+Payment address
+----------------------------------------------------------------------
+{$address_label_payment}
+{/if}
+
+
+Shipping address 
+----------------------------------------------------------------------
+{$address_label_shipping}
+
+
+{$TS_RATING}
+
+{if $SHOW_ABANDONMENT_WITHDRAWAL_DOWNLOADS_INFO}
+You chose:
+I expressly agree that you commence with the execution of the contract prior to the expiration of the cancellation period. It is known to me that, with this approval, I lose any cancellation right with the start of the execution of the contract.
+
+{/if}
+{if $SHOW_ABANDONMENT_WITHDRAWAL_SERVICES_INFO}
+You chose:
+I agree and demand expressly that you commence with the execution of the assigned service prior to the expiration of the cancellation period. It is known to me that I lose any cancellation right with the complete fulfillment of the contract by your company.
+
+{/if}
+{if $WITHDRAWAL_LINK || $PDF_LINK}
+§ Model Withdrawal Form
+{if $PDF_LINK}Our model withdrawal form as PDF document: {$PDF_LINK} {/if}
+{if $WITHDRAWAL_LINK}
+Our online model withdrawal form: {$WITHDRAWAL_LINK}{/if}
+{/if}
+
+
+To open the downloadable PDF-files, you need an additional program such as the Adobe Reader, which you can download online for free. The current version of the Adobe Reader you can find here: http://get.adobe.com/uk/reader/
+
+{if $JANOLAW_INFO_TEXT}{$JANOLAW_INFO_TEXT}{/if}
+
+{$EMAIL_SIGNATURE_TEXT}

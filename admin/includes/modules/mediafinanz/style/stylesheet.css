@@ -1,0 +1,70 @@
+.boxcenter a
+{
+    text-decoration: underline;
+}
+
+.config tr
+{
+    background-color:white;
+}
+
+#configtitle
+{
+    background-color:white;
+    font-size: 12px;
+}
+
+#registrationKey
+{
+	font-size: 14px;
+	text-align: center;
+	border: 1px solid #778;
+	width: 150px;
+}
+
+#navlist
+{
+padding: 3px 0;
+margin-left: 0;
+border-bottom: 1px solid #778;
+
+}
+
+#navlist li
+{
+list-style: none;
+margin: 0;
+display: inline;
+}
+
+#navlist li a
+{
+padding: 3px 0.5em;
+margin-left: 3px;
+border: 1px solid #778;
+border-bottom: none;
+text-decoration: none;
+}
+
+#navlist li a:link { color: black; }
+#navlist li a:visited { color: black; }
+
+#configactive
+{
+background: lightgrey;
+font-weight:bold;
+font-family:verdana;
+font-size: 12px;
+}
+
+#configinactive
+{
+background: #f1f1f1;
+}
+
+#navlist li a:hover
+{
+color: black;
+background: darkgrey;
+border-color: #227;
+}

@@ -1,0 +1,13 @@
+{load_language_text section="upcoming_products"}
+
+{if $module_content|count > 0}		
+<div class="future_products clearfix">
+	<h3>{$txt.heading_upcoming}</h3>
+	<dl>
+		{foreach name=aussen item=module_data from=$module_content}
+			<dt><a href="{$module_data.PRODUCTS_LINK}">{$module_data.PRODUCTS_NAME}</a></dt>
+			<dd>{$module_data.PRODUCTS_DATE}</dd>
+		{/foreach}
+	</dl>
+</div>
+{/if}

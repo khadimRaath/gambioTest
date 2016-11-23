@@ -1,0 +1,245 @@
+{* --------------------------------------------------------------
+	shipcloud_configuration.html 2016-04-07
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*}
+<div class="main">
+	<table style="margin-bottom:5px" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr class="dataTableHeadingRow">
+			<td class="dataTableHeadingContentText" style="width:1%; padding-right:20px; white-space: nowrap">
+				##config_tab_default
+			</td>
+		</tr>
+		<tr class="dataTableHeadingRow">
+			<td class="dataTableHeadingContentText" style="width:1%; padding-right:20px; white-space: nowrap">
+				<a href="{$tab_urls.package_templates}">##config_tab_package_templates</a>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<form action="{$form_action}" method="POST" class="gx-container" id="sc_configuration" data-gx-controller="shipcloud/shipcloud_config_controller">
+	<!-- Credentials -->
+	<table class="gx-configuration gx-configuration-table breakpoint-small">
+		<tr>
+			<th colspan="2">##credentials</th>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">##api_key_live</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default"
+				       type="text"
+				       name="configuration[api-key/live]"
+				       value="{$configuration.api_key_live}"/>
+				{if $configuration.api_key_live == ''}
+					<span class="fa-pull-right" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+						<a href="{$boarding_url}" target="_new">##unconfigured_shipcloud_linktext</a>
+					</span>
+				{/if}
+			</td>
+		</tr>
+	</table>
+
+	<!-- Miscellaneous Settings -->
+	<table class="gx-configuration gx-configuration-table breakpoint-small">
+		<tr>
+			<th colspan="2">##misc_settings</th>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">##api_key_sandbox</td>
+			<td class="dataTableContent_gm">
+					<input type="text" class="input-default" name="configuration[api-key/sandbox]" value="{$configuration.api_key_sandbox}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##mode</td>
+			<td class="dataTableContent_gm">
+				<div data-gx-widget="checkbox">
+					<input type="radio" name="configuration[mode]" value="live" title="Live" {($configuration.mode == 'live') ? 'checked' : ''}/>
+					<input type="radio" name="configuration[mode]" value="sandbox" title="Sandbox" {($configuration.mode == 'sandbox') ? 'checked' : ''}/>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##debug_logging</td>
+			<td class="dataTableContent_gm">
+				<div data-gx-widget="checkbox">
+					<input type="radio" name="configuration[debug_logging]" value="1" title="1" {($configuration.debug_logging == '1') ? 'checked' : ''}/>
+					<input type="radio" name="configuration[debug_logging]" value="0" title="0" {($configuration.debug_logging == '0') ? 'checked' : ''}/>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##parcel_service</td>
+			<td class="dataTableContent_gm">
+				<select name="configuration[parcel_service_id]">
+					<option value="0" {if $configuration.parcel_service_id == '0'}selected="selected"{/if}>##parcel_service_none</option>
+					{foreach from=$parcel_services item=parcel_service}
+						<option value="{$parcel_service->getId()}" {if $parcel_service->getId() == $configuration.parcel_service_id}selected="selected"{/if}>
+							{$parcel_service->getName()}
+						</option>
+					{/foreach}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##order_status_after_label</td>
+			<td class="dataTableContent_gm">
+				<select name="configuration[order_status_after_label]">
+					<option value="-1" {if $configuration.order_status_after_label == '0'}selected="selected"{/if}>##do_not_change</option>
+					{foreach from=$orders_statuses item=orders_status}
+						<option value="{$orders_status->orders_status_id}" {if $orders_status->orders_status_id == $configuration.order_status_after_label}selected="selected"{/if}>
+							{$orders_status->orders_status_name}
+						</option>
+					{/foreach}
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##notify_customer</td>
+			<td class="dataTableContent_gm">
+				<div data-gx-widget="checkbox">
+					<input type="radio" name="configuration[notify_customer]" value="1" title="1" {($configuration.notify_customer == '1') ? 'checked' : ''}/>
+					<input type="radio" name="configuration[notify_customer]" value="0" title="0" {($configuration.notify_customer == '0') ? 'checked' : ''}/>
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<!-- sender -->
+	<table class="gx-configuration gx-configuration-table breakpoint-small">
+		<tr>
+			<th colspan="2">##sender</th>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_company</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/company]" value="{$configuration.from_company}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_first_name</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/first_name]" value="{$configuration.from_first_name}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_last_name</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/last_name]" value="{$configuration.from_last_name}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_street</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/street]" value="{$configuration.from_street}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_street_no</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/street_no]" value="{$configuration.from_street_no}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_city</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/city]" value="{$configuration.from_city}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_zip_code</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/zip_code]" value="{$configuration.from_zip_code}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_country</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/country]" value="{$configuration.from_country}">
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##from_phone</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[from/phone]" value="{$configuration.from_phone}">
+			</td>
+		</tr>
+	</table>
+
+	<!-- Cod Account -->
+	<table class="gx-configuration gx-configuration-table breakpoint-small">
+		<tr>
+			<th colspan="2">##cod_account</th>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm" style="width: 200px !important;">##bank_account_holder</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[cod-account/bank_account_holder]" value="{$configuration.cod_bank_account_holder}"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##bank_name</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[cod-account/bank_name]" value="{$configuration.cod_bank_name}"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##bank_account_number</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[cod-account/bank_account_number]" value="{$configuration.cod_bank_account_number}"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="dataTableContent_gm">##bank_code</td>
+			<td class="dataTableContent_gm">
+				<input class="input-default" type="text" name="configuration[cod-account/bank_code]" value="{$configuration.cod_bank_code}"/>
+			</td>
+		</tr>
+	</table>
+
+	<!-- carriers preselection -->
+	<table class="gx-configuration gx-configuration-table breakpoint-small">
+		<thead>
+			<tr>
+				<th>##carrier</th>
+				<th>##display_carrier</th>
+				<th>##checked_carrier</th>
+			</tr>
+		</thead>
+		<tbody>
+			{foreach from=$carriers item=carrier}
+				<tr data-gx-widget="tooltip">
+					<td class="dataTableContent_gm configuration-label"><label for="preselected_carrier_{$carrier->name}">{$carrier->display_name}</label></td>
+					<td class="dataTableContent_gm">
+						<input
+							type="checkbox"
+							name="preselected_carriers[]"
+							value="{$carrier->name}"
+							id="preselected_carrier_{$carrier->name}"
+							{if $preselected_carriers.preselected_carriers[$carrier->name] == '1'}checked="checked"{/if}
+						>
+					</td>
+					<td class="dataTableContent_gm">
+						<input
+							type="checkbox"
+							name="checked_carriers[]"
+							value="{$carrier->name}"
+							id="checked_carrier_[$carrier->name]"
+							{if $checked_carriers.checked_carriers[$carrier->name] == '1'}checked="checked"{/if}
+						>
+					</td>
+				</tr>
+			{/foreach}
+		</tbody>
+	</table>
+
+	<div class="add-margin-top-24 breakpoint-small">
+		<div class="pull-right"><input type="submit" value="##save_settings" class="btn btn-primary"></div>
+	</div>
+</form>
+

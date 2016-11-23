@@ -1,0 +1,69 @@
+{load_language_text section="box_search"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="general" name="general"}
+
+{categories
+out=ARR_categories
+}
+		
+<div id="search" class="navbar-search collapse navbar-collapse">
+
+	{$headline=$txt.text_default_value|replace:'...':''}
+
+	<p class="navbar-search-header dropdown-header">{$headline}</p>
+
+	<form action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}" data-gambio-widget="live_search">
+
+		<div class="navbar-search-input-group input-group">
+			<div class="navbar-search-input-group-btn input-group-btn custom-dropdown" data-dropdown-trigger-change="false" data-dropdown-trigger-no-change="false">
+				
+				<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<span class="dropdown-name">{$general.MENU_TOP_SEARCH_BUTTON}</span> <span class="caret"></span>
+				</button>
+
+				{if $ARR_categories|count > 0}
+					<ul class="dropdown-menu">
+						{foreach item=category from=$ARR_categories}
+							<li><a href="#" rel="0">{$general.MENU_TOP_SEARCH_BUTTON}</a></li>
+							{foreach item=category_data from=$category}
+								<li><a href="#" rel="{$category_data.categories_id}">{$category_data.categories_name}</a></li>
+							{/foreach}
+						{/foreach}
+					</ul>
+				{/if}
+
+				{if $ARR_categories|count > 0}
+				<select name="categories_id" id="search-categories-id">
+					<option value="0">{$general.MENU_TOP_SEARCH_BUTTON}</option>
+					{foreach item=category from=$ARR_categories}
+					{foreach item=category_data from=$category}
+					<option value="{$category_data.categories_id}">{$category_data.categories_name}</option>
+					{/foreach}
+					{/foreach}
+				</select>
+				{/if}
+				
+			</div>
+			<input type="text" name="{$content_data.INPUT_NAME}" placeholder="{$txt.text_default_value}" class="form-control search-input" autocomplete="off" />
+			<button type="submit" class="gm-search form-control-feedback"></button>
+			
+		</div>
+
+		
+		{if $ARR_categories|count > 0}
+			<input type="hidden" value="1" name="inc_subcat" />
+		{/if}
+
+		<div class="navbar-search-footer visible-xs-block">
+			<button class="btn btn-primary btn-block" type="submit">
+				{$txt.text_default_value}
+			</button>
+			<a href="advanced_search.php" class="btn btn-default btn-block" title="{$general.NAVBAR_TITLE_ADVANCED_SEARCH}">
+				{$general.NAVBAR_TITLE_ADVANCED_SEARCH}
+			</a>
+		</div>
+		
+		<div class="search-result-container"></div>
+
+	</form>
+</div>

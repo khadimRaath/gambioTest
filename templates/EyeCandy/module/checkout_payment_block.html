@@ -1,0 +1,23 @@
+{foreach name=aussen item=module_data from=$module_content}
+	<div class="payment_item clearfix button_checkout_module">
+		<div class="radiobox clearfix">
+				{$module_data.selection}
+			</div>
+			<div class="caption clearfix">
+				<p><span class="title">{$module_data.module}</span>{if $module_data.description}<br />{$module_data.description}{/if}</p>
+			</div>
+			<div class="price clearfix">
+				<p>{$module_data.module_cost}</p>
+			</div>
+			{if $module_data.fields != '' && $module_data.fields|@count > 0}
+				<fieldset class="blocklabels_300">
+					{foreach name=aussen item=method_data from=$module_data.fields}
+						<div class="input">
+							{if $method_data.title && $method_data.title != ' '}<div class="label">{$method_data.title}</div>{/if}
+							{$method_data.field}
+						</div>
+					{/foreach}
+				</fieldset>
+			{/if}
+	</div>
+{/foreach}

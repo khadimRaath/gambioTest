@@ -1,0 +1,21 @@
+{load_language_text section="new_products"}
+{load_language_text section="index" name="index"}
+{load_language_text section="product_listing" name="listing"}
+
+<!-- new_products_overview.html, single page -->
+
+<div id="new_products_overview">
+
+	<h1>{$txt.heading_text}</h1>
+
+    <div>
+        <div class="panel-pagination-info">{$NAVIGATION_INFO}</div>
+        <div class="site_navigation">{$NAVIGATION_BAR}</div>
+    </div>
+	<br /><br />
+	{object_product_list product_list=$module_content id_prefix="new_products" truncate_products_name=$TRUNCATE_PRODUCTS_NAME}
+	<div>
+		<div class="panel-pagination-info">{$NAVIGATION_INFO}</div>
+		<div class="site_navigation">{$NAVIGATION_BAR}</div>
+	</div>
+</div>

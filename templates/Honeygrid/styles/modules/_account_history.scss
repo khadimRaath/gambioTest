@@ -1,0 +1,48 @@
+.page-account-history {
+	
+	.order-history-element {
+		margin-bottom: 40px;
+		
+		h3 {
+			border-width:   2px;
+			font-size:      16px;
+			margin-bottom:  15px;
+			padding-bottom: 5px;
+		}
+	}
+}
+
+.page-account-history-info {
+	
+	h3 {
+		margin-top: 45px;
+		margin-bottom: 25px;
+	}
+	
+	table {
+		> tfoot {
+			> tr {
+				> th,
+				> td {
+					border:     none;
+					text-align: right;
+					
+					@media (max-width: $screen-xs-max) {
+						&.capture {
+							@include make-xs-column(8);
+						}
+						&.value {
+							@include make-xs-column(4);
+						}
+					}
+				}
+			}
+			
+			tr:first-of-type {
+				border-top: 1px solid $table-border-color;
+			}
+			
+			background-color: $gray-lighter;
+		}
+	}
+}

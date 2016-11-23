@@ -1,0 +1,367 @@
+/* Topbar
+   ========================================================================== */
+
+.topbar-notification {
+  display:  table;
+  left:     0;
+  position: fixed;
+  top:      0;
+  width:    100%;
+  z-index:  1040;
+  
+  .notification-content {
+    display: table-cell;
+    padding: 10px;
+  }
+  
+  .hide-topbar-notification {
+    cursor:         pointer;
+    display:        table-cell;
+    width:          4em;
+    vertical-align: top;
+    padding:        5px;
+  }
+}
+
+#topbar-container {
+  
+  background-color: $gx-navbar-topbar-bg;
+  @if ($gx-navbar-topbar-bg-image-url and $gx-navbar-topbar-bg-image-url != '' and $gx-navbar-topbar-bg-image-url != "") {
+    background-image: url($gx-navbar-topbar-bg-image-url);
+    @if ($gx-navbar-topbar-bg-image-position) {
+      background-position: $gx-navbar-topbar-bg-image-position;
+    }
+    @if ($gx-navbar-topbar-bg-image-repeat) {
+      background-repeat: $gx-navbar-topbar-bg-image-repeat;
+    }
+    @if ($gx-navbar-topbar-bg-image-size) {
+      background-size: $gx-navbar-topbar-bg-image-size;
+    }
+    @if ($gx-navbar-topbar-bg-image-attachment) {
+      background-attachment: $gx-navbar-topbar-bg-image-attachment;
+    }
+  }
+  
+  @if ($gx-show-search-top-nav != false) {
+    .top-mobile-search {
+      @media (max-width: $screen-xs-max) {
+        position: absolute;
+        width:    100%;
+      }
+      
+      #search {
+        display: none !important;
+      }
+    }
+  }
+
+  .navbar-topbar {
+
+    @include transition(300ms ease all);
+    
+    min-height: 0;
+    height: $gx-topbar-height;
+
+
+    // wrap topbar in container width
+
+    @if ($gx-body-wrap != true) {
+      @if ($gx-topbar-wrap) {
+        @extend .container;
+      }
+    }
+
+
+    // hide on mobile.
+    // items will be moved to
+    // categories menu
+
+    display: none;
+    @media (min-width: $grid-float-breakpoint) {
+      display: block;
+    }
+
+
+    // apply min width for all  
+    // topbar dropdowns
+
+    .dropdown-menu {
+      min-width: 300px;
+    }
+    
+    // hide categories dropdown of search in topbar
+    @if ($gx-show-search-top-nav != false) {
+      .search-dropdown {
+        #search {
+          width:   100%;
+          padding: 0 15px 5px 15px;
+      
+          .btn {
+            &.btn-default {
+              &.dropdown-toggle {
+                display: none;
+              }
+            }
+          }
+      
+          .search-input {
+            @include border-left-radius($border-radius-large);
+          }
+        }
+      }
+    }
+
+
+    // apply navbar styles for topbar
+
+    .navbar-nav {
+      > li {
+        > a {
+          font-size: $font-size-small;
+          height: $gx-topbar-height;
+          padding: $gx-topbar-link-padding;
+          color: $gx-navbar-topbar-link-color;
+          &:hover,
+          &:focus {
+            color: $gx-navbar-topbar-link-hover-color;
+            background-color: $gx-navbar-topbar-link-hover-bg;
+            @if ($gx-navbar-topbar-link-hover-bg-image-url 
+            and $gx-navbar-topbar-link-hover-bg-image-url != '' 
+            and $gx-navbar-topbar-link-hover-bg-image-url != "") {
+              background-image: url($gx-navbar-topbar-link-hover-bg-image-url);
+              @if ($gx-navbar-topbar-link-hover-bg-image-position) {
+                background-position: $gx-navbar-topbar-link-hover-bg-image-position;
+              }
+              @if ($gx-navbar-topbar-link-hover-bg-image-repeat) {
+                background-repeat: $gx-navbar-topbar-link-hover-bg-image-repeat;
+              }
+              @if ($gx-navbar-topbar-link-hover-bg-image-size) {
+                background-size: $gx-navbar-topbar-link-hover-bg-image-size;
+              }
+              @if ($gx-navbar-topbar-link-hover-bg-image-attachment) {
+                background-attachment: $gx-navbar-topbar-link-hover-bg-image-attachment;
+              }
+            }
+          }
+
+          .language-code {
+            text-transform: uppercase;
+            padding-left: 6px;
+          }
+        }
+      }
+      .active > a {
+        &,
+        &:hover,
+        &:focus {
+          color: $gx-navbar-topbar-link-active-color;
+          background-color: $gx-navbar-topbar-link-active-bg;
+          @if ($gx-navbar-topbar-link-active-bg-image-url
+          and $gx-navbar-topbar-link-active-bg-image-url != ''
+          and $gx-navbar-topbar-link-active-bg-image-url != "") {
+            background-image: url($gx-navbar-topbar-link-active-bg-image-url);
+            @if ($gx-navbar-topbar-link-active-bg-image-position) {
+              background-position: $gx-navbar-topbar-link-active-bg-image-position;
+            }
+            @if ($gx-navbar-topbar-link-active-bg-image-repeat) {
+              background-repeat: $gx-navbar-topbar-link-active-bg-image-repeat;
+            }
+            @if ($gx-navbar-topbar-link-active-bg-image-size) {
+              background-size: $gx-navbar-topbar-link-active-bg-image-size;
+            }
+            @if ($gx-navbar-topbar-link-active-bg-image-attachment) {
+              background-attachment: $gx-navbar-topbar-link-active-bg-image-attachment;
+            }
+          }
+        }
+      }
+      .disabled > a {
+        &,
+        &:hover,
+        &:focus {
+          color: $gx-navbar-topbar-link-disabled-color;
+          background-color: $gx-navbar-topbar-link-disabled-bg;
+        }
+      }
+      .open > a {
+        & {
+          background-color: $gx-navbar-topbar-link-disabled-bg;
+          color: $gx-navbar-topbar-link-active-color;
+        }
+      }
+      .open > a {
+        &,
+        &:hover,
+        &:focus {
+          background-color: $gx-navbar-topbar-link-active-bg;
+          color: $gx-navbar-topbar-link-active-color;
+  
+          @if ($gx-navbar-topbar-link-active-bg-image-url
+          and $gx-navbar-topbar-link-active-bg-image-url != ''
+          and $gx-navbar-topbar-link-active-bg-image-url != "") {
+            background-image: url($gx-navbar-topbar-link-active-bg-image-url);
+            @if ($gx-navbar-topbar-link-active-bg-image-position) {
+              background-position: $gx-navbar-topbar-link-active-bg-image-position;
+            }
+            @if ($gx-navbar-topbar-link-active-bg-image-repeat) {
+              background-repeat: $gx-navbar-topbar-link-active-bg-image-repeat;
+            }
+            @if ($gx-navbar-topbar-link-active-bg-image-size) {
+              background-size: $gx-navbar-topbar-link-active-bg-image-size;
+            }
+            @if ($gx-navbar-topbar-link-active-bg-image-attachment) {
+              background-attachment: $gx-navbar-topbar-link-active-bg-image-attachment;
+            }
+          }
+        }
+      }
+      .open .dropdown-menu a {
+        &:focus {
+          background-color: $dropdown-link-hover-bg;
+        }
+      }
+      
+      
+      // apply styles for
+      // mobile view
+
+      @media (max-width: $grid-float-breakpoint-max) {
+
+        ul.dropdown-menu {
+          .dropdown-header {
+            border-color: $gx-navbar-topbar-border;
+          }
+          .divider {
+            background-color: $gx-navbar-topbar-border;
+          }
+          a {
+            color: $gx-navbar-topbar-link-color;
+            &:hover,
+            &:focus {
+              color: $gx-navbar-topbar-link-hover-color;
+              background-color: $gx-navbar-topbar-link-hover-bg;
+              @if ($gx-navbar-topbar-link-hover-bg-image-url
+              and $gx-navbar-topbar-link-hover-bg-image-url != ''
+              and $gx-navbar-topbar-link-hover-bg-image-url != "") {
+                background-image: url($gx-navbar-topbar-link-hover-bg-image-url);
+                @if ($gx-navbar-topbar-link-hover-bg-image-position) {
+                  background-position: $gx-navbar-topbar-link-hover-bg-image-position;
+                }
+                @if ($gx-navbar-topbar-link-hover-bg-image-repeat) {
+                  background-repeat: $gx-navbar-topbar-link-hover-bg-image-repeat;
+                }
+                @if ($gx-navbar-topbar-link-hover-bg-image-size) {
+                  background-size: $gx-navbar-topbar-link-hover-bg-image-size;
+                }
+                @if ($gx-navbar-topbar-link-hover-bg-image-attachment) {
+                  background-attachment: $gx-navbar-topbar-link-hover-bg-image-attachment;
+                }
+              }
+            }
+          }
+          .active a {
+            &,
+            &:hover,
+            &:focus {
+              color: $gx-navbar-topbar-link-active-color;
+              background-color: $gx-navbar-topbar-link-active-bg;
+              @if ($gx-navbar-topbar-link-active-bg-image-url
+              and $gx-navbar-topbar-link-active-bg-image-url != ''
+              and $gx-navbar-topbar-link-active-bg-image-url != "") {
+                background-image: url($gx-navbar-topbar-link-active-bg-image-url);
+                @if ($gx-navbar-topbar-link-active-bg-image-position) {
+                  background-position: $gx-navbar-topbar-link-active-bg-image-position;
+                }
+                @if ($gx-navbar-topbar-link-active-bg-image-repeat) {
+                  background-repeat: $gx-navbar-topbar-link-active-bg-image-repeat;
+                }
+                @if ($gx-navbar-topbar-link-active-bg-image-size) {
+                  background-size: $gx-navbar-topbar-link-active-bg-image-size;
+                }
+                @if ($gx-navbar-topbar-link-active-bg-image-attachment) {
+                  background-attachment: $gx-navbar-topbar-link-active-bg-image-attachment;
+                }
+              }
+            }
+          }
+          .disabled a {
+            &,
+            &:hover,
+            &:focus {
+              color: $gx-navbar-topbar-link-disabled-color;
+              background-color: $gx-navbar-topbar-link-disabled-bg;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+// dropdown transitions
+
+@media (min-width: $grid-float-breakpoint) {
+  .navbar-topbar > nav > .navbar-nav {
+
+    // copy/paste from categories
+    > li > ul.dropdown-menu {
+      display: block !important;
+      height: 0;
+      overflow: hidden;
+      z-index: -1;
+      @include opacity(0);
+      @include transition(300ms ease-out opacity, 300ms ease-out max-height);
+    }
+    > li.open {
+      > ul.dropdown-menu {
+        height: auto;
+        overflow: visible;
+        z-index: $zindex-navbar;
+        @include opacity(1);
+      }
+    }
+    > li.transition {
+      > ul.dropdown-menu {
+        height: auto;
+        overflow: visible;
+      }
+    }
+  }
+}
+
+
+// sticky behavior of topbar
+
+#header {
+  @media (min-width: $grid-float-breakpoint) {
+    @if ($gx-body-wrap != true) {
+      @if ($gx-header-fixed) {
+        &.sticky {
+          .navbar-topbar {
+            @if ($gx-topbar-height-sticky < $gx-topbar-height) {
+              height: $gx-topbar-height-sticky;
+              @if ($gx-topbar-height-sticky == 0) {
+                overflow: hidden !important;
+              }
+            }
+          }
+        }
+        &.transition {
+          .navbar-topbar {
+            overflow: hidden !important;
+          }
+        }
+      }
+    }
+  }
+}
+
+.gambio-admin a {
+  background-color: #D500F9 !important;
+  color: #ffffff !important;
+  
+  &:hover {
+    background-color: #BC00E0 !important;
+  }
+}

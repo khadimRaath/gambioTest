@@ -1,0 +1,186 @@
+<div class="main">
+	<table style="margin-bottom:5px" border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr class="dataTableHeadingRow">
+			<td class="dataTableHeadingContentText" style="width:1%; padding-right:20px; white-space: nowrap">
+				<a href="{$url_info}">##config_tab_info</a>
+			</td>
+		</tr>
+		<tr class="dataTableHeadingRow">
+			<td class="dataTableHeadingContentText" style="width:1%; padding-right:20px; white-space: nowrap">
+				##config_tab_configuration
+			</td>
+		</tr>
+	</table>
+</div>
+
+<!--
+{$config|print_r:true}
+-->
+
+<div class="gx-container breakpoint-small">
+	<form action="{$save_config_action}" method="POST">
+		<input type="hidden" name="pageToken" value="{$page_token}">
+		<table class="gx-configuration gx-configuration-table breakpoint-small">
+			<tr>
+				<th colspan="2">##credentials</th>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm">
+					<label for="shop_id">##shop_id</label>
+				</td>
+				<td class="dataTableContent_gm">
+					<input id="shop_id"
+					       name="config[shop_id]"
+					       class="input-large"
+					       type="text"
+					       value="{$config['shop_id']}">
+					<span data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+						So erhalten Sie die ShopID:
+						<ol style="padding: 0 0 0 1.5em; margin: 1ex 0 0 0;">
+							<li>Loggen Sie sich in den Mitgliederbereich von protectedshops.de ein</li>
+							<li>Unter dem Menüpunkt “Schnittstellen” den Bereich “Übersicht Shop-IDs” auswählen.</li>
+							<li>Entsprechende ShopID kopieren und hier einfügen.</li>
+						</ol>
+					</span>
+				</td>
+			</tr>
+		</table>
+
+		{if $config['shop_id']}
+			{if $docinfo}
+				<table class="gx-configuration gx-configuration-table breakpoint-small">
+					<tr>
+						<th colspan="2">##use_of_documents</th>
+					</tr>
+					{foreach from=$docinfo key=docname item=docdate}
+					<tr>
+						<td class="dataTableContent_gm">
+							{$docname}
+						</td>
+						<td class="dataTableContent_gm">
+							<select name="config[content_group_{$docname|strtolower}]">
+								<option value="-1">##do_not_use</option>
+								{foreach from=$contentpages item=content_page}
+									{$content_group_config="content_group_{$docname|strtolower}"}
+									<option value="{$content_page['content_group']}" {if $content_page['content_group'] == $config[$content_group_config]}selected="selected"{/if}>
+										{$content_page['content_title']}
+									</option>
+								{/foreach}
+							</select>
+						</td>
+					</tr>
+					{/foreach}
+				</table>
+			{/if}
+
+			<table class="gx-configuration gx-configuration-table breakpoint-small">
+				<tr>
+					<th colspan="2">##use_in_pdf</th>
+				</tr>
+				<tr>
+					<td class="dataTableContent_gm">
+						##use_for_pdf_conditions
+					</td>
+					<td class="dataTableContent_gm">
+						<input id="ufpc_no" type="radio" {if $config['use_for_pdf_conditions'] == 0}checked="checked"{/if} name="config[use_for_pdf_conditions]" value="0">
+						<label for="ufpc_no">##no</label><br>
+						<input id="ufpc_yes" type="radio" {if $config['use_for_pdf_conditions'] == 1}checked="checked"{/if} name="config[use_for_pdf_conditions]" value="1">
+						<label for="ufpc_yes">##yes</label>
+					</td>
+				</tr>
+				<tr>
+					<td class="dataTableContent_gm">
+						##use_for_pdf_withdrawal
+					</td>
+					<td class="dataTableContent_gm">
+						<input id="ufpc_no"
+						       type="radio"
+						       {if $config['use_for_pdf_withdrawal'] == 0}checked="checked"{/if}
+						       name="config[use_for_pdf_withdrawal]"
+						       value="0">
+						<label for="ufpc_no">##no</label><br>
+						<input id="ufpc_widerruf"
+						       type="radio"
+						       {if $config['use_for_pdf_withdrawal'] == 'widerruf'}checked="checked"{/if}
+						       name="config[use_for_pdf_withdrawal]"
+						       value="widerruf">
+						<label for="ufpc_widerruf">##widerruf</label><br>
+						<input id="ufpc_rueckgabe"
+						       type="radio"
+						       {if $config['use_for_pdf_withdrawal'] == 'rueckgabe'}checked="checked"{/if}
+						       name="config[use_for_pdf_withdrawal]"
+						       value="rueckgabe">
+						<label for="ufpc_rueckgabe">##rueckgabe</label>
+					</td>
+				</tr>
+			</table>
+
+			<table class="gx-configuration gx-configuration-table breakpoint-small">
+				<tr>
+					<th colspan="2">##update_configuration</th>
+				</tr>
+				<tr>
+					<td class="dataTableContent_gm">
+						##update_interval
+					</td>
+					<td class="dataTableContent_gm">
+						<input name="config[update_interval]" value="{$config['update_interval']}">
+						##update_interval_info
+					</td>
+				</tr>
+			</table>
+		{/if}
+
+		<br><input class="btn btn-primary pull-right" type="submit" value="##save">
+	</form>
+</div>
+
+<div class="gx-container">
+	{if $docinfo}
+		<h2 class="clear-float">##documents_available</h2>
+
+		<table class="breakpoint-large">
+			<tr>
+				<th>##document</th><th>##last_modified</th>
+				{foreach from=$valid_formats item=format}
+					<th>##format_{$format|strtolower}</th>
+				{/foreach}
+				<th>##update</th>
+				<th>##use</th>
+			</tr>
+			{foreach from=$docinfo key=docname item=docdate}
+				<tr>
+					<td>{$docname}</td>
+					<td>{$docdate}</td>
+					{foreach from=$valid_formats item=format}
+						{if $localdocs[$docname][$format] == false}
+							<td>{$txt.not_available}</td>
+						{else}
+							<td>{$localdocs[$docname][$format]['document_date']}</td>
+						{/if}
+					{/foreach}
+					<td>
+						<form action="{$action_update}" method="POST">
+							<input type="hidden" name="pageToken" value="{$page_token}">
+							<input type="hidden" name="document_name" value="{$docname}">
+							<input type="submit" class="btn" value="##update">
+						</form>
+					</td>
+					<td>
+						<form action="{$action_use}" method="POST">
+							<input type="hidden" name="pageToken" value="{$page_token}">
+							<input type="hidden" name="document_name" value="{$docname}">
+							<input type="submit" class="btn" value="##use">
+						</form>
+					</td>
+				</tr>
+			{/foreach}
+		</table>
+
+		<form action="{$action_use_all}" method="post">
+			<input type="hidden" name="pageToken" value="{$page_token}">
+			<input type="submit" class="btn" value="##update_and_use_all">
+		</form>
+	{/if}
+</div>
+

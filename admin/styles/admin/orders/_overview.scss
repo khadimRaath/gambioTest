@@ -1,0 +1,127 @@
+/* 
+	Orders Table 
+    ========================================================================== 
+
+	Styling for the main table. 
+	
+*/
+
+&.overview {
+	.table {
+		thead {
+			tr {
+				&:first-child {
+					th:last-child {
+						padding-right: 0;
+					}
+				}
+				
+				&.filter {
+					th {
+						background: $table-filter-bg-color;
+						
+						&:last-child {
+							min-width: 300px;
+						}
+					}
+				}
+				
+				th {
+					span {
+						~ i {
+							&.fa {
+								&.fa-caret-down {
+									position:    absolute;
+									color:       $text-color-light;
+									margin-left: $margin-small / 2;
+									cursor:      pointer;
+									
+									&:before {
+										vertical-align: middle;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		tbody {
+			tr {
+				td {
+					i {
+						&.fa {
+							&.fa-truck {
+								cursor: pointer;
+							}
+						}
+						
+						&.fa-caret-down {
+							display:  none;
+							position: absolute;
+							color:    $text-color-light;
+							cursor:   pointer;
+							margin:   $margin-small/6 0 0 $margin-small/2;
+							
+							&:before {
+								vertical-align: middle;
+							}
+						}
+					}
+					
+					&.shipping-method {
+						cursor: pointer;
+						
+						span {
+							&.shipping {
+								display:        inline-block;
+								max-width:      100px;
+								overflow:       hidden;
+								text-overflow:  ellipsis;
+								vertical-align: middle;
+								white-space:    nowrap;
+							}
+						}
+					}
+					
+					&.actions {
+						i {
+							&.fa {
+								vertical-align: middle;
+							}
+						}
+					}
+					
+					span {
+						&.order-status {
+							cursor: pointer;
+						}
+					}
+				}
+				
+				&:hover {
+					i {
+						&.fa-caret-down {
+							display: inline-block;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.bulk-action {
+		ul.dropdown-menu {
+			z-index: 2000;
+		}
+
+		.btn {
+			&:not(.dropdown-toggle) {
+				width: 		   120px;
+				text-overflow: ellipsis;
+				overflow: 	   hidden;
+			}
+		}
+	}
+}

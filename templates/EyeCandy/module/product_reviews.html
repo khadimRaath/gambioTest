@@ -1,0 +1,20 @@
+{load_language_text section="reviews"}
+
+<div id="reviews">
+	<h1>
+		{$txt.heading_reviews} <a href="{$PRODUCTS_LINK}">{$PRODUCTS_NAME}</a>
+	</h1>
+
+	<div class="reviews-head">
+		<div>{$txt.title_author}</div>
+		<div>{$txt.title_rating}</div>
+		<div>{$txt.title_date}</div>
+	</div>
+	{foreach name=aussen item=module_data from=$module_content}
+	<div class="reviews-list">
+		<div>{$module_data.AUTHOR}</div>
+		<div><img src="{$module_data.RATING_IMAGE_URL}" alt="" title="" />&nbsp;</div>
+		<div>{$module_data.DATE}</div>
+	</div>
+	{/foreach}
+</div>

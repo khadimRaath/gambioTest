@@ -1,0 +1,22 @@
+<div id="product_image_layer">
+
+	<div class="product-info-layer-image">
+		<div class="product-info-image-inside">
+			{* layer START *}
+			{if $images|@count > 0}
+				{include file="get_usermod:{$tpl_path}snippets/product_info/images/swiper.html" swiperId="product-info-layer-image" popup="true" swiperImages=$images itemProp=$RICH_SNIPPET_ARRAY.product_itemprop_image swiperControls="#product-info-layer-thumbnails" swiperOptions=", \"effect\": \"fade\", \"autoplay\": null, \"initialSlide\": \"\""}
+			{/if}
+			{* layer END *}
+		</div>
+	</div>
+
+	{* layer, thumbnails START *}
+	{if $thumbnails|@count > 1}
+	<div class="product-info-layer-thumbnails">
+		{include file="get_usermod:{$tpl_path}snippets/product_info/images/swiper.html" swiperId="product-info-layer-thumbnails" swiperImages=$thumbnails itemProp=$RICH_SNIPPET_ARRAY.product_itemprop_image swiperTarget="#product-info-layer-image" swiperOptions=", \"spaceBetween\": 10, \"loop\": false, \"slidesPerView\": \"auto\", \"autoplay\": null, \"initialSlide\": \"\"" additionalData="data-swiper-breakpoints=\"[]\""}
+
+	</div>
+	{/if}
+	{* layer, thumbnails END *}
+
+</div>

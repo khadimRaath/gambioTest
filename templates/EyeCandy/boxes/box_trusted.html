@@ -1,0 +1,25 @@
+{load_language_text section="box_ts_seal"}
+
+<div id="menubox_trusted" class="c_trusted content-box white clearfix">
+	<div id="menubox_trusted_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">
+			Trusted Shops
+		</div>
+	</div>
+	<div id="menubox_trusted_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix">
+			
+			<form name="formSiegel" action="{$txt.form_url}" method="post" target="_blank">
+				<input name="shop_id" type="hidden" value="{$content_data.TSID}" />
+				<br />
+				<a href="{$txt.heading_url}" target="_blank" rel="nofollow">{$txt.heading_text}</a><br />
+				<br />
+				<input type="image" src="{$smarty.const.DIR_WS_IMAGES}trusted_siegel.gif" title="{$txt.seal_title}" name="Seal" align="middle" /><br />
+				<br />
+				<a href="{$txt.profile_url}{$content_data.SHOPNAME}_{$content_data.TSID}.html" target="_blank" rel="nofollow">
+					{$txt.profile_text}
+				</a>
+			</form>
+		</div>
+	</div>
+</div>

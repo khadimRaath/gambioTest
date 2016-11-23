@@ -1,0 +1,8 @@
+{load_language_text section="index"} 
+{load_language_text section="new_products" name="product"}
+
+
+{if $module_content != ''}
+	<h3>{$product.heading_text}</h3>
+	{object_product_list product_list=$module_content id_prefix="new_products" truncate_products_name=$TRUNCATE_PRODUCTS_NAME}
+{/if}

@@ -1,0 +1,13 @@
+.box-newsletter {
+	#email {
+		&.form-control {
+			padding: 9px 25px 9px 12px;
+		}
+	}
+	
+	.fa-envelope {
+		float: right;
+		margin-top: -26px;
+		margin-right: 10px;
+	}
+}

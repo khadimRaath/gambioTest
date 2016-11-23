@@ -1,0 +1,71 @@
+/* 
+	Mixins
+    ========================================================================== 
+
+	Define reusable mixins for the admin components. 
+	
+	Prefer to use the bootstrap mixins located in at "bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_mixins.scss"
+	
+*/
+
+@mixin font($size: $font-size-base) {
+	font-family: $font-family-sans-serif;
+	font-size:   $size;
+}
+
+@mixin component-colors($color, $font-color: $text-color, $hover: false) {
+	$gradient-start-factor: 0%;
+	$gradient-end-factor: 4%;
+	$border-start-factor: 9%;
+	$border-end-factor: 15%;
+	
+	@if $hover == true {
+		$gradient-start-factor: 2%;
+		$gradient-end-factor: 7%;
+		$border-start-factor: 10%;
+		$border-end-factor: 16%;
+	}
+	
+	$gradient-start: darken($color, $gradient-start-factor);
+	$gradient-end: darken($color, $gradient-end-factor);
+	$border-start: darken($color, $border-start-factor);
+	$border-end: darken($color, $border-end-factor);
+	
+	background-image: linear-gradient($gradient-start, $gradient-end);
+	border-color:     $border-start $border-start $border-end;
+	color:            $font-color;
+}
+
+@mixin border-radius ($radius: 5px, $corner: "all") {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	border-radius: $radius;
+	@if $corner == "top" {
+		-webkit-border-bottom-right-radius: 0;
+		-moz-border-radius-bottomright: 0;
+		border-bottom-right-radius: 0;
+		-webkit-border-bottom-left-radius: 0;
+		-moz-border-radius-bottomleft: 0;
+		border-bottom-left-radius: 0;
+	} @else if $corner == "bottom" {
+		-webkit-border-top-right-radius: 0;
+		-moz-border-radius-topright: 0;
+		border-top-right-radius: 0;
+		-webkit-border-top-left-radius: 0;
+		-moz-border-radius-topleft: 0;
+		border-top-left-radius: 0;
+	}
+}
+
+@mixin add-fa-check {
+	&:before {
+		color:          $text-color-tooltip;
+		content:        "\f00c";
+		font-family:    FontAwesome;
+		font-weight:    normal;
+		line-height:    12px;
+		margin-left:    -1px;
+		text-align:     center;
+		vertical-align: top;
+	}
+}

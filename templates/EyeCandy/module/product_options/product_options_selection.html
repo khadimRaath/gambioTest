@@ -1,0 +1,20 @@
+{if $options!=''}
+	<div class="attributes clearfix">
+		<dl>
+			{foreach name=outer item=options_data from=$options}
+				{if $options_data.DATA || $GM_HIDE_OUT_OF_STOCK == 'false'}
+					<dt>{$options_data.NAME}:</dt>
+					<dd>
+						{foreach key=key_data item=item_data from=$options_data.DATA}
+							<div>
+								<input type="radio"{if $PRICE_STATUS != 1} class="gm_attr_calc_input"{/if} name="id[{$options_data.ID}]" value="{$item_data.ID}" {if !$chk} checked="checked" {$chk = true}{/if} />
+								{$item_data.TEXT} {if $item_data.PRICE!=''}( {$item_data.PREFIX}{$item_data.PRICE} ){/if}{if $GM_SHOW_STOCK == 'true' && $options_data.NAME != 'downloads'} {$GM_STOCK_TEXT_BEFORE}{$item_data.GM_STOCK}{$GM_STOCK_TEXT_AFTER}{/if}
+							</div>
+						{/foreach}
+						{$chk = false}
+					</dd>
+				{/if}
+			{/foreach}
+		</dl>
+	</div>
+{/if}

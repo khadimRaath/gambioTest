@@ -1,0 +1,189 @@
+{load_language_text section="withdrawal"}
+{load_language_text section="buttons" name="button"}
+
+{literal}
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+		$('.withdrawal_row').click(function()
+		{
+			var t_url = window.location.href.replace(/&id=[\d]+/g, '');
+			t_url = t_url.replace(/\?id=[\d]+/g, '?');
+			t_url = t_url.replace(/#.*$/g, '');
+			t_url = t_url.replace(/&search_result_page=true/g, '');
+			t_url = t_url.replace(/search_result_page=true/g, '');
+			if(t_url.search('\\?') === -1)
+			{
+				window.location.href = t_url + '?id=' + $(this).attr('id').replace('withdrawal_id_', '');
+			}
+			else if(t_url.substr(t_url.length - 1, 1) === '?')
+			{
+				window.location.href = t_url + 'id=' + $(this).attr('id').replace('withdrawal_id_', '');
+			}
+			else
+			{
+				window.location.href = t_url + '&id=' + $(this).attr('id').replace('withdrawal_id_', '');
+			}
+		});
+		
+		$('.page_dropdown').change(function()
+		{
+			var t_url = window.location.href.replace(/&id=[\d]+/g, '');
+			t_url = t_url.replace(/\?id=[\d]+/g, '?');
+			t_url = t_url.replace(/&page=[\d]+/g, '');
+			t_url = t_url.replace(/page=[\d]+/g, '');
+			t_url = t_url.replace(/&search_result_page=true/g, '');
+			t_url = t_url.replace(/search_result_page=true/g, '');
+			t_url = t_url.replace(/#.*$/g, '');
+			if(t_url.search('\\?') === -1)
+			{
+				window.location.href = t_url + '?page=' + $(this).val();
+			}
+			else if(t_url.substr(t_url.length - 1, 1) === '?')
+			{
+				window.location.href = t_url + 'page=' + $(this).val();
+			}
+			else
+			{
+				window.location.href = t_url + '&page=' + $(this).val();
+			}
+		});
+	});
+</script>
+{/literal}
+
+<div style="float: right; position: relative; top: -40px;" class="pageSubHeading orders_form">
+	<form name="search" action="withdrawals.php" method="get">
+		{$txt.order_id}: <input type="text" name="order_id" value="{if $content_data.ORDER_ID != 0}{$content_data.ORDER_ID}{/if}" />
+		<input type="hidden" name="search_result_page" value="true" />
+	</form>
+</div>
+
+<table width="100%" cellspacing="0" cellpadding="0" border="0" class="gx-container">
+	<tr>
+		<td valign="top">
+			<table width="100%" cellspacing="0" cellpadding="2" border="0" class="gx-modules-table left-table gx-compatibility-table">
+				<thead>
+					<tr class="dataTableHeadingRow">
+						<th class="dataTableHeadingContent" style="width: 80px">{$txt.date}</th>
+						<th class="dataTableHeadingContent" style="width: 300px">{$txt.customer}</th>
+						<th class="dataTableHeadingContent" style="width: 90px">{$txt.order_id}</th>
+						<th class="dataTableHeadingContent" style="width: 50px">{$txt.number}</th>
+						<th class="dataTableHeadingContent" style="min-width: 100px"></th>
+					</tr>
+				</thead>
+				<tbody>
+					{foreach key=withdrawal_id item=withdrawal from=$content_data.withdrawals}
+					<tr class="dataTableRow withdrawal_row{if $content_data.WITHDRAWAL_ID == $withdrawal->get_withdrawal_id()} dataTableRowSelected active{/if}" id="withdrawal_id_{$withdrawal->get_withdrawal_id()}">
+						<td class="dataTableContent">{$withdrawal->get_date_created_formatted()}</td>
+						<td class="dataTableContent">
+							{if $content_data.withdrawal_links[$withdrawal_id].customer_details_link}
+							<a href="{$content_data.withdrawal_links[$withdrawal_id].customer_details_link}">
+							{/if}
+								{$withdrawal->get_customer_name()}
+							{if $content_data.withdrawal_links[$withdrawal_id].customer_details_link}
+							</a>
+							{/if}
+						</td>
+						<td class="dataTableContent numeric_cell">
+							{if $content_data.withdrawal_links[$withdrawal_id].order_details_link}
+							<a href="{$content_data.withdrawal_links[$withdrawal_id].order_details_link}">
+							{/if}
+								{$withdrawal->get_order_id()}
+							{if $content_data.withdrawal_links[$withdrawal_id].order_details_link}
+							</a>
+							{/if}
+						</td>
+						<td class="dataTableContent numeric_cell">
+							<a href="{$content_data.withdrawal_links[$withdrawal_id].withdrawal_details_link}">
+								{$withdrawal->get_withdrawal_id()}
+							</a>
+						</td>
+						<td class="dataTableContent"></td>
+					</tr>
+					{/foreach}
+				</tbody>
+			</table>
+		</td>
+	</tr>
+</table>
+
+<table class="gx-container paginator table-paginator left-table">
+	<tr>
+		<td class="pagination-control">
+			<div class="display-info">
+				{$content_data.number_of_withdrawals}
+			</div>
+			{if $content_data.PAGES_COUNT > 1}
+				<div class="page-number-information">
+					{if $content_data.PAGE > 1}
+						<a class="splitPageLink" href="{$content_data.PREV_PAGE_HREF}"><<</a>
+					{else}
+						<<
+					{/if}
+	
+					{$txt.navigation_page}
+	
+					<form>
+						<select class="page_dropdown" name="page">
+							{section name=pages start=1 loop=$content_data.PAGES_COUNT+1 step=1}
+							<option value="{$smarty.section.pages.index}"{if $smarty.section.pages.index == $content_data.PAGE} selected="selected"{/if}>{$smarty.section.pages.index}</option>
+							{/section}
+						</select>
+					</form>
+	
+					{$txt.navigation_page_of} {$content_data.PAGES_COUNT}
+	
+					{if $content_data.PAGE < $content_data.PAGES_COUNT}<a class="splitPageLink" href="{$content_data.NEXT_PAGE_HREF}">>></a>{else}>>{/if}
+				</div>
+			{/if}
+		</td>
+	</tr>
+</table>
+
+<div class="hidden">
+	{if $content_data.WITHDRAWAL_ID > 0}
+	<div class="gx-configuration-box gx-container">
+		<div class="configuration-box-content">
+			<form id="configuration-box-form" action="withdrawals.php?page={$content_data.PAGE}{if $content_data.ORDER_ID != 0 && $content_data.WITHDRAWALS_COUNT > 1}&order_id={$content_data.ORDER_ID}{/if}" method="post">
+				<div class="configuration-box-header">
+					<h2>
+						{if $content_data.ACTION == 'delete'}
+							{$txt.delete_heading}
+						{else}
+							{$txt.withdrawal_nr} {$content_data.WITHDRAWAL_ID}
+						{/if}
+					</h2>
+				</div>
+
+				<div class="configuration-box-body">
+					<div class="configuration-box-form-content">
+						{if $content_data.WITHDRAWALS_COUNT > 0}
+							{if $content_data.ACTION == 'delete'}
+								<p>{$txt.delete_confirm}</p>
+							{/if}
+						{/if}
+					</div>
+				</div>
+
+				<div class="configuration-box-footer">
+					<div class="button-container">
+						{if $content_data.ACTION == 'delete'}
+							<form action="" method="post">
+								<input type="hidden" name="id" value="{$content_data.WITHDRAWAL_ID}" />
+								<input type="hidden" name="page_token" value="{$content_data.PAGE_TOKEN}" />
+								<input class="btn btn-primary" type="submit" name="delete" value="{$button.delete}" />
+								<a class="btn" href="withdrawals.php?id={$content_data.WITHDRAWAL_ID}{if $content_data.ORDER_ID != 0}&order_id={$content_data.ORDER_ID}{/if}&page={$content_data.PAGE}">{$button.canel}</a>
+							</form>
+						{else}
+							<a class="btn btn-primary" href="{$content_data.BUTTON_EDIT_HREF}">{$button.edit}</a>
+							<a class="btn" href="{$content_data.BUTTON_DELETE_HREF}">{$button.delete}</a>
+						{/if}
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+	{/if}
+</div>
+{if $content_data.WITHDRAWALS_COUNT == 0}{$txt.no_withdrawals_hint}{/if}

@@ -1,0 +1,100 @@
+// ----------------------------------------------------------------------------
+// CUSTOMER OVERVIEW
+// ----------------------------------------------------------------------------
+
+.gx-customer-overview {
+
+  padding: 0px;
+
+  .pageSubHeading {
+    padding:    0px;
+    height:     inherit;
+    min-height: inherit;
+  }
+
+  tr.dataTableRow, tr.dataTableRowSelected {
+
+    &:nth-child(2n+1) {
+      background-color: adjust-lightness($background-color, -2.5);
+    }
+
+    &:nth-child(2n) {
+      background-color: $background-color;
+    }
+  }
+
+  &.gx-compatibility-table {
+    font-family: $font-family;
+    color:       $text-color-light;
+    font-weight: normal;
+  }
+
+  #create-customer-container {
+    border-bottom: none;
+    a {
+      &.btn-success {
+        font-size: 12px;
+      }
+    }
+  }
+}
+
+.customer-memo-table {
+  .date {
+    text-align: right;
+    display:    block;
+  }
+  .poster {
+    text-align:  right;
+    font-weight: bold;
+    display:     block;
+  }
+
+  font-size: 12px;
+  .fa-trash-o {
+    color:     $text-color-light;
+    font-size: 24px;
+  }
+}
+
+.edit-customer-group-table {
+  margin: 0 auto;
+  width:  88.7%;
+
+  td {
+    &.infoBoxContent {
+      padding: 24px 0 0 0;
+      height: auto;
+      
+      .grid {
+        margin: 0;
+      }
+    }
+  }
+
+  .edit-customer-group-list {
+    font-size: 12px;
+    margin:    12px 0 0 0;
+
+    &:first-of-type {
+      margin: 0;
+    }
+
+  }
+}
+
+form[name="customers"] {
+  &.ui-dialog-content {
+    padding: 0;
+    margin: 0 0 24px 0;
+    min-height: 102px !important;
+  }
+  
+  table {
+    &.gx-configuration {
+      input[type="text"], input[type="password"], textarea, select {
+        width: 170px;
+      }
+    }
+  }
+}

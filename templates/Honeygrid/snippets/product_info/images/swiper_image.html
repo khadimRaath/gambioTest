@@ -1,0 +1,33 @@
+{if $is_list === 'true'}
+	<li class="thumbnails swiper-slide" {if $img_id} data-index="{$img_id}"{/if}>
+{else}
+	<div class="swiper-slide" {if $img_id} data-index="{$img_id}"{/if}>
+{/if}
+		<div class="swiper-slide-inside">
+			{if $swiperId == 'product_thumbnail_swiper_mobile' || $swiperId == 'product_thumbnail_swiper'}
+				<img {if $img_prop}{$img_prop|strip_tags}{/if}
+						{if $img_top} style="margin-top: {$img_top|strip_tags}px;"{/if}
+						{if $img_src2} data-thumb-src="{$img_src2|strip_tags}"{/if}
+						src="{$img_src|strip_tags}"
+						{if $img_alt} alt="{$img_alt|strip_tags}"{/if}
+						{if $img_titl} title="{$img_title|strip_tags}"{/if}
+						{if $img_zoom} data-magnifier-src="{$img_zoom|strip_tags}"{/if}
+				/>
+			{else}
+				<img {if $img_prop}{$img_prop|strip_tags}{/if}
+						class="img-responsive"
+						{if $img_top} style="margin-top: {$img_top|strip_tags}px;"{/if}
+						{if $img_src2} data-thumb-src="{$img_src2|strip_tags}"{/if}
+						src="{$img_src|strip_tags}"
+						{if $img_alt} alt="{$img_alt|strip_tags}"{/if}
+						{if $img_titl} title="{$img_title|strip_tags}"{/if}
+						{if $img_zoom} data-magnifier-src="{$img_zoom|strip_tags}"{/if}
+				/>
+			{/if}
+		</div>
+		
+{if $is_list === 'true'}
+	</li>
+{else}
+	</div>
+{/if}

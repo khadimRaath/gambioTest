@@ -1,0 +1,41 @@
+
+{if $content_data.CATEGORIES_DATA|@count > 0}
+<div class="subcategories_listing clearfix" style="display:block">
+<ul>
+
+	{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+		{if $categories_item.children|@count > 0}{assign var="children_found" value="true"}{/if}
+	{/foreach}
+
+
+	{if $children_found}
+		{counter start=0 assign="cnt"}
+
+		{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+			{counter}
+			<li class="top_li">
+				<a href="{$categories_item.data.url}">{$categories_item.data.name}</a>
+				{if $categories_item.children|@count > 0}
+				<ul>
+					{foreach item=children_item from=$categories_item.children}
+					<li><a href="{$children_item.data.url}">{$children_item.data.name}</a></li>
+					{/foreach}
+				</ul>
+				{/if}
+			</li>
+			{if $cnt eq 4}</ul><ul style="clear:both">{counter start=0 assign="cnt"}{/if}
+		{/foreach}
+
+	{else}
+		<li>
+			<ul>
+				{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+				<li><a href="{$categories_item.data.url}">{$categories_item.data.name}</a></li>
+				{/foreach}
+			</ul>
+		</li>
+	{/if}
+
+</ul>
+</div>
+{/if}

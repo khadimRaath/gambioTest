@@ -1,0 +1,53 @@
+
+/* Mixins
+   ========================================================================== */
+
+@mixin border-radius ($radius: 5px, $corner: "all") {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+          border-radius: $radius;
+  @if $corner == "top" {
+    -webkit-border-bottom-right-radius: 0;
+        -moz-border-radius-bottomright: 0;
+            border-bottom-right-radius: 0;
+     -webkit-border-bottom-left-radius: 0;
+         -moz-border-radius-bottomleft: 0;
+             border-bottom-left-radius: 0;
+  } @else if $corner == "bottom" {
+    -webkit-border-top-right-radius: 0;
+        -moz-border-radius-topright: 0;
+            border-top-right-radius: 0;
+     -webkit-border-top-left-radius: 0;
+         -moz-border-radius-topleft: 0;
+             border-top-left-radius: 0;
+  }
+}
+
+
+// @todo: not used anymore?
+
+@mixin collapsable() {
+	@extend .navbar-collapse;
+	border-top: none;
+}
+
+@mixin reset-list() {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+  > li {
+    padding: 0;
+  }
+}
+
+@mixin no-image-bg() {
+  background: #f9f9f9 none no-repeat;
+  border: 1px solid #ddd;
+}
+
+@mixin thick-heading() {
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: inherit;
+  color: inherit;
+}

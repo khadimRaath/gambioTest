@@ -1,0 +1,33 @@
+{load_language_text section="box_filter"}
+
+{assign var="show_all" value=false}
+{foreach name=features item=feature_value from=$content_data.FEATURE_VALUE_DATA}
+{if $feature_value.SELECTED}{assign var="show_all" value=true}{/if}
+{/foreach}
+
+<fieldset{if !$show_all} class="collapsed"{/if} data-gambio-widget="checkbox">
+<label class="control-label option-heading">
+	{$content_data.FEATURE_NAME}
+</label>
+
+{foreach name=features item=feature_value from=$content_data.FEATURE_VALUE_DATA}
+<div class="checkbox{if $feature_value.VISIBLE == false && $feature_value.DISPLAY_MODE == 1} disabled{/if}">
+	<label class="control-label" for="filter_{$content_data.FEATURE_ID}_{$feature_value.ID}">
+		<input type="checkbox"
+		       id="filter_{$content_data.FEATURE_ID}_{$feature_value.ID}"
+		       name="filter_fv_id[{$content_data.FEATURE_ID}][]"
+		       value="{$feature_value.ID}"
+		       data-single_checkbox
+		       {if $feature_value.SELECTED} checked="checked"{/if}
+			{if $feature_value.VISIBLE == false && $feature_value.DISPLAY_MODE == 1} disabled="disabled"{/if} />
+		{$feature_value.NAME}
+	</label>
+</div>
+{/foreach}
+
+<input type="hidden" name="value_conjunction[{$content_data.FEATURE_ID}]" value="{$content_data.VALUE_CONJUNCTION}" />
+
+{if $content_data.FEATURE_VALUE_DATA|@count > 5 && !$show_all}
+<div class="show-more">{$txt.button_more} <i class="gm-chevron-down"></i></div>
+{/if}
+</fieldset>

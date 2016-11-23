@@ -1,0 +1,21 @@
+{load_language_text section="box_categories"}
+
+{if $content_data.CATEGORIES_DATA|@count > 0}
+	<div class="box box-categories panel panel-default"{if $linkcrypter && $linkcrypter != ''} data-gambio-widget="link_crypter"{/if}>
+		<nav class="navbar-categories-left">
+			<ul class="nav">
+				{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+					<li id="menu_cat_id_{$categories_item.data.id}" class="{if $smarty.foreach.cat_data.first}category-first{elseif $smarty.foreach.cat_data.last}category-last{/if}" >
+						<a href="{$categories_item.data.url}" class="{if $categories_item.data.icon && $categories_item.data.icon|strpos:"item_ltr" == false} has-image{/if}" rel="{$categories_item.data.id}" {if $categories_item.data.meta_description != ''} title="{$categories_item.data.meta_description|truncate:80:"..."|replace:'"':'&quot;'}"{else} title="{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}"{/if}>
+							{if $categories_item.data.icon && $categories_item.data.icon|strpos:"item_ltr" == false}<img src="{$categories_item.data.icon}" alt="" class="cat-image"/>{/if}
+							{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}
+							{if $categories_item.data.products_count}
+								 ({$categories_item.data.products_count})
+							{/if}
+						</a>
+					</li>
+				{/foreach}
+			</ul>
+		</nav>
+	</div>
+{/if}

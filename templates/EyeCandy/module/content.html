@@ -1,0 +1,23 @@
+{load_language_text section="buttons" name="button"}
+<div id="content_page">
+	{if $content_data.CONTENT_HEADING}
+	<h1>
+		{$content_data.CONTENT_HEADING}
+	</h1>
+	{/if}
+	<div class="content_page_inner">
+		{if $content_data.file}
+			{$content_data.file}
+		{else}
+			{$content_data.CONTENT_BODY}
+		{/if}
+	</div>
+	{if $content_data.HIDE_BOTTOM == false}
+	<div>
+		<br />
+		{* $BUTTON_CONTINUE *}
+		{* TODO: use pagetrack *}
+		<a class="button_blue button_set" href="javascript:history.back(1)"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+	</div>
+	{/if}
+</div>

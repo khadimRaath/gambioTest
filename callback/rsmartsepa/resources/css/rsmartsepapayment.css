@@ -1,0 +1,289 @@
+/*
+  rsmartsepapayment.css 2015-04-24 wem
+  Smart Payment Solutions GmbH
+  http://www.smart-payment-solutions.de/
+  Copyright (c) 2015 Smart Payment Solutions GmbH
+  Released under the GNU General Public License (Version 2)
+  [http://www.gnu.org/licenses/gpl-2.0.html]
+*/
+
+* {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+*:before,
+*:after {
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+  width:  100%;
+  height: 100%;
+  margin:  0px;
+  padding: 0px;
+}
+
+body {
+    font-family: 'Open Sans', Arial, sans-serif;
+    font-weight:300;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    /*color:#94a3a8;*/
+    color: #ffffff;
+}
+
+#pagewrapper {
+    position: relative;
+    z-index: 3000;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    /*border: solid 1px #ffffff;*/
+}
+
+#rsmartlogoblock {
+    text-align: center;
+
+}
+
+#rsmartsloganblock {
+    text-align: center;
+}
+
+#rsmartsloganblock .rsmartslogan {
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+#rsmartlogo {
+    width: 100px;
+}
+
+#smartphonesblock {
+    text-align: center;
+    margin-top: 10px;
+    
+}
+
+#addinfoblock {
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+#paymentinfoblock {
+    text-align: center;
+}
+
+#paymentinfoblock .paymentinfotable {
+    /*display: table;*/
+    margin-left: 20px;
+    margin-right: auto;
+    margin-top: 20px;
+}
+
+#paymentinfoblock .paymentinfotablerow {
+    /*display: table-row;*/
+}
+
+#paymentinfoblock .paymentinfotablecell-label {
+    font-weight: bold;
+    font-size: 0.8em;
+}
+#paymentinfoblock .paymentinfotablecell-value {
+    font-size: 0.8em;
+}
+
+#paymentinfoblock .paymentinfotablecell {
+    /*display: table-cell;*/
+    text-align: left;
+}
+
+#paymentinfoblock .spsrsmart_clickable_button {
+    white-space: nowrap;
+}
+#paymentinfoblock .paymentinfotablecell-button {
+    padding-top: 10px;
+}
+
+#simulationbuttons-invisible {
+    display: none;
+}
+
+#paymentinfoblock .spsrsmart_clickable_button_normal {
+    font-weight: normal;
+    cursor: pointer;
+    background: #9e004b;
+    background-image: -moz-linear-gradient(#9e004b, #450423); 
+    background-image: -o-linear-gradient(#9e004b, #450423);
+    background-image: -webkit-linear-gradient(#9e004b, #450423); 
+    background-image: linear-gradient(#9e004b, #450423);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: solid 1px #aaa;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -o-border-radius: 1em;
+    -ms-border-radius: 1em;
+    border-radius: 1em;
+    color: #ffffff;  
+}
+
+#paymentinfoblock .spsrsmart_clickable_button_disabled {
+    cursor: default;
+    background: #9e004b;
+    background-image: -moz-linear-gradient(#9e004b, #450423); 
+    background-image: -o-linear-gradient(#9e004b, #450423);
+    background-image: -webkit-linear-gradient(#9e004b, #450423); 
+    background-image: linear-gradient(#9e004b, #450423);
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: solid 1px #aaa;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -o-border-radius: 1em;
+    -ms-border-radius: 1em;
+    border-radius: 1em;
+    color: #888888;    
+}
+
+#paymentinfoblock .spsrsmart_clickable_button_clicked {
+    cursor: pointer;
+    background: #9e004b;
+    background-image: -moz-linear-gradient(#9e004b, #450423); 
+    background-image: -o-linear-gradient(#9e004b, #450423);
+    background-image: -webkit-linear-gradient(#9e004b, #450423); 
+    background-image: linear-gradient(#9e004b, #450423);
+    padding-top: 2px;
+    padding-bottom: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border: solid 1px #aaa;
+    -moz-border-radius: 1em;
+    -webkit-border-radius: 1em;
+    -o-border-radius: 1em;
+    -ms-border-radius: 1em;
+    border-radius: 1em;
+    color: #ffffff;    
+}
+
+
+#rsmartsepa-iframe {
+    -webkit-filter: blur(3px); 
+    -moz-filter: blur(3px); 
+    -o-filter: blur(3px); 
+    -ms-filter: blur(3px); 
+    filter: blur(3px);
+    filter:progid:DXImageTransform.Microsoft.Blur(PixelRadius='3');
+}
+
+.qrcode_touch {
+   display: none !important;
+}
+.touch .qrcode_notouch {
+   display: none !important;
+}
+.touch .qrcode_touch {
+   display: block !important;
+}
+
+#rsmartsepa-notification-message {
+    position: fixed;
+    width: 200px;
+    top: 5px;
+    left: 5px;
+    z-index: 90000;
+    text-align: center;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 3px;
+    font-weight: bold;
+    font-size: 0.8em;
+    overflow: hidden;
+}
+
+
+
+@media (min-width: 500px) {
+    #paymentinfoblock .paymentinfotable {
+        display: table;
+    }
+    #paymentinfoblock .paymentinfotablerow {
+        display: table-row;
+    }
+    #paymentinfoblock .paymentinfotablecell {
+        display: table-cell;
+    }
+    #paymentinfoblock .paymentinfotablecell-value:before {
+        content: ': ';
+    }
+    #rsmartsloganblock .rsmartslogan {
+        font-size: 1.0em;
+    }
+    #addinfoblock {
+        font-size: 1.0em;
+    }
+    #paymentinfoblock .paymentinfotablecell-label {
+        font-size: 1.0em;
+    }
+    #paymentinfoblock .paymentinfotablecell-value {
+        font-size: 1.0em;
+    }
+
+} /* End: @media (min-width: 500px)  */
+
+@media (min-height: 730px) {
+    #qrcodeimageblock {
+        background: url('@mob-app-banner2@');
+        background-repeat: no-repeat;
+        background-position: center center;
+        height: 520px;
+    }
+    #qrcodeimage {
+        margin-top: 170px;
+        margin-left: -5px;
+    }    
+} /* End: @media (min-height: 730px)  */
+
+@media (min-width: 700px) {
+    #pagewrapper {
+        width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 2%;
+        
+        background-color: #485075;
+        background: url('@header_color_3@');
+        background-repeat: no-repeat;
+        background-position: center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        
+        box-shadow: 9px 9px 14px #000000;
+    }
+    
+    #qrcodeimageblock {
+        background: url('@mob-app-banner@');
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 661px;
+        height: 580px;
+    }
+
+    #qrcodeimage {
+        margin-left: -20px;
+        margin-top: 220px;
+    }
+} /* End: @media (min-width: 700px)  */

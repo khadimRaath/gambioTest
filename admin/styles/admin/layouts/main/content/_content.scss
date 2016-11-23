@@ -1,0 +1,23 @@
+/*
+	Main Content
+    ==========================================================================
+
+	Main content styling. Do not styles for specific pages here, they must be separated into
+	unique files (one file for each page).
+
+*/
+
+#main-content {
+	@import "content_header";
+	@import "message_stack";
+	
+	min-width:      calc(100% - #{$menu-width});
+	flex:           1 1 auto;
+	-ms-flex:           1 1 auto;
+	overflow:       auto;
+	padding-bottom: $padding-large;
+	
+	#content-block-wrapper {
+		padding: 0 $padding-large;
+	}
+}

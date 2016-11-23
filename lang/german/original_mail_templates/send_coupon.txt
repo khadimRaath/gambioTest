@@ -1,0 +1,7 @@
+{$MESSAGE}
+
+Sie können den Gutschein bei Ihrer Bestellung einlösen. Geben Sie dafür Ihre Gutschein-Nummer in das Feld Gutscheine ein.
+
+Ihre Gutschein-Nummer lautet: {$COUPON_ID}
+
+Heben Sie Ihre Gutschein-Nummer gut auf, nur so können Sie von diesem Angebot profitieren, wenn Sie uns das nächste Mal unter {$WEBSITE} besuchen.

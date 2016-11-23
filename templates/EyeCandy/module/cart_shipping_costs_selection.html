@@ -1,0 +1,67 @@
+{load_language_text section="cart_shipping_costs"}
+{load_language_text name="order_details" section="order_details"}
+
+<div id="cart_shipping_costs_selection">
+	<div class="cart_shipping_costs_headline">{$txt.shipping_costs_calculating}:</div>
+	<div class="cart_shipping_costs_content">
+		<div class="cart_shipping_costs_select">
+			<label>{$txt.delivery_country}:</label>
+			{if count($content_data.shipping_countries) == 1}
+				{foreach item=country_data from=$content_data.shipping_countries}
+					<p title="{$country_data.countries_name}">{$country_data.countries_name}</p>
+				{/foreach}
+				<select class="cart_shipping_country input-select" style="display: none;">
+					{foreach item=country_data from=$content_data.shipping_countries}
+						<option value="{$country_data.countries_id}" {if $country_data.countries_id == $content_data.selected_country}selected="selected"{/if} title="{$country_data.countries_name}">{$country_data.countries_name|truncate:80:"...":true}</option>
+					{/foreach}
+				</select>
+			{else}
+				<select class="cart_shipping_country input-select">
+					{foreach item=country_data from=$content_data.shipping_countries}
+						<option value="{$country_data.countries_id}" {if $country_data.countries_id == $content_data.selected_country}selected="selected"{/if} title="{$country_data.countries_name}">{$country_data.countries_name|truncate:80:"...":true}</option>
+					{/foreach}
+				</select>
+			{/if}
+			<div class="clear_both"> <!-- --> </div>
+		</div>
+		{if $content_data.show_shipping_weight == 1}
+		<div class="cart_shipping_costs_select">
+			<label>{$order_details.shipping_weight}:</label>
+			<p>{$content_data.shipping_weight} {$order_details.text_weight_unit}{if $content_data.show_shipping_weight_info == 1} <img style="vertical-align: text-bottom" src="{$tpl_path}img/icon_cart_shipping_costs_info.png" alt="{$order_details.shipping_weight_info}" title="{$order_details.shipping_weight_info}">{/if}</p>
+			<div class="clear_both"> <!-- --> </div>
+		</div>
+		{/if}
+		<div class="cart_shipping_costs_select">
+			<label>{$txt.shipping_module}:</label>
+			{if count($content_data.shipping_modules) == 0}
+				<p class="shipping_costs_error">{$txt.no_shipping_module_available}</p>
+			{elseif count($content_data.shipping_modules) == 1}
+				{foreach key=module_code item=module_data from=$content_data.shipping_modules}
+					<p title="{$module_data|strip_tags}">{$module_data|strip_tags}</p>
+				{/foreach}
+				<select class="cart_shipping_module input-select" style="display: none;">
+					{foreach key=module_code item=module_data from=$content_data.shipping_modules}
+						<option value="{$module_code}" {if $module_code == $content_data.selected_module}selected="selected"{/if} title="{$module_data|strip_tags}">{$module_data|strip_tags|truncate:80:"...":true}</option>
+					{/foreach}
+				</select>
+			{else}
+				<select class="cart_shipping_module input-select">
+					{foreach key=module_code item=module_data from=$content_data.shipping_modules}
+						<option value="{$module_code}" {if $module_code == $content_data.selected_module}selected="selected"{/if} title="{$module_data|strip_tags}">{$module_data|strip_tags|truncate:80:"...":true}</option>
+					{/foreach}
+				</select>
+			{/if}
+			<div class="clear_both"> <!-- --> </div>
+		</div>
+		<div class="cart_shipping_costs_select_result">
+			{if count($content_data.shipping_modules) > 0}
+				<div class="shipping_costs">
+					{$txt.shipping_costs}:<span class="cart_shipping_costs_value">{$content_data.shipping_costs}</span>
+					<span id="cart_shipping_costs_invalid_combination_error">{$content_data.shipping_costs_error}</span>
+					{$content_data.ot_gambioultra_info_html}
+					<div class="clear_both"> <!-- --> </div>
+				</div>
+			{/if}
+		</div>	
+	</div>
+</div>

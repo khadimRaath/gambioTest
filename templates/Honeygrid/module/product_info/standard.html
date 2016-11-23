@@ -1,0 +1,179 @@
+{load_language_text section="product_info"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="customers_status" name="customer"}
+
+{$PRODUCT_NAVIGATOR}
+
+{include file="get_usermod:{$tpl_path}snippets/product_info/images/product_images_modal.html"}
+
+<div class="product-info product-info-default row"{$RICH_SNIPPET_ARRAY.product_itemscope}>
+
+	<div class="product-info-content col-xs-12">
+
+		<div class="row">
+
+			<div class="product-info-title-mobile col-xs-12 visible-xs-block visible-sm-block">
+				<h2>{$RICH_SNIPPET_ARRAY.product_itemprop_name_start}{$PRODUCTS_NAME}{$RICH_SNIPPET_ARRAY.product_itemprop_name_end}</h2>
+				{if $showRating && $AGGREGATE_REVIEW_DATA.averageRating && $AGGREGATE_REVIEW_DATA.averageRating != 0}
+					{include file="get_usermod:{$tpl_path}snippets/rating_stars.html" rating_rounded=$AGGREGATE_REVIEW_DATA.averageRating rating_count=$AGGREGATE_REVIEW_DATA.count }
+				{/if}
+			</div>
+
+			{product_ribbons
+			showManufacturerImages=$showManufacturerImages
+			showProductRibbons=$showProductRibbons
+			product_id=$PRODUCTS_ID
+			out=arr_ribbons
+			}
+
+			{if $images}
+				<div class="product-info-stage col-xs-12 col-md-8{if $images|count lt 2} centered{/if}">
+
+					{include file="get_usermod:{$tpl_path}snippets/product_info/images/product_images.html"}
+
+					{if $arr_ribbons.manufacturer|count > 0}
+						{include file="get_usermod:{$tpl_path}snippets/ribbon/ribbon_manufacturer.html"
+						ribbon="manufacturer"
+						id=$arr_ribbons.manufacturer.0.ID
+						text=$arr_ribbons.manufacturer.0.IMAGE_ALT
+						img=$arr_ribbons.manufacturer.0.IMAGE
+						url=$arr_ribbons.manufacturer.0.URL
+						}
+					{/if}
+
+				</div>
+			{/if}
+
+			{assign var="stickybox" value={template_setting name="gx-product-info-details-sticky"}}
+			<div class="product-info-details col-xs-12 col-md-4" data-gambio-widget="{if $stickybox}stickybox {/if}{if $QUANTITY}cart_handler {/if}product_min_height_fix">
+
+				<div class="loading-overlay"></div>
+				<div class="magnifier-overlay"></div>
+				<div class="magnifier-target">
+					<div class="preloader"></div>
+				</div>
+
+				{if $arr_ribbons.ribbons}
+					{include file="get_usermod:{$tpl_path}snippets/ribbon/ribbon.html" ribbons=$arr_ribbons}
+				{/if}
+
+				{$TS_PRODUCT_RATING}
+				<form action="{$FORM_ACTION_URL}" class="form-horizontal js-product-form{if $GM_GPRINT} customizer{/if}">
+
+					<div class="hidden-xs hidden-sm">
+					{if $showRating && $AGGREGATE_REVIEW_DATA.averageRating && $AGGREGATE_REVIEW_DATA.averageRating != 0}
+						<span {$RICH_SNIPPET_ARRAY.product_itemprop_aggregate_rating}{$RICH_SNIPPET_ARRAY.aggregate_rating_itemscope} />
+						<span style="display: none"{$RICH_SNIPPET_ARRAY.aggregate_rating_itemprop_ratingValue}>{$AGGREGATE_REVIEW_DATA.averageRating}</span>
+						<span style="display: none"{$RICH_SNIPPET_ARRAY.aggregate_rating_itemprop_ratingCount}>{$AGGREGATE_REVIEW_DATA.count}</span>
+						<a href="#product-ratings">
+							{include file="get_usermod:{$tpl_path}snippets/rating_stars.html" rating_rounded=$AGGREGATE_REVIEW_DATA.averageRating rating_count=$AGGREGATE_REVIEW_DATA.count }
+						</a>
+					{/if}
+					</div>
+					<h1 class="product-info-title-desktop hidden-xs hidden-sm">{$RICH_SNIPPET_ARRAY.product_itemprop_name_start}{$PRODUCTS_NAME}{$RICH_SNIPPET_ARRAY.product_itemprop_name_end}</h1>
+
+					{if $PRODUCTS_MODEL !='' || $SHOW_PRODUCTS_MODEL || $SHIPPING_NAME || $SHOW_SHIPPING_TIME || $PRODUCTS_QUANTITY || $SHOW_PRODUCTS_QUANTITY || $additional_fields}
+						<dl class="dl-horizontal">
+							{include file="get_usermod:{$tpl_path}snippets/product_info/model.html"}
+							{include file="get_usermod:{$tpl_path}snippets/product_info/shipping_time.html"}
+							{include file="get_usermod:{$tpl_path}snippets/product_info/stock.html"}
+
+							{$additional_fields}
+
+							{if $SHOW_PRODUCTS_WEIGHT}
+								<dt>{$txt.text_weight}</dt>
+								<dd class="products-details-weight-container"><span>{$PRODUCTS_WEIGHT}</span> {$txt.text_weight_unit} {if $PRODUCTS_QUANTITY_UNIT}{$PRODUCTS_QUANTITY_UNIT}{else}{$txt.text_weight_qty_unit}{/if}<dd>
+							{/if}
+							{if $GM_MIN_ORDER}
+								<dt class="product-details-order-min">{$txt.text_min_order}</dt>
+								<dd class="product-details-order-min">{$GM_MIN_ORDER}</dd>
+							{/if}
+							{if $GM_GRADUATED_QTY}
+								<dt class="product-details-graduated-qty">{$txt.text_graduated_qty_1}</dt>
+								<dd class="product-details-graduated-qty">{$GM_GRADUATED_QTY} {$txt.text_graduated_qty_2}</dd>
+							{/if}
+						</dl>
+					{/if}
+
+					{$properties_selection_form}
+
+					{$MODULE_product_options}
+
+					<div class="attribute-images"></div>
+
+					{include file="get_usermod:{$tpl_path}snippets/product_info/customizer.html" position=3}
+
+					{* @todo: styles and testing *}
+					{include file="get_usermod:{$tpl_path}snippets/product_info/legal_age.html"}
+
+					{* @todo: styles and testing *}
+					{if $MODULE_graduated_price != ''}
+						{$MODULE_graduated_price}
+					{/if}
+
+					<div class="cart-error-msg alert alert-danger" role="alert"></div>
+
+					<div class="price-container" {$RICH_SNIPPET_ARRAY.product_itemprop_offers}{$RICH_SNIPPET_ARRAY.offer_itemscope}>
+						<div class="price-calc-container" id="attributes-calc-price">
+							{include file="get_usermod:{$tpl_path}snippets/product_info/price.html"}
+
+							{if $QUANTITY}
+								{if $PRODUCTS_QUANTITY_UNIT}
+									{$PRODUCTS_QUANTITY_UNIT}:
+								{/if}
+
+								{include file="get_usermod:{$tpl_path}snippets/product_info/product_box_bottom.html"}
+							{else}
+								<input type="hidden" name="products_id" id="products-id" value="{$PRODUCTS_ID}" />
+								{$RICH_SNIPPET_ARRAY.offer_itemprop_out_of_stock}
+							{/if}
+
+						</div>
+					</div>
+
+					{* @todo: styles and testing *}
+					{$KLARNA_WIDGET}
+
+				</form>
+
+				{if $QUANTITY}
+					{paypal_ec_button page='product'}
+				{/if}
+			</div>
+
+			<div class="product-info-description col-md-8" data-gambio-widget="tabs">
+				{include file="get_usermod:{$tpl_path}snippets/product_info/product_description.html"}
+			</div>
+
+			{if $PRODUCTS_DATE_AVIABLE != ''}
+			<div class="products_info_available col-md-8">
+				{$PRODUCTS_DATE_AVIABLE}
+			</div>
+			{/if}
+
+			<div class="product-info-share col-md-8">
+				{include file="get_usermod:{$tpl_path}snippets/product_info/social_share.html"}
+			</div>
+
+			{if $showRating}
+				{if $MODULE_products_reviews != ''}
+					<div id="product-ratings" class="product-info-rating col-md-8">
+						{$MODULE_products_reviews}
+					</div>
+				{/if}
+			{/if}
+
+		</div><!-- // .row -->
+
+	</div><!-- // .product-info-content -->
+
+	<div class="product-info-listings col-xs-12 clearfix" data-gambio-widget="product_hover">
+		{include file="get_usermod:{$tpl_path}snippets/product_info/product_lists.html"}
+	</div>
+
+</div><!-- // .product-info -->
+
+
+
+
+

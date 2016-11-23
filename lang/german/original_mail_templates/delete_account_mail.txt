@@ -1,0 +1,8 @@
+Sehr geehrter Admin,
+
+der Kunde {$CUSTOMER} möchte sein Konto löschen.
+{if $NOTIFY_COMMENTS}
+
+Anmerkungen:
+{$NOTIFY_COMMENTS}
+{/if}

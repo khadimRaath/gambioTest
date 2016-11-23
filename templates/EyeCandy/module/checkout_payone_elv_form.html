@@ -1,0 +1,73 @@
+<script src="https://secure.pay1.de/client-api/js/ajax.js"></script>
+<script src="<?php echo GM_HTTP_SERVER.DIR_WS_CATALOG ?>/ext/payone/js/client_api.js"></script>
+<table class="payone_paydata payone_elv_data">
+	<tr class="datarow">
+		<td class="label">
+			<label for="p1_elv_country">##elv_country</label>
+		</td>
+		<td>
+			<select id="p1_elv_country" name="p1_elv_country">
+				<?php foreach($sepa_countries as $sc): ?>
+					<option value="<?php echo $sc['countries_iso_code_2'] ?>" <?php echo $sepa_countries_selected[$sc['countries_iso_code_2']] ?>>
+						<?php echo $sc['countries_name'] ?>
+					</option>
+				<?php endforeach ?>
+			</select>
+		</td>
+	</tr>
+
+	<tr class="datarow sepadata">
+		<td class="label">
+			<label for="p1_elv_iban">##elv_iban</label>
+		</td>
+		<td>
+			<input type="text" id="p1_elv_iban" name="p1_elv_iban">
+		</td>
+	</tr>
+	<tr class="datarow sepadata">
+		<td class="label">
+			<label for="p1_elv_bic">##elv_bic</label>
+		</td>
+		<td>
+			<input type="text" id="p1_elv_bic" name="p1_elv_bic">
+		</td>
+	</tr>
+
+	<tr class="only_de note_de">
+		<td colspan="2" class="note_german_account">##note_german_account</td>
+	</tr>
+
+	<tr class="datarow only_de">
+		<td class="label">
+			<label for="p1_elv_accountnumber">##elv_account_number</label>
+		</td>
+		<td>
+			<input type="text" id="p1_elv_accountnumber" name="p1_elv_accountnumber">
+		</td>
+	</tr>
+	<tr class="datarow only_de">
+		<td class="label">
+			<label for="p1_elv_bankcode">##elv_bankcode</label>
+		</td>
+		<td>
+			<input type="text" id="p1_elv_bankcode" name="p1_elv_bankcode">
+		</td>
+	</tr>
+
+	<tr class="datarow">
+		<td colspan="2">
+			<button class="p1_checkdata">##check_paydata</button>
+			<p class="p1_error"></p>
+		</td>
+	</tr>
+</table>
+
+<div class="p1_finaldata_elv">
+	<table>
+		<tr><td>##elv_country</td><td class="final_elv_country"></td></tr>
+		<tr><td>##elv_account_number</td><td class="final_elv_accountnumber"></td></tr>
+		<tr><td>##elv_bankcode</td><td class="final_elv_bankcode"></td></tr>
+		<tr><td>##elv_iban</td><td class="final_elv_iban"></td></tr>
+		<tr><td>##elv_bic</td><td class="final_elv_bic"></td></tr>
+	</table>
+</div>

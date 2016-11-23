@@ -1,0 +1,11 @@
+/**
+ * additional CSS included by PHP only
+ *
+<?php
+echo chr(42) . '/'; // end comment
+
+include 'templates/' . basename(__DIR__) . '/styles/fontello/css/gm.css';
+
+echo '/' . chr(42); // start comment
+?>
+*/

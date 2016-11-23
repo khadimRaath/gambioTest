@@ -1,0 +1,104 @@
+/* 
+	Order Table Settings Modal 
+    ========================================================================== 
+
+	Styles the settings-modal elements.
+	
+*/
+
+$settings-modal-dragging-margin: 15px;
+$settings-modal-footer-height: 32px;
+
+.settings.modal {
+	.modal-body {
+		
+		&.loading {
+			opacity: 0;
+		}
+		
+		fieldset.settings-group {
+			width: 75%;
+			
+			legend {
+				color:          $text-color-light;
+				font-size:      $font-size-base;
+				font-weight:    bold;
+				padding-bottom: $padding-small / 2;
+			}
+			
+			label {
+				font-weight: normal;
+			}
+			
+			// Sortable items container
+			ul.settings {
+				list-style: none;
+				margin:     0;
+				padding:    0;
+				
+				// Setting list item
+				> li {
+					padding: ($padding-small / 3) 0;
+					color:   $text-color-light;
+					
+					// Setting label
+					label {
+						cursor: pointer;
+						
+						&.row-height {
+							padding-top: 7px;
+						}
+					}
+					
+					&:first-of-type {
+						margin-top: $settings-modal-dragging-margin;
+					}
+					
+					&:last-of-type {
+						margin-bottom: $settings-modal-dragging-margin;
+					}
+					
+					// Vertical arrows icon (sortable handle).
+					.sort-handle {
+						cursor:    pointer;
+						font-size: 1.3em;
+						
+						.fa {
+							&.fa-caret-up {
+								position: relative;
+								top:      -6px;
+							}
+							&.fa-caret-down {
+								left:     -13px;
+								top:      3px;
+								position: relative;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		// Hack to avoid calculation of SASS
+		$invert-margin-large: -$margin-large;
+		
+		.modal-footer {
+			margin:  0 $invert-margin-large $invert-margin-large !important;
+			padding: $padding-large/3 $padding-large !important;
+			
+			// Error message text.
+			.error-message {
+				@include font;
+				font-weight: bold;
+				color:       $brand-danger;
+				float:       left;
+				padding-top: $padding-small;
+			}
+
+			// Reset column settings to default link text.
+			a.reset-action {
+				line-height: $settings-modal-footer-height;
+			}
+		}
+	}
+}

@@ -1,0 +1,68 @@
+{*	Email Invoice Modal *}
+
+{load_language_text section="admin_buttons" name="admin_buttons"}
+
+<div class="email-invoice modal fade" tabindex="-1" role="dialog"
+	 data-gx-controller="orders/modals/email_invoice">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="{$admin_buttons.BUTTON_ClOSE}">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{$gm_order_menu.TITLE_INVOICE}</h4>
+			</div>
+
+			<div class="modal-body">
+				<div class="form-group remove-border">
+					<span class="confirm-question">
+						{$gm_order_menu.TITLE_INVOICE_CONFIRM}
+						<span class="customer-info">{* Dynamic Content *}</span>
+						{$gm_order_menu.TITLE_INVOICE_CONFIRMED}
+					</span>
+
+					<span class="info info-icon invoice-num-info" data-gx-widget="tooltip_icon" data-tooltip_icon-type="info">
+						<p>{$gm_order_menu.TEXT_BULK_INVOICE_NUM_SUBJECT_INFO}</p>
+					</span>
+				</div>
+
+				<br>
+
+				<form class="form-horizontal">
+					<fieldset>
+						{* Subject Field*}
+						<div class="form-group">
+							<label for="invoice-subject" class="col-md-2 control-label">
+								{$gm_order_menu.TITLE_SUBJECT}
+							</label>
+							<div class="col-md-10">
+								<input id="invoice-subject"
+									   type="text"
+									   class="subject form-control"
+									   value="MAIL_SUBJECT" />
+							</div>
+						</div>
+
+						{* E-Mail Address Field *}
+						<div class="form-group">
+							<label for="invoice-email-address" class="col-md-2 control-label">
+								{$gm_order_menu.TITLE_MAIL}
+							</label>
+							<div class="col-md-10">
+								<input id="invoice-email-address"
+									   type="text"
+									   class="email-address form-control"
+									   value="CUSTOMER_EMAIL_ADDRESS" />
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">
+					{$admin_buttons.BUTTON_CANCEL}</button>
+				<button type="button" class="btn btn-primary send">{$admin_buttons.BUTTON_SEND}</button>
+			</div>
+		</div>
+	</div>
+</div>

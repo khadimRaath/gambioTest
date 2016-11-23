@@ -1,0 +1,204 @@
+{load_language_text section="checkout_payment"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="withdrawal" name="withdrawal"}
+{load_language_text section="amazonadvancedpayment" name="amzadvpay"}
+{load_language_text section="general" name="general"}
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/process_funnel.html" step=2}
+
+<h1>{$general.YOUR_ORDER}</h1>
+
+<br/>
+
+{if $error != ''}
+	{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error type="danger"}
+{/if}
+
+<form id="checkout_payment" action="{$FORM_ACTION_URL}" method="post" class="form-horizontal">
+
+	<fieldset>
+		<legend>{$txt.title_address}</legend>
+
+			{if $amazonadvpay_active}
+				{$amzadvpay.note_billing_address}
+			{else}
+
+			<div class="row">
+				<div class="col-md-12 indent-sm-1">
+					
+					<address>{$ADDRESS_LABEL}</address>
+				</div>
+				<div class="col-md-12 indent-sm-1 space-1">
+					<a class="btn btn-default btn-sm" href="{'checkout_payment_address.php'|xtc_href_link:'':'SSL'}">{$button.address_change}</a>
+				</div>
+			</div>
+
+		{/if}
+
+	</fieldset>
+
+	<fieldset>
+		<legend>{$txt.heading_payment}</legend>
+
+		<div class="row">
+			<div class="col-xs-12 indent-sm-1 items">
+				{if $GV_COVER != 'true'}
+					{if $amazonadvpay_active}
+						<input type="hidden" name="payment" value="amazonadvpay">
+						{amazon_payment id='walletWidgetDiv'}
+					{else}
+						<p class="space-1">{$txt.text_payment}</p>
+						{$PAYMENT_BLOCK}
+					{/if}
+					{$module_gift}
+				{else}
+					<input type="hidden" name="cot_gv" value="on" />
+					<p>{$txt.text_gccover}</p>
+				{/if}
+			</div>
+		</div>
+		
+	</fieldset>
+	
+	<fieldset>
+		
+		<legend>{$txt.title_comments}</legend>
+
+		<div class="form-group">
+			<div class="col-sm-12 indent-sm-1">
+				<label for="{$COMMENTS_NAME}">{$txt.text_comments}</label>
+				<textarea placeholder="{$txt.text_comments}" id="{$COMMENTS_NAME}" name="{$COMMENTS_NAME}" class="form-control" wrap="{$COMMENTS_WRAP}">{$COMMENTS_VALUE}</textarea>
+			</div>
+		</div>
+
+		<input type="hidden" name="{$COMMENTS_HIDDEN_NAME}" value="{$COMMENTS_HIDDEN_VALUE}" />
+
+	</fieldset>
+	
+	{if $SHOW_WITHDRAWAL || $show_abandonment_download || $show_abandonment_service}
+		<fieldset data-gambio-widget="radio_selection" data-radio_selection-selection="div.checkbox" >
+			
+			<legend>
+				{$txt.title_withdrawal} <a href="request_port.php?module=ShopContent&action=download&coID={gm_get_conf get="GM_WITHDRAWAL_CONTENT_ID"}" title="{$withdrawal.download_as_pdf}"><span class="fa fa-download"></span><span class="hidden-xs"> {$withdrawal.download_as_pdf}</span></a>
+			</legend>
+
+			{foreach key=index from=$withdrawal_array item=withdrawal_data}
+				{if $withdrawal_data.data_type == 'content'}
+
+					<div class="form-group">
+						<div class="col-sm-12 indent-sm-1">
+							<label>{($SHOW_CHECKBOX_WITHDRAWAL && $index == 0) ? $txt.text_withdrawal : "" }</label>
+							<div class="miscellaneous-container" id="{$withdrawal_data.data.NAME}">{$withdrawal_data.data.TEXT}</div>
+						</div>
+					</div>
+
+				{elseif $withdrawal_data.data_type == 'iframe'}
+
+
+					<div class="form-group">
+						<div class="col-sm-12 indent-sm-1">
+							<label>{($SHOW_CHECKBOX_WITHDRAWAL && $index == 0) ? $txt.text_withdrawal : "" }</label>
+							<div class="miscellaneous-container iframe">
+								<iframe src="{$withdrawal_data.data.IFRAME_URL}" id="{$withdrawal_data.data.NAME}" name="{$withdrawal_data.data.NAME}"></iframe>
+							</div>
+						</div>
+					</div>
+
+				{/if}
+			{/foreach}
+
+			{if $SHOW_CHECKBOX_WITHDRAWAL}
+				<div class="row">
+					<div class="col-sm-12 indent-sm-1">
+						<div class="checkbox alert alert-warning">
+							<label>
+								<input type="checkbox" name="withdrawal" id="withdrawal" value="withdrawal">
+								{$txt.text_accept_withdrawal}
+							</label>
+						</div>
+					</div>
+				</div>
+			{/if}
+
+			{if $show_abandonment_download}
+				<div class="row">
+					<div class="col-sm-12 indent-sm-1">
+						<div class="checkbox alert alert-warning">
+							<label>
+								<input type="checkbox" name="abandonment_download" id="abandonment_download" value="abandonment_download">
+								{$withdrawal.text_abandonment_download}
+							</label>
+						</div>
+					</div>
+				</div>
+			{/if}
+
+			{if $show_abandonment_service}
+				<div class="row">
+					<div class="col-sm-12 indent-sm-1">
+						<div class="checkbox alert alert-warning">
+							<label>
+								<input type="checkbox" name="abandonment_service" id="abandonment_service" value="abandonment_service">
+								{$withdrawal.text_abandonment_service}
+							</label>
+						</div>
+					</div>
+				</div>
+			{/if}
+
+		</fieldset>
+	{/if}
+	
+	{if $AGB_IFRAME == 1 || $conditions_data.TEXT}
+		<fieldset data-gambio-widget="radio_selection" data-radio_selection-selection="div.checkbox" >
+			
+			<legend>
+				{$txt.title_agb} <a href="request_port.php?module=ShopContent&action=download&coID=3" title="{$withdrawal.download_as_pdf}"><span class="fa fa-download"></span><span class="hidden-xs"> {$withdrawal.download_as_pdf}</span></a>
+			</legend>
+	
+			{if $AGB_IFRAME == 1}
+				<div class="form-group">	
+				<div class="col-sm-12 indent-sm-1">
+					<label>{($SHOW_CONDITIONS_CHECKBOX) ? $txt.text_agb : "" }</label>
+					<div class="miscellaneous-container iframe">
+						<iframe src="{$AGB_IFRAME_URL}" readonly="readonly"></iframe>
+					</div>
+				</div>
+				</div>
+			{else}
+	
+				<div class="form-group">
+					<div class="col-sm-12 indent-sm-1">
+						<label>{($SHOW_CONDITIONS_CHECKBOX) ? $txt.text_agb : "" }</label>
+						<div class="miscellaneous-container" id="{$conditions_data.NAME}">{$conditions_data.TEXT}</div>
+					</div>
+				</div>
+	
+			{/if}
+	
+			{if $SHOW_CONDITIONS_CHECKBOX}
+				<div class="row">
+					<div class="col-sm-12 indent-sm-1">
+						<div class="checkbox alert alert-warning">
+							<label>
+								<input type="checkbox" name="conditions" id="conditions" value="conditions">
+								{$txt.text_accept_agb}
+							</label>
+						</div>
+					</div>
+				</div>
+			{/if}
+	
+		</fieldset>
+	{/if}
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-4 col-md-3 back_button">
+			<a href="{$BUTTON_BACK_URL }" class="btn btn-default btn-block">{$button.back}</a>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right continue_button">
+			<input type="submit" class="btn btn-primary btn-block" value="{$button.continue}">
+		</div>
+	</div>
+
+</form>

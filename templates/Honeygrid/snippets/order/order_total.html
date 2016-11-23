@@ -1,0 +1,110 @@
+{load_language_text section="order_details"}
+{load_language_text section="general" name="general"}
+
+{if $content_data.customer_status_allow_checkout == '1'}
+
+	<h4 class="hidden-xs hidden-sm">{$txt.text_sum}</h4>
+
+	<table class="order-total table">
+
+		<tbody>
+		
+			{if $content_data.SHOW_SHIPPING_WEIGHT == 1}
+				<tr>
+					<td>
+						{if $content_data.SHOW_SHIPPING_WEIGHT_INFO == 1}
+							<img src="{$tpl_path}assets/images/icon_cart_shipping_costs_info.png" alt="{$txt.shipping_weight_info}" title="{$txt.shipping_weight_info}" />
+						{/if}
+						{$txt.shipping_weight}:
+					</td>
+					<td class="shipping-weight-value">
+						{$content_data.SHIPPING_WEIGHT} {$txt.text_weight_unit}
+					</td>
+				</tr>
+			{/if}
+			
+			<tr>
+				<td>
+					{$txt.text_subtotal}
+				</td>
+				<td>
+					{$content_data.SUBTOTAL}
+				</td>
+			</tr>
+
+			{if $content_data.DISCOUNT_VALUE}
+				<tr>
+					<td>
+						{$content_data.DISCOUNT_TEXT}
+					</td>
+					<td>
+						{$content_data.DISCOUNT_VALUE}
+					</td>
+				</tr>
+			{/if}
+			
+			{if !$content_data.TAX_FREE_TEXT}
+				{foreach item=tax_item from=$content_data.tax_data}
+					<tr>
+						<td>
+							{$tax_item.TEXT}:
+						</td>
+						<td>
+							{$tax_item.VALUE}
+						</td>
+					</tr>
+				{/foreach}
+			{/if}
+			
+			{if $content_data.TAX_FREE_TEXT}
+				<tr>
+					<td colspan="2" class="colspan-2">
+						<span class="order-total-shipping">
+							{$content_data.TAX_FREE_TEXT}
+						</span>
+					</td>
+				</tr>
+			{/if}
+			
+			<tr class="footer total">
+				<td>
+					{$txt.text_sum}
+				</td>
+				<td>
+					{$content_data.TOTAL}
+
+					{if $content_data.SHIPPING_INFO_SHIPPING_LINK}
+						<div class="total-info">
+							{$general.SHIPPING_EXCL}
+							<span class="shipping-cost-value">
+								{$content_data.SHIPPING_INFO_SHIPPING_COSTS_VALUE}
+							</span>
+							<a href="{$content_data.SHIPPING_INFO_SHIPPING_LINK}"
+							   title="{$content_data.SHIPPING_INFO_SHIPPING_COSTS}" class="js-open-modal"
+							   data-modal-type="info"
+							   data-modal-settings='{literal}{{/literal}"title": "{$content_data.SHIPPING_INFO_SHIPPING_COSTS}", 
+								"sectionSelector": ".content_text", "bootstrapClass": "modal-lg"{literal}}{/literal}'>
+								{$content_data.SHIPPING_INFO_SHIPPING_COSTS}</a>&nbsp;
+							{if $content_data.SHIPPING_INFO_SHIPPING_COSTS_VALUE != ""}
+								<a href="#shipping-information-layer" title="{$SHIPPING_AND_PAYMENT_CONTENT_TITLE}"
+								   class="js-open-modal" data-modal-type="alert"
+								   data-modal-settings='{literal}{{/literal}"title": "{$general.SHIPPING_COSTS_LAYER_TITLE}", 
+							   "sectionSelector": ".content_text", "bootstrapClass": "modal-lg"{literal}}{/literal}'>
+									<span class="fa fa-pencil"></span></a>
+							{/if}
+						</div>
+					{/if}
+
+					{if $content_data.SHIPPING_INFO_GAMBIOULTRA}
+						<div class="total-info">
+							{$general.SHIPPING_EXCL} {$content_data.SHIPPING_INFO_GAMBIOULTRA} {$gambioultra.name}
+						</div>
+					{/if}
+				</td>
+			</tr>
+
+		</tbody>
+		
+	</table>
+
+{/if}

@@ -1,0 +1,13 @@
+/* 
+	Cancel Order Modal 
+    ========================================================================== 
+
+	Styles the order cancellation modal in the orders overview.
+	
+*/
+
+.cancel.modal {
+	.modal-dialog {
+		width: $orders-modal-small-width;
+	}
+}

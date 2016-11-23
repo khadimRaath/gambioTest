@@ -1,0 +1,25 @@
+<div class="gx-configuration-box gx-container">
+	<div class="configuration-box-content">
+		<form id="configuration-box-form" {if $content_data.useCheckboxWidget}data-gx-widget="checkbox" {/if}action="{$content_data.formAction}" method="{$content_data.formMethod}" {$content_data.formAttributes}>
+			<input type="hidden" value="{$content_data.pageToken}" name="page_token">
+			<div class="configuration-box-header">
+				<h2>{$content_data.heading}</h2>
+			</div>
+	
+			<div class="configuration-box-body">
+				<div class="configuration-box-description">
+					<p>{$content_data.description}</p>
+				</div>
+				<div class="configuration-box-form-content{if $content_data.formIsEditable} editable{/if}">
+					{$content_data.form}
+				</div>
+			</div>
+	
+			<div class="configuration-box-footer">
+				<div class="button-container">
+					{$content_data.buttons}
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

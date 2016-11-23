@@ -1,0 +1,27 @@
+{load_language_text section="product_listing"}
+
+{if isset($FILTER_SELECTION_ARRAY) && count($FILTER_SELECTION_ARRAY) > 0}
+	<div class="filter-selection-container">
+{else}
+	<div class="filter-selection-container hidden">
+{/if}
+		
+	<h2>{$txt.text_current_filter}</h2>
+	
+	{foreach name=filter_selection item=feature from=$FILTER_SELECTION_ARRAY}
+		<ul class="filter-item">
+			<li>
+				{$feature.feature_name}:
+				<ul class="filter-selection">
+					{assign var="feature_value_count" value=$feature.feature_values|count}
+					{foreach name=filter_values_selection item=feature_value from=$feature.feature_values}
+						<li>
+							{$feature_value}{if $feature_value_count > 1 && $smarty.foreach.filter_values_selection.last !== true}, {/if}
+						</li>
+					{/foreach}
+				</ul>
+			</li>
+		</ul>
+	{/foreach}
+	
+</div>

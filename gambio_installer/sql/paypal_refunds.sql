@@ -1,0 +1,26 @@
+DROP TABLE IF EXISTS `paypal_refunds`;
+CREATE TABLE `paypal_refunds` (
+  `paypal_refunds_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `orders_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `refundtransactionid` varchar(32) NOT NULL DEFAULT '',
+  `netrefundvalue` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  `netrefundcurrency` varchar(3) NOT NULL DEFAULT '',
+  `feerefundvalue` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  `feerefundcurrency` varchar(3) NOT NULL DEFAULT '',
+  `grossrefundvalue` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  `grossrefundcurrency` varchar(3) NOT NULL DEFAULT '',
+  `totalrefundedvalue` decimal(10,4) NOT NULL DEFAULT '0.0000',
+  `totalrefundedcurrency` varchar(3) NOT NULL DEFAULT '',
+  `refundinfostatus` varchar(255) NOT NULL DEFAULT '',
+  `refundinfopendingreason` varchar(255) NOT NULL DEFAULT '',
+  `receiptdata` varchar(255) NOT NULL DEFAULT '',
+  `msgsubid` varchar(255) NOT NULL DEFAULT '',
+  `timestamp` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `ack` varchar(50) NOT NULL DEFAULT '',
+  `correlationid` varchar(50) NOT NULL DEFAULT '',
+  `errors` varchar(255) NOT NULL DEFAULT '',
+  `version` varchar(10) NOT NULL DEFAULT '',
+  `build` varchar(10) NOT NULL DEFAULT '',
+  PRIMARY KEY (`paypal_refunds_id`),
+  KEY `orders_id` (`orders_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

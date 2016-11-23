@@ -1,0 +1,32 @@
+{load_language_text section="admin_info_boxes"}
+
+<div id="admin_info_wrapper">
+	<div id="admin_info_inner_wrapper">
+
+		<div class="content">
+			{foreach name=messages item=message from=$content_data.messages_array}
+				<div class="admin_info_box{if $message.type != 'info'} {$message.type}{/if}{if $message.status == 'hidden'} hidden{/if}{if $message.status == 'read'} read{/if}">
+					{if $message.visibility == 'hideable' || $message.visibility == 'removable'}<a href="request_port.php?module=AdminInfobox&action=hide_info_box&id={$message.infobox_messages_id}" class="info_close ajax" rel="hide_info_box"><i class="fa fa-minus"></i></a>{/if}
+					{if $message.visibility == 'removable'}<a href="request_port.php?module=AdminInfobox&action=remove_info_box&id={$message.infobox_messages_id}" class="info_remove ajax" rel="remove_info_box"><i class="fa fa-times"></i></a>{/if}
+					{if $message.headline != ''}<p class="info_headline">{$message.headline}</p>{/if}					
+					<p class="info_text">{$message.message}</p>
+					<!--<i class="info_loading fa fa-spinner fa-spin fa-lg" title="{$txt.IN_PROGRESS}"></i>-->
+					{if $message.button_label != ''}
+						<a href="{$message.button_link}" class="btn pull-right add-margin-10 info_action_button{if $message.ajax == 1} ajax{/if}" title="{$message.button_label}" rel="{$message.identifier}">{$message.button_label}</a>
+					{/if}
+					<span class="admin_info_box_id hidden">{$message.infobox_messages_id}</span>
+					<div style="clear: both;"> <!-- --> </div>
+				</div>
+			{/foreach}
+			<div class="no_messages">
+				{$txt.NO_MESSAGES}
+			</div>
+			<div class="show_all">
+				<input type="checkbox" class="show_all_info_boxes" /> {$txt.SHOW_ALL}
+			</div>
+		</div>
+		
+		<div class="triangle-with-shadow-wrapper"><div class="triangle-with-shadow-container"><div class="triangle-with-shadow"></div></div></div>
+
+	</div>
+</div>

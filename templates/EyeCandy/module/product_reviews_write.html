@@ -1,0 +1,68 @@
+{load_language_text section="reviews"}
+{load_language_text section="buttons" name="button"}
+
+<div id="contact_us" class="contact_us">
+
+	<h1>{$txt.heading_reviews_write}</h1>
+
+	{if $error}
+		<span class="strong">{$error}</span>
+	{else}
+		{if $GM_ERROR}
+			<span class="strong">{$GM_ERROR}</span>
+		{/if}
+
+		{if $CONTACT_CONTENT}
+			<div class="content_contact">{$CONTACT_CONTENT}</div>
+			<br />
+		{/if}
+
+		<h2>
+			{$txt.heading_product} {$PRODUCTS_NAME}
+		</h2>
+
+		<div class="required_info">
+		{$txt.text_must}
+		</div>
+
+		<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+			<fieldset class="blocklabels_150">
+				<div class="input">
+					<label>{$txt.label_author}</label>
+					{$AUTHOR}
+				</div>
+				<div class="input">
+					<label>{$txt.label_message}</label>
+					<textarea name="{$TEXTAREA_NAME}" class="input-textarea">{$TEXTAREA_VALUE}</textarea> *
+				</div>
+				<div class="input rating">
+					<label>{$txt.label_rating}</label>
+					<input type="radio" name="{$INPUT_RATING_NAME}" value="1" {if $INPUT_RATING_VALUE == 1}checked="checked"{/if} /> <img src="{$tpl_path}img/stars_1.gif" alt="" title="" />  *<br />
+					<input type="radio" name="{$INPUT_RATING_NAME}" value="2" {if $INPUT_RATING_VALUE == 2}checked="checked"{/if} /> <img src="{$tpl_path}img/stars_2.gif" alt="" title="" /><br />
+					<input type="radio" name="{$INPUT_RATING_NAME}" value="3" {if $INPUT_RATING_VALUE == 3}checked="checked"{/if} /> <img src="{$tpl_path}img/stars_3.gif" alt="" title="" /><br />
+					<input type="radio" name="{$INPUT_RATING_NAME}" value="4" {if $INPUT_RATING_VALUE == 4}checked="checked"{/if} /> <img src="{$tpl_path}img/stars_4.gif" alt="" title="" /><br />
+					<input type="radio" name="{$INPUT_RATING_NAME}" value="5" {if $INPUT_RATING_VALUE == 5}checked="checked"{/if} /> <img src="{$tpl_path}img/stars_5.gif" alt="" title="" /><br />
+				</div>
+				{if $GM_VALIDATION_ACTIVE == 'true'}
+				<div class="input vvcode">
+					<label>{$txt.label_captcha}</label>
+					{$GM_CAPTCHA}
+				</div>
+				{/if}
+			</fieldset>
+
+			{if $GM_PRIVACY_LINK != '0'}
+			<div id="gm_privacy">
+				{if $show_privacy_checkbox}<input type="checkbox" name="privacy_accepted" value="1"{if $privacy_accepted} checked="checked"{/if}/> {/if}
+				{$GM_PRIVACY_LINK}
+				<br />
+				<br />
+			</div>
+			{/if}
+
+			<a href="{$BUTTON_BACK_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+			<a href="{page_url}#" class="button_blue button_set action_submit"><span class="button-outer"><span class="button-inner">{$button.send}</span></span></a>
+
+		</form>
+	{/if}
+</div>

@@ -1,0 +1,217 @@
+<meta charset="UTF-8" />
+<div style="height: auto; margin: 0 !important; padding: 0 !important; max-width: 9000px !important; font-family: arial, verdana, sans-serif; background-color: #e5e5e5;">
+	<div style="margin-left: auto; margin-right: auto; width: 720px; padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #999999; text-align: right;">&nbsp;</div>
+
+	<div style="margin-left: auto; margin-right: auto; width: 630px; padding: 25px 45px 25px; background-color: white; margin-top: 15px; margin-bottom: 15px; display: block;">
+		<table style="width: 100%; display: block;overflow: hidden;">
+			<tbody>
+				<tr>
+					<td>
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$smarty.const.STORE_NAME_ADDRESS|nl2br}</span></span>
+					</td>
+					<td>
+						{if $gm_logo_mail}{$gm_logo_mail}{/if}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<h1>
+			{if $NAME|trim == ''}
+				<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Ladies and Gentlemen,</span></span>
+			{else}
+				<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME},</span></span>
+			{/if}
+		</h1>
+
+		<p>
+			<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">thank you for your order in our onlineshop!</span></span>
+		</p>
+
+		<p>
+			<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+				{if $PAYMENT_MODUL=='moneyorder'} Our bank details:<br />
+					{$smarty.const.MODULE_PAYMENT_MONEYORDER_PAYTO|nl2br} 
+				{else} 
+					{$PAYMENT_INFO_HTML} 
+				{/if}
+			</span></span>
+		</p>
+
+		<br />
+		
+		<h3 style="border-bottom: 1px solid #ddd; padding: 5px 0px">
+			<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Your order: </span></span>
+		</h3>
+
+		<table width="100%">
+			<tr>
+				<td width="33%" style="vertical-align: top">
+					<span style="font-size:12px;">
+						<span style="font-family: verdana,geneva,sans-serif;">
+							<strong>Payment	address</strong>
+							<br />							
+							{$address_label_payment}
+						</span>
+					</span>
+				</td>
+				<td width="33%" style="vertical-align: top">
+					<span style="font-size:12px;">
+						<span style="font-family: verdana,geneva,sans-serif;">
+							<strong>Shipping address</strong>
+							<br />
+							{$address_label_shipping}
+						</span>
+					</span>
+				</td>
+				<td width="33%" style="text-align: right; vertical-align: top">
+					<span style="font-size:12px;">
+						<span style="font-family: verdana,geneva,sans-serif;">
+							{if $PAYMENT_METHOD}<strong>Paymentmethod:</strong> {$PAYMENT_METHOD}<br />{/if}
+							<strong>Order No.:</strong> {$oID}<br />
+							<strong>Order date:</strong> {$DATE}<br />
+							<br />
+							{if $csID}<strong>Customer ID:</strong> {$csID}<br />{/if}
+							{if $PHONE}<strong>Telephone number:</strong> {$PHONE}<br />{/if}
+							{if $customer_vat}<strong>Vat No.:</strong> {$customer_vat}<br />{/if}
+						</span>
+					</span>
+				</td>
+			</tr>
+		</table>
+
+		<table cellspacing="0" style="width: 100%; font-size: 12px; margin-top: 25px; padding: 0;">
+			<tbody>
+				<tr>
+					<th style="font-weight: bold; border-bottom: 2px solid #000; padding: 3px 0 3px 3px; font-size: 13px; text-align: left;">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">pcs.</span></span>
+					</th>
+					<th style="font-weight: bold; border-bottom: 2px solid #000; padding: 3px 0 3px 3px; font-size: 13px; text-align: left;">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Article</span></span>
+					</th>
+					<th style="font-weight: bold; border-bottom: 2px solid #000; padding: 3px 0 3px 3px; font-size: 13px; text-align: left;">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Article-No.</span></span>
+					</th>
+					<th style="font-weight: bold; border-bottom: 2px solid #000; padding: 3px 4px 3px 3px; font-size: 13px; text-align: right;">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Single price</span></span>
+					</th>
+					<th style="font-weight: bold; border-bottom: 2px solid #000; padding: 3px 4px 3px 3px; font-size: 13px; text-align: right;">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">Total price</span></span>
+					</th>
+				</tr>
+
+				<!--{foreach name=aussen item=order_values from=$order_data}-->
+				<tr>
+					<td style="border-bottom: 1px solid #ddd; padding: 5px 4px; vertical-align: top">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$order_values.PRODUCTS_QTY}{if $order_values.UNIT} {$order_values.UNIT}{else}x{/if}</span></span>
+					</td>
+					<td style="border-bottom: 1px solid #ddd; padding: 5px 4px; vertical-align: top">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;"><strong>{$order_values.PRODUCTS_NAME}</strong><br />
+						{foreach item=prop_item_array from=$order_values.PRODUCTS_PROPERTIES} 
+							{$prop_item_array.properties_name}: {$prop_item_array.values_name}<br />
+						{/foreach}
+
+						{if $order_values.PRODUCTS_ATTRIBUTES}
+							{$order_values.PRODUCTS_ATTRIBUTES}<br />
+						{/if}
+
+						{if $order_values.CHECKOUT_INFORMATION}
+							{$order_values.CHECKOUT_INFORMATION}<br />
+						{else}
+							<br />
+						{/if}
+						{if $order_values.PRODUCTS_SHIPPING_TIME neq ''}
+							Shipping time: {$order_values.PRODUCTS_SHIPPING_TIME}
+						{/if}
+						</span></span>
+					</td>
+					<td style="border-bottom: 1px solid #ddd; padding: 5px 4px; vertical-align: top">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+							{$order_values.PRODUCTS_MODEL}<br />
+							<em>{$order_values.PRODUCTS_ATTRIBUTES_MODEL}</em>
+						</span></span>
+					</td>
+					<td style="border-bottom: 1px solid #ddd; padding: 5px 4px; text-align: right; vertical-align: top">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$order_values.PRODUCTS_SINGLE_PRICE}</span></span>
+					</td>
+					<td style="border-bottom: 1px solid #ddd; padding: 5px 4px; text-align: right; vertical-align: top">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$order_values.PRODUCTS_PRICE}</span></span>
+					</td>
+				</tr>
+				<!--{/foreach}-->
+			
+			</tbody>
+		</table>
+
+		<div style="float: right; text-align: right">
+			{foreach name=aussen item=order_total_values from=$order_total}
+				<span style="font-size:13px"><span style="font-family: verdana,geneva,sans-serif;">{$order_total_values.TITLE|trim} {$order_total_values.TEXT|trim}</span></span><br />
+			{/foreach}
+		</div>
+		
+		<br style="clear: right;" />
+		
+		{if $COMMENTS}
+		<p style="display: block;">
+			<span style="font-size:12px;"><span style="font-family: verdana,geneva,sans-serif;">
+				<strong>Your comments:</strong><br />
+				{$COMMENTS}
+			</span></span>
+		</p>
+		{/if}
+
+		{$TS_RATING}
+
+		{if $SHOW_ABANDONMENT_WITHDRAWAL_DOWNLOADS_INFO}
+		<p>
+			<span style="font-size:12px;"><span style="font-family: verdana,geneva,sans-serif;">
+				<strong>You	chose:</strong><br />
+				I expressly agree that you commence with the execution of the contract prior to the expiration of the 
+				cancellation period. It is known to me that, with this approval, I lose any cancellation right with the 
+				start of the execution of the contract. 
+			</span></span>
+		</p>
+		{/if}
+		
+		{if $SHOW_ABANDONMENT_WITHDRAWAL_SERVICES_INFO}
+		<p>
+			<span style="font-size:12px;"><span style="font-family: verdana,geneva,sans-serif;">
+				<strong>You chose:</strong><br />
+				I agree and demand expressly that you commence with the execution of the assigned service prior to the expiration of 
+				the cancellation period. It is known to me that I lose any cancellation right with the complete fulfillment 
+				of the contract by your company.
+			</span></span>
+		</p>
+		{/if}
+		
+		{if $WITHDRAWAL_LINK || $PDF_LINK}
+		<p>
+			<span style="font-size:12px;"><span style="font-family: verdana,geneva,sans-serif;">
+				<strong>&sect; Model Withdrawal Form</strong><br />
+				{if $PDF_LINK} Our model withdrawal form as PDF document: <a href="{$PDF_LINK}">DOWNLOAD</a><br />{/if}
+				{if $WITHDRAWAL_LINK} Our online model withdrawal form: <a href="{$WITHDRAWAL_LINK}">ONLINE-FORM</a>{/if}
+			</span></span>
+		</p>
+		{/if}
+		
+		<p>
+			<span style="font-size:12px;"><span style="font-family: verdana,geneva,sans-serif;">
+				To open the downloadable PDF-files, you need an additional program such as the Adobe Reader, 
+				which you can download online for free. The current version of the Adobe Reader you can find 
+				<a href="http://get.adobe.com/uk/reader/" target="_blank">here</a>.<br />
+			</span></span>
+		</p>
+		<br />
+		{if $JANOLAW_INFO_HTML}
+		<div style="font-size:10px;font-family: verdana,geneva,sans-serif;">
+			{$JANOLAW_INFO_HTML}<br />
+		</div>
+		{/if}
+	</div>
+
+	<div style="padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #444444; font-family: arial; text-align: center;">
+		<br /><br />
+		<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$EMAIL_SIGNATURE_HTML}</span></span>
+		<br /><br />
+	</div>
+</div>

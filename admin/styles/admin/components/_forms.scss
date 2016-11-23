@@ -1,0 +1,147 @@
+/* 
+	Forms
+    ========================================================================== 
+
+	Form styling uses the Bootstrap classes and overrides some styles in order to make them 
+	look like the Gambio Admin theme. 
+	
+	bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_forms.scss
+	
+*/
+
+.form-group {
+	label {
+		color: $text-color-light;
+	}
+	
+	input[type="radio"],
+	input[type="checkbox"] {
+		margin: 2px 0 0
+	}
+	
+	.info-icon {
+		font-size: $margin-large;
+		color:     $brand-primary;
+		cursor:    pointer;
+	}
+}
+
+.form-control {
+	box-shadow: none;
+	padding:    $padding-base-vertical;
+	
+	&[disabled],
+	&[readonly],
+	fieldset[disabled] & {
+		background-color: $body-bg;
+	}
+	
+	&[disabled],
+	fieldset[disabled] & {
+		opacity: 0.35;
+	}
+}
+
+// Variables can be used to fix a Compiler-Bug of the SASS-Compiler if we want to add some pixels offset to a background-position value.
+$add-six: +6px;
+
+select.form-control {
+	-moz-appearance:    none;
+	-webkit-appearance: none;
+	appearance:         none;
+	background:         url(../images/gx-admin/icon-caret-down.png) no-repeat right $add-six center $body-bg;
+	padding-right:      15px;
+	
+	&:focus,
+	&:active {
+		border-color: $brand-primary;
+		outline:      none;
+	}
+}
+
+// Hide IE select icon.
+select::-ms-expand {
+	display: none;
+}
+
+/*
+	Configuration Form
+    ==========================================================================
+    
+    Used to style basic forms for configuration in Gambio Admin Style
+*/
+
+.form-configuration {
+	padding: 0;
+	
+	.form-horizontal {
+		fieldset {
+			margin-bottom: 24px;
+			
+			&:not(:first-of-type) {
+				margin-top: 48px;
+			}
+			
+			legend {
+				border-bottom: 3px solid $brand-primary;
+				color:         tint($text-color, 31.5);
+				font-size:     12px;
+				font-weight:   bold;
+				padding:       0 0 24px 24px;
+				margin-bottom: 0;
+			}
+			
+			.form-group {
+				margin:     0;
+				padding:    15px 24px;
+				min-height: 60px;
+				
+				.control-label {
+					font-weight:  normal;
+					padding-left: 0;
+					text-align:   left;
+				}
+				
+				select.form-control {
+					max-width: 170px;
+				}
+				
+				input, textarea {
+					&.form-control {
+						max-width: 340px;
+						
+						&.input-small {
+							max-width: 170px;
+						}
+						
+						&.input-large {
+							max-width: 510px;
+						}
+					}
+				}
+				
+				.single-checkbox {
+					margin-top: 8px;
+				}
+				
+				.switcher {
+					margin-top: 5px;
+				}
+				
+				.icon-col {
+					padding:    0;
+					text-align: center;
+				}
+				
+				&:nth-child(even) {
+					background-color: tint($gray-base, 97.5);
+				}
+				
+				&:nth-child(odd) {
+					background-color: $body-bg;
+				}
+			}
+		}
+	}
+}
+

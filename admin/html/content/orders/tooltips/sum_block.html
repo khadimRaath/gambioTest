@@ -1,0 +1,22 @@
+{extends file="../../layouts/main/partial/tooltip.html"}
+
+{block name="content"}
+	<div class="order-sum-block">
+		<table>
+			<tbody>
+				{foreach $sum_block as $block}
+					{foreach $block as $title => $value}
+						<tr>
+							<td>
+								{$title nofilter}
+							</td>
+							<td>
+								{$value nofilter}
+							</td>
+						</tr>
+					{/foreach}
+				{/foreach}
+			</tbody>
+		</table>
+	</div>
+{/block}

@@ -1,0 +1,105 @@
+/*
+	---------------------------------------------------------------------------
+	THIS FILE IS DEPRECATED - MODIFY IT ONLY FOR FIXES IN EXISTING STYLE RULES. 
+	
+	DO NOT APPEND IT WITH NEW STYLING RULES, USE THE GX-ADMIN FILES INSTEAD. 
+	---------------------------------------------------------------------------
+*/
+.gm_gprint_order_set, .gm_gprint_order_set input, .gm_gprint_order_set textarea, .gm_gprint_order_set a {
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+}
+
+.gm_gprint_order_set ul {
+	margin: 0px 0px 2px 0px;
+	padding: 0px;
+	border-left: 1px solid #CCCCCC;
+	overflow: hidden;
+	display: none;
+	height: 100%;
+}
+
+.gm_gprint_order_set ul .gm_gprint_tab_active {
+	background-color: #E7E7E7;
+	padding: 5px 8px;
+	margin: 0px;
+	float: left;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	cursor: default;
+}
+
+.gm_gprint_order_set ul .gm_gprint_tab {
+	background-color: #FFFFFF;
+	padding: 5px 8px;
+	margin: 0px;
+	float: left;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	cursor: pointer;
+}
+
+.gm_gprint_order_set ul span {
+	float: left;
+	font-size: 10px;
+	color: #000000;
+	font-family: Arial, Helvetica, Sans-Serif;
+	text-transform: uppercase;			
+	white-space: nowrap;	
+}
+
+.gm_gprint_content {
+	clear: both;	
+	display: none;
+	font-size: 12px;
+}
+
+.input_number {
+	width: 40px;
+}
+
+.gm_gprint_surface {
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	float: left;
+}
+
+.surfaces_groups, .delete_surfaces_groups {
+	cursor: pointer;	
+}
+
+.gm_gprint_content input[type="text"], .gm_gprint_content select, .gm_gprint_content textarea {
+	border: 1px solid #cccccc;
+}
+
+.gm_gprint_content input[type="file"] {
+	font-size: 12px;
+}
+
+.gm_gprint_field {
+	background-color: #ffffff;
+	padding: 0px;
+	margin: 0px;
+	border: 1px solid #cccccc;
+	font-size: 12px;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+}
+
+.gm_gprint_dropdown {
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	font-size: 12px;
+	color: #000000;
+	font-family: Verdana, Arial, Helvetica, Sans-Serif;
+	font-size: 12px;
+}

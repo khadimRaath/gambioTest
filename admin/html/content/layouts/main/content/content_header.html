@@ -1,0 +1,17 @@
+<div class="content-header" data-gx-controller="layouts/main/content/content_header">
+	<h2 class="content-title">{$page_title}</h2>
+	
+	<div class="content-navigation">
+		{foreach $content_navigation as $name => $url}
+			{if $url !== ''}
+				<div class="nav-item">
+					<a href="{$url}">{$name}</a>
+				</div>
+			{else}
+				<div class="nav-item no-link">
+					{$name}
+				</div>
+			{/if}
+		{/foreach}
+	</div>
+</div>

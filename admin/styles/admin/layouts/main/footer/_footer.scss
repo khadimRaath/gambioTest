@@ -1,0 +1,39 @@
+/* 
+	Main Footer 
+    ========================================================================== 
+
+	Styling for the main footer. 
+	
+*/
+
+$footer-info-height: 48px;
+
+#main-footer {
+	@import "menu_trigger";
+	@import "version";
+	@import "language_selection";
+	@import "copyright";
+	
+	.info {
+		max-height: $footer-info-height;
+		padding:    15px 0;
+		border-top: 1px solid $border-color;
+		background: $body-bg;
+		color:      $text-color-light;
+		overflow:   hidden;
+	}
+	
+	// Fixed state of the footer info element. 
+	&.fixed {
+		padding-top: $footer-info-height;
+		
+		.info {
+			position: fixed;
+			bottom:   0;
+			left:     0;
+			width:    100%;
+			margin:   0;
+			z-index:  $zindex-main-footer;
+		}
+	}
+}

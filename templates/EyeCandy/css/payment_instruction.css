@@ -1,0 +1,24 @@
+/* BEGIN Payment Instruction */
+
+div.payment_instruction {
+	width: 80%;
+	margin: 1ex auto;
+	background-color: #eee;
+	padding: 1em;
+}
+
+div.payment_instruction p.payment_note {
+	font-size: 1.2em;
+	margin-top: 0;
+}
+
+div.payment_instruction table.payment_instruction_data {
+
+}
+
+div.payment_instruction table.payment_instruction_data td.label {
+	font-weight: bold;
+	padding: 0 1em 0 0;
+}
+
+/* END Payment Instruction */

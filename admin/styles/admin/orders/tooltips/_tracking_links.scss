@@ -1,0 +1,25 @@
+/* 
+	Tracking code tooltip
+    ========================================================================== 
+
+	Styles the tooltip for orders with multiple tracking codes.
+	
+*/
+
+.gx-qtip.tracking-code-tooltip {
+	padding: $padding-small $padding-large;
+	
+	.qtip-content {
+		padding: 0;
+		
+		.tracking-codes {
+			.tracking-code {
+				margin-bottom: $margin-small / 2;
+			}
+			
+			.tracking-code:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

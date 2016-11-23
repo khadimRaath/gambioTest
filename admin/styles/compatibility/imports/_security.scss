@@ -1,0 +1,15 @@
+// --------------------------------------------------------------------------
+// SECURITY
+// --------------------------------------------------------------------------
+
+form[name="security"] {
+  input[readonly] {
+    &#GM_RECAPTCHA_PUBLIC_KEY,
+    &#GM_RECAPTCHA_PRIVATE_KEY {
+      //background-color: adjust-lightness($highlight-color, -10);
+      background-color: $highlight-color;
+      @include opacity(0.7);
+    }
+  }
+}
+  

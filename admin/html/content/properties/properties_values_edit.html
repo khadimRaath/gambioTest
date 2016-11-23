@@ -1,0 +1,42 @@
+{load_language_text section="properties" name="properties"}
+<div class="lightbox_properties_values_edit_content">
+	{foreach item=properties_values_name from=$content_data.properties_values.values_names}	
+	<div class="row">
+		<div class="span_1_4">
+			<label for="propertie_value_name[{$properties_values_name.code}]">{$properties.name} ({$properties_values_name.code}):</label>
+		</div>
+		<div class="span_3_4">
+			<input id="propertie_value_name[{$properties_values_name.code}]" name="values_name[{$properties_values_name.code}]" type="text" value="{$properties_values_name.values_name|escape}" size="60" />
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	{/foreach}
+	<div class="row">
+		<div class="span_1_4">
+			<label for="properties_values_sort_order">{$properties.sort_order}:</label>
+		</div>
+		<div class="span_3_4">
+			<input id="properties_values_sort_order" name="sort_order" type="text" value="{$content_data.properties_values.sort_order}" size="10" />
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	<div class="row">
+		<div class="span_1_4">
+			<label for="properties_values_model">{$properties.products_model}</label>
+		</div>
+		<div class="span_3_4">
+			<input id="properties_values_model" name="value_model" type="text" value="{$content_data.properties_values.value_model|escape}" size="40" />
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	<div class="row">
+		<div class="span_1_4">
+			<label for="properties_values_price">{$properties.price}:</label>
+		</div>
+		<div class="span_3_4">
+			<input id="properties_values_price" name="value_price" type="text" value="{$content_data.properties_values.value_price|string_format:"%.2f"}" size="16" />
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>
+	</div>
+	<div class="clear_both"> <!-- &nbsp; --> </div>
+</div>

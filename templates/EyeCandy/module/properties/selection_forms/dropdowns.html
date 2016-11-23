@@ -1,0 +1,28 @@
+{load_language_text section="properties_dropdown"}
+{if $content_data.PROPERTIES_DATA}
+<div id="properties_selection_container" class="details_attributes_dropdown" style="text-align:left;">
+	<div class="attributes clearfix">
+		<dl>
+			{foreach item=prop_item_array from=$content_data.PROPERTIES_DATA}                
+				<dt {if $prop_item_array.visible == false}style="display: none;"{/if}>{$prop_item_array.properties_name}:</dt>
+				<dd {if $prop_item_array.visible == false}style="display: none;"{/if}>
+					<select id="propertie_{$prop_item_array.properties_id}" name="properties_values_ids[]" class="properties_values_select_field gm_attr_calc_input input-select">
+						<option value="0" class="propertie_{$prop_item_array.properties_id}_0">
+							{$txt.PLEASE_SELECT}
+						</option>		
+						{foreach item=values_item_array from=$prop_item_array.values_array}
+							<option value="{$values_item_array.properties_values_id}" class="propertie_{$prop_item_array.properties_id}_{$values_item_array.properties_values_id}" {if ($content_data.properties_dropdown_mode == "dropdown_mode_1" || $content_data.properties_dropdown_mode == "dropdown_mode_2") && $values_item_array.disabled}disabled="disabled"{/if} {if $values_item_array.selected}selected="selected"{/if}>
+								{$values_item_array.values_name} {if $content_data.properties_price_show == "true" && $values_item_array.values_price != ''}({if $values_item_array.values_price|strstr:"-" == false}+{/if}{$values_item_array.values_price}){/if}
+							</option>
+						{/foreach}
+					</select>
+				</dd>
+			{/foreach}
+		</dl>		
+	</div>
+	<div id="properties_selection_shadow"><!-- --></div>
+	<p id="properties_image">{$content_data.PROPERTIES_IMAGE}</p>
+	<p id="properties_error">{$content_data.PROPERTIES_ERROR}</p>
+	<input type="hidden" id="properties_products_id" name="properties_products_id" value="{$content_data.products_id}" />
+</div>
+{/if}

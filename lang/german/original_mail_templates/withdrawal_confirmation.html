@@ -1,0 +1,89 @@
+{load_language_text section="withdrawal"}
+<meta charset="UTF-8" />
+<div style="margin: 0 !important; padding: 0 !important; max-width: 9000px !important; font-family: arial, verdana, sans-serif; background-color: #e5e5e5; height: 100%">
+	<div style="margin-left: auto; margin-right: auto; width: 720px; padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #999999; text-align: right;">&nbsp;</div>
+
+	<div style="margin-left: auto; margin-right: auto; width: 630px; padding: 25px 45px 25px; background-color: white; margin-top: 15px; margin-bottom: 15px; display: block;">
+		<table align="center" border="0" cellpadding="4" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td>
+						{if $LOGO}
+						<div style="overflow: hidden; margin-bottom: 25px; display: block; float: right;">{$LOGO}</div>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<td style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px">
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+							<strong>{$txt.customer_greeting}</strong><br />
+							<br />
+							{$txt.process_cancellation}
+						</span></span>
+
+						<div style="font-style: italic">
+							<p>
+								<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+									{$txt.withdrawal_to}:
+								</span></span>
+							</p>
+
+							<p>
+								<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+									{$smarty.const.COMPANY_NAME}<br />
+									{$smarty.const.TRADER_FIRSTNAME} {$smarty.const.TRADER_NAME}<br />
+									{$smarty.const.TRADER_STREET} {$smarty.const.TRADER_STREET_NUMBER}<br />
+									{$smarty.const.TRADER_ZIPCODE} {$smarty.const.TRADER_LOCATION}<br />
+									{$smarty.const.STORE_COUNTRY_NAME}<br />
+									<br />
+									{if $smarty.const.TRADER_FAX != ''}{$txt.fax}: {$smarty.const.TRADER_FAX}<br />{/if} 
+									{if $smarty.const.STORE_OWNER_EMAIL_ADDRESS != ''}{$txt.mail}: <a href="mailto:{$smarty.const.STORE_OWNER_EMAIL_ADDRESS}">{$smarty.const.STORE_OWNER_EMAIL_ADDRESS}</a><br />{/if}
+								</span></span>
+							</p>
+
+							<p>
+								<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+									{$txt.withdrawal_yourData}:
+								</span></span>
+							</p>
+
+							<p>
+								<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+									{$CUSTOMER_GENDER}<br />
+									{$CUSTOMER_NAME}<br />
+									{$CUSTOMER_STREET_ADDRESS}<br />
+									{$CUSTOMER_POSTCODE} {$CUSTOMER_CITY}<br />
+									{$CUSTOMER_COUNTRY}
+								</span></span>
+							</p>
+
+							<p>
+								<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+									{if $ORDER_DATE}{$txt.order_date}: {$ORDER_DATE}<br />
+									{/if} {if $DELIVERY_DATE}{$txt.deliverydate_t}: {$DELIVERY_DATE}<br />
+									{/if} {$txt.withdrawal_date}: {$WITHDRAWAL_DATE}
+								</span></span>
+							</p>
+
+							<p>
+								<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$txt.withdrawal}:</span></span>
+							</p>
+
+							<p>
+								<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$WITHDRAWAL_CONTENT}</span></span>
+							</p>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		&nbsp;
+	</div>
+
+	<div style="padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #444444; font-family: arial; text-align: center;">
+		<br /><br />
+		<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$EMAIL_SIGNATURE_HTML}</span></span>
+		<br /><br />
+	</div>
+</div>

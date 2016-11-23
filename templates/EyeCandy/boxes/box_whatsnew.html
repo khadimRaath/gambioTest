@@ -1,0 +1,38 @@
+{load_language_text section="box_whatsnew"}
+
+<div id="menubox_whatsnew" class="c_whatsnew content-box white clearfix">
+	<div id="menubox_whatsnew_head" class="c_boxhead content-box-header clearfix">
+
+		<div class="content-box-header-inner">
+			<div class="menubox_heading">{$txt.heading_whatsnew}</div>
+			<a href="{$content_data.LINK_NEW_PRODUCTS}">
+				<span class="png-fix circle_arrow_right" title="{$txt.heading_whatsnew}">
+					&nbsp;
+				</span>
+			</a>
+		</div>
+	</div>
+	<div id="menubox_whatsnew_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix article-list offer">
+			<div class="article-list-item">
+				<div class="article-list-item-inside">
+					{if $content_data.box_content.PRODUCTS_IMAGE}
+						<div class="article-list-item-image">
+							<a href="{$content_data.box_content.PRODUCTS_LINK}"><img src="{$content_data.box_content.PRODUCTS_IMAGE}" alt="{$content_data.box_content.PRODUCTS_IMAGE_ALT|default:$content_data.box_content.PRODUCTS_NAME}" title="{$content_data.box_content.PRODUCTS_IMAGE_ALT|default:$content_data.box_content.PRODUCTS_NAME}" /></a>
+						</div>
+					{/if}
+					<div class="article-list-item-text">
+						<br />
+						<span class="title"><a href="{$content_data.box_content.PRODUCTS_LINK}"{if $content_data.box_content.PRODUCTS_META_DESCRIPTION != ''} title="{$content_data.box_content.PRODUCTS_META_DESCRIPTION|truncate:80:"..."|replace:'"':'&quot;'}"{/if}>{$content_data.box_content.PRODUCTS_NAME}</a></span><br />
+						<br />
+						<span class="price"><a href="{$content_data.box_content.PRODUCTS_LINK}">{$content_data.box_content.PRODUCTS_PRICE}</a></span><br />
+						{if $content_data.box_content.PRODUCTS_VPE}
+							<span class="title">{$content_data.box_content.PRODUCTS_VPE}</span><br />
+						{/if}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

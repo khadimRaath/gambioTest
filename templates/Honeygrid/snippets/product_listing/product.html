@@ -1,0 +1,241 @@
+{load_language_text section="product_listing"}
+{load_language_text section="product_info" name="info"}
+{load_language_text section="buttons" name="button"}
+
+{product_rating id=$p_id out='OVERALL_RATING'}
+
+<div class="product-container{if $is_swiper === 'true'} swiper-slide {/if}{if $p_imgs} has-gallery{/if}"
+		{if $data_index} data-index="{$data_index}"{/if}>
+
+	<form {if (!$p_attributes && !$p_graduated_prices && $qty_value == '1') || !$p_by_now || !$p_qty_gm} class="no-status-check"{/if}>
+
+		<div class="inside">
+			<div class="content-container">
+				<div class="content-container-inner">
+
+						<figure class="image{if !$p_image || $p_image === ''} no-image{/if}" id="{$data_index}_img">
+							{if $p_image}
+								{$p_image=$p_image|replace:"thumbnail_images":"info_images"}
+								<span title="{$p_name_full}" class="product-hover-main-image product-image" style="background-image: url('{$p_image}')">
+
+								</span>
+
+							{else}
+								<div title="{$p_name_full}" class="product-hover-main-image product-image">
+									<div class="fa fa-picture-o"></div>
+								</div>
+							{/if}
+
+							{if $p_fsk18 === 'true'}
+								<img src="{$tpl_path}assets/images/ab18.png" alt="ab18.png" title="ab18.png" class="img-responsive" />
+							{/if}
+
+							{if $ribbons.manufacturer|count > 0}
+								{include file="get_usermod:{$tpl_path}snippets/ribbon/ribbon_manufacturer.html"
+								ribbon="manufacturer"
+								text=$ribbons.manufacturer.0.IMAGE_ALT
+								img=$ribbons.manufacturer.0.IMAGE
+								url=$ribbons.manufacturer.0.URL
+								}
+							{/if}
+
+							{if $ribbons.ribbons}
+								{include file="get_usermod:{$tpl_path}snippets/ribbon/ribbon.html"}
+							{/if}
+
+						</figure>
+
+						<div class="title-description">
+
+							<div class="title">
+								<a href="{$p_url}"{if $p_meta} title="{$p_meta}"{/if} class="product-url">
+									{$p_headline}
+								</a>
+							</div>
+
+							{if $showRating}
+								<div class="hidden-list">
+									<span {if $p_meta} title="{$p_meta}"{/if}>
+										{if $OVERALL_RATING.rounded && $OVERALL_RATING.rounded != ""}
+											{include file="get_usermod:{$tpl_path}snippets/rating_stars.html" rating_rounded=$OVERALL_RATING.rounded rating_count=$OVERALL_RATING.count }
+										{/if}
+									</span>
+								</div>
+							{/if}
+
+
+							{if $p_short_desc}
+								<div class="description hidden-grid">
+									{$p_short_desc}
+								</div>
+							{/if}
+
+							{$p_attributes}
+
+							{if $p_graduated_prices}
+								<div class="graduated-prices hidden-grid">
+									{$p_graduated_prices}
+								</div>
+							{/if}
+
+
+							<div class="shipping hidden-grid">
+								{if $p_shipping_name || $p_qty || $p_weight}
+									{if $p_shipping_name}
+										<div class="shipping-info-short">
+											{$txt.text_shippingtime}
+											{if $p_shipping_img}
+												<img src="{$p_shipping_img}" alt="{$p_shipping_img_alt}" title="{$p_shipping_img_title}" />
+											{/if}
+											{$p_shipping_name}
+										</div>
+										{if $p_shipping_link_active && $co_id}
+											<a class="js-open-modal" data-modal-type="iframe" data-modal-settings='{literal}{{/literal}"title": "{$txt.text_shippingtime}"{literal}}{/literal}' href="popup_content.php?coID={$co_id}&amp;lightbox_mode=1" title="{$info.text_abroad_shipping_info}">
+												({$info.text_abroad_shipping_info})
+											</a>
+										{/if}
+										{if $show_qty_info == '1' && $p_stock && $p_stock > 0}
+											<span>,</span>
+										{/if}
+										<br />
+									{/if}
+
+									<span>
+										{if $p_qty}
+											{$txt.text_products_stock}
+											{$p_stock}
+											{if $p_unit}
+												{$p_unit}
+											{else}
+												{$txt.text_pieces}
+											{/if}
+											{if $show_qty_info == '1' || ($p_stock && $p_stock > 0) && $p_weight}
+												,
+											{/if}
+										{/if}
+
+										{if $p_weight}
+											{$info.text_weight}
+											{$p_weight}
+											{$info.text_weight_unit}
+											{if $p_unit}
+												{$p_unit}
+											{else}
+												{$info.text_weight_qty_unit}
+											{/if}
+										{/if}
+									</span>
+								{/if}
+							</div><!-- // .shipping -->
+
+						</div><!-- // .title-description -->
+
+						<div class="price-tax">
+
+							{if $showRating}
+								<div class="rating hidden-grid">
+									<span {if $p_meta} title="{$p_meta}"{/if}>
+										{if $OVERALL_RATING.rounded && $OVERALL_RATING.rounded != ""}
+											{include file="get_usermod:{$tpl_path}snippets/rating_stars.html" rating_rounded=$OVERALL_RATING.rounded rating_count=$OVERALL_RATING.count }
+										{/if}
+									</span>
+								</div>
+							{/if}
+
+							<div class="price">
+								<span class="current-price-container"{if $p_meta} title="{$p_meta}"{/if}>
+									{$p_price}{if $p_vpe}<br /><span class="gm_products_vpe products-vpe">{$p_vpe}</span>{/if}
+								</span>
+							</div>
+
+							<div class="tax-shipping-hint hidden-grid">
+
+								{if $module_data.PRODUCTS_TAX_INFO || $module_data.PRODUCTS_SHIPPING_LINK}
+									<div class="tax">{$module_data.PRODUCTS_TAX_INFO}{$module_data.PRODUCTS_SHIPPING_LINK}</div>
+								{/if}
+
+							</div>
+
+							<div class="cart-error-msg alert alert-danger hidden hidden-grid" role="alert"></div>
+
+							<div class="button-input hidden-grid" {if $p_by_no && $p_qty_gm && $qty_value != 1 || (($show_qty == '1' && $p_attributes) || ($show_qty == '1' && $has_attributes == '0'))} data-gambio-widget="input_number"{/if}>
+
+								{if $p_by_now && $p_qty_gm}
+
+									<div class="row">
+										<div class="col-xs-12 col-lg-3 quantity-input" data-gambio-widget="input_number">
+											{if $qty_value != 1 || (($show_qty == '1' && $p_attributes) || ($show_qty == '1' && $has_attributes == '0'))}
+												{if $p_unit}
+													<span class="quantity-unit">{$p_unit}:</span>
+												{/if}
+												<input type="{$qty_type}" name="{$qty_name}" id="{$qty_id}" class="form-control js-calculate-qty{if $qty_cls} {$qty_cls}{/if}" value="{$qty_value}" />
+											{else}
+												<input type="hidden" name="{$input_hidden}" value="{$qty_value}" />
+											{/if}
+										</div>
+
+										<div class="col-xs-12 col-lg-9">
+											{if $p_unit && ($qty_value != 1 || (($show_qty == '1' && $p_attributes) || ($show_qty == '1' && $has_attributes == '0')))}
+												&nbsp;
+											{/if}
+
+											<button class="btn btn-primary btn-buy btn-block{if $p_deactivate_btn === 'true'} btn-inactive{/if} pull-right js-btn-add-to-cart"
+													type="submit"
+													name="btn-add-to-cart"
+													title="{if $has_attributes && !$p_attributes}{$button.to_the_product}{else}{$button.add_to_cart}{/if}">
+												{if $has_attributes && !$p_attributes}
+													{$button.to_the_product}
+												{else}
+													{$button.add_to_cart}
+												{/if}
+											</button>
+
+										</div>
+									</div>
+
+									<input type="hidden" name="products_id" value="{$p_id}" />
+
+								{/if}
+
+							</div><!-- // .button-input -->
+
+						</div><!-- // .price-tax -->
+
+
+				</div><!-- // .content-container-inner -->
+
+			</div><!-- // .content-container -->
+
+		</div><!-- // .inside -->
+
+	</form>
+
+	{if $p_imgs}
+		<ul class="gallery">
+			{assign var="NUM_random_id" value=1|rand:99999}
+
+			{foreach item=image_data from=$p_imgs}
+
+				{if $image_data@iteration > 4}
+					{break}
+				{/if}
+
+				{$image_data.ORIGINAL=$image_data.IMAGE|replace:"thumbnail_images":"info_images"}
+
+				<li class="thumbnails" {if $img_id} data-index="{$img_id}"{/if}>
+					<span class="align-helper"></span>
+					<img class="img-responsive spinner"
+						{if $image_data.ORIGINAL} data-src="{$image_data.ORIGINAL|strip_tags}"{/if}
+						{if $image_data.IMAGE} data-thumb-src="{$image_data.IMAGE|strip_tags}"{/if}
+						src="templates/{$smarty.const.CURRENT_TEMPLATE}/assets/images/loading.gif"
+						{if $image_data.IMAGE_ALT} alt="{$image_data.IMAGE_ALT|strip_tags}"{/if}
+						{if $image_data.PRODUCTS_NAME} title="{$image_data.PRODUCTS_NAME|strip_tags}"{/if}
+						/>
+				</li>
+
+			{/foreach}
+		</ul>
+	{/if}
+
+</div><!-- // .product-container -->
+

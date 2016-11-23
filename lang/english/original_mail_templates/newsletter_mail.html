@@ -1,0 +1,67 @@
+<meta charset="UTF-8" />
+<div style="margin: 0 !important; padding: 0 !important; max-width: 9000px !important; font-family: arial, verdana, sans-serif; background-color: #e5e5e5; height: 100%">
+	<div style="margin-left: auto; margin-right: auto; width: 720px; padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #999999; text-align: right;">&nbsp;</div>
+
+	<div style="margin-left: auto; margin-right: auto; width: 630px; padding: 25px 45px 25px; background-color: white; margin-top: 15px; margin-bottom: 15px; display: block;">
+		<table align="center" border="0" cellpadding="4" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td>
+						{if $gm_logo_mail}
+						<div style="overflow: hidden; margin-bottom: 25px; display: block; float: right;">{$gm_logo_mail}</div>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<span style="font-family:verdana,geneva,sans-serif;"><span style="font-size: 13px;">
+								<b>Dear {if	$GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME},</b>
+							</span></span>
+						</p>
+
+						<p>
+							<span style="font-family:verdana,geneva,sans-serif;"><span style="font-size: 13px;">
+								<b>thank you for your subscription.</b>
+							</span></span>
+						</p>
+
+						<p>
+							<span style="font-family:verdana,geneva,sans-serif;"><span style="font-size: 13px;">
+								You receive this mail, because you want to receive our newsletter.
+								Please you click on the activation link to activate this service. If you should
+								not have registered yourselves in newsletter and/or the receipt of the newsletters
+								is not wanted, we wish you to do nothing. Your address is then deleted automatically
+								with the next actualization of the data base.
+							</span></span>
+						</p>
+
+						<br />
+						
+						<table bgcolor="#f1f1f1" border="0" cellpadding="8" width="100%">
+							<tbody>
+								<tr>
+									<td>
+										<span style="font-family:verdana,geneva,sans-serif;"><span style="font-size: 13px;">
+											<b>Your activation-link:</b><br />
+											<a href="{$LINK}">{$LINK}</a>
+										</span></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br /> 
+		&nbsp;
+	</div>
+
+	<div style="padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #444444; font-family: arial; text-align: center;">
+		<br /><br />
+		<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$EMAIL_SIGNATURE_HTML}</span></span>
+		<br /><br />
+	</div>
+</div>

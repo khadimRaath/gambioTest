@@ -1,0 +1,28 @@
+// --------------------------------------------------------------------------
+// CLEAR CACHE ADMIN PAGE
+// --------------------------------------------------------------------------
+
+.gx-clear-cache {
+  
+  .message_stack_container {
+    width: $breakpoint-width-small !important; // Force the same width as the content (breakpoint-small).
+  }
+  
+  .grid {
+    padding-bottom: 8px;
+    padding-top:    8px;
+    margin-bottom:  0;
+    
+    .configuration-label {
+      padding-top: 5px;
+      label {
+        font-weight: normal !important;
+        font-size:   12px;
+      }
+    }
+    
+    .btn {
+      margin: 0 24px 0 0;
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{load_language_text section="google_categories_administration"}
+
+<table width="100%" class="gx-configuration">
+  <tbody><tr>
+	<td class="remove-border">
+	  <table width="100%">
+		<tbody>
+		<tr>
+		  <td class="remove-border">
+			<input type="text" class="text button_edit" value="{$txt.button_edit}" />
+			<input type="text" class="text select" value="{$txt.select_categorie}" />
+			<div class="google_category_list">
+				<span class="hidden" >
+					<input type="checkbox" class="checkbox delete-checkbox" name="delete_list[]" />
+					{$txt.button_delete}
+				</span>
+			</div>
+			<div class="google_category_list_add_button">
+				<a href="#" class="btn">{$txt.button_category_add}</a>
+			</div>
+			<div class="google_category_list_add_box">
+				<input type="text" name="category_string" class="category_string " readonly="readonly" />
+				<div class="google_category_select_boxes"></div>
+				<div class="control-group">
+					<a href="#" class="btn add btn-add">{$txt.button_add}</a>
+					<a href="#" class="btn cancel btn-cancel">{$txt.button_cancel}</a>
+				</div>
+			</div>
+		  </td>
+		</tr>
+	  </tbody></table>
+	</td>
+  </tr>
+</tbody></table>

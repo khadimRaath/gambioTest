@@ -1,0 +1,89 @@
+{load_language_text section="box_categories_top"}
+{load_language_text section="general" name="general"}
+		
+<div id="categories">
+	<div class="navbar-collapse collapse">
+		<nav class="navbar-default navbar-categories" data-gambio-widget="menu">
+			<ul class="level-1 nav navbar-nav">
+
+				{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+
+					<li class="{if $categories_item.children|@count > 0}dropdown {/if}level-1-child{if $content_data.category_id == $categories_item.data.id} active{/if}{if $categories_item.children|@count > 0}{/if}" data-id="{$categories_item.data.id}">
+						<a class="dropdown-toggle" href="{$categories_item.data.url}" title="{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}">
+							{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}{if $categories_item.data.products_count} ({$categories_item.data.products_count}){/if}
+						</a>
+						
+						{if $categories_item.children|@count > 0}
+							<ul data-level="2" class="level-2 dropdown-menu dropdown-menu-child">
+								<li class="enter-category">
+									<a class="dropdown-toggle" href="{$categories_item.data.url}" title="{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}" rel="nofollow">{$general.ENTER_CATEGORY}</a>
+								</li>
+
+								{foreach name=box_data item=box_elements from=$categories_item.children}
+									{if $box_elements|@count > 0}
+										{assign var="children_found" value="true"}
+									{/if}
+								{/foreach}
+								
+								{if $children_found}
+									
+									{foreach name=ele_data item=child_item from=$categories_item.children}
+										<li class="{if $child_item.children|@count > 0}dropdown {/if}level-2-child{if $content_data.category_id == $child_item.data.id} active{/if}">
+											<a href="{$child_item.data.url}" title="{$child_item.data.name}">
+												{$child_item.data.name}
+											</a>
+											{if $child_item.children|@count > 0}
+												<ul  data-level="3" class="level-3 dropdown-menu dropdown-menu-child">
+													<li class="enter-category">
+														<a href="{$child_item.data.url}" title="{$child_item.data.name}" class="dropdown-toggle" rel="nofollow">
+															{$general.ENTER_CATEGORY}
+														</a>
+													</li>
+													{foreach item=sub_item from=$child_item.children}
+														<li class="level-3-child{if $content_data.category_id == $sub_item.data.id} active{/if}">
+															<a href="{$sub_item.data.url}" title="{$sub_item.data.name}">
+																{$sub_item.data.name}
+															</a>
+														</li>
+													{/foreach}
+												</ul>
+											{/if}
+										</li>
+									{/foreach}
+								
+								{else}
+								
+									<li>
+										<ul>
+											{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+												<li class="{if $content_data.category_id == $categories_item.data.id} active{/if}">
+													<a href="{$categories_item.data.url}" title="{$categories_item.data.name}">
+														{$categories_item.data.name}
+													</a>
+												</li>
+											{/foreach}
+										</ul>
+									</li>
+
+								{/if}
+							
+							</ul>
+						{/if}
+						
+					</li>
+				{/foreach}
+
+				###CONTENT_TOP###
+
+				<li class="dropdown dropdown-more" style="display: none">
+					<a class="dropdown-toggle" href="#" title="{$txt.CATEGORIES_NEXT}">
+						{$general.CATEGORIES_NEXT}
+					</a>
+					<ul class="level-2 dropdown-menu ignore-menu"></ul>
+				</li>
+
+			</ul>
+		</nav>
+
+	</div>
+</div>

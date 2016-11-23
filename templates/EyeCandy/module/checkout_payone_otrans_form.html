@@ -1,0 +1,115 @@
+<input type="hidden" name="otrans_country" value="<?php echo $this->payone->getBillToCountry() ?>">
+<table class="payone_paydata_nocheck payone_otrans_data">
+	<tr>
+		<td class="label">
+			<label for="otrans_type">##onlinetransfer_type</label>
+		</td>
+		<td>
+			<select name="otrans_type" id="otrans_type">
+				<?php foreach($genre_config['types'] as $type_name => $type_config): ?>
+					<?php if($type_config['active'] == 'true'): ?>
+						<option value="<?php echo $type_name ?>"><?php echo $type_config['name'] ?></option>
+					<?php endif ?>
+				<?php endforeach ?>
+			</select>
+		</td>
+	</tr>
+	<tr class="datarow for_giropay for_sofortueberweisung for_eps for_ideal">
+		<td class="label">
+			<label for="otrans_accowner">##text_accountowner</label>
+		</td>
+		<td>
+			<input id="otrans_accowner" name="otrans_accowner" type="text" value="<?php echo $_SESSION['customer_first_name'].' '.$_SESSION['customer_last_name'] ?>">
+		</td>
+	</tr>
+	<?php if($GLOBALS['order']->billing['country']['iso_code_2'] == 'CH' && $_SESSION['currency'] == 'CHF'): ?>
+		<tr class="datarow for_sofortueberweisung">
+			<td class="label">
+				<label for="otrans_accnum">##text_accountnumber</label>
+			</td>
+			<td>
+				<input id="otrans_accnum" name="otrans_accnum" type="text" value="">
+			</td>
+		</tr>
+		<tr class="datarow for_sofortueberweisung">
+			<td class="label">
+				<label for="otrans_bankcode">##text_bankcode</label>
+			</td>
+			<td>
+				<input id="otrans_bankcode" name="otrans_bankcode" type="text" value="">
+			</td>
+		</tr>
+		<tr class="datarow for_giropay">
+			<td class="label">
+				<label for="otrans_iban">##iban</label>
+			</td>
+			<td>
+				<input id="otrans_iban" name="otrans_iban" type="text" value="">
+			</td>
+		</tr>
+		<tr class="datarow for_giropay">
+			<td class="label">
+				<label for="otrans_bic">##bic</label>
+			</td>
+			<td>
+				<input id="otrans_bic" name="otrans_bic" type="text" value="">
+			</td>
+		</tr>
+	<?php else: ?>
+		<tr class="datarow for_giropay for_sofortueberweisung">
+			<td class="label">
+				<label for="otrans_iban">##iban</label>
+			</td>
+			<td>
+				<input id="otrans_iban" name="otrans_iban" type="text" value="">
+			</td>
+		</tr>
+		<tr class="datarow for_giropay for_sofortueberweisung">
+			<td class="label">
+				<label for="otrans_bic">##bic</label>
+			</td>
+			<td>
+				<input id="otrans_bic" name="otrans_bic" type="text" value="">
+			</td>
+		</tr>
+	<?php endif ?>
+	<tr class="datarow for_eps">
+		<td class="label">
+			<label for="otrans_bankgroup_eps">##text_bankgroup</label>
+		</td>
+		<td>
+			<select id="otrans_bankgroup_eps" name="otrans_bankgroup_eps">
+				<?php foreach($bgroups['eps'] as $bg_id => $bg_name): ?>
+					<option value="<?php echo $bg_id ?>"><?php echo $bg_name ?></option>
+				<?php endforeach ?>
+			</select>
+		</td>
+	</tr>
+	<tr class="datarow for_ideal">
+		<td class="label">
+			<label for="otrans_bankgroup_ideal">##text_bankgroup</label>
+		</td>
+		<td>
+			<select id="otrans_bankgroup_ideal" name="otrans_bankgroup_ideal">
+				<?php foreach($bgroups['ideal'] as $bg_id => $bg_name): ?>
+					<option value="<?php echo $bg_id ?>"><?php echo $bg_name ?></option>
+				<?php endforeach ?>
+			</select>
+		</td>
+	</tr>
+	<tr class="datarow for_giropay for_sofortueberweisung for_eps for_ideal">
+		<td colspan="2">
+			<button class="p1_checkdata">##check_paydata</button>
+			<p class="p1_error"></p>
+		</td>
+	</tr>
+</table>
+<div class="p1_finaldata_otrans">
+	<table>
+		<tr class="for_giropay for_sofortueberweisung for_eps for_ideal for_pfefinance for_fpcard"><td>##onlinetransfer_type</td><td class="final_otrans_type"></td></tr>
+		<tr class="for_giropay for_sofortueberweisung for_eps for_ideal for_pfefinance for_fpcard"><td>##text_accountowner</td><td class="final_otrans_accowner"></td></tr>
+		<tr class="for_giropay for_sofortueberweisung"><td>##text_bankcode</td><td class="final_otrans_bankcode"></td></tr>
+		<tr class="for_giropay for_sofortueberweisung"><td>##text_accountnumber</td><td class="final_otrans_accnum"></td></tr>
+		<tr class="for_eps for_ideal"><td>##text_bankgroup</td><td class="final_otrans_bankgroup"></td></tr>
+	</table>
+</div>

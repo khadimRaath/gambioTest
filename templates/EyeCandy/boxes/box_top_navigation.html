@@ -1,0 +1,46 @@
+{load_language_text section="top_navigation"}
+{load_language_text section="infobox" name="infobox"}
+
+<div id="top_navi">
+	<div id="top_navi_inner">
+
+		<ul>
+			<li title="{$txt.title_home}" class="png-fix"><div title="{$txt.title_home}" class="top_navi_home png-fix">&nbsp;</div><a href="{$content_data.HOME_URL}">&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			{foreach name=cat_data item=content_item from=$content_data.CONTENT_LINKS_DATA}
+				<li title="{$content_item.NAME}" class="png-fix"><a href="{$content_item.URL}" target="{$content_item.URL_TARGET}">{$content_item.NAME}</a></li>
+			{/foreach}
+			{if $content_data.LANGUAGE_ICON}
+			<li title="{$txt.title_language}" class="png-fix"><div title="{$txt.title_language}" class="top_navi_arrow png-fix">&nbsp;</div><a href="{page_url}#" class="last pulldown_link" id="language_link" rel="#language"><img src="{$content_data.LANGUAGE_ICON}" title="" alt="" border="0" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			{/if}
+			{if $content_data.CURRENT_CURRENCY}
+			<li title="{$txt.title_currency}" class="png-fix"><div title="{$txt.title_currency}" class="top_navi_arrow png-fix">&nbsp;</div><a href="{page_url}#" class="pulldown_link" id="currency_link" rel="#currency">{$content_data.CURRENT_CURRENCY}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			{/if}
+
+			{if $content_data.SHOW_TOP_COUNTRY_SELECTION}
+			<li title="{$txt.title_country|escape:'html'}: {$content_data.SELECTED_COUNTRY}" class="png-fix"><div title="{$txt.title_country|escape:'html'}: {$content_data.SELECTED_COUNTRY}" class="top_navi_arrow png-fix">&nbsp;</div><a href="{page_url}#" class="pulldown_link" id="country_link" rel="#country">{$txt.title_country|escape:'html'}: {$content_data.SELECTED_COUNTRY}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			{/if}
+			
+			{if $content_data.ACCOUNT_URL}
+			<li title="{$txt.title_account}" class="png-fix"><a href="{$content_data.ACCOUNT_URL}">{$txt.button_account}</a></li>
+			{/if}
+			{if !$content_data.ACCOUNT_URL}
+			<li title="{$txt.title_login}" class="png-fix"><div class="top_navi_arrow png-fix">&nbsp;</div><a href="{page_url}#" class="pulldown_link" id="customer_login_link" rel="#customer_login">{$txt.button_login}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+			{else}
+			<li title="{$txt.title_logoff}" class="png-fix"><a href="{$content_data.LOGOFF_URL}">{$txt.button_logoff}</a></li>
+			{/if}
+			{if $content_data.customers_data.PUBLIC == '1'}
+			<li title="{$txt.title_customers_data}" class="png-fix">
+				{if $content_data.customers_data.SHOW_ARROW}
+					<div title="{$txt.title_customers_data}" class="top_navi_arrow png-fix">&nbsp;</div><a href="{page_url}#" class="pulldown_link" id="infobox_link" rel="#infobox">{$infobox.group}: {$content_data.customers_data.GROUP}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+				{else}
+					<span>{$infobox.group}: {$content_data.customers_data.GROUP}</span>
+				{/if}
+			</li>
+			{/if}
+			{if $content_data.WISHLIST_URL}
+			<li title="{$txt.title_wish_list}" class="png-fix"><a href="{$content_data.WISHLIST_URL}">{$txt.button_wish_list}</a></li>
+			{/if}
+			<li title="{$txt.title_cart}" class="png-fix"><a href="{$content_data.CART_URL}">{$txt.button_cart}</a></li>
+		</ul>
+	</div>
+</div>

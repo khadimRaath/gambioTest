@@ -1,0 +1,5 @@
+Sehr {$SALUTATION} {$CUSTOMER},
+
+Sie erhalten mit dieser E-Mail Ihre Rechnung Nr. {$INVOICE_ID} von der Bestellung Nr. {$ORDER_ID} vom {$DATE}.
+
+{$EMAIL_SIGNATURE}

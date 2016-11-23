@@ -1,0 +1,9 @@
+{load_language_text section="order_details"}
+
+	<span class="shipping-calculator-shipping-weight-unit col-xs-12 col-sm-9">
+	{$content_data.shipping_weight} {$txt.text_weight_unit}
+	
+	{if $content_data.show_shipping_weight_info == 1}
+		<img src="{$tpl_path}assets/images/icon_cart_shipping_costs_info.png" alt="{$txt.shipping_weight_info}" title="{$txt.shipping_weight_info}" />
+	{/if}
+</span>

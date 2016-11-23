@@ -1,0 +1,27 @@
+{load_language_text section="reviews"}
+
+<h1>
+	{$txt.heading_reviews} 
+	<a href="{$PRODUCTS_LINK}" title="$PRODUCTS_NAME">
+		{$PRODUCTS_NAME}
+	</a>
+</h1>
+
+<ul>
+
+	{foreach item=module_data from=$module_content}
+
+		<dt>{$txt.title_author}</dt>
+		<dd>{$module_data.AUTHOR}</dd>
+		
+		<dt>{$txt.title_rating}</dt>
+		<dd>
+			<img src="{$module_data.RATING_IMAGE_URL}" title="{$PRODUCTS_NAME}" alt="{$PRODUCTS_NAME}" />
+		</dd>
+		
+		<dt>{$txt.title_date}</dt>
+		<dd>{$module_data.DATE}</dd>
+	
+	{/foreach}
+		
+</ul>

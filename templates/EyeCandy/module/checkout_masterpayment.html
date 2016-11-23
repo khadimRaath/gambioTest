@@ -1,0 +1,48 @@
+{load_language_text section="checkout_confirmation"}
+{load_language_text section="buttons" name="button"}
+
+<link type="text/css" rel="stylesheet" href="templates/{$tpl_path}/css/masterpayment.css" />
+
+{if $LIGHTBOX == 'true'}<div id="lightbox_content" style="display:none">{/if}
+	<div class="order_confirm{if $LIGHTBOX == 'true'} lightbox_block{/if}">
+
+        <div class="process_bar">
+            <ul>
+                <li><label><span>{$txt.text_shoppingcart}</span></label></li>
+                <li><label><span>{$txt.text_yourdata}</span></label></li>
+                <li><label><span>{$txt.text_ordershipping}</span></label></li>
+                <li class="active"><label><span>{$txt.text_orderconfirm}</span></label></li>
+            </ul>
+        </div>
+        
+
+        {if $masterpayment_payment_title!=''}
+            <h4>{$masterpayment_payment_title}</h4>
+        {/if}
+
+		<div class="masterpayment_box">
+        	
+            <iframe class="masterpayment_frame" allowtransparency="true" src="{$masterpayment_request_url}" scrolling="no" width="100%" height="500" frameborder="0">                             
+            
+         		<p>
+                
+                    <form name="masterpaymentForm" id="masterpaymentForm" action="{$masterpayment_request_url}" method="post">
+                
+                        <input class="masterpayment_submit_button" type="submit" name="sent" value="&raquo; {$masterpayment_button_text}" />
+                        
+                    </form>
+                    
+                </p>        
+        	
+           	</iframe>           
+    
+		</div>
+        
+	</div>
+    
+{if $LIGHTBOX == 'true'}
+	<a href="{$LIGHTBOX_CLOSE}" class="icon_lightbox_close_checkout button_close_lightbox" title="{$button.close}">
+    	{$button.close}
+  	</a>
+</div>
+{/if}

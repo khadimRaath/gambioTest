@@ -1,0 +1,127 @@
+<?php
+/* --------------------------------------------------------------
+	checkout_payone_cc_form.html 2015-08-20
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2015 Gambio GmbH
+	Released under the GNU General Public License (Version 2)
+	[http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+*/
+?>
+<script src="https://secure.pay1.de/client-api/js/v1/payone_hosted_min.js"></script>
+<style>
+.order_payment .payone_paydata_nobtn iframe {
+    background-color: initial;
+    background-image: initial;
+    background-position: initial;
+    background-repeat: initial;
+    border: initial;
+    color: initial;
+    font-family: initial;
+    font-size: initial;
+    padding: initial;
+    height: <?php echo (int)$genre_config['genre_specific']['inputstyle']['default-iframe_height'] ?>px;
+    width: <?php echo (int)$genre_config['genre_specific']['inputstyle']['default-iframe_width'] ?>px;
+}
+table.payone_paydata_nobtn td span {  }
+#p1_error.p1_error_highlight { font-weight: bold; font-size: 1.3em; padding: 1em; background: #faa; }
+
+</style>
+
+<table class="payone_paydata_nobtn payone_cc_data">
+	<tr>
+		<td class="label">
+			<label for="p1_cc_cardholder_firstname">##text_cardowner_firstname</label>
+		</td>
+		<td>
+			<input id="p1_cc_cardholder_firstname" name="p1_cardholder_firstname" type="text" class="clear_before_submit" value="<?php echo $_SESSION['customer_first_name'] ?>">
+		</td>
+	</tr>
+	<tr>
+		<td class="label">
+			<label for="p1_cc_cardholder_lastname">##text_cardowner_lastname</label>
+		</td>
+		<td>
+			<input id="p1_cc_cardholder_lastname" name="p1_cardholder_lastname" type="text" class="clear_before_submit" value="<?php echo $_SESSION['customer_last_name'] ?>">
+		</td>
+	</tr>
+	<tr>
+		<td class="label"><label for="cardtype">##text_cardtype</label></td>
+		<td>
+			<span id="cardtype" class="inputIframe"></span>
+		</td>
+	</tr>
+	<tr>
+		<td class="label">##text_cardno</td>
+		<td>
+			<span id="cardpan" class="inputIframe"></span>
+		</td>
+	</tr>
+	<tr>
+		<td class="label">##text_cardexpires</td>
+		<td>
+			<span id="expireInput" class="inputIframe">
+				<span id="cardexpiremonth"></span>
+				<span id="cardexpireyear"></span>
+			</span>
+		</td>
+	</tr>
+	<?php if($genre_config['genre_specific']['check_cav'] != 'false'): ?>
+	<tr>
+		<td class="label">##text_cardchecknum</td>
+		<td>
+			<span id="cardcvc2" class="inputIframe"></span>
+		</td>
+	</tr>
+	<?php endif ?>
+	<tr>
+		<td colspan="2">
+			<div class="p1_error" id="p1_error"></div>
+		</td>
+	</tr>
+</table>
+<div class="p1_pseudodata">
+	<input type="hidden" id="pseudocardpan" name="pseudocardpan" value="not set">
+	<input type="hidden" id="truncatedcardpan" name="truncatedcardpan" value="not set">
+	<input type="hidden" name="payone_cc_genre_identifier" value="<?php echo $active_genre_identifier ?>">
+</div>
+<table class="payone_pseudodata">
+	<tr>
+		<td class="label">
+			##text_cardno
+		</td>
+		<td>
+			<span class="payone_truncatedcardpan"></span>
+		</td>
+	</tr>
+</table>
+
+<script>
+var request;
+p1_iframe_config.language = Payone.ClientApi.Language.<?php echo $_SESSION['language_code'] == 'de' ? 'de' : 'en' ?>;
+var iframes = new Payone.ClientApi.HostedIFrames(p1_iframe_config, p1_cc_config);
+
+function p1cc_check() {
+	if (iframes.isComplete()) {
+		iframes.creditCardCheck('p1cc_checkCallback');
+	} else {
+		// console.debug("not complete");
+		$('table.payone_cc_data').first().get(0).scrollIntoView();
+	}
+}
+
+function p1cc_checkCallback(response) {
+	// console.debug(response);
+	if (response.status === "VALID") {
+		document.getElementById("pseudocardpan").value = response.pseudocardpan;
+		document.getElementById("truncatedcardpan").value = response.truncatedcardpan;
+		document.getElementById("checkout_payment").submit();
+	}
+	else
+	{
+		$('table.payone_cc_data').first().get(0).scrollIntoView();
+		$('#p1_error').addClass('p1_error_highlight');
+	}
+}
+</script>

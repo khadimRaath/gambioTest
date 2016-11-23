@@ -1,0 +1,185 @@
+{load_language_text section="export_schemes"}
+{load_language_text section="lightbox_buttons" name="buttons"}
+{if $content_data.show_wrapper}
+{literal}
+<!--[if IE 8]>
+<style type="text/css">
+	.export_scheme_fields .field_column_headline {
+		filter:progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+		top: 0;
+		left: 0;
+	}
+</style>
+<![endif]-->
+{/literal}
+	<div class="export_scheme_fields">
+		<div class="export_scheme_fields_wrapper">
+			<div class="button_container">
+				<div class="button_left_container">
+					<div class="fields_headline content_headline">{$txt.columns}</div>
+					<a href="#" onclick="return false;" class="admin_button green add_field">{$txt.add_column}</a>
+					<div class="clear_both"> <!-- &nbsp; --> </div>   
+				</div>
+				<div class="button_right_container"></div>
+				<div class="clear_both"> <!-- &nbsp; --> </div>   
+			</div>
+			<div class="export_scheme_field_container_wrapper">
+				<table cellpadding="0" cellspacing="0">
+					<tr>
+{/if}	
+						{foreach item=field from=$content_data.fields_array}
+							<td {if $field->v_data_array.created_by == 'gambio'}class="disabled"{/if}>
+								<div class="field_container">
+									<input type="hidden" value="{$field->v_field_id}" class="field_id" name="field_id[]" />
+									<input type="hidden" value="{$field->v_data_array.field_name|htmlentities_wrapper}" class="field_name" name="field_name[]" />
+									<input type="hidden" value="{$field->v_data_array.field_content|htmlentities_wrapper}" class="field_content" name="field_content[]" />
+									<input type="hidden" value="{$field->v_data_array.field_content_default|htmlentities_wrapper}" class="field_content_default" name="field_content_default[]" />
+									<input type="hidden" value="{if $field->v_data_array.created_by == 'gambio'}1{else}0{/if}" class="field_disabled" name="field_created_by[]" />
+									<div class="field_column">
+										<div class="field_column_headline">{$field->v_data_array.field_name|htmlentities_wrapper}</div>
+										<div class="field_column_move{if $field->v_data_array.created_by == 'gambio'} active{/if}"></div>
+										<div class="field_column_delete"><a href="export/export_scheme_field_delete.html?buttons=cancel-delete" onclick="return false;" {if $field->v_data_array.created_by == 'gambio'}class="active"{/if}></a></div>
+										<div class="field_column_headline_button"><a href="#" title="{$txt.edit_field}" onclick="return false;"></a></div>										
+									</div>
+									<div class="field_edit_container"></div>
+								</div>
+							</td>
+						{/foreach}
+{if $content_data.show_wrapper}	
+						<td id="new_field" class="disabled">
+							<div class="field_container">
+								<input type="hidden" value="-1" class="field_id" />
+								<div id="field_edit_container" class="field_edit_container">
+									<div id="field_details">
+										<div style="width: 320px; height: 310px; margin: 0 auto; padding-top: 15px;">
+											<div class="row field_headline"></div>
+											<div class="row">
+												<div class="span_1_3">
+													<label for="edit_field_name">{$txt.field_name}:</label>
+												</div>
+												<div class="span_2_3">
+													<input type="text" value="" title="{$txt.tooltip_fields_field_name}" id="edit_field_name" name="edit_field_name" />
+												</div>
+												<div style="clear: both;"> <!-- --> </div>
+											</div>
+											<div class="row">
+												<div class="span_1_3">
+													<label for="edit_field_content">{$txt.field_content}:</label>
+												</div>
+												<div class="span_2_3">
+													<input type="text" value="" title="{$txt.tooltip_fields_field_content}" id="edit_field_content" name="edit_field_content" />
+												</div>
+												<div style="clear: both;"> <!-- --> </div>
+											</div>
+											<div class="row">
+												<div class="span_1_3">
+													<label for="edit_field_content_default">{$txt.field_content_default}:</label>
+												</div>
+												<div class="span_2_3">
+													<input type="text" value="" title="{$txt.tooltip_fields_field_content_default}" id="edit_field_content_default" name="edit_field_content_default" />
+												</div>
+												<div style="clear: both;"> <!-- --> </div>
+											</div>
+											<div class="row button_container" style="width: 320px; height: 94px; margin: 0;">
+												<div class="tooltip_wrapper" title="{$txt.tooltip_fields_field_variable}" style="float: left;">
+													<select class="field_variable" style="width: 200px; margin: 2px 0 0 0;" >
+														<option value="0">{$txt.available_variables}</option>
+														{foreach key=variable_key item=variable_value from=$content_data.variables}
+															<option value="{$variable_key}" title="{$variable_value.description}">{$variable_value.title}</option>
+														{/foreach}
+													</select>
+												</div>
+												<a href="#" onclick="return false;" class="admin_button green add_field_variable disable" style="margin: 0 0 0 9px;">{$buttons.add}</a>
+												<div class="field_variable_description"></div>
+												<div style="clear: both;"> <!-- --> </div>
+											</div>
+										</div>
+										<div class="button_container">
+											<div class="button_left_container"></div>
+											<div class="button_right_container">
+												<a href="#" onclick="return false;" class="admin_button green save_field {if $content_data.show_edit_mode || $field->v_data_array.created_by == 'gambio' }active{/if}">{$buttons.ok}</a>
+												<a href="#" onclick="return false;" class="admin_button cancel_field">{$buttons.cancel}</a>
+												<div class="clear_both"> <!-- &nbsp; --> </div>   
+											</div>
+											<div class="clear_both"> <!-- &nbsp; --> </div>   
+										</div>
+									</div>
+								</div>
+							</div>
+						</td>
+						{if $content_data.scheme->v_data_array.export_properties == 1 && $content_data.scheme->v_data_array.type_id == 1}
+							<td id="properties" class="disabled">
+								<div class="field_container">
+									<input type="hidden" value="{$content_data.scheme_properties_string}" class="field_properties_data" name="field_properties_data" />
+									<input type="hidden" value="{$content_data.properties_language}" class="properties_language" />
+									<div class="field_column">
+										<div class="properties_column_headline">{$txt.export_properties}</div>
+										<div class="properties_column_headline_button"><a href="#" title="{$txt.edit_field}" onclick="return false;"></a></div>										
+									</div>
+									<div class="field_edit_container">
+										<div id="properties_details">
+											<div class="col_1">
+												<div class="row">
+													<label>{$txt.properties_selection}:</label>
+													<div style="clear: both;"> <!-- --> </div>
+												</div>
+												<select class="properties_data_select" name="field_properties_select[]" multiple="true">
+													{foreach key=properties_id item=property from=$content_data.properties}
+														<option value="{$properties_id}" {if is_array( $content_data.scheme_properties ) && in_array( $properties_id, $content_data.scheme_properties ) }selected="selected"{/if}>
+															{if $property.names[$language_id].properties_admin_name == ""}
+																{$property.names[$language_id].properties_name|htmlentities_wrapper}
+															{else}
+																{$property.names[$language_id].properties_admin_name|htmlentities_wrapper} ({$property.names[$language_id].properties_name|htmlentities_wrapper})
+															{/if}
+														</option>
+													{/foreach}
+												</select>
+											</div>
+											<div class="col_1">
+												<div class="row">
+													<label>{$txt.properties_combi_data}:</label>
+													<div style="clear: both;"> <!-- --> </div>
+												</div>
+												<select class="properties_data_select" name="field_properties_data_select[]" multiple="true">
+													{foreach item=property_column from=$content_data.properties_columns}
+														<option value="{$property_column}" {if in_array( $property_column, $content_data.scheme_properties ) }selected="selected"{/if}>
+															{$property_column}
+														</option>
+													{/foreach}
+												</select>
+											</div>
+											<div class="col_1">
+												<div class="row">
+													<label>{$txt.language}:</label>
+													<div style="clear: both;"> <!-- --> </div>
+												</div>
+												<select class="select_properties_language" name="select_properties_language" style="height: 20px;">
+													{foreach item=language from=$content_data.properties_languages}
+														<option value="{$language.id}" {if $language.id == $content_data.scheme->v_data_array.languages_id}selected="selected"{/if}>
+															{$language.name}
+														</option>
+													{/foreach}
+												</select>
+											</div>
+											<div style="clear: both;"> <!-- --> </div>
+											<div class="button_container">
+												<div class="button_left_container"></div>
+												<div class="button_right_container">
+													<a href="#" onclick="return false;" class="admin_button green save_field_properties">{$buttons.ok}</a>
+													<a href="#" onclick="return false;" class="admin_button cancel_field_properties">{$buttons.cancel}</a>
+													<div class="clear_both"> <!-- &nbsp; --> </div>   
+												</div>
+												<div class="clear_both"> <!-- &nbsp; --> </div>   
+											</div>
+										</div>
+									</div>
+								</div>
+							</td>
+						{/if}
+					</tr>	
+				</table>
+			</div>
+		</div>
+		<div class="export_scheme_preview"></div>
+	</div>
+{/if}

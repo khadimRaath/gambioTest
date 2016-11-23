@@ -1,0 +1,329 @@
+/* Footer
+   ========================================================================== */
+
+#footer {
+
+  background-color: $gx-footer-bg;
+  
+  // footer background image
+  @if ($gx-footer-bg-image-url and $gx-footer-bg-image-url != "" and $gx-footer-bg-image-url != '') {
+    background-image: url($gx-footer-bg-image-url);
+    @if ($gx-footer-bg-image-position) {
+      background-position: $gx-footer-bg-image-position;
+    }
+    @if ($gx-footer-bg-image-repeat) {
+      background-repeat: $gx-footer-bg-image-repeat;
+    }
+    @if ($gx-footer-bg-image-size) {
+      background-size: $gx-footer-bg-image-size;
+    }
+    @if ($gx-footer-bg-image-attachment) {
+      background-attachment: $gx-footer-bg-image-attachment;
+    }
+  }
+  
+  color: $gx-footer-color;
+
+  h4 {
+    color: $gx-footer-color;
+    font-size: 16px;
+    display: block;
+    padding: 15px 0;
+    margin: 0;
+    @include thick-heading();
+  }
+
+
+  // footer header including newsletter form
+
+  .footer-header {
+    background-color: $gx-footer-header-bg;
+    // footer background image
+    @if ($gx-footer-header-bg-image-url and $gx-footer-header-bg-image-url != "" and $gx-footer-header-bg-image-url != '') {
+      background-image: url($gx-footer-header-bg-image-url);
+      @if ($gx-footer-header-bg-image-position) {
+        background-position: $gx-footer-header-bg-image-position;
+      }
+      @if ($gx-footer-header-bg-image-repeat) {
+        background-repeat: $gx-footer-header-bg-image-repeat;
+      }
+      @if ($gx-footer-header-bg-image-size) {
+        background-size: $gx-footer-header-bg-image-size;
+      }
+      @if ($gx-footer-header-bg-image-attachment) {
+        background-attachment: $gx-footer-header-bg-image-attachment;
+      }
+    }
+    
+    color: $gx-footer-header-color;
+    
+    min-height: $gx-footer-header-min-height;
+    padding-top: floor($grid-gutter-width / 2);
+    padding-bottom: 0;
+
+    .form-group {
+      margin-bottom: 0;
+      > div {
+        @media (min-width: $screen-sm-min) {
+          padding: 0 floor($grid-gutter-width / 4);
+        }
+      }
+      .form-control,
+      .btn {
+        margin-bottom: floor($grid-gutter-width / 2);
+      }
+    }
+  }
+
+
+  // main footer area
+
+  .inside {
+    padding: $grid-gutter-width floor($grid-gutter-width / 2) 0;
+    min-height: ($gx-footer-min-height - 100);
+    border-bottom: 1px solid $gx-footer-boxes-border-color;
+
+    // right borders
+
+    > .row > div {
+      margin-bottom: $grid-gutter-width;
+      @media (min-width: $screen-sm-min) {
+        &:nth-of-type(2n + 1) {
+          border-right: 1px solid $gx-footer-boxes-border-color;
+        }
+      }
+      @media (min-width: $screen-lg-min) {
+        &:nth-of-type(2n + 2) {
+          border-right: 1px solid $gx-footer-boxes-border-color;
+        }
+        &:last-of-type {
+          border-right-color: transparent;
+        }
+      }
+    }
+    
+    .row {
+      .footer-col-1 {
+        @media (min-width: $screen-sm-min) {
+          min-height: ($gx-footer-min-height - 100);
+        }
+        
+        @if ($gx-hide-footer-col-1 == true)
+        {
+          display: none;
+        }
+        @else {
+          @include make-xs-column($gx-footer-col-1-xs);
+          @include make-sm-column($gx-footer-col-1-sm);
+          @include make-lg-column($gx-footer-col-1-lg);
+        }
+      }
+      
+      .footer-col-2 {
+        @media (min-width: $screen-sm-min) {
+          min-height: ($gx-footer-min-height - 100);
+        }
+        
+        @if ($gx-hide-footer-col-2 == true)
+        {
+          display: none;
+        }
+        @else {
+          @include make-xs-column($gx-footer-col-2-xs);
+          @include make-sm-column($gx-footer-col-2-sm);
+          @include make-lg-column($gx-footer-col-2-lg);
+        }
+      }
+      
+      .footer-col-3 {
+        @media (min-width: $screen-sm-min) {
+          min-height: ($gx-footer-min-height - 100);
+        }
+        
+        @if ($gx-hide-footer-col-3 == true)
+        {
+          display: none;
+        }
+        @else {
+          @include make-xs-column($gx-footer-col-3-xs);
+          @include make-sm-column($gx-footer-col-3-sm);
+          @include make-lg-column($gx-footer-col-3-lg);
+        }
+      }
+      
+      .footer-col-4 {
+        @media (min-width: $screen-sm-min) {
+          min-height: ($gx-footer-min-height - 100);
+        }
+        
+        @if ($gx-hide-footer-col-4 == true)
+        {
+          display: none;
+        }
+        @else {
+          @include make-xs-column($gx-footer-col-4-xs);
+          @include make-sm-column($gx-footer-col-4-sm);
+          @include make-lg-column($gx-footer-col-4-lg);
+        }
+      }
+    }
+  }
+
+
+  // social media icon bar
+
+  .social-media-icons {
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    top: -50px;
+    > li {
+      display: block;
+      float: left;
+      padding-left: 0;
+      padding-right: 10px;
+      a {
+        display: table-cell;
+        vertical-align: middle;
+        text-align: center;
+        width: 40px;
+        height: 40px;
+        background: #000;
+        color: #fff;
+        font-size: 22px;
+        &.facebook {
+          background-color: $gx-facebook;
+          &:hover {
+            background: #fff;
+            color: $gx-facebook;
+          }
+        }
+        &.twitter {
+          background-color: $gx-twitter;
+          &:hover {
+            background: #fff;
+            color: $gx-twitter;
+          }
+        }
+        &.instagram {
+          background-color: $gx-instagram;
+          &:hover {
+            background: #fff;
+            color: $gx-instagram;
+          }
+        }
+        &.youtube {
+          background-color: $gx-youtube;
+          &:hover {
+            background: #fff;
+            color: $gx-youtube;
+          }
+        }
+        &.googleplus {
+          background-color: $gx-googleplus;
+          &:hover {
+            background: #fff;
+            color: $gx-googleplus;
+          }
+        }
+        &.pinterest {
+          background-color: $gx-pinterest;
+          &:hover {
+            background: #fff;
+            color: $gx-pinterest;
+          }
+        }
+        &.linkedin {
+          background-color: $gx-linkedin;
+          &:hover {
+            background: #fff;
+            color: $gx-linkedin;
+          }
+        }
+        &.vimeo {
+          background-color: $gx-vimeo;
+          &:hover {
+            background: #fff;
+            color: $gx-vimeo;
+          }
+        }
+        &.tumblr {
+          background-color: $gx-tumblr;
+          &:hover {
+            background: #fff;
+            color: $gx-tumblr;
+          }
+        }
+        &.flickr {
+          background-color: $gx-flickr;
+          &:hover {
+            background: #fff;
+            color: $gx-flickr;
+          }
+        }
+        @include border-radius(50%);
+      }
+    }
+  }
+
+
+  // bottom row with copyright
+
+  .footer-bottom {
+    text-align: center;
+    padding-top: 15px;
+    min-height: 50px;
+    clear: both;
+  }
+
+
+  // panels inside footer
+  // it's possible to show boxes with panel html in footer
+
+  .panel {
+    background: transparent;
+    border: none;
+    @include box-shadow(none);
+    .panel-heading,
+    .panel-heading,
+    .panel-body {
+      border: none;
+      background: transparent;
+      @include box-shadow(none);
+      color: $gx-footer-color;
+      padding: 0;
+    }
+    .panel-heading {
+      text-transform: uppercase;
+      padding: 0;
+      font-size: $font-size-base;
+      .panel-title {
+        @include thick-heading();
+      }
+    }
+    .panel-body {
+      ul,
+      li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        a {
+          color: $gx-footer-color;
+          display: block;
+          padding: 6px 0;
+        }
+      }
+    }
+  }
+
+  
+  // navigation elements
+
+  .nav > li > a {
+    &:hover {
+      background: transparent;
+      color: #333;
+    }
+  }
+}

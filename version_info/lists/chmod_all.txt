@@ -1,0 +1,10 @@
+/admin/includes/magnalister
+/media
+/shopgate
+/templates/EyeCandy/admin
+/templates/EyeCandy/backgrounds
+/templates/Honeygrid/assets/images/custom
+/templates/Honeygrid/styles/custom
+/uploads
+/StyleEdit/files
+/StyleEdit3/templates

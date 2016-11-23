@@ -1,0 +1,45 @@
+{load_language_text section="box_cart"}
+{load_language_text section="buttons" name="button"}
+
+<div id="fixed_dropdown_shopping_cart" style="display:none;">
+	<div id="fixed_dropdown_shopping_cart_inner" class="clearfix" style="padding-top: 0px;">
+
+		<div id="fixed_dropdown_shopping_cart_header">
+			<div class="cart-head-text" style="float:right; text-align:right;">
+				<span class="shopping-cart-headline">{$txt.heading_cart}</span><br />
+				<span class="shopping-cart-product-count">
+					{if $products|@count eq 0}keine Produkte{/if}
+					{if $products|@count eq 1}1 Produkt{/if}
+					{if $products|@count gt 1}{$products|@count} Produkte{/if}
+				</span>
+			</div>
+			<div class="cart-head-icon clearfix"><img src="{$tpl_path}img/icons/icon-white-basket-big.png" alt="" style="border:none; margin-bottom:3px" /></div>
+		</div>
+
+
+	{if $empty=='false'}
+
+		{foreach name=aussen item=products_data from=$products}
+		<div class="cart-item clearfix">
+			<div class="cart-item-inner clearfix">
+				{if $products_data.IMAGE}<a href="{$products_data.LINK}"><img alt="" style="max-width: 40px; max-height: 40px; border: 0pt none; margin: 0px 10px 0px 0pt; float: left;" src="{$products_data.IMAGE}" /></a>{/if}
+				<p>{$products_data.QTY}{if $products_data.UNIT} {$products_data.UNIT}{else}x{/if} {$products_data.NAME}<br/><span class="price">{$products_data.PRICE}</span>{if $products_data.VPE}<br /><span class="products-vpe">{$products_data.VPE}</span>{/if}</p>
+			</div>
+		</div>
+		{/foreach}
+		<div id="fixed_dropdown_shopping_cart_total">
+			<span>{$txt.text_total} {$TOTAL}</span>
+		</div>
+		<p class="mwst-hint">{$UST} {if $SHIPPING_INFO}{$SHIPPING_INFO}{/if}</p>
+
+		<div class="cart-button"><a class="button_blue button_set" href="{'shopping_cart.php'|xtc_href_link}"><span class="button-outer"><span class="button-inner">{$button.to_cart}</span></span></a></div>
+	{else}
+		<div class="cart-item clearfix">
+			<div class="cart-item-inner clearfix">
+				<p>{$txt.text_empty_cart}</p>
+			</div>
+		</div>
+	{/if}
+
+	</div>
+</div>

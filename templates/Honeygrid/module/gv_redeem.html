@@ -1,0 +1,22 @@
+{load_language_text section="gv_redeem"}
+{load_language_text section="buttons" name="button"}
+
+<div class="contact_us" id="contact_us">
+	<h1>
+		{$txt.heading_gvredeem}
+	</h1>	
+	<div class="box_content">
+		{$txt.text_information}
+		<br />
+		<br />
+		{if $error eq 'true'}
+			{$txt.text_invalid_gv}
+		{else}
+			{$txt.text_valid_gva} {$coupon_amount} {$txt.text_valid_gvb}
+		{/if}
+		<br />
+		<br />
+		<br />
+		<a href="{$CONTINUE_LINK}" class="button_blue_big button_set_big"><span class="button-outer"><span class="button-inner">{$button.continue}</span></span></a>
+	</div>
+</div>

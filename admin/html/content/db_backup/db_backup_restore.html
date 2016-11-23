@@ -1,0 +1,34 @@
+{load_language_text section="db_backup"}
+{load_language_text section="lightbox_buttons" name="lightbox"}
+<div id="db_backup_lightbox">
+	<div class="db_backup_lightbox_message">
+		{$txt.restore_hint}
+	</div>
+	<div class="db_backup_lightbox_backup_select">
+		<div>{$txt.restore_backup_selection}:</div>
+		<select>
+			{foreach item=backup_file from=$content_data.files}
+				<option value="{$backup_file.filename}">{$backup_file.filename}</option>
+			{/foreach}
+		</select>
+	</div>
+	<div class="db_backup_lightbox_error_message"></div>
+	<div class="db_backup_lightbox_process">
+		<div class="progress_job">{$txt.restoration_in_process}</div>
+		<div class="progress_bar">
+			<div class="progress_marker"> <!-- &nbsp; --> </div>
+		</div>
+		<div class="progress_text">0%</div>
+	</div>
+
+	<div class="button_container">
+		<div class="button_left_container">
+			<a onclick="return false;" class="admin_button lightbox_close" href="#" title="{$lightbox.cancel}">{$lightbox.cancel}</a>
+		</div>
+		<div class="button_right_container">	
+			<a onclick="return false;" class="admin_button green confirm_db_backup_restore" href="#" title="{$txt.restore}">{$txt.restore}</a>
+			<a onclick="return false;" style="display: none;" class="admin_button green lightbox_close" href="#" title="{$lightbox.close}">{$lightbox.close}</a>
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>   
+	</div>
+</div>

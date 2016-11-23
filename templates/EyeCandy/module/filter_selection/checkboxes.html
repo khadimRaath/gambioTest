@@ -1,0 +1,9 @@
+{load_language_text section="box_filter"}
+
+<div class="filter_heading">
+	{$content_data.FEATURE_NAME}
+</div>
+{foreach name=features item=feature_value from=$content_data.FEATURE_VALUE_DATA}
+	<div class="{if $feature_value.VISIBLE == false && $feature_value.DISPLAY_MODE == 1}feature_value_disabled{/if}"><input type="checkbox" id="filter_{$content_data.FEATURE_ID}_{$feature_value.ID}" name="filter_fv_id[{$content_data.FEATURE_ID}][]" value="{$feature_value.ID}" {if $feature_value.SELECTED}checked="checked"{/if} {if $feature_value.VISIBLE == false && $feature_value.DISPLAY_MODE == 1}disabled="disabled"{/if} /><label for="filter_{$content_data.FEATURE_ID}_{$feature_value.ID}">{$feature_value.NAME}</label><div style="clear: both;"> <!-- &nbsp; --> </div></div>
+{/foreach}
+<input type="hidden" name="value_conjunction[{$content_data.FEATURE_ID}]" value="{$content_data.VALUE_CONJUNCTION}" />

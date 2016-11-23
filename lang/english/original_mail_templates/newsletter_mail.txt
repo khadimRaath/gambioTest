@@ -1,0 +1,14 @@
+Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME},
+
+thank you for your subscription.
+
+You receive this mail, because you want to receive our newsletter. 
+Please you click on the activation link to activate this service. If you should 
+not have registered yourselves in newsletter and/or the receipt of the newsletters 
+is not wanted, we wish you to do nothing. Your address is then deleted automatically 
+with the next actualization of the data base.
+      
+Your activation-link:
+{$LINK}
+
+{$EMAIL_SIGNATURE_TEXT}

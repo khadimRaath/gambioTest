@@ -1,0 +1,15 @@
+	</div>
+	{if $buttons_url|@count > 0}
+		<ul class="list-group">
+			{for $i=0 to {$buttons_url|@count}-1}
+				{if ($buttons_url[$i] && $buttons_url[$i] != '') && ($buttons_text[$i] && $buttons_text[$i] != '')}
+					<li class="list-group-item">
+						<a href="{$buttons_url[$i]}" title="{$buttons_title[$i]|default:$buttons_text[$i]}">
+							{$buttons_text[$i]}
+						</a>
+					</li>
+				{/if}
+			{/for}
+		</ul>
+	{/if}
+</div>

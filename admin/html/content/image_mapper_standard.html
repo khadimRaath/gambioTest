@@ -1,0 +1,73 @@
+{load_language_text section="imagemap_editor"}
+
+<div class="lightbox_package_container">
+	<input value="{$txt.alert_message_text}" id="alert_message_text" style="display: none;" />
+	<input value="{$language_code}" id="ckeditor_language" style="display: none;" />
+	<input value="{$smarty.const.HTTP_SERVER}{$smarty.const.DIR_WS_CATALOG}" id="ckeditor_base_href" style="display: none;" />
+	<div class="lightbox_package_border">
+		<b class="lightbox_border_1"></b>
+		<b class="lightbox_border_2"></b>
+		<b class="lightbox_border_3"></b>
+		<b class="lightbox_border_4"></b>
+	</div>
+	<div class="lightbox_package_wrapper">
+		<div class="lightbox_package_header pageHeading">Image-Mapper</div>
+		<div class="lightbox_package_close"></div>
+		<div class="lightbox_package_content">
+			<div class="gx_control">
+				<div class="buttons">
+					<a href="#" class="float_left general">{$txt.button_general}</a>
+					<a href="#" class="float_left flyover">{$txt.button_flyover}</a>
+					<a href="#" class="float_right delete">{$txt.button_delete}</a>
+					<a href="#" class="float_right cancle">{$txt.button_cancel}</a>
+					<a href="#" class="float_right save">{$txt.button_save}</a>
+					<a href="#" class="float_right add">{$txt.button_add}</a>
+					<div style="clear: both;"><!-- --></div>
+				</div>
+				<div class="fields">
+					<div class="field">
+						<label>{$txt.label_area_type}</label>
+						<select id="field_type">
+							<option value="">{$txt.text_area_type_select}</option>
+							<option value="rectangle">{$txt.text_area_type_rectangle}</option>
+							<option value="circle">{$txt.text_area_type_circle}</option>
+							<option value="polygon">{$txt.text_area_type_polygon}</option>
+						</select>
+					</div>
+					<div class="field right">
+						<label for="field_title">{$txt.label_link_title}</label>
+						<input type="text" id="field_title" />
+					</div>
+					<div class="field">
+						<label for="field_href">{$txt.label_link_url}</label>
+						<input type="text" id="field_href" />
+					</div>
+					<div class="field right">
+						<label>{$txt.label_link_target}</label>
+						<select id="field_target">
+							<option value="_self">{$txt.text_link_target_self}</option>
+							<option value="_blank">{$txt.text_link_target_blank}</option>
+						</select>
+					</div>
+					<div class="hidden">
+						<input type="text" id="field_id" disabled="disabled" />
+					</div>
+				</div>
+				<div class="division"></div>
+				<div class="editor">
+					<textarea name="image_mapper_flyover" id="image_mapper_flyover"></textarea>
+				</div>
+			</div>
+			<div class="gx_image_container">
+				<img src="/" alt="{$txt.no_image_available}">
+				<canvas id="image_canvas"></canvas>
+			</div>
+		</div>
+	</div>
+	<div class="lightbox_package_border">
+		<b class="lightbox_border_4"></b>
+		<b class="lightbox_border_3"></b>
+		<b class="lightbox_border_2"></b>
+		<b class="lightbox_border_1"></b>
+	</div>
+</div>

@@ -1,0 +1,9 @@
+{load_language_text section="product_navigator"}
+
+<div id="product_navigation">
+	{if $FIRST!=''}<a href="{$FIRST}">{$txt.text_first}</a>{/if}
+	{if $PREVIOUS!=''}<a href="{$PREVIOUS}">{$txt.text_back}</a>{/if}
+	{if $NEXT!=''}<a href="{$NEXT}">{$txt.text_next}</a>{/if}
+	{if $LAST!=''}<a href="{$LAST}">{$txt.text_last}</a>{/if}
+	<span class="strong">{$PRODUCTS_COUNT}</span> {$txt.text_total}
+</div>

@@ -1,0 +1,6 @@
+
+
+/* logo has not been displayed */
+
+.navbar-brand { float: none; }
+.navbar-brand h1 { display: block !important; }

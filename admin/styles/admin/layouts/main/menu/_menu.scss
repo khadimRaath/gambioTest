@@ -1,0 +1,240 @@
+/*
+	Main Menu
+    ==========================================================================
+
+	Styling for the main application menu.
+
+*/
+
+$menu-text-color: #737373;
+$menu-bg-color: #F5F5F5;
+$menu-active-bg-color: #EBEBEB;
+$menu-list-item-height: 41px;
+
+#main-menu {
+	@import "favorites";
+	@import "scroll_to_top";
+	
+	width:        auto;
+	flex:         0 0 auto;
+	-ms-flex:     0 0 auto;
+	max-width:    $menu-width;
+	border-right: 1px solid $border-color;
+	float:        left;
+	
+	nav {
+		&, a {
+			width: auto;
+			color: $text-color-light;
+		}
+		
+		ul {
+			list-style-type: none;
+			padding:         0;
+			margin:          0;
+			display:         block;
+			
+			li {
+				box-sizing:  border-box;
+				white-space: nowrap;
+				cursor:      pointer;
+				margin:      0;
+			}
+		}
+		
+		> ul {
+			width:   $menu-width;
+			opacity: 1;
+			@include transition(0.5s ease-in-out);
+			
+			&.collapse {
+				width: 45px;
+				
+				.title {
+					opacity:  0;
+					height:   0;
+					width:    0;
+					overflow: hidden;
+					display:  inline-block;
+				}
+			}
+			
+			.title {
+				@include transition(0.5s ease-in-out);
+				opacity: 1;
+				height:  auto;
+				width:   auto;
+			}
+			
+			> li {
+				padding:       $padding-small;
+				min-height:    $menu-list-item-height;
+				font-size:     $font-size-base;
+				line-height:   16px;
+				border-bottom: 1px solid $border-color;
+				position:      relative;
+				
+				&:hover {
+					background-color: $menu-bg-color;
+					
+					> ul {
+						&::before {
+							content:    '';
+							width:      1px;
+							height:     $menu-list-item-height;
+							position:   absolute;
+							left:       -1px;
+							top:        -1;
+							background: $menu-bg-color;
+						}
+						
+						margin-left: -5px;
+					}
+
+					> a {
+						text-decoration: none;
+					}
+				}
+				
+				&.active {
+					background-color: $menu-active-bg-color;
+					@include transition(0.5s ease-in-out);
+					
+					ul {
+						width:        0;
+						display:      block;
+						opacity:      1;
+						visibility:   visible;
+						float:        none;
+						border:       none;
+						position:     relative;
+						border-top:   1px solid $border-color;
+						border-right: 1px solid $border-color;
+						left:         -$padding-small;
+						bottom:       -12px;
+						margin-top:   0;
+						margin-left:  0;
+					}
+				}
+				
+				&:not(.active) {
+					&:hover {
+						> ul {
+							display: block;
+							width:   $menu-width;
+						}
+					}
+				}
+				
+				.icon {
+					font-size: floor($font-size-base * 1.17);
+					position:  relative;
+					top:       1px;
+					left:      3px;
+				}
+				
+				.title {
+					margin-left: 10px;
+					white-space: nowrap;
+				}
+				
+				> ul {
+					width:            $menu-width;
+					background-color: $menu-bg-color;
+					border:           1px solid $border-color;
+					position:         absolute;
+					left:             $menu-width;
+					margin-top:       -29px;
+					display:          none;
+					z-index:          $zindex-main-header - 1;
+					
+					&.stay-within-viewport {
+						&::before {
+							background: none;
+						}
+					}
+					
+					> li {
+						line-height: 1.5;
+						height:      28px;
+						white-space: nowrap;
+						padding:     0;
+						margin:      0;
+						
+						&.active, &:hover {
+							> a {
+								color:   $link-color;
+								opacity: 1;
+							}
+						}
+						
+						> a {
+							display:         block;
+							line-height:     1.7;
+							text-decoration: none;
+							font-size:       $font-size-base;
+							padding:         3px 20px;
+						}
+					}
+				}
+			}
+			
+			&.expand-all {
+				> li {
+					&:not(.active) {
+						background-color: $menu-active-bg-color;
+						@include transition(0.5s ease-in-out);
+						border-right:     1px solid $border-color;
+						
+						ul {
+							display:      block;
+							opacity:      1;
+							visibility:   visible;
+							float:        none;
+							border:       none;
+							position:     relative;
+							border-top:   1px solid $border-color;
+							left:         -$padding-small;
+							bottom:       -$padding-small;
+							border-right: 1px solid $border-color;
+							margin-top:   0;
+							margin-left:  0;
+						}
+					}
+				}
+			}
+
+			&.collapse {
+				> li {
+					&.active {
+						> ul {
+							width:            $menu-width;
+							background-color: $menu-bg-color;
+							border:           1px solid $border-color;
+							position:         absolute;
+							bottom:           initial;
+							display:          none;
+						}
+						
+						&:hover {
+							ul {
+								background-color: $menu-active-bg-color;
+								display:          block;
+								margin-top:       -29px;
+								border-left:      none;
+								
+								&::before {
+									background: none;
+								}
+							}
+						}
+					}
+					
+					ul {
+						left: 40px;
+					}
+				}
+			}
+		}
+	}
+}

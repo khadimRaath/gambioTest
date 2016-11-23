@@ -1,0 +1,30 @@
+
+/* Manufacturer Logo
+   ========================================================================== */
+
+.manufacturer-logo {
+
+
+  // positioning
+
+  position: absolute;
+  left: -25px;
+  top: -15px;
+
+  max-height: 80px;
+  max-width: 80px;
+
+  // positioning on product info page
+
+  body.page-product-info & {
+  	left: auto;
+  	right: 15px;
+  	top: 0px;
+  	z-index: 2;
+  	@media (min-width: $screen-sm-min) {
+	    max-height: 150px;
+	    max-width: 150px;
+  	}
+  }
+
+}

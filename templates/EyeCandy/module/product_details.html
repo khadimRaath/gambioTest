@@ -1,0 +1,230 @@
+{load_language_text section="product_info"}
+{load_language_text section="checkout_confirmation" name="info"}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" {$HTML_PARAMS}>
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset={$CHARSET}" />
+		<style type="text/css">
+		{literal}
+			body{
+				font-family: Arial,Tahoma,Verdana;
+				color: #666;
+				font-size: 12px;
+			}
+			
+			a, a:hover
+			{
+				color: #666;
+			}
+			
+			h1{
+				font-size: 16px;
+			}
+			
+			.popup_content{
+				width: 800px;
+				padding: 20px;
+			}
+			
+			.container_left{
+				float: left;
+				width: 410px;
+			}
+			
+			.container_right{
+				float: right;
+				width: 200px;
+				padding: 25px 50px 0 0;
+				text-align: right;
+			}
+			
+			span.price{
+				font-size: 18px;
+				font-weight: bold;
+			}
+			
+			dl{
+				margin: 0;
+			}
+		
+			dt{
+				width: 150px;
+				float: left;
+				border-bottom: 1px dotted #ccc;
+				padding: 5px 0; 
+				font-weight: bold;
+			}
+			
+			dd{
+				width: 260px;
+				margin: 0;
+				float: left;
+				border-bottom: 1px dotted #ccc;
+				padding: 5px 0; 
+			}
+			
+			.product_description{
+				margin: 20px 10px 0 0;
+			}
+			
+			.product_images{
+				overflow: auto;
+			}
+			
+			.product_images .img_box{
+				margin: 10px 10px 10px 0;
+				border: 1px solid #ccc;
+				float: left;
+			}
+			
+			/* Caution! Ensure accessibility in print and other media types... */
+			/* Use class for showing/hiding tab content, so that visibility can be better controlled in different media types... */
+			@media projection, screen { .ui-tabs-hide {display: none;} }
+			/* Hide useless elements in print layouts... */
+			@media print { .ui-tabs-nav {display: none;} }
+			
+			/* Skin */
+			.ui-tabs-nav{list-style: none; margin: 0px 0px 2px 0px; padding: 0px;}
+			body .ui-tabs-nav li {
+				float: left;
+				margin: 0px 0px 0px 0px;
+				padding: 0px;
+			}
+			.ui-tabs-nav a, .ui-tabs-nav a span {float: left; } /* fixes dir=ltr problem and other quirks IE */
+			body .ui-tabs-nav a {white-space: nowrap; /* @ IE 6 */ outline: 0; } /* @ Firefox, prevent dotted border after click */
+			body .ui-tabs-nav .ui-state-active a 		{z-index: 2;}
+
+			.ui-tabs-nav a span { text-transform: uppercase; font-size: 10px; }
+
+			.ui-tabs-nav .ui-tabs-selected a span {}
+			.ui-tabs-nav .ui-tabs-selected a:link, .ui-tabs-nav .ui-tabs-selected a:visited,
+			.ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited {cursor: text; } /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+			.ui-tabs-nav a:hover, .ui-tabs-nav a:focus, .ui-tabs-nav a:active,
+			.ui-tabs-nav .ui-tabs-unselect a:hover, .ui-tabs-nav .ui-tabs-unselect a:focus, .ui-tabs-nav .ui-tabs-unselect a:active {cursor: pointer; } /* @ Opera, we need to be explicit again here now... */
+			.ui-tabs-disabled {opacity: .4; filter: alpha(opacity=40); }
+			.ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited { }
+            
+            /* For jquery > 1.10 */
+
+            .ui-tabs-nav .ui-tabs-active a span {}
+            .ui-tabs-nav .ui-tabs-active a:link, .ui-tabs-nav .ui-tabs-active a:visited,
+            .ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited {cursor: text; } /* @ Opera, use pseudo classes otherwise it confuses cursor... */
+            .ui-tabs-nav a:hover, .ui-tabs-nav a:focus, .ui-tabs-nav a:active,
+            .ui-tabs-nav .ui-tabs-unselect a:hover, .ui-tabs-nav .ui-tabs-unselect a:focus, .ui-tabs-nav .ui-tabs-unselect a:active {cursor: pointer; } /* @ Opera, we need to be explicit again here now... */
+            .ui-tabs-disabled {opacity: .4; filter: alpha(opacity=40); }
+            .ui-tabs-nav .ui-tabs-disabled a:link, .ui-tabs-nav .ui-tabs-disabled a:visited { }
+
+			/* Additional IE specific bug fixes... */
+			* html .ui-tabs-nav 						{display: inline-block; } /* auto clear @ IE 6 & IE 7 Quirks Mode */
+			*:first-child+html .ui-tabs-nav {display: inline-block; } /* auto clear @ IE 7 Standards Mode - do not group selectors, otherwise IE 6 will ignore complete rule (because of the unknown + combinator)... */
+			
+			.tabs #tabbed_description_part {
+				line-height: 1.7em;
+				margin-bottom: 10px;
+				margin-top: 10px;
+				width: 100%;
+			}
+			.tabs .ui-tabs-nav {
+				display: inline-block;
+				margin-left: 0;
+				padding-left: 0;
+				width: 750px;
+			}
+			.tabs .ui-tabs-nav .ui-tabs-active a {
+				color: #666666;
+			}
+			.tabs .ui-tabs-nav li {
+				display: block;
+				float: left;
+				margin: 0 5px 0 0;
+				padding-left: 0;
+				border: 1px solid #ccc;
+			}
+			.tabs .ui-tabs-nav li.ui-state-active{
+				background: #eee;
+			}
+			.tabs .ui-tabs-nav li a {
+				color: #333333;
+				display: inline-block;
+				font-size: 11px;
+				line-height: 20px;
+				padding: 2px 10px;
+				text-decoration: none;
+			}
+			
+			.tabs .ui-tabs-panel{
+				border: 1px solid #ccc;
+				padding: 5px;
+			}
+		{/literal}
+		</style>
+		<base href="{$BASE_URL}" />
+	</head>
+	<body>
+		<div class="popup_content" id="content_page">
+			<h1>{$NAME}</h1>
+			<div class="content_text">
+				<div class="container_right">
+					<span class="price">{$PRICE}</span>
+					<br />
+					{if $VPE_ARRAY.vpe_text}{$VPE_ARRAY.vpe_text}<br />{/if}
+					<span class="tax-shipping-text">{$PRODUCTS_TAX_INFO}{$PRODUCTS_SHIPPING_LINK}</span>
+				</div>
+				<div class="container_left">
+					<dl>
+						{if $MODEL}
+							<dt>{$txt.text_model}</dt>
+							<dd>{$MODEL}</dd>
+						{/if}
+						{if $SHIPPING_TIME}
+							<dt>{$txt.text_shippingtime}</dt>
+							<dd>{$SHIPPING_TIME}</dd>
+						{/if}
+						{if $PRODUCTS_QUANTITY > 0 && $SHOW_PRODUCTS_QUANTITY}
+							<dt>{$txt.text_stock}</dt>
+							<dd>{$PRODUCTS_QUANTITY} {if $UNIT}{$UNIT}{else}{$txt.text_pieces}{/if}</dd>				
+						{/if}						
+						{if $WEIGHT}
+							<dt>{$info.text_weight}:</dt>
+							<dd>{$WEIGHT} {$info.text_weight_unit}</dd>
+						{/if}
+						{if $ATTRIBUTES_ARRAY || $PROPERTIES_ARRAY}
+							{foreach item=attribute from=$ATTRIBUTES_ARRAY}
+								{if $attribute.option}
+									<dt>{$attribute.option}:</dt>
+									<dd>{$attribute.value}&nbsp;</dd>
+								{/if}
+							{/foreach}
+							{foreach item=property from=$PROPERTIES_ARRAY}
+								<dt>{$property.properties_name}:</dt>
+								<dd>{$property.values_name}&nbsp;</dd>
+							{/foreach}
+						{/if}
+					</dl>
+				</div>				
+				<div style="clear: both;"> <!-- --> </div>
+				<div class="product_description">
+					<div class="description tabs">
+						<div id="description-1">
+							{$DESCRIPTION}
+						</div>
+					</div>
+				</div>
+				{if $IMAGES_ARRAY}
+				<div class="product_images">
+					{foreach item=image from=$IMAGES_ARRAY}
+						<div class="img_box"><img src="{$image.IMAGE}" alt="{$image.IMAGE_ALT}" title="{$image.IMAGE_ALT}" /></div>			
+					{/foreach}
+				</div>
+				{/if}
+			</div>
+		</div>
+		<script type="text/javascript" src="gm/javascript/jquery/jquery.min.js"></script>
+		<script type="text/javascript" src="gm/javascript/jquery/jquery-migrate.min.js"></script>
+		<script type="text/javascript" src="gm/javascript/jquery/ui/jquery-ui.js"></script>
+		<script type="text/javascript">
+            $("#tabbed_description_part").tabs();
+		</script>
+	</body>
+</html>

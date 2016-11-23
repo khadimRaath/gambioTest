@@ -1,0 +1,58 @@
+<div class="productlist productlist-swiper row">
+
+	<div {$content_data.SWIPER_DATA.widgets}>
+		<div id="{$content_data.SWIPER_DATA.id}" class="swiper-container" {$content_data.SWIPER_DATA.engineAttr}="swiper" {$content_data.SWIPER_DATA.configuration} >
+			<div class="swiper-wrapper" {$maxHeight} >
+
+				{foreach item=PRODUCT from=$content_data.SWIPER_DATA.products}
+
+					{product_images product_id=$PRODUCT.PRODUCTS_ID p_name=$PRODUCT.PRODUCTS_NAME p_image=$PRODUCT.PRODUCTS_IMAGE out=p_imgs }
+					{product_ribbons showManufacturerImages=$PRODUCT.showManufacturerImages showProductRibbons=$PRODUCT.showProductRibbons product_id=$PRODUCT.PRODUCTS_ID out=ribbons}
+					{include file="get_usermod:{$content_data.SWIPER_DATA.productTemplate}"
+						is_swiper="true"
+						showRating=$content_data.SWIPER_DATA.showRating
+						ribbons=$ribbons
+						p_image=$PRODUCT.PRODUCTS_IMAGE
+						p_imgs=$p_imgs
+						p_url=$PRODUCT.PRODUCTS_LINK
+						p_img_title=$PRODUCT.PRODUCTS_IMAGE_ALT
+						p_img_alt=$PRODUCT.PRODUCTS_IMAGE_ALT
+						p_meta=$PRODUCT.SHORTENED_META_DESCRIPTION
+						p_name_full=$PRODUCT.PRODUCTS_NAME
+						p_headline=$PRODUCT.HEADLINE 
+						p_short_desc=$PRODUCT.SHORTENED_PRODUCTS_DESCRIPTION
+						p_price=$PRODUCT.PRODUCTS_PRICE
+						p_vpe=$PRODUCT.PRODUCTS_VPE
+						p_shipping_name=$PRODUCT.DELIVERY
+						data_index=$PRODUCT.INDEX
+						p_id=$PRODUCT.PRODUCTS_ID
+					}
+
+				{/foreach}
+	
+				<div class="{$content_data.SWIPER_DATA.pagination} swiper-pagination"></div>
+	
+			</div>
+	
+			<template>
+				{* MUSTACHE TEMPLATE START *}
+				{literal}
+					{{#.}}
+						<div class="swiper-slide {{className}}">
+							<div class="swiper-slide-inside">
+								<img class="img-responsive" {{{srcattr}}} alt="{{title}}" title="{{title}}" data-magnifier-src="{{src}}" />
+							</div>
+						</div>
+					{{/.}}
+				{/literal}
+				{* MUSTACHE TEMPLATE END *}
+			</template>
+	
+		</div>
+	
+		<div class="{$content_data.SWIPER_DATA.prev} swiper-button-prev"></div>
+		<div class="{$content_data.SWIPER_DATA.next} swiper-button-next"></div>
+	
+	</div>
+
+</div>

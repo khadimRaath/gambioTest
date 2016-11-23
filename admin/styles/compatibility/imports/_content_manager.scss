@@ -1,0 +1,121 @@
+// --------------------------------------------------------------------------
+// CONTENT MANAGER ADMIN PAGE
+// --------------------------------------------------------------------------
+
+.gx-content-manager {
+  .message_stack_container {
+    width: $breakpoint-width-large !important; // Force the same width as the content (breakpoint-small).
+  }
+
+  &.gx-content-manager-overview .message_stack_container {
+    width: 1016px !important; // Force the same width as the content.
+  }
+  
+  .create-new-wrapper {
+    margin-bottom: 24px;
+  }
+  
+  .collapser {
+    font-size: 14px;
+  }
+
+  .frame-wrapper {
+    min-width: 1016px;
+    
+    .frame-head label img {
+      margin: 0;
+    }
+  }
+  
+  .wysiwyg {
+    min-height: 150px;
+    min-width: 504px;
+  }
+  
+  table.content_manager {
+    margin-top:    24px;
+    margin-bottom: 36px;
+    min-width: 966px;
+
+    tr {
+      &:nth-child(even) {
+        background: adjust-lightness($background-color, -2.5);
+      }
+
+      &:nth-child(odd) {
+        background: $background-color;
+      }
+
+      &:hover {
+        td table tr {
+          &:nth-child(even) td {
+            background: adjust-lightness($background-color, -2.5) !important;
+          }
+
+          &:nth-child(odd) td {
+            background: $background-color !important;
+          }
+        }
+      }
+      
+      td {
+        &.dataTableContent_products {
+          @include box-sizing(border-box);
+          height:  48px;
+          padding: 17px 12px;
+          vertical-align: top;
+
+          table {
+            margin-top: 24px;
+            .dataTableHeadingContent {
+              border-bottom: 1px solid $border-color-light !important;
+            }
+            
+            .dataTableRow:hover {
+              td {
+                //background: $highlight-color !important;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  .input-group {
+    width: 340px;
+    
+    input[type="text"] {
+      width: 100% !important;
+    }
+  }
+  
+}
+
+#shipping_and_payment_matrix_assistent {
+  
+  tr.dataTableRow {
+    background: #FFFFFF !important;
+    
+    td.dataTableContent {
+      border-bottom: 1px solid #e4e4e4;
+    }
+  }
+
+  // SHIPPING- AND PAYMENT MATRIX
+  #country_selection_content_wrapper {
+    img.status_button {
+      margin: 0;
+    }
+  }
+
+  #shipping_and_payment_form {
+    textarea {
+      width: 100%;
+    }
+  }
+  
+  div.bottom_control {
+    margin: 0;
+  }
+} 

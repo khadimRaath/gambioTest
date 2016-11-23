@@ -1,0 +1,5 @@
+<select name="language" class="form-control" id="language-select">
+	{foreach name=language item=language_data from=$content_data.languages_data}
+		<option value="{$language_data.CODE}"{if $language_data.ID == $content_data.CURRENT_LANGUAGES_ID} selected="selected"{/if}>{$language_data.NAME}</option>
+	{/foreach}
+</select>

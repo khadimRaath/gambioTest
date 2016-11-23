@@ -1,0 +1,146 @@
+{load_language_text section="account"}
+{load_language_text section="downloads" name="downloads"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="general" name="general"}
+
+<h1>{$txt.heading_account}</h1>
+
+{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error_message type="danger"}
+
+<p>
+	{$txt.text_welcome}
+</p>
+	
+
+<h3>{$txt.title_account}</h3>
+<ul>
+	<li>
+		<a href="{$LINK_EDIT}" title="{$txt.text_edit}">
+			{$txt.text_edit}
+		</a>
+	</li>
+	<li>
+		<a href="{$LINK_ADDRESS}" title="{$txt.text_address}">
+			{$txt.text_address}
+		</a>
+	</li>
+	{if $NO_GUEST == 1}
+		<li>
+			<a href="{$LINK_PASSWORD}" title="{$txt.text_password}">
+				{$txt.text_password}
+			</a>
+		</li>
+		<li>
+			<a href="{$LINK_DELETE_ACCOUNT}" title="{$txt.text_delete_account}">
+				{$txt.text_delete_account}
+			</a>
+		</li>
+	{/if}					
+	{if $CUSTOMER_UPLOAD == 1}
+		<li>
+			<a href="{$LINK_CUSTOMER_UPLOAD}" title="{$txt.text_customer_upload}">
+				{$txt.text_customer_upload}
+			</a>
+		</li>
+	{/if}
+	{if $LINK_NEWSLETTER}
+		<li>
+			<a href="{$LINK_NEWSLETTER}" title="{$txt.text_newsletter}">
+				{$txt.text_newsletter}
+			</a>
+		</li>
+	{/if}
+</ul>
+
+{if $order_content}
+		
+	<h3>{$txt.title_orders}</h3>
+
+	<table class="table table-responsive">
+
+		<thead>
+			<tr>
+				<th>{$txt.text_date|replace:":":""}</th>
+				<th>{$txt.order_nr|replace:":":""}</th>
+				<th>{$txt.order_status|replace:":":""}</th>
+				<th>{$txt.order_total|replace:":":""}</th>
+				{if $order_data.downloads_data}
+					<th colspan="{$order_data.downloads_data|@count}">&nbsp;</th>
+				{/if}
+				<th>&nbsp;</th>
+			</tr>
+		</thead>
+
+		<tbody>
+	
+			{foreach name=aussen item=order_data from=$order_content}
+				<tr>
+					<td>
+						<a href="{$order_data.ORDER_LINK}" title="{$order_data.ORDER_DATE}">
+							{$order_data.ORDER_DATE}
+						</a>
+					</td>
+					<td>
+						{$order_data.ORDER_ID}
+					</td>
+					<td>
+						{$order_data.ORDER_STATUS}
+					</td>
+					<td>
+						{$order_data.ORDER_TOTAL}
+					</td>
+						
+					{if $order_data.downloads_data}
+						{foreach name=innen item=download_data from=$order_data.downloads_data}
+							<td>
+								
+								{if $download_data.DELAY_MESSAGE == ''}
+									<a href="{$download_data.LINK}" target="_blank" title="{$download_data.PRODUCTS_NAME}">
+										{$download_data.PRODUCTS_NAME}
+									</a>
+								{else}
+									{$download_data.PRODUCTS_NAME}
+								{/if}
+								
+								{if $download_data.DELAY_MESSAGE == ''}
+									{$downloads.text_download_count} {$download_data.COUNT} {$downloads.text_download_date} {$download_data.DATE_SHORT}
+								{/if}
+								
+								{if $download_data.DELAY_MESSAGE != ''}
+									{$download_data.DELAY_MESSAGE}
+								{elseif $download_data.LINK != '' && $download_data.COUNT > 0}
+									<a href="{$download_data.LINK}" target="_blank" title="{$button.download}">
+										{$button.download}
+									</a>
+								{/if}
+								
+							</td>
+						{/foreach}
+					{/if}
+
+					<td>
+						<a href="{$order_data.ORDER_LINK}" class="btn btn-xs btn-default pull-right">{$button.show}</a>
+					</td>
+				</tr>
+			{/foreach}
+
+		</tbody>
+
+	</table>
+
+	<div class="row">
+		<div class="col-xs-12">
+			<a href="{$LINK_ALL}" title="{$general.SHOW_ALL}" class="btn btn-primary pull-right">
+				{$general.SHOW_ALL}
+			</a>
+		</div>
+	</div>
+
+{/if}
+		
+{if $products_history}
+	<div data-gambio-widget="product_hover">
+		<h3>{$txt.title_viewed_products}</h3>
+		{product_listing products=$products_history id="products-history" truncate=$TRUNCATE_PRODUCTS_NAME template="snippets/product_listing/product_listing.html" showManufacturerImages=$showManufacturerImages showProductRibbons=$showProductRibbons showRating=$showRating}
+	</div>
+{/if}

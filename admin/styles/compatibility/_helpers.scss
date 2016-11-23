@@ -1,0 +1,456 @@
+// ----------------------------------------------------------------------------
+// Administration CSS Helpers
+//
+// This file contains all the available helper classes that adjust certain CSS rules and can be
+// used to easily fine tune an existing HTML markup without creating a new CSS file or writing
+// inline styling within the HTML.
+//
+// Important: Place classes that only define one and only one CSS property in order to keep the
+// helpers simple and easy to use.
+//
+// @since v2.3.1.0
+// ----------------------------------------------------------------------------
+
+.gx-container {
+
+  //
+  // HIDDEN ELEMENT
+  //
+  // Hides an element.
+  //
+  .hidden {
+    display: none;
+  }
+
+  //
+  // BOLD TEXT
+  //
+  // Makes text bold with importance
+  //
+  .bold {
+    font-weight: bold !important;
+  }
+
+  //
+  // EMPHASIZE TEXT
+  //
+  // Style to put emphasize on text
+  //
+  .emphasize {
+    font-weight: bold;
+    color:       $text-color-light;
+  }
+
+  //
+  // DISPLAY INLINE-BLOCK
+  //
+  // Style to set display: inline-block
+  //
+  .inline-block {
+    display: inline-block;
+  }
+
+  //
+  // DISPLAY BLOCK
+  //
+  // Style to set display: block
+  //
+  .block {
+    display: block;
+  }
+
+  //
+  // CURSOR POINTER
+  //
+  // Set the hover pointer to cursor.
+  //
+  .cursor-pointer:hover {
+    cursor: pointer;
+  }
+
+  //
+  // CURSOR TEXT
+  //
+  // Set the hover text to cursor.
+  //
+  .cursor-text:hover {
+    cursor: text;
+  }
+
+  //
+  // CURSOR DEFAULT
+  //
+  // Set the hover default to cursor.
+  //
+  .cursor-default:hover {
+    cursor: default;
+  }
+
+  //
+  // PULL LEFT
+  //
+  // Float left for elements with this class.
+  //
+  .pull-left {
+    float: left;
+  }
+
+  //
+  // PULL RIGHT
+  //
+  // Float right for elements with this class.
+  //
+  .pull-right {
+    float: right;
+  }
+
+  //
+  // CLEAR FLOAT
+  //
+  // Clears the float
+  //
+  .clear-float {
+    clear: both;
+  }
+
+  //
+  // TEXT LEFT
+  //
+  // Left text align.
+  //
+  .text-left {
+    text-align: left !important;
+  }
+
+  //
+  // TEXT CENTER
+  //
+  // Center text align.
+  //
+  .text-center {
+    text-align: center !important;
+  }
+
+  //
+  // TEXT RIGHT
+  //
+  // Right text align.
+  //
+  .text-right {
+    text-align: right !important;
+  }
+
+  //
+  // TEXT JUSTIFY
+  //
+  // Justify text align.
+  //
+  .text-justify {
+    text-align: justify !important;
+  }
+
+  //
+  // DISPLAY INLINE
+  //
+  // Display div-container inline
+  //
+  .display-inline {
+    display: inline;
+  }
+
+  //
+  // WHITE-SPACE NO WRAP
+  //
+  // Prevents a container's content to wrap
+  //
+  .nowrap {
+    white-space: nowrap;
+  }
+
+  //
+  // REMOVE BORDER
+  //
+  .remove-border {
+    border: none !important;
+  }
+
+  //
+  // REMOVE BOTTOM BORDER
+  //
+  .remove-border-bottom {
+    border-bottom: none !important;
+  }
+
+  //
+  // REMOVE BORDER RADIUS
+  //
+  .remove-border-radius {
+    @include border-radius(0);
+  }
+
+  //
+  // ADD BORDER RADIUS (5px)
+  //
+  .add-border-radius {
+    @include border-radius(5px);
+  }
+
+  //
+  // REMOVE MARGIN
+  //
+  // This helper class will remove the margin of an element.
+  //
+  .remove-margin {
+    margin: 0 !important;
+  }
+
+  //
+  // REMOVE MARGIN BOTTOM
+  //
+  // This helper class will remove the margin-bottom of an element.
+  //
+  .remove-margin-bottom {
+    margin-bottom: 0 !important;
+  }
+
+  //
+  // REMOVE PADDING
+  //
+  // This helper class will remove the padding of an element.
+  //
+  .remove-padding {
+    padding: 0 !important;
+  }
+
+  //
+  // ADD PADDING 5px
+  //
+  // Use this class for containers that need extra padding (5px).
+  //
+  .add-padding-5 {
+    padding: 5px;
+  }
+
+  //
+  // ADD PADDING 10px
+  //
+  // Use this class for containers that need extra padding (10px).
+  //
+  .add-padding-10 {
+    padding: 10px;
+  }
+
+  //
+  // ADD PADDING 24px
+  //
+  // Use this class for containers that need extra padding (24px).
+  //
+  .add-padding-24 {
+    padding: 24px;
+  }
+
+  //
+  // ADD PADDING RIGHT 5px
+  //
+  // Use this class for containers that need extra right padding (5px).
+  //
+  .add-padding-right-5 {
+    padding-right: 5px;
+  }
+
+  //
+  // ADD LEFT PADDING 10px
+  //
+  // Use this class for containers that need extra left padding (10px).
+  //
+  .add-padding-left-10 {
+    padding-left: 10px;
+  }
+
+  //
+  // ADD TOP PADDING 20px
+  //
+  // Use this class for containers that need extra top padding (20px).
+  //
+  .add-padding-top-20 {
+    padding-top: 20px;
+  }
+
+  //
+  // ADD MARGIN 5px
+  //
+  // Use this class for containers that need extra margin (5px).
+  //
+  .add-margin-5 {
+    margin: 5px;
+  }
+
+  //
+  // ADD MARGIN 10px
+  //
+  // Use this class for containers that need extra margin (10px).
+  //
+  .add-margin-10 {
+    margin: 10px;
+  }
+
+  //
+  // ADD MARGIN TOP 12px
+  //
+  // Will set the top margin to 20px.
+  //
+  .add-margin-top-12 {
+    margin-top: 12px !important;
+  }
+
+  //
+  // ADD MARGIN TOP 20px
+  //
+  // Will set the top margin to 20px.
+  //
+  .add-margin-top-20 {
+    margin-top: 20px;
+  }
+
+  //
+  // ADD MARGIN TOP 24px
+  //
+  // Will set the top margin to 24px.
+  //
+  .add-margin-top-24 {
+    margin-top: 24px !important;
+  }
+
+  //
+  // ADD MARGIN LEFT 5px
+  //
+  // Use this class for containers that need extra margin left (5px).
+  //
+  .add-margin-left-5 {
+    margin-left: 5px;
+  }
+
+  //
+  // ADD MARGIN LEFT 12px
+  //
+  // Use this class for containers that need extra margin left (12px).
+  //
+  .add-margin-left-12 {
+    margin-left: 12px;
+  }
+
+  //
+  // ADD MARGIN LEFT 20px
+  //
+  // Use this class for containers that need extra margin left (20px).
+  //
+  .add-margin-left-20 {
+    margin-left: 20px;
+  }
+
+  //
+  // ADD MARGIN RIGHT 5px
+  //
+  // Use this class for containers that need extra margin right (5px).
+  //
+  .add-margin-right-5 {
+    margin-right: 5px;
+  }
+
+  //
+  // ADD MARGIN RIGHT 12px
+  //
+  // Use this class for containers that need extra margin right (12px).
+  //
+  .add-margin-right-12 {
+    margin-right: 12px;
+  }
+
+  //
+  // ADD MARGIN RIGHT 24px
+  //
+  // Use this class for containers that need extra margin right (24x).
+  //
+  .add-margin-right-24 {
+    margin-right: 24px;
+  }
+
+  //
+  // FULL WIDTH
+  //
+  // This class will set the width to 100%;
+  //
+  .full-width {
+    width: 100%;
+  }
+
+  //
+  // INPUT SMALL
+  //
+  // Give the smallest possible input width to an input element.
+  //
+  .input-small {
+    width: 170px !important;
+  }
+
+  //
+  // INPUT DEFAULT
+  //
+  // Give the default input width to an input element.
+  //
+  .input-default {
+    width: 340px !important;
+  }
+
+  //
+  // INPUT LARGE
+  //
+  // Give the biggest possible width to an input element.
+  //
+  .input-large {
+    width: 510px !important;
+  }
+
+  //
+  // FULL HEIGHT
+  //
+  // This class will set the height to 100%;
+  //
+  .full-height {
+    height: 100%;
+  }
+
+  //
+  // MINIMUM HEIGHT
+  //
+  // This class applies 350px minimum height to an element
+  //
+  .box-with-min-height {
+    min-height: 302px;
+  }
+
+  //
+  // BACKGROUND COLORS
+  //
+  // Define container colors for elements in order to distinguish them
+  // from other elements. The color of the text will be changed too.
+  //
+  .bg-success {
+    @include component-colors($success-color);
+  }
+
+  .bg-primary {
+    @include component-colors($primary-color);
+  }
+
+  .bg-danger {
+    @include component-colors($danger-color);
+  }
+
+  //
+  // HIDE AN ELEMENT. USE INSTEAD OF DISPLAY NONE IF THE HEIGHT AND WIDTH SHOULD NOT CHANGE
+  //
+  .hidden-visibility {
+    visibility: hidden;
+  }
+}

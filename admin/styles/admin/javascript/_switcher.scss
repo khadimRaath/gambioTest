@@ -1,0 +1,131 @@
+/* 
+	Switcher Widget
+	========================================================================== 
+
+	Styles the switcher widget. 
+	
+*/
+
+.switcher {
+	height:   20px;
+	width:    48px;
+	cursor:   pointer;
+	display:  inline-block;
+	position: relative;
+	@include user-select('none');
+
+	.switcher-inner {
+		display:       block;
+		height:        100%;
+		overflow:      hidden;
+		white-space:   nowrap;
+		width:         100%;
+		word-spacing:  0;
+		border-radius: 3px;
+	}
+
+	.switcher-state-on,
+	.switcher-state-off {
+		color:       $input-bg;
+		font-size:   $font-size-base;
+		font-weight: 600;
+		line-height: 20px;
+		display:     inline-block;
+		width:       100%;
+		height:      100%;
+		margin:      0;
+		padding:     0;
+		text-align:  center;
+		@include transition(all .2s);
+	}
+
+	.switcher-state-on {
+		background:    $brand-primary;
+		padding-right: 15px;
+		margin-left:   -100%;
+		float: left;
+	}
+
+	.switcher-state-off {
+		background:   $text-color;
+		padding-left: 15px;
+	}
+
+	&.checked .switcher-state-on {
+		margin-left: 0;
+	}
+
+	.switcher-toggler {
+		background:    $input-bg;
+		border-radius: 2px;
+		height:        16px;
+		width:         16px;
+		margin:        2px;
+		left:          0;
+		position:      absolute;
+		text-align:    center;
+		@include transition(all .2s);
+	}
+
+	&.checked .switcher-toggler {
+		margin-left: -18px;
+		left:        100%;
+	}
+
+	> input {
+		left:       -100000px;
+		position:   absolute;
+		visibility: hidden;
+	}
+
+	span {
+		line-height: 20px;
+	}
+
+	&.labeled {
+		width: 100px;
+
+		.switcher-state-on,
+		.switcher-state-off {
+			&:after {
+				content: attr(data-checkbox-label);
+				width:   65px;
+				@include font(12px)
+			}
+
+			span {
+				display: none;
+			}
+		}
+	}
+
+	&.disabled {
+		cursor: not-allowed !important;
+		@include opacity(0.1);
+	}
+	
+	// The new "switcher" widget does not contain the text elements because they are rarely used. 
+	.switcher-text-on,
+	.switcher-text-off	{
+		position:    absolute;
+		top:         1px;
+		left:        60px;
+		white-space: nowrap;
+	}
+
+	.switcher-text-on {
+		display: none;
+	}
+	.switcher-text-off	{
+		display: block;
+	}
+
+	&.checked {
+		.switcher-text-on {
+			display: block;
+		}
+		.switcher-text-off {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,49 @@
+{load_language_text section="new_products"}
+
+<div id="product_listing"> <!-- new_products.html, new products in categories -->
+
+	<div class="categories_heading_title">
+		{$txt.heading_text}
+	</div>
+
+	{foreach name=aussen item=module_data from=$module_content}
+	<div class="product_box">
+		
+		<div class="image_cell">
+				{if $module_data.PRODUCTS_IMAGE!=''}
+					<a href="{$module_data.PRODUCTS_LINK}">
+						<img src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.PRODUCTS_IMAGE_ALT|default:$module_data.PRODUCTS_NAME}" title="{$module_data.PRODUCTS_IMAGE_ALT|default:$module_data.PRODUCTS_NAME}"/>
+					</a>
+					<br />
+				{/if}
+				{if $module_data.PRODUCTS_FSK18=='true'}
+					<img src="{$tpl_path}assets/images/ab18.png" alt="ab18.png" title="ab18.png" />
+					<br />
+				{/if}
+		</div>
+		
+		<div class="header_cell">
+			<span class="details_button">[ <a href="{$module_data.PRODUCTS_LINK}" class="product_link">{$txt.text_details}</a> ]</span>
+			<a href="{$module_data.PRODUCTS_LINK}" class="product_link">{$module_data.PRODUCTS_NAME}</a>			
+		</div>
+		
+		<div class="content_cell">
+				{$module_data.PRODUCTS_SHORT_DESCRIPTION}<br />
+
+				<div align="right">
+				<strong>{$module_data.PRODUCTS_PRICE}</strong><br />
+				{if $module_data.PRODUCTS_TAX_INFO neq '' || $module_data.PRODUCTS_SHIPPING_LINK neq ''}
+					({$module_data.PRODUCTS_TAX_INFO}{$module_data.PRODUCTS_SHIPPING_LINK})<br />
+				{/if}	
+						
+				{if $module_data.PRODUCTS_VPE}
+					{$module_data.PRODUCTS_VPE}<br />
+				{/if}
+
+				{$module_data.PRODUCTS_BUTTON_BUY_NOW}
+				</div>
+		</div>
+		
+	</div>	
+	{/foreach}
+</div>

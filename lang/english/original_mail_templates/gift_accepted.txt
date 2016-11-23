@@ -1,0 +1,4 @@
+Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME},
+
+You have recently ordered a coupon in our online shop, which was not activated immediately for safety reasons.
+This credit is now available for you. You can book your coupon and send it by e-mail. The ordered coupon have a value of {$AMMOUNT}.

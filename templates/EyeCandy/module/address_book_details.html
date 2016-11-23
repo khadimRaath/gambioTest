@@ -1,0 +1,192 @@
+{load_language_text section="address_book_process"}
+{load_language_text section="create_account" name="account"}
+{load_language_text section="buttons" name="button"}
+
+<h2 class="underline"><img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" /> {$txt.title_address}</h2>
+
+{if $delete!='1'}
+<div class="required_info">
+	{$txt.text_must}
+</div>
+{/if}
+
+<fieldset>
+	<table cellspacing="0" cellpadding="0" border="0">
+		{if $gender == '1'}
+		<tr>
+			<td class="col_0"><label>{$txt.label_gender}</label></td>
+			<td class="col_1">
+				<input type="radio" name="{$form_data.gender.name}" value="{$form_data.gender.m.value}"{if $form_data.gender.m.checked == '1'} checked="checked"{/if} /> {$txt.gender_male}
+				<input type="radio" name="{$form_data.gender.name}" value="{$form_data.gender.f.value}"{if $form_data.gender.f.checked == '1'} checked="checked"{/if} /> {$txt.gender_female}
+				{if $form_data.gender.required == '1'} * {/if}
+				{if $error_gender}
+					<span class="class_error_message">{$error_gender}</span>
+				{/if}
+			</td>
+		</tr>
+		{/if}
+		<tr>
+			<td class="col_0"><label>{$txt.label_firstname}</label></td>
+			<td class="col_1">
+				<input type="text" name="{$form_data.firstname.name}" value="{$form_data.firstname.value}" class="input-text" />
+				{if $form_data.firstname.required == '1'} * {/if}
+				{if $error_first_name}
+					<span class="class_error_message">{$error_first_name}</span>
+				{/if}
+			</td>
+		</tr>
+		<tr>
+			<td class="col_0"><label>{$txt.label_lastname}</label></td>
+			<td class="col_1">
+				<input type="text" name="{$form_data.lastname.name}" value="{$form_data.lastname.value}" class="input-text" />
+				{if $form_data.lastname.required == '1'} * {/if}
+				{if $error_last_name}
+					<span class="class_error_message">{$error_last_name}</span>
+				{/if}
+			</td>
+		</tr>
+		{if $company=='1'}
+		<tr>
+			<td class="col_0"><label>{$txt.label_company}</label></td>
+			<td class="col_1">
+				<input type="text" name="{$form_data.company.name}" value="{$form_data.company.value}" class="input-text" />
+				{if $form_data.company.required == '1'} * {/if}
+				{if $error_company}				
+					<span class="class_error_message">{$error_company}</span>
+				{/if}
+			</td>
+		</tr>
+		{/if}
+		<tr>
+			<td class="col_0"><label>{$txt.label_street_number}</label></td>
+			<td class="col_1">
+				{if $split_street_information == '1'}
+					<input type="text" name="{$form_data.street_address.name}" value="{$form_data.street_address.value}" class="input-text street" /><input type="text" name="{$form_data.house_number.name}" value="{$form_data.house_number.value}" class="input-text house-number" />
+					{if $form_data.street_address.required == '1'} * {/if}
+					{if $error_street}
+						<span class="class_error_message"> {$error_street}</span>
+					{/if}
+					{if $error_house_number}
+						<span class="class_error_message"> {$error_house_number}</span>
+					{/if}
+				{else}
+					<input type="text" name="{$form_data.street_address.name}" value="{$form_data.street_address.value}" class="input-text" />
+					{if $form_data.street_address.required == '1'} * {/if}
+					{if $error_street}
+						<span class="class_error_message">{$error_street}</span>
+					{/if}
+				{/if}
+			</td>
+		</tr>
+		{if $additional_address_info == '1'}
+			<tr class="form_highlight">
+				<td class="col_0 form_highlight_left">
+					<label for="{$form_data.additional_address_info.name}">{$account.text_additional_info}</label>
+				</td>
+				<td class="col_1 form_highlight_right">
+						<textarea id="{$form_data.additional_address_info.name}"
+								  class="input-textarea"
+								  name="{$form_data.additional_address_info.name}">{$form_data.additional_address_info.value}</textarea>
+				</td>
+			</tr>
+		{/if}
+		{if $suburb=='1'}
+		<tr>
+			<td class="col_0"><label>{$txt.label_suburb}</label></td>
+			<td class="col_1">
+				<input type="text" name="{$form_data.suburb.name}" value="{$form_data.suburb.value}" class="input-text" />
+				{if $form_data.suburb.required == '1'} * {/if}
+			</td>
+		</tr>
+		{/if}
+		<tr>
+			<td class="col_0"><label>{$txt.label_code} / {$txt.label_city}</label></td>
+			<td class="col_1">
+				<input type="text" name="{$form_data.postcode.name}" value="{$form_data.postcode.value}" class="input-text postal-code" /><input type="text" name="{$form_data.city.name}" value="{$form_data.city.value}" class="input-text postal-code-city" />
+				{if $form_data.city.required == '1' || $form_data.postcode.required == '1'} * {/if}
+				{if $error_post_code}
+					<span class="class_error_message"> {$error_post_code}</span>
+				{/if}
+				{if $error_city}
+					<span class="class_error_message"> {$error_city}</span>
+				{/if}
+
+			</td>
+		</tr>
+		{if $state=='1'}
+			<tr>
+				<td class="col_0"><label>{$txt.label_state}</label></td>
+				<td class="col_1">
+					{if $form_data.state.type == 'selection'}
+					<select class="input-select" name="{$form_data.state.name}">
+						{foreach key=zones item=zone_data from=$zones_data}
+						<option value="{$zone_data.id}"{if $zone_data.id == $form_data.state.value} selected="selected"{/if}>{$zone_data.text}</option>
+						{/foreach}
+					</select>
+					{else}
+					<input type="text" name="{$form_data.state.name}" value="{$form_data.state.value}" class="input-text" />
+					{/if}
+					{if $form_data.state.required == '1'} * {/if}
+					{if $error_state}
+						<span class="class_error_message">{$error_state}</span>
+					{/if}
+				</td>
+			</tr>
+		{/if}
+		<tr>
+			<td class="col_0"><label>{$txt.label_country}</label></td>
+			<td class="col_1">
+				<select class="input-select" name="{$form_data.country.name}">
+					{foreach key=countries item=country_data from=$countries_data}
+					<option value="{$country_data.countries_id}"{if $country_data.countries_id == $form_data.country.value} selected="selected"{/if}>{$country_data.countries_name}</option>
+					{/foreach}
+				</select>
+				{if $form_data.country.required == '1'} * {/if}
+				{if $error_country}
+					<span class="class_error_message">{$error_country}</span>
+				{/if}
+			</td>
+		</tr>
+		{if $show_b2b_status}
+		<tr class="form_highlight">
+			<td class="col_0 form_highlight_left"><label>{$txt.text_b2b_status}</label></td>
+			<td class="col_1 form_highlight_right">
+				<input type="radio" value="1" name="{$form_data.b2b_status.name}"{if $form_data.b2b_status.checked == '1' || $form_data.company.value != ''} checked="checked"{/if}{if $form_data.company.value != ''} disabled="disabled"{/if} /> {$txt.text_yes}
+				<input type="radio" value="0" name="{$form_data.b2b_status.name}"{if $form_data.b2b_status.checked == '0' && $form_data.company.value == ''} checked="checked"{/if}{if $form_data.company.value != ''} disabled="disabled"{/if} /> {$txt.text_no}
+				{if $form_data.b2b_status.required == '1'} * {/if}
+			</td>
+		</tr>
+		{else}
+		<tr class="form_highlight" style="display: none;">
+			<td colspan="2"><input type="hidden" name="{$form_data.b2b_status.name}" value="{$form_data.b2b_status.checked}" /></td>
+		</tr>
+		{/if}
+	</table>
+</fieldset>
+{if $new=='1'}
+<input type="checkbox" name="{$checkbox_primary_data.NAME}" value="{$checkbox_primary_data.VALUE}" id="{$checkbox_primary_data.ID}" /> {$txt.label_standard}
+<br />
+{/if}
+
+
+{if $GM_PRIVACY_LINK != '0'}
+	<div id="gm_privacy">
+		{if $show_privacy_checkbox}<input type="checkbox" name="privacy_accepted" value="1"{if $form_data.privacy_accepted.value} checked="checked"{/if}/> {/if}
+		{$GM_PRIVACY_LINK}
+
+		{if $error_privacy}
+			<div class="class_error_message">
+				<br />
+				{$error_privacy}
+			</div>
+		{/if}
+	</div>
+	<br />
+{/if}
+
+<input type="hidden" name="{$HIDDEN_FIELD_NAME}" value="{$HIDDEN_FIELD_VALUE}" />
+
+<a href="{$BUTTON_BACK_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+
+<a href="{page_url}#" class="button_blue button_set action_submit"><span class="button-outer"><span class="button-inner">{$button.save}</span></span></a>
+

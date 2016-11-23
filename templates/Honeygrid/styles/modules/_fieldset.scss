@@ -1,0 +1,32 @@
+/* Fieldset
+   ========================================================================== */
+
+fieldset {
+	position: relative;
+	
+	legend {
+		@include thick-heading();
+		color:         $gx-checkout-headline-color;
+		min-height:    30px;
+		border-bottom: 1px solid $gx-checkout-headline-border-color;
+		
+		.glyphicon,
+		[class^="gm-"],
+		.fa {
+			color:     $brand-primary;
+			font-size: 18px;
+			display:   inline-block;
+			margin:    0 5px 0 0;
+		}
+		a {
+			float:          right;
+			font-weight:    normal;
+			text-transform: none;
+			.glyphicon,
+			[class^="gm-"],
+			.fa {
+				font-size: inherit;
+			}
+		}
+	}
+}

@@ -1,0 +1,46 @@
+{load_language_text section="box_admin"}
+{load_language_text section="buttons" name="button"}
+
+<div id="menubox_admin" class="c_admin content-box white clearfix">
+	<div id="menubox_admin_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">
+			{$txt.heading_admin}
+		</div>
+	</div>
+	<div id="menubox_admin_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix">
+			<div class="content-box-main-inner_link">
+				{if $content_data.CONTENT_BOX_TITLE_STATISTICS && $content_data.CONTENT_BOX_ORDERS_CONTENTS_ARRAY}
+					<strong>{$content_data.CONTENT_BOX_TITLE_STATISTICS}</strong><br />
+					{foreach from=$content_data.CONTENT_BOX_ORDERS_CONTENTS_ARRAY item=orders_content}
+						{$orders_content}<br/>
+					{/foreach}
+				{/if}
+				{if $content_data.CONTENT_BOX_ENTRY_CUSTOMERS}
+					{$content_data.CONTENT_BOX_ENTRY_CUSTOMERS}<br/>
+				{/if}
+				{if $content_data.CONTENT_BOX_ENTRY_PRODUCTS}
+					{$content_data.CONTENT_BOX_ENTRY_PRODUCTS}<br/>
+				{/if}
+				{if $content_data.CONTENT_BOX_ENTRY_REVIEWS}
+					{$content_data.CONTENT_BOX_ENTRY_REVIEWS}<br/>
+				{/if}
+			</div>
+			<br />
+			{if !$content_data.ADMIN_LINK_INFO}
+				<a href="#" onclick="window.location='{$content_data.BUTTON_ADMIN_URL}'; return false;" class="button_red button_set"><span class="button-outer"><span class="button-inner">{$button.click_here}</span></span></a>
+			{else}
+				<a href="#" onclick="if(confirm('{$content_data.ADMIN_LINK_INFO}')){literal}{{/literal}window.location='{$content_data.BUTTON_ADMIN_URL}'; return false;{literal}}{/literal} return false;" class="button_red button_set"><span class="button-outer"><span class="button-inner">{$button.click_here}</span></span></a>
+			{/if}
+			{if $content_data.BUTTON_EDIT_PRODUCT_URL}
+				<br />
+				<br />
+				{if !$content_data.ADMIN_LINK_INFO}
+					<a href="#" onclick="window.open('{$content_data.BUTTON_EDIT_PRODUCT_URL}'); return false;" class="button_blue button_set" title=""><span class="button-outer"><span class="button-inner">{$button.edit_product}</span></span></a>
+				{else}
+					<a href="#" onclick="if(confirm('{$content_data.ADMIN_LINK_INFO}')){literal}{{/literal}window.open('{$content_data.BUTTON_EDIT_PRODUCT_URL}'); return false;{literal}}{/literal} return false;" class="button_blue button_set" title=""><span class="button-outer"><span class="button-inner">{$button.edit_product}</span></span></a>
+				{/if}
+			{/if}
+		</div>
+	</div>
+</div>

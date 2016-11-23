@@ -1,0 +1,68 @@
+// This file will style the JS Engine checkbox widget for the template.
+
+.single-checkbox {
+	display:          inline-block;
+	width:            16px;
+	height:           16px;
+	line-height:      14px;
+	text-align:       center;
+	border:           1px solid $input-color-placeholder;
+	background-color: $body-bg;
+	cursor:           pointer;
+	margin-right:     5px;
+	@include user-select(none);
+	@include transition(border .2s ease);
+
+	.glyphicon, .fa {
+		font-size:  12px;
+		color:      $body-bg;
+		visibility: hidden;
+	}
+
+	&.focused {
+		border-color: $gambio-blue;
+	}
+
+	&.checked {
+		background-color: $brand-primary;
+		border:           1px solid $brand-primary;
+
+		.glyphicon, .fa {
+			visibility: visible;
+		}
+
+		&:active {
+			background-color: lighten($brand-primary, -5);
+		}
+	}
+
+	&.disabled {
+		cursor:           not-allowed !important;
+		background-color: $gray-lighter !important;
+		border-color:     $input-color-placeholder !important;
+
+		.glyphicon, .fa {
+			color: #A7A7A7 !important;
+		}
+	}
+
+	&:active {
+		background-color: adjust-lightness($body-bg, -5);
+	}
+
+	&:hover {
+		border-color: $brand-primary;
+		@include transition(border .2s ease);
+	}
+
+}
+
+
+// checkbox padding like bootstrap
+
+.checkbox .single-checkbox,
+.checkbox-inline .single-checkbox {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: 4px \9;
+}

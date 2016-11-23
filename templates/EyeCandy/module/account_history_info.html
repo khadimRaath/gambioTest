@@ -1,0 +1,134 @@
+{load_language_text section="account_history_info"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="withdrawal" name="withdrawal"}
+
+<div class="account_history_info clearfix">
+
+	<h1>{$txt.heading_history_info}</h1>
+
+	<h2 class="h2_headline">
+		{$txt.label_order_number} {$ORDER_NUMBER} ({$ORDER_STATUS})<br />
+		{$txt.label_order_date} {$ORDER_DATE}
+	</h2>
+
+	<div class="cols2">
+		<div class="col">
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" /> {$txt.title_shipping_address}</h2>
+			<p>{$DELIVERY_LABEL}</p>
+		</div>
+		{if $BILLING_LABEL}
+		<div class="col last">
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" /> {$txt.title_payment_address}</h2>
+			<p>{$BILLING_LABEL}</p>
+		</div>
+		{/if}
+	</div>
+
+	{if $SHIPPING_METHOD}
+	<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/shipping.png" alt="" /> {$txt.title_shipping_method}</h2>
+	<p>{$SHIPPING_METHOD}</p>
+	{if $PARCEL_TRACKING_CODES_ARRAY}
+	<p>
+		<strong>{$txt.parcel_tracking_codes}</strong><br /><br />
+		{foreach item=PARCEL_TRACKING_CODE from=$PARCEL_TRACKING_CODES_ARRAY}
+			<a href="{$PARCEL_TRACKING_CODE->getServiceUrl()|escape}" target="_blank">{$PARCEL_TRACKING_CODE->getTrackingCode()|escape}</a> ({$PARCEL_TRACKING_CODE->getServiceName()|escape})<br />
+			{$PARCEL_TRACKING_CODE->getServiceComment()|nl2br}<br /><br />
+		{/foreach}
+	</p>
+	{/if}
+	{/if}
+
+	{if $PAYMENT_METHOD}
+	<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/payment.png" alt="" /> {$txt.title_payment_method}</h2>
+	<p>{$PAYMENT_METHOD}</p>
+	{/if}
+	
+	{if $history_data}
+	<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/order_history.png" alt="" /> {$txt.title_history}</h2>
+	<p>
+		{foreach item=history_item from=$history_data}
+			<span class="strong">{$history_item.date}:</span> {$history_item.status_name} 
+			{if $history_item.comments}
+				<br /><br />
+				{$history_item.comments|htmlspecialchars|nl2br}
+				<br />
+			{/if}
+			<br />
+		{/foreach}
+	</p>
+	{/if}
+
+	<h2 class="underline overline" style="margin-bottom:0"><img class="png-fix" src="{$tpl_path}img/icons/products.png" alt="" /> {$txt.title_products}</h2>
+
+	<table cellspacing="0" class="order_history_list">
+		<tr class="row_0 first">
+			<th class="col_0">{$txt.head_units}</th>
+			<th class="col_1">{$txt.head_products}</th>
+			<th class="col_2">{$txt.head_artnr}</th>
+			<th class="col_3">{$txt.head_single_price}</th>
+			<th class="col_4">{$txt.head_price}</th>
+		</tr>
+
+		{foreach name=aussen item=order_values from=$order_data}
+		<tr class="article">
+			<td class="col_0">{$order_values.PRODUCTS_QTY} {if $order_values.UNIT}{$order_values.UNIT}{else}x{/if}</td>
+			<td class="col_1">{$order_values.PRODUCTS_NAME}
+				<em>{$order_values.PRODUCTS_ATTRIBUTES}</em>
+				{foreach item=prop_item_array from=$order_values.PRODUCTS_PROPERTIES}
+					<br/>{$prop_item_array.properties_name}: {$prop_item_array.values_name}
+				{/foreach}
+				{if $order_values.PRODUCTS_SHIPPING_TIME neq ''}<br />
+				{$txt.text_shippingtime} {$order_values.PRODUCTS_SHIPPING_TIME}<br />{/if}</td>
+			<td class="col_2">{$order_values.PRODUCTS_MODEL}<em>{$order_values.PRODUCTS_ATTRIBUTES_MODEL}</em></td>
+			<td class="col_3">{$order_values.PRODUCTS_SINGLE_PRICE}</th>
+			<td class="col_4">{$order_values.PRODUCTS_PRICE}</td>
+		</tr>
+		{/foreach}
+
+		{foreach name=order_total_values item=order_total_values from=$order_total}
+		<tr class="calculation{if $smarty.foreach.order_total_values.iteration+1 == $order_total|@count} doubleunderline{/if}{if $smarty.foreach.order_total_values.iteration == $order_total|@count} total{/if}">
+			<td colspan="3"></td>
+			<td class="col_3">{$order_total_values.TITLE}</td>
+			<td class="col_4">{$order_total_values.TEXT}</td>
+		</tr>
+		{/foreach}
+
+	</table>
+
+	{if $downloads_content neq ''}
+		<br />
+		<br />
+		{$downloads_content}
+	{/if}
+	
+	{if $abandonment_download}
+		<br />
+		<br />
+		<input type="checkbox" disabled="disabled" checked="checked" />
+		{$abandonment_download}
+	{/if}
+	
+	{if $abandonment_service}
+		<br />
+		<br />
+		<input type="checkbox" disabled="disabled" checked="checked" />
+		{$abandonment_service}
+	{/if}
+
+	{if $WITHDRAWAL_LINK && ($WITHDRAWAL_WEBFORM_ACTIVE == '1' || $WITHDRAWAL_PDF_ACTIVE == '1')}
+	<h2 class="underline overline">§ {$withdrawal.withdrawal_form}</h2>
+	<p>
+		{if $WITHDRAWAL_PDF_ACTIVE == '1'}{$withdrawal.pdf_text}: <a href="{$PDF_FORM_URL}">{$withdrawal.pdf_link_text}</a><br />{/if}
+		{if $WITHDRAWAL_WEBFORM_ACTIVE == '1'}{$withdrawal.form_text}: <a href="{$WITHDRAWAL_LINK}">{$withdrawal.form_link_text}</a><br />{/if}
+		{if $WITHDRAWAL_PDF_ACTIVE == '1'}<br />
+		<br />
+		<span class="pdf_info">{$withdrawal.pdf_info}</span>{/if}
+	</p>
+	{/if}
+	
+	<br />
+	<br />
+	<a href="{$BUTTON_BACK_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+	<a href="{$BUTTON_PRINT_URL}" class="button_blue button_set button_print_order"><span class="button-outer"><span class="button-inner">{$button.print}</span></span></a>
+	
+</div>

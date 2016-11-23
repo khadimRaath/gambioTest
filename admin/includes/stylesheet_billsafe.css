@@ -1,0 +1,128 @@
+.billsafe_oi div.flow_block {
+	float: left;
+	margin: 0.5%;
+	width: 24%;
+}
+
+.billsafe_oi div.full_block {
+	float: left;
+	width: 100%;
+	margin: .5em 0;
+}
+
+.billsafe_oi div.half_block {
+	float: left;
+	width: 50%;
+	margin: .5em 0;
+}
+
+.billsafe_oi table.billsafe_account td {
+	margin: 0;
+	padding: 0;
+}
+
+.billsafe_oi div.heading {
+	font-weight: bold;
+	background: #B9B9B9;
+	padding: .5ex .5ex;
+	margin-bottom: .5ex;
+}
+
+p.billsafe_message {
+	padding: 1em;
+	background: #FEFFBC;
+	font: 0.8em sans-serif;
+	border: 1px solid red;
+}
+
+.billsafe_oi .article_list {
+	width: 98%;
+}
+
+.billsafe_oi .article_list td {
+	position: relative;
+}
+
+.billsafe_oi .article_list input {
+	width: 99%;
+}
+
+.billsafe_oi .article_list .artno {
+	max-width: 4em;
+}
+
+.billsafe_oi .article_list .type {
+	max-width: 5em;
+}
+
+.billsafe_oi .article_list .name {
+}
+
+.billsafe_oi .article_list .quantity {
+	max-width: 5em;
+}
+
+.billsafe_oi .article_list .price {
+	width: 6em;
+	text-align: right;
+}
+
+.billsafe_oi .article_list .price input {
+	text-align: right;
+}
+
+.billsafe_oi .article_list .tax {
+	max-width: 5em;
+}
+
+.billsafe_oi .article_list .qtyshipped {
+	max-width: 5em;
+}
+
+.billsafe_oi .article_list .sum {
+	font-weight: bold;
+}
+
+.billsafe_oi input.button {
+	width: auto !important;
+	display: inline-block;
+}
+
+.billsafe_oi .bs_shipment .article_list .qtyshipped {
+	display: none;
+}
+
+.billsafe_oi .bs_shipment .shipment_data {
+	margin-top: 1em;
+}
+
+.billsafe_oi .bs_shipment .shipment_data label {
+	display: inline-block;
+	width: 40%;
+}
+
+.billsafe_oi .bs_shipment .shipment_data input[type="text"], 
+.billsafe_oi .bs_shipment .shipment_data select {
+	width: 55%;
+}
+
+.billsafe_oi table.shipped_articles {
+	width: 99%;
+}
+
+.billsafe_oi table.shipped_articles td.price {
+	text-align: right;
+}
+
+.billsafe_oi .direct_payment label {
+	display: inline-block;
+	width: 30%;
+}
+
+.billsafe_oi .direct_payment input[type="text"] {
+	width: 35%;
+}
+
+.billsafe_oi table.bs_info td {
+	vertical-align: top;
+}

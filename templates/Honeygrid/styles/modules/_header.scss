@@ -1,0 +1,157 @@
+/* Header
+   ========================================================================== */
+
+#header {
+
+
+  // apply fixed header
+
+  @if ($gx-body-wrap != true) {
+    @if ($gx-header-fixed) {
+      @extend .navbar-fixed-top;
+    }
+  }
+
+  height: $gx-header-height-mobile;
+  margin-bottom: 0;
+  background-color: $gx-header-bg-mobile;
+  
+  @if ($gx-header-bg-mobile-image-url and $gx-header-bg-mobile-image-url != '' and $gx-header-bg-mobile-image-url != "") {
+    background-image: url($gx-header-bg-mobile-image-url);
+    @if ($gx-header-bg-mobile-image-position) {
+      background-position: $gx-header-bg-mobile-image-position;
+    }
+    @if ($gx-header-bg-mobile-image-repeat) {
+      background-repeat: $gx-header-bg-mobile-image-repeat;
+    }
+    @if ($gx-header-bg-mobile-image-size) {
+      background-size: $gx-header-bg-mobile-image-size;
+    }
+    @if ($gx-header-bg-mobile-image-attachment) {
+      background-attachment: $gx-header-bg-mobile-image-attachment;
+    }
+  }
+  
+  border-width: 0;
+  @include box-shadow(0 0 25px rgba(0, 0, 0, .35));
+  @include transition(300ms ease all);
+
+
+  //  desktop view
+
+  @media (min-width: $grid-float-breakpoint) {
+    background-color: $gx-header-bg;
+  
+    @if ($gx-header-bg-image-url and $gx-header-bg-image-url != '' and $gx-header-bg-image-url != "") {
+      background-image: url($gx-header-bg-image-url);
+      @if ($gx-header-bg-image-position) {
+        background-position: $gx-header-bg-image-position;
+      }
+      @if ($gx-header-bg-image-repeat) {
+        background-repeat: $gx-header-bg-image-repeat;
+      }
+      @if ($gx-header-bg-image-size) {
+        background-size: $gx-header-bg-image-size;
+      }
+      @if ($gx-header-bg-image-attachment) {
+        background-attachment: $gx-header-bg-image-attachment;
+      }
+    }
+    
+    height: $gx-header-height;
+    @include box-shadow(none);
+  }
+
+
+  // middle row: logo, search, cart
+
+  .inside {
+    @include clearfix();
+
+    // wrap inner header
+
+    @if ($gx-body-wrap != true) {
+      @if ($gx-header-wrap) {
+        @extend .container;
+      }
+    }
+    @else {
+        > .row {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+    }
+    
+    // reset bootstrap styles
+
+    &.navbar-default {
+      border: none;
+      @include border-radius(0);
+    }
+    .navbar-header { 
+      @media (min-width: $grid-float-breakpoint) {
+        @if ($gx-hide-logo-col != true) {
+          @include make-sm-column($gx-header-col-sm);
+          @include make-md-column($gx-header-col-md);
+          @include make-lg-column($gx-header-col-lg);
+        }
+        @else {
+          display: none;
+        }
+      }
+      .navbar-toggle {
+        margin: 0;
+        padding: 0;
+        width: $gx-header-height-mobile;
+        height: $gx-header-height-mobile;
+        font-size: 30px;
+        &.active {
+          color: $brand-primary;
+        }
+  
+        &.cart-icon {
+          .gm-cart-basket {
+            color: $gx-cart-icon-color;
+          }
+        }
+        
+      }
+      .navbar-collapse {
+        border-top: none;
+      }
+    }
+  }
+
+
+  // sticky behavior
+
+  @media (min-width: $grid-float-breakpoint) {
+    @if ($gx-body-wrap != true) {
+      @if ($gx-header-fixed) {
+        &.sticky {
+          height: $gx-header-height-sticky;
+          background-color: $gx-header-bg-sticky;
+  
+          @if ($gx-header-bg-sticky-image-url and $gx-header-bg-sticky-image-url != '' and $gx-header-bg-sticky-image-url != "") {
+            background-image: url($gx-header-bg-sticky-image-url);
+            @if ($gx-header-bg-sticky-image-position) {
+              background-position: $gx-header-bg-sticky-image-position;
+            }
+            @if ($gx-header-bg-sticky-image-repeat) {
+              background-repeat: $gx-header-bg-sticky-image-repeat;
+            }
+            @if ($gx-header-bg-sticky-image-size) {
+              background-size: $gx-header-bg-sticky-image-size;
+            }
+            @if ($gx-header-bg-sticky-image-attachment) {
+              background-attachment: $gx-header-bg-sticky-image-attachment;
+            }
+          }
+          
+          @include box-shadow(0 0 25px rgba(0, 0, 0, .35));
+        }
+      }
+    }
+  }
+
+}

@@ -1,0 +1,23 @@
+{$MODULE_cross_selling}
+
+{$MODULE_reverse_cross_selling}
+
+{$MODULE_also_purchased}
+
+<!-- #BOF YOOCHOOSE -->
+{$MODULE_yoochoose_also_interesting}
+
+{$MODULE_yoochoose_product_tracking}
+<!-- #EOF YOOCHOOSE -->
+
+{if $PRODUCTS_ADDED}
+	<div>
+		{$PRODUCTS_ADDED}
+	</div>
+{/if}
+
+{if $PRODUCTS_URL}
+	<div>
+		{$PRODUCTS_URL}
+	</div>
+{/if}

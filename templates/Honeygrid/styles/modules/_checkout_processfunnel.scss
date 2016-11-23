@@ -1,0 +1,65 @@
+/* Checkout Processfunnel
+   ========================================================================== */
+
+.checkout-processfunnel {
+
+	@include reset-list();
+
+	// hide in small resolutions
+	// display as table for vertical alignment
+	display: none;
+	float:   right;
+	width:   auto;
+	@media (min-width: $grid-float-breakpoint) {
+		display: block;
+	}
+
+	li {
+		display:        block;
+		float:          left;
+		border-bottom:  3px solid transparent;
+		font-size:      12px;
+		padding-top:    7px;
+		padding-bottom: 10px;
+		margin-right:   $grid-gutter-width;
+		color:          #CCCCCC;
+		text-transform: uppercase;
+		@media (min-width: $screen-md-min) {
+			padding-bottom: 15px;
+			padding-top:    5px;
+			font-size:      14px;
+			margin-right:   60px;
+
+			&:last-of-type {
+				margin-right: 0;
+			}
+		}
+
+		// numbers
+		span {
+			display:     inline-block;
+			font-size:   12px;
+			float:       left;
+			width:       20px;
+			height:      20px;
+			background:  #CCCCCC;
+			color:       #FFFFFF;
+			text-align:  center;
+			margin:      0 10px 0 0;
+			padding-top: 2px;
+			@include border-radius(50%);
+		}
+
+		// active item
+		&.active {
+			color:               $brand-primary;
+			border-bottom-color: $brand-primary;
+
+			span {
+				background-color: $brand-primary;
+				color:            #FFFFFF;
+			}
+		}
+	}
+
+}

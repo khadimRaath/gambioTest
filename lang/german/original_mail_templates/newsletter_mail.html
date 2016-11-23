@@ -1,0 +1,65 @@
+<meta charset="UTF-8" />
+<div style="margin: 0 !important; padding: 0 !important; max-width: 9000px !important; font-family: arial, verdana, sans-serif; background-color: #e5e5e5; height: 100%">
+	<div style="margin-left: auto; margin-right: auto; width: 720px; padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #999999; text-align: right;">&nbsp;</div>
+
+	<div style="margin-left: auto; margin-right: auto; width: 630px; padding: 25px 45px 25px; background-color: white; margin-top: 15px; margin-bottom: 15px; display: block;">
+		<table align="center" border="0" cellpadding="4" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td>
+						{if $gm_logo_mail}
+						<div style="overflow: hidden; margin-bottom: 25px; display: block; float: right;">{$gm_logo_mail}</div>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<p>
+							<span style="font-family:verdana,geneva,sans-serif;"><span style="font-size: 13px;">
+								<strong>Sehr {if $GENDER == 'm'}geehrter Herr {elseif $GENDER == 'f'}geehrte Frau {else}geehrte(r) {/if}{$NAME},</strong>
+							</span></span>
+						</p>
+
+						<p>
+							<span style="font-family:verdana,geneva,sans-serif;"><span style="font-size: 13px;">
+								<strong>vielen Dank f&uuml;r die Anmeldung.</strong>
+							</span></span>
+						</p>
+
+						<p>
+							<span style="font-family:verdana,geneva,sans-serif;"><span style="font-size: 13px;">
+								Sie erhalten diese E-Mail, weil Sie unseren Newsletter empfangen m&ouml;chten. Bitte klicken Sie auf den Aktivierungslink, 
+								damit Ihre E-Mail-Adresse f&uuml;r den Newsletterempfang freigeschaltet wird. 
+								Sollten Sie sich nicht in unseren Newsletter eingetragen haben bzw. den Empfang des Newsletters nicht w&uuml;nschen, 
+								bitten wir Sie gar nichts zu tun. Ihre E-Mail-Adresse wird dann bei der n&auml;chsten Aktualisierung der Datenbank automatisch gel&ouml;scht.
+							</span></span>
+						</p>
+
+						<br />
+						<table bgcolor="#f1f1f1" border="0" cellpadding="8" width="100%">
+							<tbody>
+								<tr>
+									<td>
+										<span style="font-family:verdana,geneva,sans-serif;"><span style="font-size: 13px;">
+											<strong>Ihr Aktivierungslink:</strong><br />
+											<a href="{$LINK}">{$LINK}</a>
+										</span></span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<br />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br /> 
+		&nbsp;
+	</div>
+
+	<div style="padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #444444; font-family: arial; text-align: center;">
+		<br /><br />
+		<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$EMAIL_SIGNATURE_HTML}</span></span>
+		<br /><br />
+	</div>
+</div>

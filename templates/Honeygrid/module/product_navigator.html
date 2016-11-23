@@ -1,0 +1,32 @@
+{load_language_text section="product_navigator"}
+<div id="product_navigation" class="panel-pagination">
+	<nav>
+		<ul class="pagination">
+			{if $FIRST!=''}
+				<li>
+					<a href="{$FIRST}">{$txt.text_first}</a>
+				</li>
+			{/if}
+
+			{if $PREVIOUS!=''}
+				<li>
+					<a href="{$PREVIOUS}">{$txt.text_back}</a>
+				</li>
+			{/if}
+
+			{if $NEXT!=''}
+				<li>
+					<a href="{$NEXT}">{$txt.text_next}</a>
+				</li>
+			{/if}
+
+			{if $LAST!=''}
+				<li>
+					<a href="{$LAST}">{$txt.text_last}</a>
+				</li>
+			{/if}
+		</ul>
+		
+		<span><strong>{$PRODUCTS_COUNT}</strong> {$txt.text_total}</span>
+	</nav>
+</div>

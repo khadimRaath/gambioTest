@@ -1,0 +1,82 @@
+{load_language_text section="box_cart"}
+{load_language_text section="buttons" name="button"}
+
+<ul class="dropdown-menu arrow-top cart-dropdown{if $empty != 'false'} cart-empty{/if}">
+	<li class="arrow"></li>
+
+	{if $empty=='false'}
+
+		<li class="dropdown-header">
+			{$txt.heading_cart}
+		</li>
+
+	{/if}
+
+	<li class="cart-dropdown-inside">
+
+		{if $customer_status_allow_checkout_info}
+			{$customer_status_allow_checkout_info}
+		{/if}
+		
+		{if $empty=='false'}
+
+			{if $products|count > 0}
+				<ul class="products-list">
+					
+					{foreach name=aussen key=counter item=products_data from=$products}
+					
+						<li class="row{if $counter == 0} first{else if $counter == $products|count - 1} last{/if}">
+							<a class="" href="{$products_data.LINK}" title="{$products_data.NAME}">
+								<span class="img col-xs-3">
+									{if $products_data.IMAGE}
+										<img alt="{$products_data.NAME}" data-holder-rendered="true" src="{$products_data.IMAGE}" class="img-responsive" />
+									{else}
+										&nbsp;
+									{/if}
+								</span>
+								<span class="name col-xs-5">
+									{$products_data.QTY}{if $products_data.UNIT} {$products_data.UNIT}{else}x{/if} {$products_data.NAME}
+									{if $products_data.VPE}<br /><span class="products-vpe">{$products_data.VPE}</span>{/if}
+								</span>
+								<span class="price col-xs-4">
+									{$products_data.PRICE}
+								</span>
+							</a>
+						</li>
+
+					{/foreach}
+				</ul>
+			{/if}
+
+			<div class="dropdown-footer">
+			
+				{if $customer_status_allow_checkout == '1'}
+					<div class="total row">
+						<span class="col-xs-4">
+							{$txt.text_total}
+						</span>
+						<span class="col-xs-8">
+							{$TOTAL}
+						</span>
+					</div>
+					<div class="tax">
+						{$UST} {if $SHIPPING_INFO}{$SHIPPING_INFO}{/if}
+					</div>
+				{/if}
+				
+				<div class="cart-button">
+					<a class="btn btn-block btn-primary" href="{'shopping_cart.php'|xtc_href_link}" title="{$button.to_cart}">
+						{$button.to_cart}
+					</a>
+				</div>
+
+			</div>
+		
+		{else}
+			<div class="cart-empty">
+				{$txt.text_empty_cart}
+			</div>
+		{/if}
+		
+	</li>
+</ul>

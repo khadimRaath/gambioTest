@@ -1,0 +1,165 @@
+{load_language_text section="account_history_info"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="withdrawal" name="withdrawal"}
+
+<h1>{$txt.heading_history_info}</h1>
+
+<dl class="row space-0">
+	<dt class="col-xs-6 col-sm-4 col-md-3">
+		{$txt.label_order_number}
+	</dt>
+	<dd class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6">
+		{$ORDER_NUMBER} ({$ORDER_STATUS})
+	</dd>
+	<dt class="col-xs-6 col-sm-4 col-md-3">
+		{$txt.label_order_date}
+	</dt>
+	<dd class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6">
+		{$ORDER_DATE}
+	</dd>
+</dl>
+
+<div class="row">
+	<div class="col-xs-12">
+		<h3>{$txt.title_shipping_address}</h3>
+		<p class="space-0">{$DELIVERY_LABEL}</p>
+
+		{if $BILLING_LABEL}
+			<h3>{$txt.title_payment_address}</h3>
+			<p class="space-0">{$BILLING_LABEL}</p>
+		{/if}
+	</div>
+</div>
+
+{if $SHIPPING_METHOD}
+	<div class="row">
+		<div class="col-xs-12">
+			<h3>{$txt.title_shipping_method}</h3>
+			<p class="space-0">{$SHIPPING_METHOD}</p>
+			
+			{if $PARCEL_TRACKING_CODES_ARRAY}
+			<p>
+			<h4>{$txt.parcel_tracking_codes}</h4>
+			{foreach item=PARCEL_TRACKING_CODE from=$PARCEL_TRACKING_CODES_ARRAY}
+			<a href="{$PARCEL_TRACKING_CODE->getServiceUrl()|escape}" target="_blank">
+				{$PARCEL_TRACKING_CODE->getTrackingCode()|escape}
+			</a>
+			({$PARCEL_TRACKING_CODE->getServiceName()|escape})
+			<br />
+			{$PARCEL_TRACKING_CODE->getServiceComment()|nl2br}
+			{/foreach}
+			</p>
+			{/if}
+		</div>
+	</div>
+{/if}
+
+{if $PAYMENT_METHOD}
+	<div class="row">
+		<div class="col-xs-12">
+			<PAYMENT_METHOD>{$txt.title_payment_method}</PAYMENT_METHOD>
+			<p class="space-0">{$PAYMENT_METHOD}</p>
+		</div>
+	</div>
+{/if}
+	
+{if $history_data}
+	<div class="row">
+		<div class="col-xs-12">
+			<h3>{$txt.title_history}</h3>
+			<p>
+				{foreach item=history_item from=$history_data}
+			</p>
+			<dl class="space-0">
+				<dt>
+					{$history_item.date}:
+				</dt>
+				<dd>
+					{$history_item.status_name}
+					{if $history_item.comments}
+					<br />
+					{$history_item.comments|htmlspecialchars|nl2br}
+					{/if}
+				</dd>
+			</dl>
+			{/foreach}
+		</div>
+	</div>
+{/if}
+
+<h3>{$txt.title_products}</h3>
+
+{include file="get_usermod:{$tpl_path}snippets/order/account_history_order.html"}
+
+{if $downloads_content != '' || $abandonment_download || $abandonment_service}
+	<div class="row">
+		<ul class="col-xs-12">
+			{if $downloads_content != ''}
+			<li>
+				{$downloads_content}
+			</li>
+			{/if}
+
+			{if $abandonment_download}
+			<li>
+				<input type="checkbox" disabled="disabled" checked="checked" />
+				{$abandonment_download}
+			</li>
+			{/if}
+
+			{if $abandonment_service}
+			<li>
+				<input type="checkbox" disabled="disabled" checked="checked" />
+				{$abandonment_service}
+			</li>
+			{/if}
+		</ul>
+	</div>
+{/if}
+
+{if $WITHDRAWAL_LINK && ($WITHDRAWAL_WEBFORM_ACTIVE == '1' || $WITHDRAWAL_PDF_ACTIVE == '1')}
+	<h3>§ {$withdrawal.withdrawal_form}</h3>
+	<dl class="row col-xs-12">
+		{if $WITHDRAWAL_PDF_ACTIVE == '1'}
+			<dt>
+				{$withdrawal.pdf_text}:
+			</dt>
+			<dd>
+				<a href="{$PDF_FORM_URL}" title="{$withdrawal.pdf_link_text}">
+					{$withdrawal.pdf_link_text}
+				</a>
+			</dd>
+		{/if}
+		{if $WITHDRAWAL_WEBFORM_ACTIVE == '1'}
+			<dt>
+				{$withdrawal.form_text}:
+			</dt>
+			<dd>
+				<a href="{$WITHDRAWAL_LINK}" title="{$withdrawal.form_link_text}">
+					{$withdrawal.form_link_text}
+				</a>
+			</dd>
+		{/if}
+		{if $WITHDRAWAL_PDF_ACTIVE == '1'}
+			<dt>
+				&nbsp;
+			</dt>
+			<dd>
+				{$withdrawal.pdf_info}
+			</dd>
+		{/if}
+	</dl>
+{/if}
+
+<div class="row">
+	<div class="col-xs-6 col-sm-4 col-md-3">
+		<a class="btn btn-default btn-block" href="{$BUTTON_BACK_LINK}" title="{$button.back}">
+			{$button.back}
+		</a>
+	</div>
+	<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+		<a class="btn btn-primary btn-block lightbox_iframe" href="{$BUTTON_PRINT_URL}" title="{$button.print}">
+			{$button.print}
+		</a>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME},
+
+We created an account for you.
+
+{if $COMMENTS}Comments:{$COMMENTS}{/if}
+
+Login with following account/password:
+
+mail: {$EMAIL}
+password: {$PASSWORD}

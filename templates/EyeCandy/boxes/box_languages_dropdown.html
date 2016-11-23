@@ -1,0 +1,13 @@
+
+<div id="language" style="display:none;">
+	<div class="language_container png-fix">
+		<div class="language_inside">
+			{foreach name=language item=language_data from=$content_data.languages_data}
+				{if $language_data.ID != $content_data.CURRENT_LANGUAGES_ID}
+					<div style="clear:both"><a href="{$language_data.LINK}" title="{$language_data.NAME}"><img src="{$language_data.ICON_SMALL}" title="" alt="" border="0" width="16" height="11" /></a> <a href="{$language_data.LINK}" title="{$language_data.NAME}">{$language_data.CODE}</a></div>
+				{/if}
+			{/foreach}
+		</div>
+	</div>
+</div>
+

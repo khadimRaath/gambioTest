@@ -1,0 +1,33 @@
+{*
+Main app menu generation. The data come from the from the AdminMenuContentView class (same as the old menu)
+and they are imported to the template from the AdminLayoutHttpControllerResponse.
+*}
+<nav data-gx-controller="layouts/main/menu/menu">
+    <ul class="{$menu_visibility}">
+        {foreach $menu_entries as $entry}
+        <li>
+            {if !empty($entry.menuitems)}
+            <a href="{$entry.menuitems[0].link}">
+                <i class="icon {$entry.class}"></i>
+                <span class="title">{$entry.title}</span>
+            </a>
+            <ul>
+                {foreach $entry.menuitems as $item}
+                <li>
+                    <a id="{$item.id}"
+                       href="{$item.link}"
+                       class="fav-drag-item">{$item.title}</a>
+                </li>
+                {/foreach}
+            </ul>
+            {else}
+                <i class="icon {$entry.class}"></i>
+                <span class="title">{$entry.title}</span>
+            {/if}
+        </li>
+        {/foreach}
+    </ul>
+</nav>
+
+{* Scroll To Top *}
+{include file="$template_dir/layouts/main/menu/scroll_to_top.html"}

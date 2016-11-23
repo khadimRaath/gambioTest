@@ -1,0 +1,11 @@
+{extends file="../../layouts/main/partial/tooltip.html"}
+
+{block name="content"}
+	<div class="tracking-links">
+		{foreach $tracking_links as $tracking_link}
+			<div class="tracking-link">
+				<a href="{$tracking_link.url}" target="_blank">{$tracking_link.service} #{$tracking_link.code}</a>
+			</div>
+		{/foreach}
+	</div>
+{/block}

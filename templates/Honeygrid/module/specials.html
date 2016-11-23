@@ -1,0 +1,11 @@
+{load_language_text section="specials"}
+{load_language_text section="product_listing" name="product"}
+{load_language_text section="index" name="index"}
+
+<h1>{$txt.heading_text}</h1>
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/pagination.html" bar=$NAVBAR}
+
+{product_listing products=$module_content id="specials" template="snippets/product_listing/product_listing.html" showManufacturerImages=$showManufacturerImages showProductRibbons=$showProductRibbons showRating=$showRating}
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/pagination.html" info=$NAVIGATION_INFO bar=$NAVBAR}

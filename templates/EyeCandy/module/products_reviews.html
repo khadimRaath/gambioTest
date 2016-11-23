@@ -1,0 +1,35 @@
+{load_language_text section="reviews"}
+{load_language_text section="buttons" name="button"}
+
+{if $module_content|@count > 0}
+<div class="rating">
+	<div class="headline">{$txt.heading_reviews}</div>
+	{foreach name=aussen key=key item=module_data from=$module_content}
+		<div class="rating-item clearfix"{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.product_itemprop_reviews}{$rich_snippet_content.$key.review_itemscope}{/if}>
+			<div class="rating-stars"{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.review_itemprop_reviewRating}{$rich_snippet_content.$key.rating_itemscope}{/if}>
+				{$module_data.RATING}
+				{if isset($rich_snippet_content.$key)}
+					{$rich_snippet_content.$key.rating_itemprop_ratingValue}
+				{/if}
+			</div>
+			<div class="rating-caption">
+				{$txt.label_author}<br />
+				{$txt.label_date}
+			</div>
+			<div class="rating-meta">
+				<span{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.review_itemprop_author}{$rich_snippet_content.$key.author_itemscope}{/if}>
+					<span{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.author_itemprop_name}{/if}>{$module_data.AUTHOR}</span>
+				</span><br />
+				{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.review_itemprop_datePublished}{/if}{$module_data.DATE}
+			</div>
+			<div class="rating-comment">
+				<span{if isset($rich_snippet_content.$key)}{$rich_snippet_content.$key.review_itemprop_reviewBody}{/if}>
+				 {$module_data.TEXT|truncate:150:" ..."}</span><br /><a href="{$module_data.LINK}">{$txt.text_reviews_link}</a>
+			</div>
+		</div>
+	{/foreach}
+	<br />
+	<a href="{$BUTTON_LINK}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.your_opinion}</span></span></a>
+	<br />
+</div>
+{/if}

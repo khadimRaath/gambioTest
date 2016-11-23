@@ -1,0 +1,13 @@
+{load_language_text section="box_categories_top"}
+
+<div id="head_navi" class="gradient">
+	<ul class="clearfix">
+		{foreach name=cat_data item=categories_item from=$content_data.CATEGORIES_DATA}
+		<li{if $categories_item.children|@count > 0} id="megadropdown_top_link_id_{$categories_item.data.id}"{/if} class="megadropdown_top_link {if $smarty.foreach.cat_data.first}first{elseif $smarty.foreach.cat_data.last}last{/if}">
+			<h3>
+				<a href="{$categories_item.data.url}"{if $content_data.category_id == $categories_item.data.id} class="current"{/if} rel="{$categories_item.data.id}">{$categories_item.data.name|replace:"&amp;":"&"|replace:"&":"&amp;"}{if $categories_item.data.products_count} ({$categories_item.data.products_count}){/if}</a>
+			</h3>
+		</li>
+		{/foreach}
+	</ul>
+</div>

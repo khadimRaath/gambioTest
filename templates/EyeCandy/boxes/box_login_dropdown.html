@@ -1,0 +1,24 @@
+{load_language_text section="box_login_dropdown"}
+{load_language_text section="buttons" name="button"}
+
+<div id="customer_login" style="display:none;">
+	<div class="customer_login_container png-fix">
+		<div class="customer_login_inside">
+			<form action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+				<label>{$txt.text_email}</label><br />
+				<input type="text" name="{$content_data.FIELD_EMAIL_NAME}" value="" class="input-text" /><br />
+				<label>{$txt.text_pwd}</label><br />
+				<input type="password" name="{$content_data.FIELD_PWD_NAME}" value="" class="input-text" /><br />
+				<div class="submit-container"><a href="{page_url}#" class="button_blue button_set action_submit"><span class="button-outer"><span class="button-inner">{$button.login}</span></span></a></div>
+				<div class="customer_login_links">
+					<a href="{$content_data.LINK_CREATE_ACCOUNT}">
+						{$txt.text_create_account}
+					</a><br />
+					<a href="{$content_data.LINK_LOST_PASSWORD}">
+						{$txt.text_password_forgotten}
+					</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

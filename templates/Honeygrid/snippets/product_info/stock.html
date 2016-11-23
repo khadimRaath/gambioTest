@@ -1,0 +1,15 @@
+{if $PRODUCTS_QUANTITY || $SHOW_PRODUCTS_QUANTITY}
+	<dt class="col-xs-4 text-left">
+		{$txt.text_stock}
+	</dt>
+	<dd class="col-xs-8">
+		<span class="products-quantity-value">
+			{$PRODUCTS_QUANTITY}
+		</span>
+		{if $PRODUCTS_QUANTITY_UNIT}
+			{$PRODUCTS_QUANTITY_UNIT}
+		{else}
+			{$txt.text_pieces}
+		{/if}
+	</dd>
+{/if}

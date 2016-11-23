@@ -1,0 +1,57 @@
+{load_language_text section="contact_us"}
+{load_language_text section="buttons" name="button"}
+
+<div id="gm_tell_a_friend_popup">
+
+	<div style="position:relative;">
+		<div class="lightbox_close"><a href="#" class="icon_lightbox_close" title="{$button.close}">&nbsp;</a></div>
+	</div>
+
+	<h1>{$TELL_A_FRIEND_TITLE} &quot;{$PRODUCTS_NAME}&quot;</h1>
+
+	{if $MAIL_OUT}<strong>{$MAIL_OUT}</strong>
+	{else}
+
+		{if $VVCODE_ERROR}<br /><strong>{$VVCODE_ERROR}</strong><br /><br />{/if}
+		{if $ERROR}<br /><strong>{$ERROR}</strong><br /><br />{/if}
+
+		<div class="required_info">
+			{$txt.text_required}
+		</div>
+
+		<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+			<fieldset class="blocklabels_150">
+				<div class="input">
+					<label>{$NAME}</label>
+					<input type="text" class="input-text tell_a_friend_fields" name="name" id="tell_a_friend_name" value="{$INPUT_NAME}" /> {$txt.text_required_sign}
+				</div>
+				<div class="input">
+					<label>{$EMAIL}</label>
+					<input type="text" class="input-text gm_mb_input tell_a_friend_fields" name="email" id="tell_a_friend_email" value="{$OWN_MAIL}" /> {$txt.text_required_sign}
+				</div>
+				<div class="input">
+					<label>{$MESSAGE}</label>
+					<textarea class="input-textarea gm_tell_a_friend_message tell_a_friend_fields png-fix" name="message" id="tell_a_friend_message">{$INPUT_MESSAGE}</textarea>
+				</div>
+				{if $VALIDATION_ACTIVE == 'true'}
+					<div class="input vvcode">
+						<label>{$VALIDATION}</label>
+						<div id="captcha_wrapper">
+							{$GM_CAPTCHA}
+						</div>
+					</div>
+				{/if}
+			</fieldset>
+
+			{if $GM_PRIVACY_LINK != '0'}
+				<div id="gm_privacy">
+					{$GM_PRIVACY_LINK}
+					<br />
+					<br />
+				</div>
+			{/if}
+			<div class="send_button"><a href="{page_url}#" class="button_grey_big button_set_big button_send_tell_a_friend"><span class="button-outer"><span class="button-inner">{$button.send}</span></span></a></div>
+
+		</form>
+	{/if}
+</div>

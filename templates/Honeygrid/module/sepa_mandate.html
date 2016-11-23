@@ -1,0 +1,22 @@
+{load_language_text section="sepa_mandate_form"}
+<b>{$smarty.const.COMPANY_NAME}, {$smarty.const.TRADER_STREET} {$smarty.const.TRADER_STREET_NUMBER}, {$smarty.const.TRADER_ZIPCODE} {$smarty.const.TRADER_LOCATION}</b><br /><br />
+{$txt.creditor_id}: <b>{$content_data.creditor_id}</b><br /><br />
+{$txt.mandate_reference}: <b>{if $content_data.mandate_reference}{$content_data.mandate_reference}{else}{$txt.communicate_separately}{/if}</b><br /><br /><br /><br />
+<span style="font-size: 12px"><b><u>{$txt.headline}</u></b></span><br /><br /><br />
+{$txt.authorization_hint|sprintf:$smarty.const.COMPANY_NAME:$smarty.const.COMPANY_NAME}<br /><br />
+{$txt.refund_hint}<br /><br /><br />
+
+<span style="font-size: 12px">{$content_data.sepa_owner}</span><HR><br />
+<span style="font-size: 8px">{$txt.label_name}</span><br /><br /><br />
+<span style="font-size: 12px">{$content_data.customer_street_address}</span><HR><br />
+<span style="font-size: 8px">{$txt.label_street_address}</span><br /><br /><br />
+<span style="font-size: 12px">{$content_data.customer_postcode} {$content_data.customer_city}</span><HR><br />
+<span style="font-size: 8px">{$txt.label_postcode_city}</span><br /><br /><br />
+<span style="font-size: 12px">{$content_data.sepa_iban}</span><HR><br />
+<span style="font-size: 8px">{$txt.label_iban}</span><br /><br /><br />
+<span style="font-size: 12px">{$content_data.sepa_bic}</span><HR><br />
+<span style="font-size: 8px">{$txt.label_bic}</span><br /><br /><br />
+<span style="font-size: 12px">{$content_data.sepa_bankname}</span><HR><br />
+<span style="font-size: 8px">{$txt.label_bankname}</span><br /><br /><br />
+<span style="font-size: 12px"> </span><HR><br />
+<span style="font-size: 8px">{$txt.label_signature}</span><br /><br /><br />

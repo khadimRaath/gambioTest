@@ -1,0 +1,19 @@
+{load_language_text section="box_manufacturers_info"}
+
+{if $content_data.NAME || $style_edit_active}
+<div id="menubox_manufacturers_info" class="c_manufacturers_info content-box white clearfix">
+	<div id="menubox_manufacturers_info_head" class="c_boxhead content-box-header clearfix">
+		<div class="content-box-header-inner">
+			{$txt.heading_manufacturers_info}
+		</div>
+	</div>
+	<div id="menubox_manufacturers_info_body" class="content-box-main clearfix">
+		<div class="content-box-main-inner clearfix">
+			{if $content_data.IMAGE && file_exists($content_data.IMAGE)}<center><img src="{$content_data.IMAGE}" alt="{$content_data.NAME}" /><br /></center>{/if}
+			{$content_data.NAME}<br />
+			{if $content_data.URL}{$content_data.URL}<br />{/if}
+			{$content_data.LINK_MORE}
+		</div>
+	</div>
+</div>
+{/if}

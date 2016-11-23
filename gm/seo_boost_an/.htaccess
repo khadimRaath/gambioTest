@@ -1,0 +1,45 @@
+## Gambio SEO Boost
+## www.gambio.de
+
+<ifModule mod_headers.c>
+	Header set X-Content-Type-Options: nosniff
+</ifModule>
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	
+	RewriteCond %{REQUEST_FILENAME} ^(.*)\.(php|css|js|gif|jpg|jpeg|png)$ [NC]
+	RewriteRule ^(.+) - [L]
+	
+	RewriteCond %{REQUEST_URI} (.*)?/admin/(.*)
+	RewriteRule ^(.+) - [L]
+	
+	RewriteCond %{REQUEST_URI} (.*)?/images/(.*)
+	RewriteRule ^(.+) - [L]
+	
+	RewriteCond %{REQUEST_URI} (.*)?/templates/(.*)
+	RewriteRule ^(.+) - [L]
+	
+	
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule ^(.+) - [L]
+	
+	RewriteCond %{REQUEST_FILENAME} -f
+	RewriteRule ^(.+) - [L]
+	
+	RewriteCond %{REQUEST_FILENAME} -l
+	RewriteRule ^(.+) - [L]
+	
+	
+	##boosted CONTENT
+	RewriteRule (^[a-z]{2})/(.*/)?info/([A-Za-z0-9_/-]+)\.html.* shop_content.php?language=$1&gm_boosted_content=$3&%{QUERY_STRING} [PT,L]
+	RewriteRule (.*/)?info/([A-Za-z0-9_/-]+)\.html.* shop_content.php?gm_boosted_content=$2&%{QUERY_STRING} [PT,L]
+	
+	##boosted PRODUCTS
+	RewriteRule (^[a-z]{2})/([A-Za-z0-9_/-]+)\.html product_info.php?language=$1&gm_boosted_product=$2&%{QUERY_STRING} [PT,L]
+	RewriteRule ([A-Za-z0-9_/-]+)\.html product_info.php?gm_boosted_product=$1&%{QUERY_STRING} [PT,L]
+	
+	##boosted CATEGORIES
+	RewriteRule (^[a-z]{2})/([A-Za-z0-9_/-]+)/?.* index.php?language=$1&gm_boosted_category=$2&%{QUERY_STRING} [L]
+	RewriteRule ([A-Za-z0-9_/-]+)/?.* index.php?gm_boosted_category=$1&%{QUERY_STRING} [L]
+</IfModule>

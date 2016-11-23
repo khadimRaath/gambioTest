@@ -1,0 +1,49 @@
+{* --------------------------------------------------------------
+   checkout_ipayment.html 2016-06-27
+   Gambio GmbH
+   http://www.gambio.de
+   Copyright (c) 2013 Gambio GmbH
+   Released under the GNU General Public License (Version 2)
+   [http://www.gnu.org/licenses/gpl-2.0.html]
+   --------------------------------------------------------------
+*}
+{load_language_text section="ipayment"}
+
+{literal}
+<style type="text/css">
+#ipayment fieldset             { position: relative; overflow: auto; margin: 2em auto; width: 80%; }
+#ipayment legend               { padding: .3ex 1ex; }
+#ipayment label                { float: left; clear: left; display: inline-block; width: 30%; }
+#ipayment input[type="text"]   { display: inline-block; float: left; width: 65%; }
+#ipayment p.info               { margin: 0 0 0 30%; float: left; font-size: .9em; }
+#ipayment input[type="submit"] { display: block; margin: auto; width: 30%; font-size: 1.2em; padding: 1ex 1em; }
+#ipayment p.error              { font-size: 1.2em; border-width: 2px; border-style: solid; padding: 1em; width: 70%; margin: 2em auto; }
+</style>
+{/literal}
+
+<div id="ipayment">
+	<p style="text-align:center;">
+		<img src="https://ipayment.de/img/splash_logo.gif" alt="ipayment">
+	</p>
+
+	{$nonsilent_message}
+
+	{if $silent_error}
+	<p class="error">{$silent_error}</p>
+	{/if}
+
+	<form action="{$action_url}" method="post" id="ipayment_form">
+		{foreach from=$formfields item=value key=key name="formfields"}
+			<input type="hidden" name="{$key}" value="{$value}">
+		{/foreach}
+		<p>
+			<input type="submit" value="{$txt.proceed_payment}">
+		</p>
+	</form>
+
+	<p class="backbutton">
+		<a class="button_grey_big button_set_big action_page_back" href="{$back_url}">
+			<span class="button-outer"><span class="button-inner">{$txt.back_button}</span></span>
+		</a>
+	</p>
+</div>

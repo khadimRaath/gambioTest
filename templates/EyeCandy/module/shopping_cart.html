@@ -1,0 +1,112 @@
+{load_language_text section="shopping_cart"}
+{load_language_text section="checkout_shipping" name="shipping"}
+{load_language_text section="buttons" name="button"}
+
+<!-- SHOPPING CART -->
+{if $LIGHTBOX == 'true'}<div id="lightbox_content" style="display:none">{/if}
+	<div class="shopping_cart{if $LIGHTBOX == 'true'} lightbox_block{/if}">
+		<div class="process_bar">
+			<ul>
+				<li class="active"><label><span>{$shipping.text_shoppingcart}</span></label></li>
+				<li><label><span>{$shipping.text_yourdata}</span></label></li>
+				<li><label><span>{$shipping.text_shipandpay}</span></label></li>
+				<li><label><span>{$shipping.text_confirm}</span></label></li>
+			</ul>
+		</div>
+		{if $LIGHTBOX == 'true'}
+			<div style="position:relative;">
+				<div class="lightbox_close"><a href="{$LIGHTBOX_CLOSE}" class="icon_lightbox_close" title="{$button.close}">&nbsp;</a></div>
+			</div>
+		{/if}
+	  <h1>{$txt.heading_cart}</h1>
+
+		{if $info_message != ''}
+			<div class="align_center info_message">
+				{$info_message}
+			</div>
+		{/if}
+
+		{if $customer_status_allow_checkout == '0' && $customer_status_allow_checkout_info != ''}
+			<div class="align_center info_message">
+				{$customer_status_allow_checkout_info}
+			</div>
+		{/if}
+
+		{* $MODULE_gift_cart *}
+
+		{if $cart_empty==true}
+		
+			<div class="gift_cart_empty">
+				<p>{$txt.text_empty}</p>
+				
+				
+				{if $MODULE_gift_cart}		
+					{$FORM_ACTION}
+					<table cellspacing="0" class="shopping_cart_list">
+						<tr>
+							<td class="col_0 order-total">
+								{$MODULE_gift_cart}				
+							</td>
+						</tr>
+					</table>	
+					{$FORM_END}
+				{/if}
+				<div class="continue_button"><a href="{$BUTTON_BACK_URL}" class="button_grey_big button_set_big action_page_back"><span class="button-outer"><span class="button-inner">{$button.continue_shopping}</span></span></a></div>
+				
+			</div>
+		{else}
+			{$FORM_ACTION}
+			{$HIDDEN_OPTIONS}
+			{if $customer_status_allow_checkout == '1'}
+				<div class="checkout_button" style="margin-bottom: 10px;">
+					{foreach name=cob item=cobutton from=$checkout_buttons}
+						{if $cobutton.script}{$cobutton.script}{else}
+						<a style="display: inline-block; vertical-align: middle;" href="{$cobutton.url}"><img src="{$cobutton.img}"></a>
+						{/if}
+						&nbsp;&nbsp;&nbsp;{$txt.text_or}&nbsp;&nbsp;&nbsp;
+					{/foreach}
+					<a href="{'checkout_shipping.php'|xtc_href_link:'':'SSL'}" class="button_green_big button_set_big"><span class="button-outer"><span class="button-inner"><img class="png-fix" src="{$tpl_path}img/icons/icon-white-shoppingcart.png" alt="" style="margin-right:10px; float:left" />{$button.checkout}</span></span></a>
+				</div>
+			{/if}
+			<br />
+			<br />
+			<br />
+			{$MODULE_order_details}
+
+			{if $info_message_1!=''}
+				{$info_message_1}{$min_order} {$info_message_2}{$order_amount}<br />
+			{/if}
+
+			<div class="klarna_widget_area">
+				{$KLARNA_WIDGET}
+			</div>
+
+			{if $customer_status_allow_checkout == '1'}
+				<div>{$txt.text_about_shipping_and_payment} <a class="grey_link lightbox_iframe" href="{$SHIPPING_AND_PAYMENT_INFO_LINK}">{$SHIPPING_AND_PAYMENT_CONTENT_TITLE}</a>.</div>
+			{/if}
+			
+			{* TODO: write action_page_back handler *}
+			<div class="continue_button"><a href="{$BUTTON_BACK_URL}" class="button_grey_big button_set_big action_page_back"><span class="button-outer"><span class="button-inner">{$button.continue_shopping}</span></span></a></div>
+			{* TODO: use xtc_href_link plugin *}
+			{if $customer_status_allow_checkout == '1'}
+				<div class="checkout_button" style="margin-bottom: 10px;">
+					{foreach name=cob item=cobutton from=$checkout_buttons}
+						{if $cobutton.script}{$cobutton.script}{else}
+						<a style="display: inline-block; vertical-align: middle;" href="{$cobutton.url}"><img src="{$cobutton.img}"></a>
+						{/if}
+						&nbsp;&nbsp;&nbsp;{$txt.text_or}&nbsp;&nbsp;&nbsp;
+					{/foreach}
+					<a href="{'checkout_shipping.php'|xtc_href_link:'':'SSL'}" class="button_green_big button_set_big"><span class="button-outer"><span class="button-inner"><img class="png-fix" src="{$tpl_path}img/icons/icon-white-shoppingcart.png" alt="" style="margin-right:10px; float:left" />{$button.checkout}</span></span></a>
+				</div>
+			{/if}
+			{$FORM_END}
+		{/if}
+	</div>
+{if $LIGHTBOX == 'true'}</div>{/if}
+
+
+<!-- #BOF YOOCHOOSE -->
+{if $MODULE_yoochoose_shopping_cart != ''}
+	{$MODULE_yoochoose_shopping_cart}
+{/if}
+<!-- #EOF YOOCHOOSE -->	

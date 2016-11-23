@@ -1,0 +1,31 @@
+{load_language_text section="admin_general" name="admin_general"}
+
+{* Use the "dynamic_header_actions" variable for inserting custom HTML before the normal actions. *}
+{$dynamic_header_actions}
+
+<ul data-gx-controller="layouts/main/header/info_box">
+	<li class="search">
+		<i class="fa fa-search"></i>
+	</li>
+	<li class="info-box">
+		<i class="fa fa-bullhorn"></i> <span class="notification-count hidden"></span>
+	</li>
+	<li class="frontend">
+		<a href="..">
+			<i class="fa fa-shopping-cart"></i>
+		</a>
+	</li>
+	<li class="logout"
+		title="{$admin_general.GM_TOP_MENU_LOGOUT} ({$_SESSION.customer_first_name} {$_SESSION.customer_last_name})">
+		<a href="../logoff.php">
+			<i class="fa fa-power-off"></i>
+		</a>
+	</li>
+</ul>
+
+{if $shop_offline == true}
+<div class="label offline-notice-label">
+	<i class="fa fa-exclamation-triangle"></i>
+	{$admin_general.TEXT_SHOP_STATUS}
+</div>
+{/if}

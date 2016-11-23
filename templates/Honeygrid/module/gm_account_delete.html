@@ -1,0 +1,47 @@
+{load_language_text section="account_delete"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_delete_account}</h1>
+		
+<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}" class="form-horizontal">
+	
+	<fieldset>
+		
+		<legend>
+			{$txt.title_delete_account}
+		</legend>
+
+		<div class="form-group">
+
+			<label for="{$id}" class="control-label col-sm-3">
+				{$txt.label_annotation}
+			</label>
+
+			<div class="col-sm-9 input-container">
+
+				<textarea placeholder="{$txt.label_annotation}" 
+						  id="{$GM_COMMENTS_NAME}" 
+						  name="{$GM_COMMENTS_NAME}" 
+						  class="form-control"></textarea>
+			</div>
+
+		</div>
+
+	</fieldset>
+	
+	{$HIDDEN_ACTION_FIELD}
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-4 col-md-3">
+			<a class="btn btn-default btn-block" href="{$BUTTON_BACK_LINK}" title="{$button.back}">
+				{$button.back}
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+			<button type="submit" class="btn btn-primary btn-block" title="{$button.send}">
+				{$button.send}
+			</button>
+		</div>
+	</div>
+	
+</form>

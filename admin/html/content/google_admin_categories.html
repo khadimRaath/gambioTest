@@ -1,0 +1,280 @@
+{load_language_text section="google_categories_administration"}
+<div class="google_categories_administration">
+	<input type="hidden" class="category_id" value="{$content_data.lightbox_parameters.categories_id}" />
+    <table border="0" data-gx-widget="checkbox">
+        <tbody>
+            <tr>
+                <td>
+                    <table width="100%" border="0" class="main">
+                        <tbody>
+                            <tr class="options-container">
+                                <td style="font-size: 14px; font-weight: bold;">
+	                                <div class="category-headline">
+		                                {$txt.category_headline}
+	                                </div>
+	                                <div class="control-wrapper">
+		                                <span class="google_category_recursive">{$txt.change_recursive}</span>
+		                                <input type="checkbox" class="google_recursive_mode" name="google_recursive_mode" data-single_checkbox/>
+	                                </div>
+	                                <div style="clear: both;"> <!-- --></div>
+	                                <div class="control-wrapper">
+		                                <span class="google_category_recursive">{$txt.overwrite_existing_categories}</span>
+		                                <input type="checkbox" class="google_overwrite_categories" name="google_overwrite_categories" data-single_checkbox/>
+	                                </div>
+                                </td>
+                            </tr>
+                            <tr class="button-container">
+                                <td>
+                                    <input type="text" class="text button_edit" value="{$txt.button_edit}" />
+                                    <input type="text" class="text select" value="{$txt.select_categorie}" />
+                                    <div class="google_category_list">
+                                    </div>
+                                    <div class="google_category_list_add_button">
+                                        <a href="#" class="btn">{$txt.button_category_add}</a>
+                                    </div>
+                                    <div class="google_category_list_add_box">
+                                        <hr />
+                                        <p class="add">{$txt.button_category_add}</p>
+                                        <p class="edit">{$txt.category_edit_headline}</p>
+                                        <input type="text" name="category_string" class="category_string" readonly="readonly" />
+                                        <a href="#" class="button add">{$txt.button_add}</a>
+                                        <a href="#" class="button cancle">{$txt.button_cancel}</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="google_category_save">
+        <a href="#" class="btn btn-primary save">{$txt.button_save}</a>
+        <div style="clear: both;"> <!-- --> </div>
+    </div>
+
+</div>
+{literal}
+<script type="text/javascript">
+$(document).ready(function(){
+    
+	var loading_image = $('<img></img>').attr("src", "../images/loading.gif");
+	var loading_image_box = $('<div></div>').addClass("loading_image_box").append(loading_image);
+    
+    $(".google_category_save .save").die();
+    $(".google_category_save .save").live("click", function(){
+        if($(".google_category_list_add_box").css("display") == "none"){
+            var t_categories_array = new Array();
+            $.each($('.google_category_list input[type=text]'), function(key, value){
+                t_categories_array.push($(value).val());
+            });
+			
+			if(t_categories_array.length == 0)
+			{
+				var t_lightbox_identifier = $(".google_category_save").closest(".lightbox_package").attr("id").replace("lightbox_package_", "");
+				$.lightbox_plugin( "close", t_lightbox_identifier );
+			}
+
+            var t_recursive = "off";
+            if($("input.google_recursive_mode:checked").length > 0){
+                t_recursive = "on";
+            }
+
+            var t_overwrite = "off";
+            if($("input.google_overwrite_categories:checked").length > 0){
+                t_overwrite = "on";
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "request_port.php?module=GoogleTaxonomy&action=save_category_google_categories",
+                data: {"categories_id": $(".google_categories_administration .category_id").val(), "google_recursive_mode": t_recursive, "google_overwrite_categories": t_overwrite, "category_list": t_categories_array},
+                success: function(){
+					var t_lightbox_identifier = $(".google_category_save").closest(".lightbox_package").attr("id").replace("lightbox_package_", "");
+                    $.lightbox_plugin( "close", t_lightbox_identifier );
+                }
+            });
+        }
+        return false;
+    });
+
+    $(".google_category_list_add_button a").die();
+    $(".google_category_list_add_button a").live("click", function(){
+        $(".google_category_list_add_box").append(loading_image_box);
+        $(".google_category_list_add_button a").hide();
+        $(".google_category_save a").hide();
+        show_category_add_box("");
+        return false;
+    });
+
+    $(".google_category_list .edit").die();
+    $(".google_category_list .edit").live("click", function(){
+        $(".google_category_list input").removeClass("edit");
+        $(this).prev().addClass("edit");
+        var t_value = $(this).prev().val();
+        $(".google_category_list_add_box").append(loading_image_box);
+        show_category_add_box(t_value);
+        $(".google_category_list_add_button a").hide();
+        $(".google_category_save a").hide();
+        $(".google_category_list_add_box select").remove();
+        return false;
+    });
+
+    $(".google_category_list_add_box .add").die();
+    $(".google_category_list_add_box .add").live("click", function(){
+        var t_already_exists = false;
+        $.each($(".google_category_list input"), function(key, value){
+            if($(value).val() == $(".google_category_list_add_box .category_string").val()){
+                t_already_exists = true;
+            }
+        });
+        
+        if($(".google_category_list_add_box .category_string").val() != "" && t_already_exists == false){
+            if($(".google_category_list_add_box").hasClass("edit")){
+                $(".google_category_list input.edit").val($('.google_category_list_add_box .category_string').val());
+                $(".google_category_list input").removeClass("edit");
+            }else{
+                var t_input = $('<input type="text" />').attr('name', 'category_list[][0]').attr('readonly', 'readonly').val($('.google_category_list_add_box .category_string').val());
+                var t_edit_button = $('<a></a>').attr('href', '#').addClass('button edit').html($('.text.button_edit').val());
+                $(".google_category_list").append(t_input).append(t_edit_button);
+                $(".google_category_list div").show();
+            }
+            $(".google_category_save a").show();
+			if ($('.google_category_list input[name^="category_list"]').length == 0)
+			{
+				$(".google_category_list_add_button a").show();
+			}
+            $(".google_category_list_add_box").hide();
+            $(".google_category_list_add_box").removeClass("add edit");
+            $(".google_category_list_add_box select").remove();
+        }
+        
+        return false;
+    });
+
+    $(".google_category_list_add_box .cancle").die();
+    $(".google_category_list_add_box .cancle").live("click", function(){
+		if ($('.google_category_list input[name^="category_list"]').length == 0)
+		{
+			$(".google_category_list_add_button a").show();
+		}
+        $(".google_category_save a").show();
+        $(".google_category_list_add_box").hide();
+        $(".google_category_list_add_box").removeClass("add edit"); 
+        $(".google_category_list_add_box select").remove();
+        $(".google_category_list input").removeClass("edit");
+        return false;
+    });
+
+    $(".google_category_list_add_box select").die();
+    $(".google_category_list_add_box select").live("change", function(){
+        var next_elements = $(this).nextAll();
+        $.each(next_elements, function(key, value){
+            $(value).remove();
+        });
+        update_category_string();
+        if($(this).val() != ""){
+            $(".google_category_list_add_box").append(loading_image_box);
+            get_select_options($(".google_category_list_add_box .category_string").val());
+        }
+    });    
+    
+    function show_google_categories(){
+		var $t_category_id = $(".google_categories_administration").attr("id").replace("product_id_", "");
+		$.ajax({
+			type: "GET",
+			url: "request_port.php?module=GoogleTaxonomy",
+			data: {"action": "get_product_google_category_array", "product_id": $t_category_id},
+			success: function(response){
+				response = $.parseJSON(response);
+				$.each(response, function(key, value){
+					$(".google_category_list div").show();
+					var t_input = $('<input type="text"></input>').attr("name", "category_list[]["+value.v_products_google_categories_id+"]").attr("readonly", "readonly").val(value.v_google_category);
+					var t_edit_button = $('<a></a>').attr("href", "#").addClass("button edit").html($(".text.button_edit").val());
+					$(".google_category_list").append(t_input).append(t_edit_button);
+				});
+			}
+		});
+	}
+
+	function update_category_string(){
+		$(".google_category_list_add_box .category_string").empty();
+		$.each($(".google_category_list_add_box select"), function(key, value){
+			if(key != 0){
+				if($(value).val() != ""){
+					var t_string = $(".google_category_list_add_box .category_string").val();
+					t_string = t_string+" > "+$(value).val();
+					$(".google_category_list_add_box .category_string").val(t_string);
+				}
+			}else{
+				$(".google_category_list_add_box .category_string").val($(value).val());
+			}
+		});
+	}
+
+	function show_category_add_box(p_string){
+		if(p_string == ""){
+			$(".google_category_list_add_box").addClass("add");
+		}else{
+			$(".google_category_list_add_box").addClass("edit");
+		}
+		$(".google_category_list_add_box .category_string").val(p_string);
+		get_select_options("", p_string);
+
+		$(".google_category_list_add_box").show();
+	}
+
+	function show_category_select(p_string, options_array){
+		if(options_array != false){
+			var cat_array = new Array();
+			if($.trim($(".google_category_list_add_box .category_string").val()) != ""){
+				cat_array = $(".google_category_list_add_box .category_string").val().split(">");
+				$.each(cat_array, function(key, value){						
+					cat_array[key] = $.trim(value);
+				});
+			}
+
+			var category_select = $('<select></select>');
+			category_select.append($('<option></option>').attr("value", "").html($(".text.select").val()));
+			$.each(options_array, function(key, value){
+				value = $.trim(value);
+				if(value != ""){
+					if($.inArray(value, cat_array) != -1 && cat_array.length > 0 && $(".google_category_list_add_box").hasClass("edit")){
+						p_string = $.trim(p_string);
+						$(".google_category_list_add_box").append(loading_image_box);
+						if(p_string != ""){
+							get_select_options(p_string + " > " + value);
+						}else{
+							get_select_options(value);
+						}
+						category_select.append($('<option></option>').attr("value", value).html(value).attr("selected", "selected"));
+					}else{
+						category_select.append($('<option></option>').attr("value", value).html(value));
+					}
+				}
+			});
+			$(".google_category_list_add_box").append(category_select);
+		}
+	}
+
+	function get_select_options(p_string){
+		$.ajax({
+			type: "GET",
+			url: "request_port.php?module=GoogleTaxonomy",
+			data: {"action": "get_google_categories_array", "parent": p_string},
+			success: function(response){
+				response = $.parseJSON(response);
+				show_category_select(p_string, response);
+				$(loading_image_box).remove();
+			},
+			error: function(){
+				$(loading_image_box).remove();
+			}
+		});
+
+	}
+    
+});
+</script>
+{/literal}

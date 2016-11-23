@@ -1,0 +1,711 @@
+// ----------------------------------------------------------------------------
+// COMPATIBILITY HTML COMPONENTS
+//
+// This file contains repeated HTML patterns that will generate some commonly
+// used components of the shop admin section (frames, tables, pagination and so
+// on).
+// ----------------------------------------------------------------------------
+
+// Variables can be used to fix a Compiler-Bug of the SASS-Compiler if we want to add some pixels offset to a background-position value.
+$add-six: +6px;
+
+select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background: url(../images/gx-admin/icon-caret-down.png) no-repeat right$add-six center $background-color;
+  padding-right: 15px !important;
+  
+  &:focus,
+  &:active {
+    border-color: $gambio-blue;
+    outline: none;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// PAGINATION
+// ----------------------------------------------------------------------------
+
+.paginator {
+  height:                59px;
+  width:                 100%;
+  background:            $paginator-background-color;
+  border:                1px solid $border-color-light;
+  -moz-border-radius:    2px;
+  -webkit-border-radius: 2px;
+  border-radius:         2px;
+  margin-top:            24px;
+  padding:               12px 24px;
+  overflow:              auto;
+  color:                 $text-color-light;
+  box-sizing:            border-box;
+
+  // Fix for the pagination frames that reside inside an old table's cell.
+  &.table-paginator {
+    margin-right: 24px;
+    width:        auto;
+  }
+
+  &.left-table {
+    width:     $breakpoint-width-left-table;
+    max-width: $breakpoint-width-large;
+  }
+
+  td.pagination-control {
+    text-align:     right;
+    vertical-align: middle;
+
+    div {
+      display: inline-block;
+    }
+  }
+
+  form {
+    display: inline-block;
+    margin:  0;
+    padding: 0;
+
+    button {
+      color: $text-color-light;
+    }
+
+    button[disabled] {
+      color: $text-color-dark;
+    }
+
+    button.pagination-navigation-right {
+      margin:    0 0 0 12px;
+      min-width: inherit;
+    }
+
+    button.pagination-navigation-left {
+      margin:    0 12px 0 0;
+      min-width: inherit;
+    }
+
+    select {
+      margin:    0;
+      width:     auto;
+      min-width: inherit;
+    }
+  }
+
+  .page-number-information {
+    margin: 0 0 0 36px;
+  }
+
+  // Define compatibility pagination HTML component. Use this scheme for 
+  // pages that feature old pagination markup.
+  .compatibility-pagination {
+    .display-controls,
+    .display-info {
+      float:      right;
+      margin-top: 6px;
+    }
+
+    .display-controls {
+      margin-left: 24px; // gap between the two display divs
+
+      a {
+        @include button-basic-style();
+        border-width: 1px;
+        border-style: solid;
+      }
+
+      form {
+        margin-top: -6px; // Reset the default margin-top.
+      }
+    }
+  }
+
+  .control-element {
+    display: inline-block;
+    margin:  0 36px 0 0;
+  }
+
+  input,
+  select {
+    margin: 0 12px 0 0;
+  }
+
+  a, button, input[type="button"], input[type="submit"] {
+    &.btn {
+      margin: 0 12px 0 0; // Remove margin from paginator buttons.
+
+      &.hideable-control-element {
+        display: inline-block;
+        margin:  0 0 0 36px;
+      }
+    }
+  }
+
+  .js-button-dropdown {
+    margin: 0 12px 0 0;
+
+    .btn:first-child {
+      margin: 0 !important; // The first button must not have any margin.
+    }
+
+    .btn:nth-child(2) {
+      margin-right: 0 !important;
+    }
+  }
+
+  // Remove padding and margin from external components that reside in the
+  // paginator container.
+  .dataTables_paginate {
+    padding: 0;
+    margin:  0 0 0 12px;
+  }
+
+  // You can set the "grid" class to a paginator element in order to use the grid system. The following
+  // rule will fix the button-dropdown menu display which is chopped due to overflow (see emails page).
+  &.grid {
+    overflow: initial;
+  }
+
+  // Style contents of tables that have the ".paginator" class.
+  tr {
+    &:hover {
+      td {
+        background: $paginator-background-color !important;
+      }
+    }
+
+    td {
+      &:last-child {
+        background-color: $paginator-background-color !important;
+      }
+    }
+  }
+
+  td {
+    background: $paginator-background-color;
+    padding:    0;
+
+    a {
+      &.btn {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// INFO BOX FRAMES
+// ----------------------------------------------------------------------------
+
+.main-page-content table td {
+  .infoBoxContent {
+    background-color: $highlight-color;
+    color:            $text-color-light;
+    padding:          10px;
+
+    .options-title {
+      display:       inline-block;
+      width:         100%;
+      border-bottom: 1px solid $text-color-light;
+      font-weight:   bold;
+      margin-top:    5px;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    select,
+    textarea {
+      margin-top: 5px;
+      width:      100%;
+    }
+
+    a.btn {
+      float: left;
+    }
+
+    input[type="submit"] {
+      float: right;
+      @include font(12px);
+    }
+
+    .checkbox-switch-wrapper {
+      margin: 10px 0;
+    }
+
+    .lang-flag {
+      position: relative;
+      top:      8px;
+    }
+
+    .btn-danger,
+    .btn-success {
+      float: right !important;
+    }
+
+    .btn {
+      margin-right: 10px;
+
+      &.btn-primary {
+        &.pull-right {
+          float: right;
+        }
+      }
+
+      &.pull-right {
+        margin-right: 0;
+      }
+    }
+
+    #gm_module_part_export {
+      margin-top: 30px;
+    }
+  }
+
+  .infoBoxHeading {
+    background-color: adjust-lightness($highlight-color, -15);
+    height:           44px;
+    box-sizing:       border-box;
+    border-bottom:    1px solid adjust-lightness($highlight-color, -30);
+    padding:          2px 5px 0px 10px;
+    line-height:      25px;
+
+    a {
+      margin-right: 12px;
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// "CREATE-NEW" WRAPPER
+// ----------------------------------------------------------------------------
+
+.create-new-wrapper {
+  font-size:  12px;
+  height:     31px;
+  margin-top: -31px;
+
+  &.message-stack-active {
+    margin-top: 18px;
+  }
+
+  div.create-new-container {
+    height: inherit;
+    
+    a {
+      i.fa-plus {
+        margin-right: 3px;
+      }
+    }
+  }
+
+  input[type="button"],
+  a,
+  button {
+    &.btn {
+      display: inline-block;
+      margin:  0 0 0 24px;
+    }
+  }
+
+  .gm_gprint_menu_text {
+    margin-right: 12px;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// MULTI TABLE WRAPPER
+// ----------------------------------------------------------------------------
+.multi-table-wrapper {
+  .gx-compatibility-table {
+    margin: 48px 0 0 0;
+  }
+  .gx-compatibility-table:first-of-type {
+    margin: 0;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// FRAME WRAPPER COMPONENT
+// ----------------------------------------------------------------------------
+
+.frame-wrapper {
+  border:        1px solid #E5E5E5;
+  border-radius: 2px;
+  margin-bottom: 24px;
+
+  &.default {
+    margin-bottom: 30px;
+    border:        1px solid #E7E7E7;
+    border-radius: 2px;
+
+    .frame-head {
+      background-color: #E7E7E7;
+      padding:          8px 24px;
+      border-bottom:    1px solid #E7E7E7;
+
+      label {
+        font-weight: bold;
+        color:       $text-color-light;
+      }
+    }
+  }
+
+  &.info {
+    border:        1px solid #5BC0DE;
+    border-radius: 2px;
+  }
+
+  &.danger {
+    border:        1px solid $danger-color;
+    border-radius: 2px;
+  }
+
+  &.warning {
+    border:        1px solid $warning-color;
+    border-radius: 2px;
+  }
+
+  .frame-head {
+    background-color: $border-color-light;
+    padding:          8px 24px;
+    height:           36px;
+
+    div {
+      &.grid {
+        margin-top: -5px;
+      }
+    }
+
+    &.info {
+      background-color: #5BC0DE !important;
+      border:           1px solid #5BC0DE;
+      border-radius:    0;
+      border-bottom:    0;
+
+      .title {
+        color:       $text-color-inverse;
+        font-weight: bold;
+      }
+    }
+
+    &.danger {
+      background-color: $danger-color !important;
+      border:           1px solid $danger-color;
+      border-radius:    0;
+      border-bottom:    0;
+
+      .title {
+        color:       $text-color-inverse;
+        font-weight: bold;
+      }
+    }
+
+    &.warning {
+      background-color: $warning-color !important;
+      border:           1px solid $warning-color !important;
+      border-radius:    0;
+      border-bottom:    0;
+
+      .title {
+        color:       $text-color-inverse;
+        font-weight: bold;
+      }
+    }
+
+    .head-link {
+      height:           24px;
+      background-color: inherit;
+      color:            $text-color-inverse;
+      border:           1px solid $border-color-inverse;
+      border-radius:    1px;
+      font-weight:      normal;
+      padding:          1px 12px;
+      margin-top:       -3px;
+      line-height:      20px;
+      cursor:           pointer;
+
+      &.default {
+        border:  1px solid $border-color;
+        padding: 2px 12px;
+
+        a {
+          color: $text-color-light;
+        }
+      }
+
+      a {
+        color: $text-color-inverse;
+        
+        &:hover {
+          text-decoration: none;
+        }
+      }
+      
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+      }
+    }
+
+    .title {
+      color:       $text-color-light;
+      font-size:   12px;
+      font-weight: bold;
+    }
+
+    .grid {
+      label.title {
+        margin-top: 8px;
+      }
+      margin-bottom: 0;
+    }
+  }
+
+  .frame-content {
+    padding: 24px;
+
+    .title {
+      border-bottom: 1px solid $border-color-light;
+      display:       inline-block;
+    }
+
+    .content {
+      padding-top:    5px;
+      padding-bottom: 20px;
+    }
+
+    &.container {
+      &.customer-memo-container {
+        padding: 0;
+        margin:  0;
+
+        .customer-memo-table {
+          margin: 0;
+        }
+      }
+    }
+
+    th {
+      border-bottom: 1px solid $border-color;
+      padding:       12px 16px 2px;
+    }
+
+    #order-details-table {
+      #order-sum-row {
+        background-color: $background-color;
+      }
+
+      td {
+        padding: 12px 16px 2px;
+      }
+
+      tfoot {
+        td {
+          padding:       12px 20px 2px;
+          border-bottom: none;
+        }
+      }
+
+      td:last-child {
+        width: 20%;
+      }
+    }
+
+    &.withdrawal-content {
+
+      td {
+        padding: 12px 16px 2px;
+        border:  none;
+      }
+
+      .btn-danger, .btn-danger:hover {
+        width:      100px;
+        height:     20px;
+        margin-top: 6px;
+        padding:    2px;
+      }
+
+      td:last-child {
+        margin-right: 1%;
+      }
+    }
+
+    .grid {
+      .amount a {
+        background-color: #5BC0DE;
+        color:            $text-color-inverse;
+        padding:          2px 8px;
+        border-radius:    12px;;
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// GX COMPATIBILITY TABLE
+// ----------------------------------------------------------------------------
+
+.gx-compatibility-table {
+  table-layout: auto;
+
+  tr {
+    height: 48px;
+
+    td, td.dataTableContent, td.categories_view_data {
+      font-family:   $font-family;
+      font-size:     12px;
+      text-align:    left;
+      border-left:   none;
+      border-top:    none;
+      border-right:  none;
+      border-bottom: none;
+      box-sizing:    content-box;
+
+      &.numeric_cell {
+        text-align: right;
+      }
+
+      a {
+        font-family: $font-family;
+        font-size:   12px;
+        color:       $text-color;
+      }
+
+      img {
+        margin: 0;
+      }
+    }
+
+    &.recentlyUpdated {
+      background-color: $highlight-color !important;
+    }
+
+    &.dataTableHeadingRow {
+      td, th {
+        background-color: $background-color !important;
+        border-right:     none;
+        border-bottom:    3px solid $gambio-blue;
+        color:            $text-color-light;
+      }
+    }
+
+    table:nth-of-type(even) td {
+      background-color: rgb(249, 249, 249);
+    }
+
+    &:nth-child(even) {
+      background-color: adjust-lightness($background-color, -2.5);
+    }
+
+    &:nth-child(odd) {
+      background-color: $background-color;
+    }
+
+    &:not(.no-hover):hover {
+      & > td {
+        background: $highlight-color;
+      }
+    }
+  }
+}
+
+// ----------------------------------------------------------------------------
+// ACTION LIST COMPONENT
+// ----------------------------------------------------------------------------
+
+.action-list {
+  float: right;
+  min-width: 120px;
+
+  a.action-icon:last-of-type {
+    margin-right: 0;
+  }
+
+  .action-icon {
+    margin:  3px 24px 0 0;
+    display: inline-block;
+
+    i {
+      font-size: 24px;
+      color:     $text-color-light;
+
+      &:hover {
+        color: $link-color;
+      }
+    }
+  }
+
+  .js-button-dropdown {
+    float:  right;
+    margin: 0 0 0 24px;
+  }
+}
+
+.gx-categories-table {
+	.action-list {
+		min-width: 220px;
+	}
+}
+
+// ----------------------------------------------------------------------------
+// MESSAGES
+// ----------------------------------------------------------------------------
+
+.message_stack_container {
+  min-height: 48px;
+  margin:     0;
+  overflow: hidden;
+
+  .alert {
+    border-width: 1px;
+    border-style: solid;
+    margin:       24px 0px;
+    padding:      15px;
+    @include border-radius(2px);
+    @include font(12px);
+
+    button.close {
+      padding:     0;
+      cursor:      pointer;
+      border:      0;
+      height:      auto;
+      line-height: 16px;
+      margin:      0;
+      min-width:   unset;
+      float:       right;
+      font-size:   20px;
+      font-weight: 700;
+      color:       $text-color-dark;
+      @include opacity(0.2);
+      text-shadow: 0 1px 0 $component-color;
+      background:  none;
+      position:    relative;
+      top:         0;
+      right:       0;
+    }
+
+    button:focus {
+      outline: 0;
+    }
+
+    button::-moz-focus-inner {
+      border: 0;
+    }
+  }
+}
+
+.dashboard-content {
+  .message_stack_container {
+    min-height: 24px;
+  }
+}
+
+.edit-page-table {
+  td.main {
+    img {
+      margin: 0 0 -3px 0;
+    }
+  }
+
+  tr {
+    background-color: $background-color !important;
+  }
+}

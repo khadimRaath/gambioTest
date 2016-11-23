@@ -1,0 +1,27 @@
+{load_language_text section="buttons" name="button"}
+{if $content_data.active && !$content_data.cookieAlreadySet}
+	<div class="row cookie-bar {$content_data.position}"
+		 style="background-color: {$content_data.background_color|escape}; opacity: {$content_data.background_opacity}"
+		 data-gambio-widget="cookie_bar">
+		<span class="col-sm-11 content">
+			{$content_data.text}
+
+			<a href="{if $content_data.button_link}{$content_data.button_link}{else}#{/if}"
+			   style="background-color: {$content_data.button_background_color|escape}; color: {$content_data.button_text_color}"
+			   class="btn btn-default btn-sm close-button">{if $content_data.button_text && $content_data.button_text != ''}
+					{$content_data.button_text}
+				{else}
+					{$button.ok}
+				{/if}</a>
+		</span>
+
+		{if $content_data.close_button_active}
+			<span class="col-sm-1 close-button">
+				<span class="fa-stack">
+					<i class="fa fa-circle fa-inverse fa-stack-2x"></i>
+					<i class="fa fa-close fa-stack-1x"></i>
+				</span>
+			</span>
+		{/if}
+	</div>
+{/if}

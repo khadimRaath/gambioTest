@@ -1,0 +1,161 @@
+{load_language_text section="timer"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="timer" name="timer"}
+
+<form action="#" method="post" data-gx-extension="validator" style="border: 0; border-radius: 0;">
+	<div class="table_wrapper" id="shop-offline">
+		<table data-gx-extension="table_inline_edit" class="timer-table breakpoint-large">
+			<thead>
+				<tr>
+					<th class="dataTableHeadingContent">{$txt.name}</th>
+					<th class="dataTableHeadingContent">{$txt.datetime}</th>
+					<th class="dataTableHeadingContent">{$txt.type}</th>
+					<th class="dataTableHeadingContent">{$txt.value_old}</th>
+					<th class="dataTableHeadingContent">{$txt.value_new}</th>
+					<th class="dataTableHeadingContent">{$txt.status}</th>
+					<th class="dataTableHeadingContent" style="border-radius: 0;">&nbsp;</th>
+				</tr>
+			</thead>
+
+			<tbody>
+				{foreach item=job_data from=$content_data.jobs_data_array key=job_id}
+					{assign var=due_date value=$job_data.ticket->getDueDate()}
+					{assign var=done_date value=$job_data.ticket->getDoneDate()}
+					<tr data-id="{$job_id}" data-gx-extension="depending_selects" data-depending_selects-target=".source"
+					        data-depending_selects-request-on-init="false">
+						<td class="categories_view_data">
+							<input type="text" name="name[{$job_id}]" value="{$job_data.ticket->getSubject()|escape}" class="validate" data-validator-validate="required" disabled/>&nbsp;
+						</td>
+						<td class="categories_view_data">
+							<div class="datepicker_wrapper">
+								<input type="text" name="date[{$job_id}]" value="{$due_date->format('d.m.Y')}" data-jse-widget="datepicker" class="validate" data-validator-validate="required" disabled readonly data-datepicker-gx-container/>&nbsp;
+							</div>
+							<div class="add-margin left" style="display: inline-block;"></div>
+							<div data-gx-widget="timepicker" data-timepicker-init-value="{$due_date->format('H')}:{$due_date->format('i')}" class="timepicker_wrapper">
+								<select name="hours[{$job_id}]"></select> <span class="time_picker_separator">:</span>
+								<select name="minutes[{$job_id}]"></select> <span class="time">{$txt.time}</span>
+							</div>
+						</td>
+						<td class="categories_view_data">
+							<select name="type[{$job_id}]" class="source" disabled>
+								<option value="shipping_status" data-depending_selects-url="request_port.php?module=JobManager&action=get_shipping_status_options"{if $job_data.job->getFieldName() == 'products_shippingtime'} selected{/if}>{$txt.shipping_status}</option>
+								<option value="price_status" data-depending_selects-url="request_port.php?module=JobManager&action=get_price_status_options"{if $job_data.job->getFieldName() == 'gm_price_status'} selected{/if}>{$txt.price_status}</option>
+							</select>
+						</td>
+						<td class="categories_view_data">
+							<select name="old_value[{$job_id}]" class="target_1" disabled>
+								{if $job_data.job->getFieldName() == 'products_shippingtime'}
+									{foreach item=shipping_status from=$content_data.shipping_status_array}
+										<option value="{$shipping_status.id}"{if $shipping_status.id == $job_data.job->getOldValue()} selected{/if}>{$shipping_status.name}</option>
+									{/foreach}
+								{else}
+									{foreach item=price_status from=$content_data.price_status_array}
+										<option value="{$price_status.id}"{if $price_status.id == $job_data.job->getOldValue()} selected{/if}>{$price_status.name}</option>
+									{/foreach}
+								{/if}
+							</select>
+						</td>
+						<td class="categories_view_data">
+							<select name="new_value[{$job_id}]" class="target_2" disabled>
+								{if $job_data.job->getFieldName() == 'products_shippingtime'}
+									{foreach item=shipping_status from=$content_data.shipping_status_array}
+										<option value="{$shipping_status.id}"{if $shipping_status.id == $job_data.job->getNewValue()} selected{/if}>{$shipping_status.name}</option>
+									{/foreach}
+								{else}
+									{foreach item=price_status from=$content_data.price_status_array}
+										<option value="{$price_status.id}"{if $price_status.id == $job_data.job->getNewValue()} selected{/if}>{$price_status.name}</option>
+									{/foreach}
+								{/if}
+							</select>
+						</td>
+						<td class="categories_view_data">
+							<div style="padding-bottom: 24px; cursor: help;" class="cursor-pointer tooltip_wrapper status {if $done_date->format('Y') != '-0001' && $done_date->format('Y') != '1000'}executed" title="{$txt.executed}" {elseif $due_date->format('YmdHi') < $smarty.now|date_format:"%Y%m%d%H%M"}delayed" title="{$txt.delayed}"{else}scheduled" title="{$txt.scheduled}"{/if}><i class="fa {if $done_date->format('Y') != '-0001' && $done_date->format('Y') != '1000'}fa-check{elseif $due_date->format('YmdHi') < $smarty.now|date_format:"%Y%m%d%H%M"}fa-hourglass-1{else}fa-clock-o{/if} icon"></i></div>
+						</td>
+						<td class="categories_view_data">
+							{if $done_date->format('Y') == '-0001' || $done_date->format('Y') == '1000'}
+								<div class="editmode text-right">
+	
+									<div class="icon-position-fix">
+										<i title="{$button.edit}" class="fa fa-pencil icon cursor-pointer defaultmode row_edit"></i>
+									</div>
+	
+									<input style="margin-top: 6px;" type="button" value="{$button.add}" class="btn btn-primary addmode row_add button-position-fix pull-right add-margin right" data-url="request_port.php?module=JobManager&action=save_field_replace_job"/>
+								
+									<div class="icon-position-fix">
+										<i title="{$button.delete}" class="fa fa-trash-o icon cursor-pointer defaultmode row_delete" data-url="request_port.php?module=JobManager&action=delete_field_replace_job"></i>
+									</div>
+									
+									<input type="button" class="btn btn-primary editmode row_save button-position-fix add-margin right quarter" style="display: inline-block;" value="{$button.save}" data-url="request_port.php?module=JobManager&action=save_field_replace_job"></i>
+									<input class="btn btn-default editmode row_abort button-position-fix newstyle" type="button" value="{$button.cancel}">
+	
+									<div class="add-margin right"></div>
+								</div>
+							{/if}
+						</td>
+					</tr>
+				{/foreach}
+			</tbody>
+
+			<!-- Template -->
+			<tfoot style="display: none;">
+				<tr data-gx-_extension="depending_selects" data-depending_selects-target=".source">
+					<td class="categories_view_data">
+						<input type="text" name="name[0]" value="" class="validate" data-validator-validate="required" disabled/>
+					</td>
+					<td class="categories_view_data">
+						<div class="datepicker_wrapper">
+							<input type="text" name="date[0]" value="" data-jse-_widget="datepicker" data-datepicker-gx-container class="validate" data-validator-validate="required" disabled readonly/>
+						</div>
+						<div class="add-margin left" style="display: inline-block;"></div>
+						<div data-gx-_widget="timepicker" class="timepicker_wrapper">
+							<select name="hours[0]"></select> <span class="time_picker_separator">:</span>
+							<select name="minutes[0]"></select> <span class="time">{$txt.time}</span>
+						</div>
+					</td>
+					<td class="categories_view_data">
+						<select name="type[]" class="source" disabled>
+							<option value="shipping_status" data-depending_selects-url="request_port.php?module=JobManager&action=get_shipping_status_options">{$txt.shipping_status}</option>
+							<option value="price_status" data-depending_selects-url="request_port.php?module=JobManager&action=get_price_status_options">{$txt.price_status}</option>
+						</select>
+					</td>
+					<td class="categories_view_data">
+						<select name="old_value[]" class="target_1" disabled></select>
+					</td>
+					<td class="categories_view_data">
+						<select name="new_value[]" class="target_2" disabled></select>
+					</td>
+					<td class="categories_view_data">
+						<div title="{$txt.scheduled}" style="padding-bottom: 24px;cursor: help;" class="cursor-pointer tooltip_wrapper status scheduled defaultmode"><i class="fa fa-clock-o icon"></i></div>
+					</td>
+					<td class="categories_view_data">
+						<div class="editmode text-right">
+							<div class="icon-position-fix">
+								<i title="{$button.edit}" class="fa fa-pencil icon cursor-pointer defaultmode row_edit"></i>
+							</div>
+
+							<div class="icon-position-fix">
+								<i title="{$button.delete}" class="fa fa-trash-o icon cursor-pointer defaultmode row_delete" data-url="request_port.php?module=JobManager&action=delete_field_replace_job"></i>
+							</div>
+
+							<input class="editmode btn btn-primary row_save button-position-fix add-margin right quarter" type="button" value="{$button.save}" data-url="request_port.php?module=JobManager&action=save_field_replace_job"/>
+							<input class="editmode btn row_abort newstyle button-position-fix newstyle" type="button" value="{$button.cancel}"/>
+
+							<input class="addmode btn btn-primary row_add button-position-fix pull-right add-margin right" type="button" value="{$button.add}" data-url="request_port.php?module=JobManager&action=save_field_replace_job"/>
+							<div class="add-margin right"></div>
+						</div>
+					</td>
+				</tr>
+			</tfoot>
+
+		</table>
+
+		<!-- Cron Job -->
+		<div class="gx-container add-margin top">
+			<span class="key-title">{$timer.cronjob_url}</span>
+			<input class="cronjob_url add-margin left" style="width:600px;" type="text" name="name" value="{$content_data.cronjob_url}" readonly="readonly" onfocus="this.select()">
+			<div data-gx-widget="tooltip_icon" data-tooltip_icon-type="info" class="add-margin left">{$timer.tooltip_cronjob}</div>
+		</div>
+
+		<input type="hidden" name="page_token" value="{$content_data.page_token}" />
+	</div>
+</form>

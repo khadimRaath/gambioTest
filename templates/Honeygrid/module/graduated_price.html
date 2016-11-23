@@ -1,0 +1,11 @@
+{load_language_text section="graduated_price"}
+
+<div class="blockpricing clearfix">
+	<h4>{$txt.heading_graduated_price}</h4>
+	<dl>
+		{foreach name=aussen item=module_data from=$module_content}
+		<dt>{$module_data.QUANTITY} {if $module_data.UNIT != ''}{$module_data.UNIT}{else}{$txt.unit}{/if}</dt>
+		<dd>{$txt.pieces} {$module_data.PRICE}{if $module_data.VPE} ({$module_data.VPE}){/if}</dd>
+		{/foreach}
+	</dl>
+</div>

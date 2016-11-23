@@ -1,0 +1,261 @@
+{load_language_text section="account_edit"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_account}</h1>
+
+<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}" class="form-horizontal">
+	
+	<fieldset>
+
+		<legend>
+			{$txt.title_personal}
+		</legend>
+
+		{if $gender == '1'}
+			<div class="form-group{if $form_data.gender.required == '1'} mandatory{/if}{if $error_gender} has-feedback has-error{/if}">
+
+				<label class="control-label col-sm-3">
+					{$txt.label_gender}
+				</label>
+
+				<div class="col-sm-9 input-container">
+
+					<span class="radio-inline">
+						<label for="{$form_data.gender.name}-m">
+							<input type="radio" id="{$form_data.gender.name}-m"  name="{$form_data.gender.name}" value="{$form_data.gender.m.value}"{if $form_data.gender.m.checked == '1'} checked="checked"{/if} />
+							{$txt.gender_male}
+						</label>
+					</span>
+	
+					<span>&nbsp;</span>
+	
+					<span class="radio-inline">
+						<label for="{$form_data.gender.name}-f">
+							<input type="radio" id="{$form_data.gender.name}-m"  name="{$form_data.gender.name}" value="{$form_data.gender.f.value}"{if $form_data.gender.f.checked == '1'} checked="checked"{/if} />
+							{$txt.gender_female}
+						</label>
+					</span>
+
+				</div>
+
+				{if $error_gender}
+					<div class="help-block">
+						<span class="col-sm-3">
+							&nbsp;
+						</span>
+						<span class="col-sm-9 help-block">
+							{$error_gender}
+						</span>
+					</div>
+				{/if}
+
+			</div>
+		{/if}
+
+		<div class="form-group{if $form_data.firstname.required == '1'} mandatory{/if}{if $error_first_name} has-feedback has-error{/if}">
+
+			<label for="{$form_data.firstname.name}" class="control-label col-sm-3">
+				{$txt.label_firstname}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text" 
+					   placeholder="{$txt.label_firstname}" 
+					   id="{$form_data.firstname.name}" 
+					   name="{$form_data.firstname.name}" 
+					   class="form-control" 
+					   value="{$form_data.firstname.value}" />
+				
+				{if $error_first_name}
+					<span class="help-block">
+						{$error_first_name}
+					</span>
+				{/if}
+			</div>
+
+		</div>
+
+		<div class="form-group{if $form_data.lastname.required == '1'} mandatory{/if}{if $error_last_name} has-feedback has-error{/if}">
+
+			<label for="{$form_data.lastname.name}" class="control-label col-sm-3">
+				{$txt.label_lastname}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text"
+					   placeholder="{$txt.label_lastname}"
+					   id="{$form_data.lastname.name}"
+					   name="{$form_data.lastname.name}"
+					   class="form-control"
+					   value="{$form_data.lastname.value}" />
+
+				{if $error_last_name}
+					<span class="help-block">
+						{$error_last_name}
+					</span>
+				{/if}
+			</div>
+
+		</div>
+
+		{if $birthdate=='1'}
+			<div class="form-group{if $form_data.birthdate.required == '1'} mandatory{/if}{if $error_birth_day != ''} has-feedback has-error{/if}">
+	
+				<label for="{$id}" class="control-label col-sm-3">
+					{$txt.label_birthdate}
+				</label>
+	
+				<div class="col-sm-9 col-lg-6 input-container">
+					<input type="text" 
+						   placeholder="{$txt.label_birthdate}" 
+						   id="{$form_data.birthdate.name}" 
+						   name="{$form_data.birthdate.name}" 
+						   class="form-control form-type-date" value="{$form_data.birthdate.value}" 
+						   data-jse-widget="datepicker"
+						   data-datepicker-default-date="{$form_data.birthdate.default_value}"
+						   data-datepicker-year-range="-110:+0"
+					/>
+						
+					<span class="help-block">
+						{$txt.birthday_example}
+					</span>
+					
+					{if $error_birth_day}
+						<span class="help-block">
+							{$error_birth_day}
+						</span>
+					{/if}
+				</div>
+	
+			</div>
+		{/if}
+
+		<div class="form-group{if $form_data.email.required == '1'} mandatory{/if}{if $error_mail} has-feedback has-error{/if}">
+
+			<label for="{$form_data.email.name}" class="control-label col-sm-3">
+				{$txt.label_email}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="email" 
+					   placeholder="{$txt.label_email}" 
+					   id="{$form_data.email.name}" 
+					   name="{$form_data.email.name}" 
+					   class="form-control" 
+					   value="{$form_data.email.value}" />
+				
+				{if $error_mail}
+					<span class="help-block">
+						{$error_mail}
+					</span>
+				{/if}
+			</div>
+
+		</div>
+
+		<div class="form-group{if $form_data.telephone.required == '1'} mandatory{/if}{if $error_tel} has-feedback has-error{/if}">
+
+			<label for="{$form_data.email.name}" class="control-label col-sm-3">
+				{$txt.label_tel}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="tel"
+					   placeholder="{$txt.label_tel}"
+					   id="{$form_data.telephone.name}"
+					   name="{$form_data.telephone.name}"
+					   class="form-control" value="{$form_data.telephone.value}" />
+
+				{if $error_tel}
+					<span class="help-block">
+						{$error_tel}
+					</span>
+				{/if}
+			</div>
+
+		</div>
+
+		<div class="form-group">
+
+			<label for="{$form_data.fax.name}" class="control-label col-sm-3">
+				{$txt.label_fax}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="tel"
+					   placeholder="{$txt.label_fax}"
+					   id="{$form_data.fax.name}"
+					   name="{$form_data.fax.name}"
+					   class="form-control" value="{$form_data.fax.value}" />
+			</div>
+
+		</div>
+
+		{if $vat == '1'}
+			<div class="form-group{if $form_data.vat.required == '1'} mandatory{/if}{if $error_vat} has-feedback has-error{/if}">
+
+				<label for="{$form_data.vat.name}" class="control-label col-sm-3">
+					{$txt.label_vat}
+				</label>
+
+				<div class="col-sm-9 col-lg-6 input-container">
+					<input type="text"
+						   placeholder="{$txt.label_vat}"
+						   id="{$form_data.vat.name}"
+						   name="{$form_data.vat.name}"
+						   class="form-control" value="{$form_data.vat.value}" />
+
+					{if $error_vat}
+						<span class="help-block">
+							{$error_vat}
+						</span>
+					{/if}
+				</div>
+
+			</div>
+		{/if}
+
+	</fieldset>
+
+	{if $GM_PRIVACY_LINK != '0'}
+		<fieldset{if $error_privacy} class="has-error"{/if}>
+
+			{if $txt.title_privacy}
+				<legend>
+					{$txt.title_privacy}
+				</legend>
+			{/if}
+
+			{if $show_privacy_checkbox}<input id="privacy_accepted" type="checkbox" name="privacy_accepted" value="1"{if $form_data.privacy_accepted.value} checked="checked"{/if}/> {/if}
+			<label for="privacy_accepted">{$GM_PRIVACY_LINK}</label>
+
+			{if $error_privacy}
+				<span class="help-block">
+					{$error_privacy}
+				</span>
+			{/if}
+		</fieldset>
+	{/if}
+
+	<input type="hidden" name="{$HIDDEN_FIELD_NAME}" value="{$HIDDEN_FIELD_VALUE}" />
+	
+	<div class="row">
+		<div class="col-xs-6 col-sm-4 col-md-3">
+			<a class="btn btn-default btn-block" href="{$BUTTON_BACK_LINK}" title="{$button.back}">
+				{$button.back}
+			</a>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+			<button type="submit" class="btn btn-primary btn-block" title="{$button.save}">
+				{$button.save}
+			</button>
+		</div>
+	</div>
+
+</form>
+		
+{if $delete!='1'}
+	<p class="mandatory-info">
+		{$txt.text_required}
+	</p>
+{/if}

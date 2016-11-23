@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" {$content_data.HTML_PARAMS}>
+	<head>
+		{* The following copyright announcement is in compliance
+		to section 2c of the GNU General Public License, and
+		thus can not be removed, or can only be modified
+		appropriately.
+
+		Please leave this comment intact together with the
+		following copyright announcement. *}
+
+		<!--
+
+		=========================================================
+		Shopsoftware by Gambio GmbH (c) 2005-2016 [www.gambio.de]
+		=========================================================
+
+		Gambio GmbH offers you highly scalable E-Commerce-Solutions and Services.
+		The Shopsoftware is redistributable under the GNU General Public License (Version 2) [http://www.gnu.org/licenses/gpl-2.0.html].
+		based on: E-Commerce Engine Copyright (c) 2006 xt:Commerce, created by Mario Zanier & Guido Winger and licensed under GNU/GPL.
+		Information and contribution at http://www.xt-commerce.com
+
+		=========================================================
+		Please visit our website: www.gambio.de
+		=========================================================
+
+		-->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		{$content_data.additional_html_array.head.top}
+		{seo_tags}
+		<base href="{$content_data.BASE_URL}" />
+
+		{if $content_data.FAVICON}
+			<link rel="shortcut icon" href="{$content_data.FAVICON}" type="image/x-icon" />
+		{/if}
+
+		{if $content_data.FAVICON_IPAD}
+			<link rel="apple-touch-icon" href="{$content_data.FAVICON_IPAD}" />
+		{/if}
+
+		<link id="main-css" type="text/css" rel="stylesheet" href="{$tpl_path}gm_dynamic.css.php?{$content_data.CSS_PARAMS}" />
+
+		<!--[if lt IE 9]>
+		<link type="text/css" rel="stylesheet" href="{$tpl_path}styles/ie8.css" />
+		<![endif]-->
+
+		{$content_data.additional_html_array.head.bottom}
+		
+		{assign var="fixedHeader" value={template_setting name="gx-header-fixed"}}
+	</head>
+	<body class="{page_id}"
+	      data-gambio-namespace="{$content_data.BASE_URL}{$tpl_path}assets/javascript/engine"
+	      data-jse-namespace="{$content_data.BASE_URL}JSEngine/build"
+		  data-gambio-widget="input_number responsive_image_loader transitions {if $fixedHeader}header {/if}image_maps modal history dropdown core_workarounds anchor"
+	      data-input_number-separator="{$content_data.numberSeparator}"
+	      {$content_data.additional_html_array.body.params}>
+
+		{$content_data.additional_html_array.body.top}

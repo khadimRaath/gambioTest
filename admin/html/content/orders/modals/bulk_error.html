@@ -1,0 +1,25 @@
+{load_language_text section="buttons" name="btn"}
+
+<div class="bulk-error modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="{$admin_buttons.BUTTON_ClOSE}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">{$orders.HEADING_BULK_PDF_ERROR}</h4>
+			</div>
+			<div class="modal-body">
+				<div class="invoices-message hidden">
+					{$orders.TEXT_BULK_PDF_ERROR|sprintf:$content.max_amount_invoices_bulk_pdf:$content.bulk_settings_url}
+				</div>
+				<div class="packing-slips-message hidden">
+					{$orders.TEXT_BULK_PDF_ERROR|sprintf:$content.max_amount_packing_slips_bulk_pdf:$content.bulk_settings_url}
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">{$btn.close}</button>
+			</div>
+		</div>
+	</div>
+</div>

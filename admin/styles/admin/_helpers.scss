@@ -1,0 +1,44 @@
+/*
+
+  Helpers
+  ==========================================================================
+  Define reusable style helper.
+
+*/
+
+// ----------------------------------------------------------------------------
+// TYPOGRAPHY - POSITION
+// ----------------------------------------------------------------------------
+
+// Force the text alignment to be to the left.
+.force-text-left {
+	text-align: left !important;
+}
+
+// ----------------------------------------------------------------------------
+// TYPOGRAPHY - TRANSFORMATIONS
+// ----------------------------------------------------------------------------
+
+// Forces the bold font weight.
+.text-bold {
+	font-weight: bold;
+}
+
+// Forces the normal font weight.
+.force-text-normal-weight {
+	font-weight: 400 !important;
+}
+
+// ----------------------------------------------------------------------------
+// TYPOGRAPHY - COLORS
+// ----------------------------------------------------------------------------
+
+// Forces the colorization of the text to light gray.
+.force-text-color-light {
+  color: $text-color-light !important;
+}
+
+// Forces the colorization of the text to black.
+.force-text-color-black {
+  color: black !important;
+}

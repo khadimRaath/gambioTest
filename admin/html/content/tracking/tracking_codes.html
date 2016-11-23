@@ -1,0 +1,48 @@
+{load_language_text section="parcel_services"}
+
+<table>
+	<thead>
+		<tr>
+			<th>{$txt.TXT_PARCEL_TRACKING_TABHEAD_TRACKINGCODES|escape}</th>
+			<th>{$txt.TXT_PARCEL_TRACKING_TABHEAD_SERVICES|escape}</th>
+			<th>{$txt.TXT_DATE|escape}</th>
+			<th>&nbsp;</th>
+		</tr>
+	</thead>
+	<tbody>
+		{foreach item=parcel from=$content_data.parcel_tracking_codes_array}
+		<tr>
+			<td><a href="{$parcel->getServiceUrl()|escape}" target="_blank">{$parcel->getTrackingCode()|escape}</a></td>
+			<td>{$parcel->getServiceName()|escape}</td>
+			<td>{$parcel->getFormatedCreationDate()}</td>
+			<td>
+				<span class="btn-delete cursor-pointer"
+				      data-orders_modal_layer-action="delete_tracking_code"
+				      data-orders_modal_layer-order_id="{$parcel->getOrderId()}"
+				      data-orders_modal_layer-tracking_code="{$parcel->getTrackingCode()}"
+				      data-orders_modal_layer-tracking_code_id="{$parcel->getTrackingCodeId()}"
+				      data-orders_modal_layer-page_token="{$content_data.page_token}">
+					<i class="fa fa-trash-o"></i>
+				</span>
+			</td>
+		</tr>
+		{/foreach}
+		<tr>
+			<td>
+				<input type="text" name="parcel_service_tracking_code" id="parcel_service_tracking_code"/>
+			</td>
+			<td>
+				<select name="parcel_service" id="parcel_services_dropdown"> {html_options options=$content_data.parcel_tracking_service_options
+					selected=$content_data.parcel_tracking_service_options_selected} </select>
+			</td>
+			<td>
+				<span class="btn cursor-pointer add_tracking_code"
+				   data-orders_parcel_tracking-order_id="{$content_data.orders_id}"
+				   data-orders_parcel_tracking-page_token="{$content_data.page_token}">
+					{$txt.TXT_PARCEL_TRACKING_SENDBUTTON}
+				</span>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+	</tbody>
+</table>

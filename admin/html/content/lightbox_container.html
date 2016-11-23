@@ -1,0 +1,49 @@
+{load_language_text section='lightbox_buttons'}
+<div>
+	{$content_data.lightbox_content}
+</div>
+<div class="lightbox_content_error"> </div>
+{if $content_data.buttons_show}
+	<div class="button_container">
+		<div class="button_left_container">
+			{foreach key=button_text item=button_classes from=$content_data.buttons_left}
+				<a href="#" onclick="return false;" class="btn {foreach item=button_class from=$button_classes} {$button_class}{/foreach}">{$txt.$button_text}</a>
+			{/foreach}
+			<div class="clear_both"> <!-- &nbsp; --> </div>   
+		</div>
+		<div class="button_right_container">
+			{foreach key=button_text item=button_classes from=$content_data.buttons_right}
+				<a href="#" onclick="return false;" class="btn {foreach item=button_class from=$button_classes} {$button_class}{/foreach}">{$txt.$button_text}</a>
+			{/foreach}
+			<div class="clear_both"> <!-- &nbsp; --> </div>   
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>   
+	</div>
+{/if}
+<div class="clear_both"> <!-- &nbsp; --> </div>
+
+{if is_array($content_data.parameters)}
+
+	<script type="text/javascript">
+		{literal}
+			if( typeof t_lightbox_parameters == "undefined" )
+			{
+				t_lightbox_parameters = new Array();
+			}
+			var t_lightbox_identifier;
+		{/literal}
+		t_lightbox_identifier = "{$content_data.parameters.lightbox_identifier}";
+		
+		{literal}
+			t_lightbox_parameters['_' + t_lightbox_identifier] = new Array();
+		{/literal}
+		
+		{foreach key=parameter_key item=parameter_value from=$content_data.parameters}
+			t_lightbox_parameters['_' + t_lightbox_identifier]["{$parameter_key}"] = "{$parameter_value}";
+		{/foreach}
+	</script>
+
+{/if}
+{if $content_data.javascript_section}
+	<script type="text/javascript" src="../gm_javascript.js.php?page=Section&amp;globals=off&amp;section={$content_data.javascript_section}&amp;lightbox_identifier={$content_data.parameters.lightbox_identifier}"></script>
+{/if}

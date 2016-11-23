@@ -1,0 +1,64 @@
+{load_language_text section="buttons" name="btn"}
+
+<div class="settings modal fade" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="{$btn.close}">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title">{$admin_invoices.SETTINGS}</h4>
+			</div>
+			<div class="modal-body"
+				 data-gx-widget="switcher"
+				 data-settings_modal-user-id="{$_SESSION.customer_id}">
+
+				<form class="form-horizontal order-settings">
+					<fieldset class="settings-group">
+						<legend>{$admin_invoices.COLUMN}</legend>
+						<ul class="settings">
+							{* Iterate over each available columns and set the sorting and visibility *}
+							{foreach from=$content.columns item=column}
+								<li id="setting-{$column}">
+									<div class="form-group">
+										<label for="setting-value-{$column}" class="col-md-6">{$admin_invoices[$column|upper]}</label>
+										<div class="col-md-2">
+											<input type="checkbox" id="setting-value-{$column}" class="form-control" />
+										</div>
+										<div class="col-md-4">
+											<span class="sort-handle">
+												<i class="fa fa-caret-up"></i>
+												<i class="fa fa-caret-down"></i>
+											</span>
+										</div>
+									</div>
+								</li>
+							{/foreach}
+						</ul>
+					</fieldset>
+
+					<fieldset class="settings-group">
+						<legend>{$admin_invoices.ROW}</legend>
+
+						<div class="form-group">
+							<label for="setting-value-row-height" class="col-md-6 row-height">{$admin_invoices.ROW_HEIGHT_LABEL}</label>
+							<div class="col-md-3">
+								<select id="setting-value-row-height" class="SelectBox form-control">
+									{* Iterate over each selectable row height *}
+									{foreach from=$content.row_heights item=row_height}
+										<option value="{$row_height}">{$admin_invoices['ROW_HEIGHT_'|cat:$row_height|upper]}</option>
+									{/foreach}
+								</select>
+							</div>
+						</div>
+					</fieldset>
+
+					<fieldset class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">{$btn.close}</button>
+						<button type="button" class="btn btn-primary submit-button">{$btn.save}</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

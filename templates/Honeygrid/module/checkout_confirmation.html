@@ -1,0 +1,198 @@
+{load_language_text section="checkout_confirmation"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="general" name="general"}
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/process_funnel.html" step=3}
+
+<h1>{$general.YOUR_ORDER}</h1>
+
+<br/>
+
+<form action="{$CHECKOUT_FORM_ACTION_URL}" method="post" class="form-horizontal">
+
+	{if $ERROR}
+		{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$ERROR type="danger"}
+	{else}
+		{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$txt.text_confirm_information type="info"}
+	{/if}
+
+	<ul class="list-reset">
+
+		{if $PRIVACY_CONFIRMATION_URL}
+			<li>
+				<a href="{$PRIVACY_CONFIRMATION_URL}" class="js-open-modal" data-modal-type="iframe" data-modal-settings='{literal}{{/literal}"title": "{$txt.title_privacy}"{literal}}{/literal}' target="_blank" title="{$PRIVACY_CONFIRMATION_TEXT}">
+					<span class="gm-chevron-right"></span> {$PRIVACY_CONFIRMATION_TEXT}
+				</a>
+			</li>
+		{/if}
+
+		{if $CONDITIONS_CONFIRMATION_URL}
+			<li>
+				<a href="{$CONDITIONS_CONFIRMATION_URL}" class="js-open-modal" data-modal-type="iframe" data-modal-settings='{literal}{{/literal}"title": "{$txt.title_conditions}"{literal}}{/literal}' target="_blank" title="{$CONDITIONS_CONFIRMATION_TEXT}">
+					<span class="gm-chevron-right"></span> {$CONDITIONS_CONFIRMATION_TEXT}
+				</a>
+			</li>
+		{/if}
+
+		{if $WITHDRAWAL_CONFIRMATION_URL}
+			<li>
+				<a href="{$WITHDRAWAL_CONFIRMATION_URL}" class="js-open-modal" data-modal-type="iframe" data-modal-settings='{literal}{{/literal}"title": "{$txt.title_withdrawal}"{literal}}{/literal}' target="_blank" title="{$WITHDRAWAL_CONFIRMATION_TEXT}">
+					<span class="gm-chevron-right"></span> {$WITHDRAWAL_CONFIRMATION_TEXT}
+				</a>
+			</li>
+		{/if}
+
+	</ul>
+
+	<p>&nbsp;</p>
+
+	{if $GM_LOG_IP =='1' && ($GM_CONFIRM_IP =='1' || $GM_SHOW_IP =='1')}
+		{if $GM_CONFIRM_IP =='1'}
+			<fieldset data-gambio-widget="radio_selection" data-radio_selection-selection="div.checkbox" >
+				<div class="checkbox alert alert-warning">
+					<label>
+						<input type="checkbox" name="gm_log_ip" id="gm_log_ip" value="save">
+						{$txt.text_confirm_log_ip} {$CUSTOMERS_IP}
+					</label>
+				</div>
+			</fieldset>
+		{/if}
+	{/if}
+
+	{if $amazon_checkout_address}
+		{if $smarty.session.cart->content_type != 'virtual'}
+			<div class="row">
+				<h3>{$txt.text_shipping_address}</h3>
+				<p class="space-0">{amazon_payment id='readOnlyAddressBookWidgetDiv'}</p>
+			</div>
+		{/if}
+	{else}
+
+		<div class="row">
+
+			<fieldset class="col-md-5">
+				<legend>
+					{$txt.text_shipping_address}
+					<a href="{$SHIPPING_ADDRESS_EDIT}" title="{$txt.text_edit|replace:"(":""|replace:")":""}"><span class="fa fa-pencil"></span></a>
+				</legend>
+				<div class="row">
+					<div class="col-md-12 indent-sm-1">
+						<address>
+							{$DELIVERY_LABEL}
+						</address>
+					</div>
+				</div>
+			</fieldset>
+
+			<fieldset class="col-md-5 col-md-offset-2">
+				<legend>
+					{$txt.text_payment_address}
+					<a href="{$BILLING_ADDRESS_EDIT}" title="{$txt.text_edit|replace:"(":""|replace:")":""}"><span class="fa fa-pencil"></span></a>
+				</legend>
+				<div class="row">
+					<div class="col-md-12 indent-sm-1">
+						<address>
+							{$BILLING_LABEL}
+						</address>
+					</div>
+				</div>
+			</fieldset>
+
+		</div>
+	{/if}
+
+	{if $amazon_checkout_payment}
+		<div class="row">
+			<h3>{$txt.text_payment_info}</h3>
+			<p class="space-0">{amazon_payment id='readOnlyWalletWidgetDiv'}</p>
+		</div>
+	{else}
+		{if $PAYMENT_METHOD != '' && $BILLING_LABEL}
+
+			<fieldset>
+				<legend>
+					{$txt.text_payment_method}
+					<a href="{$PAYMENT_EDIT}" title="{$txt.text_edit|replace:"(":""|replace:")":""}"><span class="fa fa-pencil"></span></a>
+				</legend>
+				<div class="row">
+					<div class="col-md-12 indent-sm-1">
+						<address>
+							{$PAYMENT_METHOD}
+						</address>
+					</div>
+				</div>
+			</fieldset>
+
+		{/if}
+
+		{if $PAYMENT_TITLE != '' && $BILLING_LABEL}
+
+			<fieldset>
+				<legend>
+					{$txt.text_payment_info}
+					<a href="{$PAYMENT_EDIT}" title="{$txt.text_edit|replace:"(":""|replace:")":""}"><span class="fa fa-pencil"></span></a>
+				</legend>
+				<address>
+					{$PAYMENT_TITLE}
+				</address>
+			</fieldset>
+
+			{if !empty($payment_information_data)}
+				{include file="get_usermod:{$tpl_path}snippets/checkout_payment_information.html"}
+			{/if}
+		{/if}
+	{/if}
+
+	{$MODULE_ts_excellence}
+
+	{if $ORDER_COMMENTS != ''}
+
+		<fieldset>
+			<legend>
+				{$txt.text_comments}
+				<a href="{$PAYMENT_EDIT}" title="{$txt.text_edit|replace:"(":""|replace:")":""}"><span class="fa fa-pencil"></span></a>
+			</legend>
+			<address>
+				{$ORDER_COMMENTS}
+			</address>
+		</fieldset>
+
+	{/if}
+
+	<fieldset>
+		<legend>
+			{$txt.text_products}
+			<a href="{$PRODUCTS_EDIT}" title="{$txt.text_edit|replace:"(":""|replace:")":""}"><span class="fa fa-pencil"></span></a>
+		</legend>
+
+		{$PRODUCTS_TABLE_PART}
+		{include file="get_usermod:{$tpl_path}snippets/order/order_total_confirmation.html"}
+
+	</fieldset>
+
+	{if $CONFIRMATION_INFO|strip_tags:true|trim}
+		<div class="row">
+			<div class="col-sm-12">
+				{$CONFIRMATION_INFO}
+			</div>
+		</div>
+	{/if}
+
+	{$CHECKOUT_FORM_PREFORM}
+
+	<input type="hidden" name="ie11bugfix" value="1" />
+
+	{if $MODULE_BUTTONS != ''}
+		{$MODULE_BUTTONS}
+	{/if}
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-5 col-sm-push-7">
+			<input type="submit" class="btn btn-primary btn-block checkout-confirmation-submit" value="{$button.send_order}">
+		</div>
+		<div class="col-xs-12 col-sm-5 col-sm-pull-5 text-right hidden">
+			<a href="{'checkout_payment.php'|xtc_href_link:'':'SSL'}" class="btn btn-default btn-block checkout-confirmation-back-button">{$button.back}</a>
+		</div>
+	</div>
+
+</form>

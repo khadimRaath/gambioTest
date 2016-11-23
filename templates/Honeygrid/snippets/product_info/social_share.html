@@ -1,0 +1,8 @@
+{if $SHOW_FACEBOOK || $SHOW_TWITTER || $SHOW_GOOGLEPLUS || $SHOW_PINTEREST}
+	<div data-gambio-widget="social_share"
+	     {if $SHOW_FACEBOOK}data-social_share-facebook{/if}
+	     {if $SHOW_TWITTER}data-social_share-twitter{/if}
+	     {if $SHOW_GOOGLEPLUS}data-social_share-googleplus{/if}
+	     {if $SHOW_PINTEREST}data-social_share-pinterest{/if}>
+	</div>
+{/if}

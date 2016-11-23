@@ -1,0 +1,50 @@
+{load_language_text section="shop_offline"}
+{load_language_text section="notifications" name="notification"}
+<form data-gx-_widget="ckeditor" data-gx-_extension="language_switcher">
+	<div class="formfields">
+		<div class="label_wrapper row{if $content_data.hide_topbar_mode} rowLeft{/if}" data-gx-_widget="colorpicker">
+			<div class="span_1_3">
+				<label for="colorpicker">{$txt.shop_offline_color_picker_label}</label>
+			</div>
+			<div class="span_2_3">
+				<div class="color-preview picker"></div>
+				<input id="colorpicker" type="button" name="colorpicker" value="{$notification.colorpicker}" class="picker"/>
+				<input type="hidden" name="{$content_data.data_src}_color[{$content_data.data_id}]" value="" />
+			</div>
+			<div style="clear: both;"><!-- --></div>
+		</div>
+
+		{* Only show topbar mode on EyeCandy based templates *}
+		{if $content_data.hide_topbar_mode !== true}
+			<div class="label_wrapper row rowLeft">
+				<div class="span_1_3">
+					<label for="topbar_mode[{$content_data.data_id}]">{$notification.display_mode}:</label>
+				</div>
+				<div class="span_2_3">
+					<select name="topbar_mode[{$content_data.data_id}]">
+						<option value="hideable">{$notification.hideable}</option>
+						<option value="permanent">{$notification.permanent}</option>
+					</select>
+				</div>
+				<div style="clear: both;"><!-- --></div>
+			</div>
+		{else}
+			<input type="hidden" name="topbar_mode[{$content_data.data_id}]" value="hideable" />
+		{/if}
+		
+		<div class="buttonbar rowRight">
+			{foreach item=language from=$content_data.languages_array name=languagesArrayIterator1}
+			<a href="#{$language.languages_id}" class="language_switcher_{$language.code}">
+				<img src="../lang/{$language.directory}/{$language.image}" alt="{$language.name}" title="{$language.name}" />
+			</a>
+			{/foreach}
+		</div>
+		<div class="clear"><!--&nbsp;--></div>
+
+		{foreach item=language from=$content_data.languages_array name=languagesArrayIterator1}
+			<input type="hidden" value="" class="language_switcher_content_{$language.code}" name="{$content_data.data_src}_msg[{$content_data.data_id}][{$language.languages_id}]" />
+		{/foreach}
+		<label for="{$content_data.data_src}_msg[{$content_data.data_id}]">{$notification.topbar_message_label}:</label>
+		<textarea name="{$content_data.data_src}_msg[{$content_data.data_id}]" {if $smarty.const.USE_WYSIWYG}class="wysiwyg"{/if}></textarea>
+	</div>
+</form>

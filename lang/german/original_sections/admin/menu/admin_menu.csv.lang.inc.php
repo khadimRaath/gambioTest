@@ -1,0 +1,15 @@
+<?php
+/* --------------------------------------------------------------
+   admin_menu.csv.lang.inc.php 2015-01-02 gm
+   Gambio GmbH
+   http://www.gambio.de
+   Copyright (c) 2014 Gambio GmbH
+   Released under the GNU General Public License (Version 2)
+   [http://www.gnu.org/licenses/gpl-2.0.html]
+   --------------------------------------------------------------
+*/
+
+$t_language_text_section_content_array = array
+(
+	'BOX_IMPORT_EXPORT' => 'Import / Export'
+);

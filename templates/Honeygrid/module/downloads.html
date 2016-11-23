@@ -1,0 +1,35 @@
+{load_language_text section="downloads"}
+
+{if $dl != ''}
+	<h3>{$txt.heading_download}</h3>
+		
+	{if $dl_prevented == 'true'}
+		{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$txt.download_not_allowed type="info"}
+	{else}
+		{foreach name=aussen item=dl_data from=$dl}
+			<dl>
+				{if $dl_data.pic_link && $dl_data.delay_message == ''}
+					<dt>
+						<a href="{$dl_data.pic_link}">
+							<img src="{$tpl_path}assets/images/icons/document.png" />
+						</a>
+					</dt>
+				{/if}
+				
+				{if $dl_data.delay_message == ''}
+					<dd>
+						{$dl_data.download_link}
+						<br />
+						{$txt.text_download_count} {$dl_data.count} {$txt.text_download_date} {$dl_data.date_short}
+					</dd>
+				{else}
+					<dd>
+						{$dl_data.delay_message}
+					</dd>
+				{/if}
+				
+			</dl>
+		{/foreach}
+	{/if}
+
+{/if}

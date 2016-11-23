@@ -1,0 +1,105 @@
+{load_language_text section="account"}
+{load_language_text section="downloads" name="downloads"}
+{load_language_text section="buttons" name="button"}
+
+<div class="user_home" id="account">
+	<h1>{$txt.heading_account}</h1>
+
+	<div class="class_error">
+		{$error_message}
+	</div>
+
+	{* {$txt.title_welcome} *}
+	<p>{$txt.text_welcome}</p>
+	<div class="cols3">
+		<div class="col first">
+
+			<div class="col-inside">
+				<h3>{$txt.title_account}</h3>
+				<ul class="arrows">
+					<li><a href="{$LINK_EDIT}">{$txt.text_edit}</a></li>
+					<li><a href="{$LINK_ADDRESS}">{$txt.text_address}</a></li>
+					{if $NO_GUEST == 1}
+					<li><a href="{$LINK_PASSWORD}">{$txt.text_password}</a></li>
+					<li><a href="{$LINK_DELETE_ACCOUNT}">{$txt.text_delete_account}</a></li>
+					{/if}					
+					{if $CUSTOMER_UPLOAD == 1}
+					<li><a href="{$LINK_CUSTOMER_UPLOAD}">{$txt.text_customer_upload}</a></li>
+					{/if}
+				</ul>
+			</div>
+		</div>
+
+		{if $order_content}
+		<div class="col">
+			<div class="col-inside">
+				<h3>{$txt.title_orders}</h3>
+				<a class="account_link" href="{$LINK_ALL}">{$txt.text_all}</a><br /><br />
+				{foreach name=aussen item=order_data from=$order_content}
+					<div class="order clearfix">
+						<a class="account_link" href="{$order_data.ORDER_LINK}">{$order_data.ORDER_DATE}</a><br />
+
+						{$txt.order_nr}{$order_data.ORDER_ID}<br />
+						{$txt.order_total}{$order_data.ORDER_TOTAL}<br />
+						{$txt.order_status} <span class="price">{$order_data.ORDER_STATUS}</span>
+						
+						{if $order_data.downloads_data}
+						<div class="product-documents clearfix">
+							<dl class="clearfix">
+							{foreach name=innen item=download_data from=$order_data.downloads_data}
+								<dd>
+									{if $download_data.DELAY_MESSAGE == ''}
+										<a href="{$download_data.LINK}" target="_blank">{$download_data.PRODUCTS_NAME}</a>
+									{else}
+										<span class="download_product_name">{$download_data.PRODUCTS_NAME}</span>
+									{/if}
+									<br />
+									{if $download_data.DELAY_MESSAGE == ''}
+										{$downloads.text_download_count} {$download_data.COUNT} {$downloads.text_download_date} {$download_data.DATE_SHORT}
+									{/if}
+									{if $download_data.DELAY_MESSAGE != ''}
+										{$download_data.DELAY_MESSAGE}
+									{elseif $download_data.LINK != '' && $download_data.COUNT > 0}
+										<div class="show_download_button">
+											<a href="{$download_data.LINK}" class="button_green button_set" target="_blank">
+												<span class="button-outer">
+													<span class="button-inner">{$button.download}</span>
+												</span>
+											</a>
+										</div>
+									{/if}
+								</dd>
+							{/foreach}
+							</dl>
+						</div>
+						{/if}
+						
+						<div style="clear:both"></div>
+						<div class="show_order_button"><a href="{$order_data.ORDER_BUTTON_LINK}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.show}</span></span></a></div>
+
+					</div>							
+				{/foreach}
+			</div>
+		</div>
+		{/if}
+		{if $LINK_NEWSLETTER}
+		<div class="col last">
+			<div class="col-inside">
+				<h3>{$txt.title_notification}</h3>
+				<p><a class="account_link" href="{$LINK_NEWSLETTER}">{$txt.text_newsletter}</a></p>
+			</div>
+		</div>
+		{/if}
+	</div>
+	<div class="clearfix"></div>
+	<div style="clear:both"></div>
+
+	{if $products_history}
+		<br />
+		<br />
+		<div class="headline">{$txt.title_viewed_products}</div><br />
+		{object_product_list product_list=$products_history id_prefix="products_history" truncate_products_name=$TRUNCATE_PRODUCTS_NAME}
+		{* <a href="{$products_history.PRODUCTS_CATEGORY_URL}">{$txt.text_goto_cat}</a> *}
+	{/if}
+
+</div>

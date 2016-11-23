@@ -1,0 +1,13 @@
+{load_language_text section="gift_cart"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="popup" name="popup"}
+		
+{if $ACTIVATE_GIFT == 'true'}
+	<div class="redeem-code-wrapper gift-cart-layer">
+		<form action="shop.php?do=Cart/RedeemGift" data-gambio-_widget="gift">
+			<div class="gift-cart-content-wrapper">
+				{include file="get_usermod:{$tpl_path}snippets/gift_cart_content.html"}
+			</div>
+		</form>
+	</div>
+{/if}

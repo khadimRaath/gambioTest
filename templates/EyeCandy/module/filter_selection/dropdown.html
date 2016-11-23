@@ -1,0 +1,12 @@
+{load_language_text section="box_filter"}
+
+<div class="filter_heading">
+	{$content_data.FEATURE_NAME}
+</div>
+<select name="filter_fv_id[{$content_data.FEATURE_ID}][]" class="input-select">
+	<option value="">-</option>
+	{foreach name=features item=feature_value from=$content_data.FEATURE_VALUE_DATA}
+		<option value="{$feature_value.ID}" {if $feature_value.SELECTED}selected="selected"{/if} {if $feature_value.VISIBLE == false && $feature_value.DISPLAY_MODE == 1}disabled="disabled"{/if}>{$feature_value.NAME}</option>
+	{/foreach}
+</select>
+<input type="hidden" name="value_conjunction[{$content_data.FEATURE_ID}]" value="{$content_data.VALUE_CONJUNCTION}" />

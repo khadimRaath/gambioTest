@@ -1,0 +1,29 @@
+{load_language_text section="buttons" name="button"}
+
+{if $content_data.active && !$content_data.cookieAlreadySet}
+	<div class="cookie-bar {$content_data.position}" 
+		 style="background-color: {$content_data.background_color}; opacity: {$content_data.background_opacity}">
+		<span class="content">
+			{$content_data.text}
+		</span>
+		<span class="button">
+			<a style="background-color: {$content_data.button_background_color|escape}; color: {$content_data.button_text_color}"
+			   href="{if $content_data.button_link && $content_data.button_link != ''}{$content_data.button_link}{else}#{/if}"
+			   class="button_set">
+				<span class="button-outer">
+					<span class="button-inner">
+						{if $content_data.button_text && $content_data.button_text != ''}
+							{$content_data.button_text}
+						{else}
+							{$button.ok}
+						{/if}
+					</span>
+				</span>
+			</a>
+		</span>
+		
+		{if $content_data.close_button_active == "true"}
+			<span class="close-button">&nbsp;</span>
+		{/if}
+	</div>
+{/if}

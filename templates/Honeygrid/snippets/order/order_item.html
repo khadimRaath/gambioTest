@@ -1,0 +1,169 @@
+{load_language_text section="account_history_info" name="history"}
+{load_language_text section="order_details"}
+{load_language_text section="buttons" name="button"}
+
+{if $is_tablehead && $is_tablehead === true}
+	
+	<tr class="item">
+		<th></th>
+		<th>{$txt.text_article}</th>
+		<th>{$txt.text_qty}</th>
+		<th class="text-right">{if $is_wishlist === false}{$txt.text_total}{/if}</th>
+	</tr>
+		
+{else}
+
+	<tr class="item">
+		<td class="image">
+			{if $p_url}
+				<a href="{$p_url}" title="{$p_name|strip_tags}">
+			{/if}
+					
+			{if $image_src}
+				<img src="{$image_src}"{if $image_alt} alt="{$image_alt}"{/if}{if $image_title} title="{$image_title}"{/if} class="img-responsive" />
+			{else}
+				{$p_name}
+			{/if}
+					
+			{if $p_url}
+				</a>
+			{/if}
+			<div class="loader"></div>
+		</td>
+		<td class="product">
+			{if $p_url}
+				<a class="product-title" href="{$p_url}" title="{$p_name|strip_tags}" rel="nofollow">
+			{else}
+				<span class="product-title">
+			{/if}
+					
+			{$p_name}
+					
+			{if $p_url}
+				</a>
+			{else}
+				</span>
+			{/if}
+			
+			{if $p_model && $show_p_model == 'true'}
+				<br />
+				{$p_model}
+			{/if}
+			
+			{if $p_weight && $p_weight != '0'}
+				<br />
+				{$p_weight}
+			{/if}
+			
+			{if $p_shipping_time}
+				<br />
+				{$p_shipping_time}
+			{/if}
+
+			{if $p_price_single && $is_wishlist !== true}
+				<br />
+				{$txt.text_single}: {$p_price_single}
+			{/if}
+
+			{if $p_price_vpe && $is_wishlist !== true}
+				<br />
+				{$p_price_vpe}
+			{/if}
+
+			{if $p_attributes}
+				<br />
+				{$p_attributes}
+			{/if}
+
+			{if $p_properties}
+				<br />
+				{$p_properties}
+			{/if}
+
+			{if $tpl_properties}
+				<br />
+				{$tpl_properties}
+			{/if}
+
+			{if $p_checkout_info}
+				<br />
+				{$p_checkout_info}
+			{/if}
+
+			{if $is_wishlist === true}
+				<br />
+				{$p_price_single}
+				{if $p_price_vpe}
+					<br />
+					{$p_price_vpe}
+				{/if}
+				{if $p_shipping_info}
+					<br />
+					{$p_shipping_info}
+				{/if}
+			{/if}
+			
+			{if $p_details_url && $p_details_text}
+				<br />
+				<a href="{$p_details_url}" target="_blank" title="{$p_details_text}" class="lightbox_iframe">
+					{$p_details_text}
+				</a>
+			{/if}
+
+			<div id="error-product-{$p_error_id}" class="error-msg alert alert-danger"></div>
+			<div class="loader"></div>
+		</td>
+		<td class="qty">
+			{if !$p_qty && $p_unit}
+				{$p_unit}:<br />
+			{/if}
+			
+			{if $is_confirmation === false && $p_qty_name && $p_qty_value}
+				<input type="text" name="{$p_qty_name}" value="{$p_qty_value}" data-oldValue="{$p_qty_value}" size="2" class="form-control" />
+			{/if}
+
+			{if $p_qty}
+				{$p_qty}
+				{if $p_unit}
+					&nbsp;{$p_unit}
+				{/if}
+			{/if}
+			
+			{if $is_confirmation === false}
+				{if $p_hidden_name && $p_hidden_value}
+					<input type="hidden" name="{$p_hidden_name}" id="{$p_hidden_name}" value="{$p_hidden_value}" />
+				{/if}
+				{if $p_hidden_qty_name && $p_hidden_qty_value}
+					<input type="hidden" name="{$p_hidden_qty_name}" id="{$p_hidden_qty_name}" value="{$p_hidden_qty_value}" />
+				{/if}
+			{/if}
+
+			{if $is_wishlist === true}
+				<input type="hidden" name="{$p_hidden_cart_delete_name}"  value="{$p_hidden_value}" />
+				<a href="{page_url}#" title="{$button.add_to_cart}" class="button-to-cart">
+					<span class="fa fa-plus"></span>
+				</a>
+				&nbsp;
+			{/if}
+			{if $is_confirmation === false}
+				<a href="{page_url}#" title="{$button.update}" class="button-refresh">
+					<span class="fa fa-refresh"></span>
+				</a>
+				&nbsp;
+			{/if}
+			{if !$is_checkout} 
+				<a href="{page_url}#" rel="{$module_data.PRODUCTS_ID_EXTENDED}" title="{$button.delete}" class="button-delete">
+					<span class="fa fa-times"></span>
+				</a>
+			{/if}
+			<div class="loader spinner"></div>
+		</td>
+		<td class="text-right">
+			{if $is_wishlist == false && $p_price_final != ''}
+				{$p_price_final}
+			{/if}
+			<div class="loader"></div>
+		</td>
+	</tr>
+
+{/if}

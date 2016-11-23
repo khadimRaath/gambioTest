@@ -1,0 +1,55 @@
+<meta charset="UTF-8" />
+<div style="height: 100%; margin: 0 !important; padding: 0 !important; max-width: 9000px !important; font-family: arial, verdana, sans-serif; background-color: #e5e5e5;">
+	<div style="margin-left: auto; margin-right: auto; width: 720px; padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #999999; text-align: right;">&nbsp;</div>
+
+	<div style="margin-left: auto; margin-right: auto; width: 630px; padding: 25px 45px 25px; background-color: white; font-size: 13px; margin-top: 15px; margin-bottom: 15px; display: block;">
+		<table align="center" border="0" cellpadding="4" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td>
+						{if $gm_logo_mail}
+						<div style="overflow: hidden; margin-bottom: 25px; display: block; float: right;">{$gm_logo_mail}</div>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="font-family:arial,helvetica,sans-serif;"><span style="font-size: 13px;">
+							<strong>Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME}, </strong><br />
+							<br />
+
+							You successfully created your Customer Account, now you got following features in our shop.<br />
+							<br />
+							<strong>- Customer shopping cart:</strong> Every item remains registered until you go to the cash box, or the products are deleted from the shopping cart.<br />
+							<strong>- Address book:</strong> Now we can send the products to the postal address selected by you. The perfect way to get a birthday present.<br />
+							<strong>- Previous orders:</strong> You can check your previous orders at any time.<br />
+							<strong>- Opinions about products:</strong> Tell your opinion about our products to other customers.<br />
+							<br />
+							If you have questions to our customer-service, contact us directly: {$content.MAIL_REPLY_ADDRESS}.<br />
+							Caution: This eMail-address was announced to us by a customer. If you did not announce yourself, please send an eMail to {$content.MAIL_REPLY_ADDRESS}.<br />
+							<br />
+							{if $SEND_GIFT==true}<br />
+							As part of our welcome to new customers, we have sent you an e-Gift Voucher worth: <strong>{$GIFT_AMMOUNT}</strong><br />
+							<br />
+							The redeem code for the e-Gift Voucher is <strong>{$GIFT_CODE}</strong>, you can enter the redeem code when checking out while making a purchase.<br />
+							<br />
+							To use your e-Gift voucher, click on Following link <a href="{$GIFT_LINK}">[redeem Voucher]</a>.<br /><br />{/if}
+							{if $SEND_COUPON==true}Congratulations, to make your first visit to our online shop a more rewarding experience we are sending you an e-Discount Coupon.<br />
+							Below are details of the Discount Coupon created just for you.<br />
+							Description: <strong>{$COUPON_DESC}</strong><br />
+							To use the coupon enter the redeem code which is {$COUPON_CODE} during checkout while making a purchase. {/if}
+						</span></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		&nbsp;
+	</div>
+
+	<div style="padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #444444; font-family: arial; text-align: center;">
+		<br /><br />
+		<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$EMAIL_SIGNATURE_HTML}</span></span>
+		<br /><br />
+	</div>
+</div>

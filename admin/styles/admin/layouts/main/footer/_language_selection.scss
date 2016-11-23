@@ -1,0 +1,19 @@
+/* 
+	Main Footer Language Selection
+    ========================================================================== 
+
+	Styling for the main footer language selection. 
+	
+*/
+
+.language-selection {
+	a {
+		text-decoration: none;
+		
+		img {
+			width:        28px;
+			margin-top:   -7px; // Fix position cause the flag images have more height that needed.
+			margin-right: $margin-small / 2;
+		}
+	}
+}

@@ -1,0 +1,17 @@
+{*
+	For license conflict reasons there must be a FontAwesome fallback mode, so that
+	the shop works even if there are no font files for the icons. This script will check
+	if the font files are present and will output fallback CSS styling in case they are
+	missing.
+*}
+
+{if $fontawesome_fallback}
+	<!-- 
+		FONTAWESOME FALLBACK MODE IS ENABLED 
+	 -->
+	<style>
+		.fa::before {
+			content: "o" !important;
+		}
+	</style>
+{/if}

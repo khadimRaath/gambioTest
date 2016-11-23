@@ -1,0 +1,7 @@
+<ul>
+	{foreach item=prop_item_array from=$content_data.PROPERTIES_DATA}
+		<li>
+			{$prop_item_array.properties_name}: {$prop_item_array.values_name}
+		</li>
+	{/foreach}
+</ul>

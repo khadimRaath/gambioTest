@@ -1,0 +1,130 @@
+{load_language_text section="product_listing"}
+{load_language_text section="product_info" name="info"}
+{load_language_text section="buttons" name="button"}
+
+{product_rating id=$p_id out='OVERALL_RATING'}
+
+<div class="product-container{if $is_swiper === 'true'} swiper-slide {/if}{if $p_imgs} has-gallery{/if}"
+		{if $data_index} data-index="{$data_index}"{/if}>
+
+	<form>
+
+		<div class="inside">
+			<div class="content-container">
+				<div class="content-container-inner">
+
+					<figure class="image{if !$p_image || $p_image === ''} no-image{/if}" id="{$data_index}_img">
+						{if $p_image}
+							{$p_image=$p_image|replace:"thumbnail_images":"info_images"}
+							<span title="{$p_name_full}" class="product-hover-main-image product-image" style="background-image: url('{$p_image}')">
+
+							</span>
+
+						{else}
+							<div title="{$p_name_full}" class="product-hover-main-image product-image">
+								<div class="fa fa-picture-o"></div>
+							</div>
+						{/if}
+
+						{if $p_fsk18 === 'true'}
+							<img src="{$tpl_path}assets/images/fsk18.gif" alt="fsk18.gif" title="fsk18.gif" class="img-responsive" />
+						{/if}
+
+						{if $ribbons.manufacturer|count > 0}
+							{include file="get_usermod:{$tpl_path}snippets/ribbon/ribbon_manufacturer.html"
+							ribbon="manufacturer"
+							text=$ribbons.manufacturer.0.IMAGE_ALT
+							img=$ribbons.manufacturer.0.IMAGE
+							url=$ribbons.manufacturer.0.URL
+							}
+						{/if}
+
+						{if $ribbons.ribbons}
+							{include file="get_usermod:{$tpl_path}snippets/ribbon/ribbon.html"}
+						{/if}
+
+					</figure>
+
+					<div class="title-description">
+
+						<div class="title">
+							<a href="{$p_url}"{if $p_meta} title="{$p_meta}"{/if} class="product-url">
+								{$p_headline}
+							</a>
+						</div>
+
+						{if $showRating}
+							<div class="hidden-list">
+								<span{if $p_meta} title="{$p_meta}"{/if}>
+									{if $OVERALL_RATING.rounded && $OVERALL_RATING.rounded != ""}
+										{include file="get_usermod:{$tpl_path}snippets/rating_stars.html" rating_rounded=$OVERALL_RATING.rounded rating_count=$OVERALL_RATING.count }
+									{/if}
+								</span>
+							</div>
+						{/if}
+
+						{$p_attributes}
+
+						{if $p_shipping_name}
+							<div class="shipping hidden-grid">
+								<div class="shipping-info-short">
+									{$txt.text_shippingtime}
+									{if $p_shipping_img}
+										<img src="{$p_shipping_img}" alt="{$p_shipping_img_alt}" title="{$p_shipping_img_title}" />
+									{/if}
+									{$p_shipping_name}
+								</div>
+							</div><!-- // .shipping -->
+						{/if}
+						
+					</div><!-- // .title-description -->
+
+					<div class="price-tax">
+
+						<div class="price">
+							<span class="current-price-container"{if $p_meta} title="{$p_meta}"{/if}>
+								{$p_price}{if $p_vpe}<br /><span class="gm_products_vpe products-vpe">{$p_vpe}</span>{/if}
+							</span>
+						</div>
+
+						<div class="cart-error-msg alert alert-danger hidden" role="alert"></div>
+
+					</div><!-- // .price-tax -->
+
+
+				</div><!-- // .content-container-inner -->
+
+			</div><!-- // .content-container -->
+
+		</div><!-- // .inside -->
+
+	</form>
+
+	{if $p_imgs}
+		<ul class="gallery">
+			{assign var="NUM_random_id" value=1|rand:99999}
+
+			{foreach item=image_data from=$p_imgs}
+
+				{if $image_data@iteration > 4}
+					{break}
+				{/if}
+
+				{$image_data.ORIGINAL=$image_data.IMAGE|replace:"thumbnail_images":"info_images"}
+
+				<li class="thumbnails" {if $img_id} data-index="{$img_id}"{/if}>
+					<span class="align-helper"></span>
+					<img class="img-responsive spinner"
+							{if $image_data.ORIGINAL} data-src="{$image_data.ORIGINAL|strip_tags}"{/if}
+							{if $image_data.IMAGE} data-thumb-src="{$image_data.IMAGE|strip_tags}"{/if}
+						 src="templates/{$smarty.const.CURRENT_TEMPLATE}/assets/images/loading.gif"
+							{if $image_data.IMAGE_ALT} alt="{$image_data.IMAGE_ALT|strip_tags}"{/if}
+							{if $image_data.PRODUCTS_NAME} title="{$image_data.PRODUCTS_NAME|strip_tags}"{/if}
+					/>
+				</li>
+
+			{/foreach}
+		</ul>
+	{/if}
+
+</div><!-- // .product-container -->

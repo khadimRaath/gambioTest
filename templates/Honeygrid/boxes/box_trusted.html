@@ -1,0 +1,17 @@
+{load_language_text section="box_ts_seal"}
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/top.html" class="trusted" headline="Trusted Shops"}
+
+<form name="formSiegel" action="{$txt.form_url}" method="post" target="_blank">
+	<input name="shop_id" type="hidden" value="{$content_data.TSID}" />
+	<br />
+	<a href="{$txt.heading_url}" target="_blank" rel="nofollow">{$txt.heading_text}</a><br />
+	<br />
+	<input type="image" src="{$smarty.const.DIR_WS_IMAGES}trusted_siegel.gif" title="{$txt.seal_title}" name="Seal" align="middle" /><br />
+	<br />
+	<a href="{$txt.profile_url}{$content_data.SHOPNAME}_{$content_data.TSID}.html" target="_blank" rel="nofollow">
+		{$txt.profile_text}
+	</a>
+</form>
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"}

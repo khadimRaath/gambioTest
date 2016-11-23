@@ -1,0 +1,56 @@
+/*
+	Content Header
+    ==========================================================================
+
+	Style the content header and the content navigation links (header above page content). 
+
+*/
+
+.content-header {
+	width:         100%;
+	height:        41px;
+	z-index:       $zindex-content-header;
+	background:    $body-bg;
+	color:         $brand-primary;
+	font-size:     floor($font-size-base * 1.17);
+	border-bottom: 1px solid $border-color;
+	
+	.content-title {
+		margin:       11px $margin-large 0 0;
+		font-size:    $font-size-base * 1.5;
+		padding-left: $padding-large;
+		display:      inline-block;
+		float:        left;
+	}
+	
+	.content-navigation {
+		display:   inline-block;
+		font-size: $font-size-base;
+		
+		.nav-item {
+			float:      left;
+			width:      auto;
+			max-height: 40px;
+			overflow:   hidden;
+			background: $btn-default-bg;
+			color:      $text-color-light;
+			
+			&.no-link {
+				padding: $padding-small;
+			}
+			
+			a {
+				display:         inline-block;
+				padding:         $padding-small;
+				background:      $body-bg;
+				color:      	 $text-color-light;
+				text-decoration: none;
+				@include transition(all 0.2s linear);
+				
+				&:hover {
+					background: none;
+				}
+			}
+		}
+	}
+}

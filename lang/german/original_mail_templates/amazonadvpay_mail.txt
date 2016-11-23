@@ -1,0 +1,7 @@
+Sehr geehrte/r {$NAME},
+
+leider können wir Ihre Bestellung vom {$ORDERDATE}, Bestellnummer {$ORDERS_ID}, nicht ausführen, da die Zahlung mit
+dem von Ihnen gewählten Zahlungsmittel abgelehnt wurde. Bitte besuchen Sie http://payments.amazon.de/ und wählen Sie
+dort eine andere Zahlungsweise für die Bestellung.
+
+{$EMAIL_SIGNATURE_TEXT}

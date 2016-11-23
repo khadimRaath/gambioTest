@@ -1,0 +1,7 @@
+{if $content_data.currencies_data|@count > 0}
+	<select name="currency" class="form-control" id="currencies-select">
+		{foreach name=currencies item=currency_data from=$content_data.currencies_data}
+			<option value="{$currency_data.id}"{if $content_data.CURRENT_CURRENCY == $currency_data.id} selected="selected"{/if}>{$currency_data.id|escape:'html'}</option>
+		{/foreach}
+	</select>
+{/if}

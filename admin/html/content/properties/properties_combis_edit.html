@@ -1,0 +1,156 @@
+{load_language_text section="lightbox_buttons"}
+{load_language_text section="combis" name="combis"}
+<div class="lightbox_properties lightbox_properties_combis_edit">    
+    <div class="lightbox_properties_combis_edit_content">	
+        <div class="lightbox_content_button_container navigation" style="margin-bottom: 10px;">
+            <a href="#" class="button left previous">{$txt.previous}</a>
+            <a href="#" class="button right next">{$txt.next}</a>
+            <div class="clear_both"> <!-- &nbsp; --> </div>  
+        </div>
+        {foreach item=item_array from=$content_data.combis.admin_select}	
+        <div class="row">
+	        <div class="span_1_4">
+				{if $item_array.properties_admin_name}
+				<label>{$item_array.properties_admin_name}:</label>
+		        {else}
+		        <label>{$item_array.properties_name}:</label>
+		        {/if}
+	        </div>
+	        <div class="span_3_4">
+		        <select class="properties_values_select" name="properties_values[]">
+					{foreach key=key2 item=item from=$item_array.properties_values}	
+						{if in_array($key2|replace:"pv_id-":"", $content_data.combis.combis_values_ids)}
+							<option value="{$key2|replace:"pv_id-":""}" selected="selected">{$item}</option>
+						{else}
+							<option value="{$key2|replace:"pv_id-":""}">{$item}</option>
+						{/if}
+					{/foreach}
+				</select>
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        {/foreach}
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="properties_sort_order">{$combis.sort_order}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="properties_sort_order" name="sort_order" type="text" value="{$content_data.combis.sort_order}" size="10" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_model">{$combis.products_model}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="combi_model" name="combi_model" type="text" value="{$content_data.combis.combi_model}" size="50" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_ean">{$combis.ean}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="combi_ean" name="combi_ean" type="text" value="{$content_data.combis.combi_ean}" size="20" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_quantity">{$combis.quantity}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="combi_quantity" name="combi_quantity" type="text" value="{$content_data.combis.combi_quantity}" size="20" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_weight">{$combis.weight}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="combi_weight" name="combi_weight" type="text" value="{$content_data.combis.combi_weight}" size="20" />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_price_type">{$combis.price_type}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <select name="combi_price_type" id="combi_price_type">
+			        <option value="calc">{$combis.calculate_price_from_properties}</option>
+			        <option value="fix" {if $content_data.combis.combi_price_type == "fix"}selected="selected"{/if}>{$combis.combi_fix_price}</option>
+		        </select>
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="combi_price">{$combis.price}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <input id="combi_price" name="combi_price" type="text" value="{$content_data.combis.combi_price|string_format:"%.2f"}" size="20" {if $content_data.combis.combi_price_type == "calc"}disabled="disabled"{/if} />
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label for="vpe_value" class="col_1_3">{$combis.packing_unit}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <div class="span_2_5">
+			        <input id="vpe_value" name="vpe_value" type="text" value="{$content_data.combis.vpe_value|string_format:"%.2f"}" size="20" />
+		        </div>
+		        <div class="span_1_5">&nbsp;</div>
+		        <div class="span_2_5">
+			        <select name="products_vpe_id" id="products_vpe_id">
+				        <option value="0"></option>
+				        {foreach item=item_array2 from=$content_data.combis.products_vpe}
+				        {if $item_array2.products_vpe_id == $content_data.combis.products_vpe_id}
+				        <option value="{$item_array2.products_vpe_id}" selected="selected">{$item_array2.products_vpe_name}</option>
+				        {else}
+				        <option value="{$item_array2.products_vpe_id}">{$item_array2.products_vpe_name}</option>
+				        {/if}
+				        {/foreach}
+			        </select>
+	            </div>
+		        <div class="clear_both"> <!-- &nbsp; --> </div>
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label>{$combis.shipping_time}:</label>
+	        </div>
+	        <div class="span_3_4">
+		        <select name="combi_shipping_status_id" id="combi_shipping_status_id">
+			        <option value="0"></option>
+			        {foreach item=item_array2 from=$content_data.combis.shipping_status}
+			        {if $item_array2.shipping_status_id == $content_data.combis.combi_shipping_status_id}
+			        <option value="{$item_array2.shipping_status_id}" selected="selected">{$item_array2.shipping_status_name}</option>
+			        {else}
+			        <option value="{$item_array2.shipping_status_id}">{$item_array2.shipping_status_name}</option>
+			        {/if}
+			        {/foreach}
+		        </select>
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>
+        <div class="row">
+	        <div class="span_1_4">
+		        <label>{$combis.image}:</label>
+	        </div>
+	        <div class="span_3_4" style="line-height: 25px;">
+		        <input id="combi_image" name="combi_image" type="file" size="65" maxlength="100000" accept="image/*" />
+		        {if $content_data.combis.combi_image != ""}
+		        <a href="../images/product_images/properties_combis_images/{$content_data.combis.combi_image}" style="font-size: 12px; display: block; width: 80px; float: left; margin: 5px 0 0 0px;" target="blank"><img src="html/assets/images/legacy/icons/icon_jpg.jpg" style="width: 11px; border: 0;" /> {$combis.open}</a><span style="display: block; float: left; margin: 5px 0 0 10px;"><input type="checkbox" name="delete_image" id="delete_image" value="{$content_data.combis.combi_image}" style="float: left; width: 16px; height: 16px;" />&nbsp;&nbsp;<label style="display: inline;" for="delete_image">{$combis.delete_image}</label></span>
+		        {/if}
+	        </div>
+	        <div class="clear_both"> <!-- &nbsp; --> </div>
+        </div>     
+        <div class="clear_both"> <!-- &nbsp; --> </div>
+    </div>
+</div>

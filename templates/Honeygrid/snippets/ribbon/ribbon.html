@@ -1,0 +1,9 @@
+<div class="ribbons">
+	{foreach item=ribbon from=$ribbons.ribbons}
+		{if $ribbon.class && $ribbon.text}
+			<div class="ribbon-{$ribbon.class}">
+				<span>{$ribbon.text}</span>
+			</div>
+		{/if}
+	{/foreach}
+</div>

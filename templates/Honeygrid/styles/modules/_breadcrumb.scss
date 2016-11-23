@@ -1,0 +1,48 @@
+
+/* Breadcrumb Navigation
+   ========================================================================== */
+
+#breadcrumb_navi {
+
+	padding: 5px 0 15px;
+	color: $brand-primary;
+	> span {
+		color: $gx-breadcrumb-color;
+		display: inline-block;
+		font-size: $font-size-small;
+		padding: 0 10px;
+		> a {
+			color: $gx-breadcrumb-color;
+			font-size: $font-size-small;
+		}
+		&:first-child > a {
+			padding-left: 0;
+		}
+	}
+
+	// not visible on mobile
+
+	display: none;
+	@media (min-width: $grid-float-breakpoint) {
+		display: block;
+	}
+}
+
+
+// hide breadcrumb on index page
+
+body {
+	&.page-index {
+		#breadcrumb_navi {
+			display: none;
+		}
+	}
+	
+	&.page-product-info {
+		@media (min-width: $grid-float-breakpoint) {
+			#breadcrumb_navi {
+				width: 66.6667%;
+			}
+		}
+	}
+}

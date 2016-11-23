@@ -1,0 +1,18 @@
+{load_language_text section="shop_offline"}
+{load_language_text section="notifications" name="notification"}
+<form class="popup_content_layer" data-gx-_widget="ckeditor" data-gx-_extension="language_switcher">
+	<div class="buttonbar">
+		{foreach item=language from=$content_data.languages_array name=languagesArrayIterator1}
+			<a href="#{$language.languages_id}" class="language_switcher_{$language.code}">
+				<img src="../lang/{$language.directory}/{$language.image}" alt="{$language.name}" title="{$language.name}" />
+			</a>
+		{/foreach}
+	</div>
+	<div class="formfields">
+		{foreach item=language from=$content_data.languages_array name=languagesArrayIterator1}
+			<input type="hidden" value="" class="language_switcher_content_{$language.code}" name="{$content_data.data_src}_msg[{$content_data.data_id}][{$language.languages_id}]" />
+		{/foreach}
+		<label for="{$content_data.data_src}_msg[{$content_data.data_id}]">{$notification.popup_message_label}:</label>
+		<textarea name="{$content_data.data_src}_msg[{$content_data.data_id}]" {if $smarty.const.USE_WYSIWYG}class="wysiwyg"{/if}></textarea>
+	</div>
+</form>

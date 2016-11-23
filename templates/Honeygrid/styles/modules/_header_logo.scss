@@ -1,0 +1,51 @@
+
+/* Bootstrap Header and Logo
+   ========================================================================== */
+
+#navbar-brand {
+  @media (min-width: $grid-float-breakpoint) {
+    width: 100%;
+    height: ($gx-brand-height - 20px);
+    padding: 0;
+  }
+  a {
+
+    display: block;
+    margin-left: floor($grid-gutter-width / 2);
+    width: $gx-brand-width-mobile;
+    height: $gx-header-height-mobile;
+
+    // medium resolutions
+    @media (min-width: $grid-float-breakpoint) {
+      width: 100%;
+      height: ($gx-brand-height - 20px);
+      margin: 10px 0;
+    }
+
+    // scale and align logo
+    background-position: 0 50%;
+    background-repeat: no-repeat;
+    background-size: contain;
+
+    // transition for resizing
+    @include transition(300ms ease all);
+  }
+}
+
+// sticky behavior
+
+#header {
+  @media (min-width: $grid-float-breakpoint) {
+    @if ($gx-body-wrap != true) {
+      @if ($gx-header-fixed) {
+        &.sticky {
+          #navbar-brand {
+            a {
+              height: ($gx-brand-height-sticky - 20px);
+            }
+          }
+        }
+      }
+    }
+  }
+}

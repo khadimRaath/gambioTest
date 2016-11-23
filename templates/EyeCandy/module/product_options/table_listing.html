@@ -1,0 +1,19 @@
+{load_language_text section="product_info"}
+
+{if $options!=''}
+	<div class="attributes clearfix table_listing">
+		{foreach name=outer item=options_data from=$options}
+			{if $options_data.DATA || $GM_HIDE_OUT_OF_STOCK == 'false'}
+				<div class="attributes_label">{$options_data.NAME}:</div>
+				<div>
+					{foreach name=inner key=key_data item=item_data from=$options_data.DATA}
+						<div class="table-listing">
+							<input type="radio"{if $PRICE_STATUS != 1} class="gm_attr_calc_input"{/if} name="id[{$options_data.ID}]" value="{$item_data.ID}"{if $smarty.foreach.inner.first} checked="checked"{/if} />
+							{$item_data.TEXT}{if $item_data.MODEL}, {$txt.text_model} {$item_data.MODEL}{/if} {if $item_data.PRICE!=''}( {$item_data.PREFIX}{$item_data.PRICE} ){/if}{if $GM_SHOW_STOCK == 'true' && $options_data.NAME != 'downloads'} {$GM_STOCK_TEXT_BEFORE}{$item_data.GM_STOCK}{$GM_STOCK_TEXT_AFTER}{/if}
+						</div>
+					{/foreach}
+				</div>
+			{/if}
+		{/foreach}
+	</div>
+{/if}

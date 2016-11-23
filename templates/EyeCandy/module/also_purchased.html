@@ -1,0 +1,6 @@
+{load_language_text section="also_purchased"}
+
+{if $module_content != ''}
+	<div class="headline">{$txt.heading_text}</div><br />
+	{object_product_list product_list=$module_content id_prefix="also_purchased" truncate_products_name=$TRUNCATE_PRODUCTS_NAME}
+{/if}

@@ -1,0 +1,46 @@
+{load_language_text section="categorie_listing"}
+
+
+{$FILTER_SELECTION}
+		
+<div id="categorie_listing">
+	{if $CATEGORIES_HEADING_TITLE || $CATEGORIES_NAME}
+		<h1>{$CATEGORIES_HEADING_TITLE|default:$CATEGORIES_NAME}</h1>
+	{/if}
+    {if $CATEGORIES_DESCRIPTION || $CATEGORIES_IMAGE}
+        <div class="categories_description">
+                {if $CATEGORIES_DESCRIPTION}
+                        {$CATEGORIES_DESCRIPTION}
+                {/if}
+                {if $CATEGORIES_IMAGE}
+                        <br />
+                        <img src="{$CATEGORIES_IMAGE}" alt="{$CATEGORIES_ALT_TEXT|default:$CATEGORIES_NAME}" title="{$CATEGORIES_ALT_TEXT|default:$CATEGORIES_NAME}" />
+                        <br />
+                        <br />
+                {/if}
+        </div>
+    {/if}
+
+	{if $module_content}
+		<ul class="sub_categories_listing_body">
+		{foreach name=sub_categories item=module_data from=$module_content}
+			<li class="box_list" style="width:{$GM_LI_WIDTH}%">
+				{if $SHOW_SUB_CATEGORIES_IMAGES eq '1' && $module_data.CATEGORIES_IMAGE}
+					<a href="{$module_data.CATEGORIES_LINK}"><img src="{$module_data.CATEGORIES_IMAGE}" alt="{$module_data.CATEGORIES_ALT_TEXT|default:$module_data.CATEGORIES_NAME}" title="{$module_data.CATEGORIES_ALT_TEXT|default:$module_data.CATEGORIES_NAME}" /></a><br />
+				{/if}
+				{if $SHOW_SUB_CATEGORIES_NAMES eq '1'}
+					<a href="{$module_data.CATEGORIES_LINK}">{$module_data.CATEGORIES_NAME}</a><br />
+				{/if}
+			</li>
+			{if $smarty.foreach.sub_categories.iteration % $smarty.const.MAX_DISPLAY_CATEGORIES_PER_ROW == 0 && $smarty.foreach.sub_categories.iteration != $smarty.const.GM_CAT_COUNT}
+				</ul><ul class="sub_categories_listing_body">
+			{/if}
+		{/foreach}
+		</ul>
+	{/if}
+
+	{* $CATEGORIES_TREE_BLOCK *}
+</div>
+
+
+{$MODULE_new_products}

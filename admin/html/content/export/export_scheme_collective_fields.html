@@ -1,0 +1,75 @@
+{load_language_text section="export_schemes"}
+{load_language_text section="lightbox_buttons" name="buttons"}
+
+<div id="export_scheme_collective_fields">
+	<div class="content_headline">{$txt.collective_fields_tab} <div class="tooltip" title="{$txt.tooltip_collective_fields}"><!-- &nbsp; --></div></div>
+	<div class="button_container">
+		<a href="#" onclick="return false;" class="admin_button green add_collective_field">{$txt.add_collective_field}</a>
+	</div>
+	<div class="clear_both"> <!-- --> </div>
+	<div id="collective_fields_form">
+		<table>
+			<tr>
+				<th class="collective_field_name">{$txt.collective_field_name}</th>
+				<th class="collective_field_source">{$txt.collective_field_source}</th>
+				<th class="collective_field_default">{$txt.collective_field_default}</th>
+				<th class="collective_field_sources">
+					{$txt.collective_field_sources}<br/>
+					<input id="include_all_properties" type="checkbox"/>
+					<input id="include_all_attributes" type="checkbox"/>
+					<input id="include_all_additional_fields" type="checkbox"/>
+				</th>
+				<th class="collective_field_delete">
+					&nbsp;
+				</th>
+			</tr>
+			{foreach item=collective_field from=$content_data.collective_fields}
+			<tr>
+				<td>
+					<input class="id_input" type="hidden" name="field_id[]" value="{$collective_field->get_field_id()}" />
+					<input class="text_input" type="text" name="field_name[]" value="{$collective_field->v_data_array.field_name}"/>
+				</td>
+				<td>
+					<input class="text_input" type="text" name="collective_field_source[]" value="{$collective_field->get_collective_source_names()}"/>
+				</td>
+				<td>
+					<input class="text_input" type="text" name="field_content_default[]" value="{$collective_field->v_data_array.field_content_default}"/>
+				</td>
+				<td class="centered">
+					<input type="checkbox" name="include_properties[]" value="1"{if $collective_field->is_source_included('properties')} checked="checked"{/if}/>
+					<input type="checkbox" name="include_attributes[]" value="1"{if $collective_field->is_source_included('attributes')} checked="checked"{/if}/>
+					<input type="checkbox" name="include_additional_fields[]" value="1"{if $collective_field->is_source_included('additional_fields')} checked="checked"{/if}/>
+				</td>
+				<td class="centered collective_field_delete">
+					<img src="html/assets/images/legacy/export_schemes/icon_delete.png" alt="D" title="{$txt.collective_field_delete}" />
+				</td>
+			</tr>
+			{/foreach}
+		</table>
+		<input type="hidden" id="delete_collective_fields" name="delete_collective_fields" value="" />
+	</div>
+	<div class="form_pattern">
+		<table>
+			<tr>
+				<td>
+					<input class="id_input" type="hidden" name="field_id[]" value="0" />
+					<input class="text_input" type="text" name="field_name[]" value=""/>
+				</td>
+				<td>
+					<input class="text_input" type="text" name="collective_field_source[]" value=""/>
+				</td>
+				<td>
+					<input class="text_input" type="text" name="field_content_default[]" value=""/>
+				</td>
+				<td class="centered">
+					<input type="checkbox" name="include_properties[]" value="1"{if $content_data.scheme->v_data_array.export_properties == '1'} checked="checked"{/if}/>
+					<input type="checkbox" name="include_attributes[]" value="1"{if $content_data.scheme->v_data_array.export_attributes == '1'} checked="checked"{/if}/>
+					<input type="checkbox" name="include_additional_fields[]" value="1" checked="checked" />
+				</td>
+				<td class="centered collective_field_delete">
+					<img src="html/assets/images/legacy/export_schemes/icon_delete.png" alt="D" title="{$txt.collective_field_delete}" />
+				</td>
+			</tr>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,6 @@
+{foreach name=attributes item=attributes_data from=$attributes}
+<div class="gm_attributes_images_name">{$attributes_data.NAME}: {$attributes_data.OPTIONS_NAME}</div><br />
+<div class="gm_attributes_images"><img class="gm_attributes_image" src="{$IMAGES_PATH}{$attributes_data.IMAGE}" /></div>
+<br />
+<br />
+{/foreach}

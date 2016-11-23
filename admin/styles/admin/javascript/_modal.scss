@@ -1,0 +1,50 @@
+/* 
+	Bootstrap Modal Layer
+    ========================================================================== 
+
+	Additional styling for the bootstrap modal component. 
+	
+*/
+
+.modal {
+	.modal-dialog {
+		.modal-content {
+			padding: 0;
+			border:  none;
+			@include font();
+			@include border-radius($border-radius-base);
+			@include box-shadow(0px 0px 8px transparentize($gray-base, 0.6));
+			
+			.modal-header {
+				height:           48px;
+				padding:          $padding-small $padding-large;
+				background-color: tint($border-color, 80%);
+				border:           none;
+				border-bottom:    1px solid tint($border-color, 10%);
+				
+				.modal-title {
+					color:       tint($gray-base, 13%);
+					font-size:   1.3em;
+					font-weight: normal;
+					margin:      0;
+				}
+				
+				.close {
+					margin-top: $margin-small / 4;
+				}
+			}
+			
+			.modal-body {
+				padding: $padding-large;
+			}
+			
+			.modal-footer {
+				border-top: 1px solid tint($border-color, 10%);
+				clear:      both;
+				height:     48px;
+				margin:     0;
+				padding:    $padding-large/3 $padding-large;
+			}
+		}
+	}
+}

@@ -1,0 +1,224 @@
+
+/* Vertical categories box
+   ========================================================================== */
+
+.panel > .navbar-categories-left {
+  margin: 0;
+
+  > ul {
+
+
+    // styling top level
+
+    > li {
+      border-bottom: 1px solid $panel-default-border;
+      
+      &:first-of-type {
+        a {
+          @include border-top-radius($border-radius-base);
+        }
+      }
+      
+      &:last-of-type {
+        @include border-bottom-radius($border-radius-base);
+  
+        a {
+          @include border-bottom-radius($border-radius-base);
+        }
+      }
+    }
+
+
+    // icons in top level
+
+    > li {
+      > a:before {
+        @extend .gm-icon-before;
+        float: right; 
+        font-size: 16px;
+        content: '\e800';       /* chevron-right */
+        @include transition(300ms ease transform);
+      }
+      &.dropdown {
+        &.open {
+          > a:before {
+            transform: rotate(90deg) ;
+            -webkit-transform: rotate(90deg) ;
+            -moz-transform: rotate(90deg) ;
+            -o-transform: rotate(90deg) ;
+            -ms-transform: rotate(90deg) ;
+          }
+        }
+      }
+    }
+
+
+    // increasing padding each recursion
+    // mixin crashing in PHP 5.4
+
+    // $categories-left-level-depth: 10;
+    // $categories-left-level-padding: 15px;
+    // @mixin categories-levels($depth) {
+    //   @if ($depth < $categories-left-level-depth) {
+    //     > li {
+    //       > a {
+    //         padding-left: ($depth * $categories-left-level-padding);
+    //       }
+    //       &.active > a {
+
+    //         // negative margin 
+    //         // to overlap box border
+
+    //         margin: 0 -1px;
+    //         padding-left: ($depth * $categories-left-level-padding + 1);
+    //       }
+    //       > ul {
+    //         @include categories-levels($depth + 1);
+    //       }
+    //     }
+    //   }
+    // }
+    // @include categories-levels(1);
+
+
+    // static code
+
+    > li > a {
+      padding-left: 15px;
+    }
+    > li.active > a {
+      margin: 0 -1px;
+      padding-left: 16px;
+    }
+    > li > ul > li > a {
+      padding-left: 30px;
+    }
+    > li > ul > li.active > a {
+      margin: 0 -1px;
+      padding-left: 31px;
+    }
+    > li > ul > li > ul > li > a {
+      padding-left: 45px;
+    }
+    > li > ul > li > ul > li.active > a {
+      margin: 0 -1px;
+      padding-left: 46px;
+    }
+    > li > ul > li > ul > li > ul > li > a {
+      padding-left: 60px;
+    }
+    > li > ul > li > ul > li > ul > li.active > a {
+      margin: 0 -1px;
+      padding-left: 61px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > a {
+      padding-left: 75px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li.active > a {
+      margin: 0 -1px;
+      padding-left: 76px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
+      padding-left: 90px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > ul > li.active > a {
+      margin: 0 -1px;
+      padding-left: 91px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
+      padding-left: 105px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li.active > a {
+      margin: 0 -1px;
+      padding-left: 106px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
+      padding-left: 120px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li.active > a {
+      margin: 0 -1px;
+      padding-left: 121px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > a {
+      padding-left: 135px;
+    }
+    > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li > ul > li.active > a {
+      margin: 0 -1px;
+      padding-left: 136px;
+    }
+
+
+    // styling for all levels
+
+    li {
+
+      //  colors
+
+      a {
+        &,
+        &:before {
+          color: $text-color;
+        }
+      }
+      &.active > a {
+        background-color: $brand-primary;
+        &,
+        &:before {
+          color: #fff;
+        }
+      }
+
+      // dropdown appearance
+
+      .dropdown-menu {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        float: none;
+        z-index: 0;
+        @include box-shadow(none);
+      }
+
+      .enter-category {
+        display: none;
+        &.show {
+          display: block;
+        }
+      }
+
+    }
+  }
+}
+
+.cat-image {
+	display: none;
+}
+
+.box-categories {
+  border-bottom: none;
+	
+	.navbar-categories-left {
+		> ul {
+			> li {
+				a {
+                  white-space: normal;
+                  
+					&.has-image {
+						@media (min-width: $screen-sm-min) {
+							&:before {
+								margin-top: 4px;
+							}
+						}
+						
+						.cat-image {
+							display:      inline-block;
+							margin-right: 10px;
+							max-height:   25px;
+							max-width:    25px;
+						}
+					}
+				}
+			}
+		}
+	}
+}

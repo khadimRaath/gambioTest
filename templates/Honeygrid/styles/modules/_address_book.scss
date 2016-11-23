@@ -1,0 +1,25 @@
+dd {
+	&.button-container {
+		margin: 5px 0 0 0;
+		
+		a {
+			&.btn {
+				margin-right:  5px;
+				overflow:      hidden;
+				text-overflow: ellipsis;
+				
+				&:last-child {
+					margin-right: 0;
+				}
+			}
+		}
+	}
+}
+
+.navigation-buttons {
+	margin-top: 35px;
+}
+
+.address-notification {
+	margin: 15px 0;
+}

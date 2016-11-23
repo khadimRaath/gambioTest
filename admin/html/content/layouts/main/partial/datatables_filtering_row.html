@@ -1,0 +1,48 @@
+{* 
+	DataTables Header Template 
+	
+	This template will use the $content.columns variable which contains the serialized column definitions, 
+	in order to generate the table filtering row of the thead element.
+	 
+	You can extend this template and add custom filtering actions by filling the "filter-actions" block.
+*}
+
+{load_language_text section="admin_buttons" name="admin_buttons"}
+
+<tr role="row" class="filter">
+	<th data-column-name="checkbox">{* Empty Cell *}</th>
+
+	{foreach $content.columns as $column}
+		<th data-column-name="{$column.name}">
+			{if $column.type == 'number' 
+					|| ($column.type == 'string' && $column.source == '' && $column.options|@count == 0)}
+				<input type="text" class="{$column.name} form-control" />
+			{elseif $column.type == 'string' && $column.source != ''}
+				<select class="{$column.name} form-control" multiple="multiple"
+						data-multi_select-instance
+						data-multi_select-source="{$column.source}"></select>
+			{elseif $column.type == 'string' && $column.options != ''}
+				<select class="{$column.name} form-control" multiple="multiple"
+						data-multi_select-instance>
+					{foreach $column.options as $option}
+						<option value="{$option.value}">{$option.text}</option>	
+					{/foreach}
+				</select>
+			{elseif $column.type == 'date'}
+				<input type="text" class="{$column.name} form-control" data-jse-widget="daterangepicker" />
+			{/if}
+		</th>
+	{/foreach}
+
+	<th data-column-name="actions">
+		{* Filter Actions *}
+		<button class="btn apply-filters">{$admin_buttons.BUTTON_FILTER}</button>
+		<button class="btn reset-filters">{$admin_buttons.BUTTON_RESET}</button>
+
+		{* Custom Filter Action Block *}
+		{block name="filter-action"}{/block}
+
+		{* Pagination Length Controls *}
+		{include file="./datatables_page_length.html"}
+	</th>
+</tr>

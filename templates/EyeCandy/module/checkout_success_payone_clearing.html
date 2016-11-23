@@ -1,0 +1,34 @@
+<table class="payone_clearingdata">
+	<tr>
+		<td class="p1_clearing_intro" colspan="2">
+			##clearing_intro
+		</td>
+	<tr>
+		<td class="p1_clearing_label">##clearing_accountholder</td>
+		<td class="p1_clearing_data"><?php echo $clearing_data['bankaccountholder'] ?></td>
+	</tr>
+	<tr>
+		<td class="p1_clearing_label">##clearing_account</td>
+		<td class="p1_clearing_data"><?php echo $clearing_data['bankaccount'] ?></td>
+	</tr>
+	<tr>
+		<td class="p1_clearing_label">##clearing_bankcode</td>
+		<td class="p1_clearing_data"><?php echo $clearing_data['bankcode'] ?></td>
+	</tr>
+	<tr>
+		<td class="p1_clearing_label">##clearing_iban</td>
+		<td class="p1_clearing_data"><?php echo $clearing_data['bankiban'] ?></td>
+	</tr>
+	<tr>
+		<td class="p1_clearing_label">##clearing_bic</td>
+		<td class="p1_clearing_data"><?php echo $clearing_data['bankbic'] ?></td>
+	</tr>
+	<tr>
+		<td class="p1_clearing_label">##clearing_bank</td>
+		<td class="p1_clearing_data"><?php echo $clearing_data['bankname'].", ".$clearing_data['bankcity'] ?></td>
+	</tr>
+	<tr>
+		<td class="p1_clearing_label">##clearing_amount</td>
+		<td class="p1_clearing_data"><?php echo $order->info['total'] ?></td>
+	</tr>
+</table>

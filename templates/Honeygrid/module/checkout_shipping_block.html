@@ -1,0 +1,90 @@
+{load_language_text section="checkout_shipping"}
+
+<p class="space-1">{$txt.text_shipping}</p>
+
+{if $FREE_SHIPPING && !$module_content}
+	<ul class="list-group">
+		<div class="list-group-item">
+			<div class="row">
+				<div class="col-xs-9 title">
+					<label> <strong>{$FREE_SHIPPING_TITLE} {$FREE_SHIPPING_ICON}</strong> </label>
+				</div>
+				<div class="col-xs-9 title">
+					<label>
+						<span id="shipping_error">{$module_data.module} {$module_data.icon}</span><br />{$FREE_SHIPPING_DESCRIPTION}</span>
+					</label>
+				</div>
+				<div class="col-xs-3 price">
+
+				</div>
+			</div>
+		</div>
+	</ul>
+{else}
+	<ul class="list-group">
+		{foreach name=aussen item=module_data from=$module_content}
+			{if $module_data.methods|@count > 0}
+				<div class="list-group-item">
+					{foreach key=$counter name=aussen item=method_data from=$module_data.methods}
+						<div class="row">
+							{if $module_data.methods|@count == 1 && !$module_data.error}
+								<div class="col-xs-9 title radio">
+									<label>
+										{$method_data.radio_field}
+										<strong>{$module_data.module} {$module_data.icon}</strong><br />
+										{$method_data.title}
+									</label>
+								</div>
+								<div class="col-xs-3 price text-right">
+									{$method_data.price}
+								</div>
+							{elseif $module_data.error}
+								<div class="col-xs-9 title">
+									<label> 
+										<strong>{$module_data.module} {$module_data.icon}</strong><br />
+										<span id="shipping_error">{$module_data.error}</span>
+									</label>
+								</div>
+								<div class="col-xs-3 price text-right">
+									&nbsp;
+								</div>
+							{else}
+								{if $smarty.foreach.aussen.first}
+									<div class="col-xs-9 title">
+										<label> <strong>{$module_data.module} {$module_data.icon}</strong> </label>
+									</div>
+									<div class="col-xs-3 price">&nbsp;</div>
+								{/if}
+								<div class="shipping_item_box button_checkout_module">
+									<div class="col-xs-9 title radio col-xs-offset-1">
+										{$method_data.radio_field}
+										<label>
+											<strong>{$method_data.title}</strong>
+										</label>
+									</div>
+									<div class="col-xs-2 price text-right">
+										{$method_data.price}
+									</div>
+								</div>
+							{/if}
+						</div>
+					{/foreach}
+				</div>
+			{else}
+				<div class="list-group-item error">
+					<div class="row">
+						<div class="col-xs-9 title">
+							<label> <strong>{$module_data.module} {$module_data.icon}</strong> </label>
+						</div>
+						<div class="col-xs-9 title">
+							<label> <span id="shipping_error">{$module_data.error}</span> </label>
+						</div>
+						<div class="col-xs-3 price">
+
+						</div>
+					</div>
+				</div>
+			{/if}
+		{/foreach}
+	</ul>
+{/if}

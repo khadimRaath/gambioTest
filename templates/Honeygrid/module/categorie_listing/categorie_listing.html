@@ -1,0 +1,32 @@
+{load_language_text section="categorie_listing"}
+
+{$FILTER_SELECTION}
+
+{include file="get_usermod:{$tpl_path}snippets/category_description.html" img_alt=$CATEGORIES_ALT_TEXT category_title=$CATEGORIES_HEADING_TITLE category_name=$CATEGORIES_NAME}
+
+{if $module_content}
+	<div class="subcategories-listing-container">
+		<ul class="subcategories-listing">
+			{foreach name=sub_categories item=module_data from=$module_content}
+				<li class="subcategory-item">
+					{if $SHOW_SUB_CATEGORIES_NAMES == '1' && $module_data.CATEGORIES_NAME != '' || $SHOW_SUB_CATEGORIES_IMAGES == '1' && $module_data.CATEGORIES_IMAGE}
+						<a href="{$module_data.CATEGORIES_LINK}"
+						   title="{$module_data.CATEGORIES_ALT_TEXT|default:$module_data.CATEGORIES_NAME}">
+							{if $SHOW_SUB_CATEGORIES_IMAGES == '1' && $module_data.CATEGORIES_IMAGE}
+								<img src="{$module_data.CATEGORIES_IMAGE}"
+									 alt="{$module_data.CATEGORIES_ALT_TEXT|default:$module_data.CATEGORIES_NAME}"
+									 title="{$module_data.CATEGORIES_ALT_TEXT|default:$module_data.CATEGORIES_NAME}"
+									 class="img-responsive" />
+							{/if}
+							{if $SHOW_SUB_CATEGORIES_NAMES == '1' && $module_data.CATEGORIES_NAME != ''}
+								{$module_data.CATEGORIES_NAME}
+							{/if}
+						</a>
+					{/if}
+				</li>
+			{/foreach}
+		</ul>
+	</div>
+{/if}
+
+{$MODULE_new_products}

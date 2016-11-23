@@ -1,0 +1,34 @@
+/* 
+	Dropdowns
+    ========================================================================== 
+
+	Re-style the Bootstrap dropdowns for the Gambio admin theme.
+	
+	bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_dropdowns.scss
+	
+*/
+
+.dropdown-menu {
+	z-index: 2000 !important;
+	padding: 0;
+	overflow-y: auto;
+	max-height: 45vh;
+
+	li {
+		a {
+			color: $text-color-light;
+			
+			&:hover {
+				color:            $text-color-light;
+				background-color: $gray-lighter;
+			}
+		}
+		
+		&.active {
+			a, a:hover {
+				color:            $text-color-light;
+				background-color: $gray-lighter;
+			}
+		}
+	}
+}

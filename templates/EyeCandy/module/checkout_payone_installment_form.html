@@ -1,0 +1,16 @@
+<table class="payone_installment_data">
+	<tr>
+		<td class="label">
+			<label for="installment_type">##installment_type</label>
+		</td>
+		<td>
+			<select name="installment_type" id="installment_type">
+				<?php if($this->pg_config['types']['billsafe']['active'] == 'true'): ?><option value="BSV">##billsafe_selection</option><?php endif ?>
+				<?php if($this->pg_config['types']['commerzfinanz']['active'] == 'true'): ?><option value="CFR">##commerzfinanz_selection</option><?php endif ?>
+				<?php if($this->pg_config['types']['klarnainvoice']['active'] == 'true'): ?><option value="KLV">##klarnainvoice_selection</option><?php endif ?>
+				<?php if($this->pg_config['types']['klarnainstallment']['active'] == 'true'): ?><option value="KLS">##klarnainstallment_selection</option><?php endif ?>
+				<?php if($this->pg_config['types']['payolutioninvoicing']['active'] == 'true'): ?><option value="PYV">##payolutioninvoicing_selection</option><?php endif ?>
+			</select>
+		</td>
+	</tr>
+</table>

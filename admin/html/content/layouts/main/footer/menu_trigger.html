@@ -1,0 +1,21 @@
+<div id="menu-trigger" data-gx-controller="layouts/main/partial/menu_trigger" 
+		data-menu_trigger-menu-selector="#main-menu" data-menu_trigger-customer-id="{$_SESSION.customer_id}"
+		data-menu_trigger-menu-visibility="{$menu_visibility}">
+	<label for="menu-expand">
+		<i class="fa fa-caret-right"></i>
+		<i class="fa fa-bars"></i>
+	</label>
+	<input id="menu-expand" name="menu-state" type="radio" value="expand">
+
+	<label for="menu-expand-all">
+		<i class="fa fa-caret-down"></i>
+		<i class="fa fa-bars"></i>
+	</label>
+	<input id="menu-expand-all" name="menu-state" type="radio" value="expandAll">
+
+	<label for="menu-collapse">
+		<i class="fa fa-caret-left"></i>
+		<i class="fa fa-bars"></i>
+	</label>
+	<input id="menu-collapse" name="menu-state" type="radio" value="collapse">
+</div>

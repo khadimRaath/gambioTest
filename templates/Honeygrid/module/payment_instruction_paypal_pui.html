@@ -1,0 +1,47 @@
+{load_language_text section="checkout_payment_instruction"}
+{load_language_text section="paypal3" name="paypaltxt"}
+<link rel="stylesheet" type="text/css" href="{$tpl_path}assets/styles/payment_instruction_paypal_pui.css">
+<div class="payment_instruction_paypal_pui">
+	<div class="pui_arrow">
+		<span class="value">{$value|string_format:"%.2f"} {$currency}</span>
+		<img src="{$tpl_path}assets/images/PP_PLUS_PUI_ArrowGraphic.png" alt="==>">
+		<img src="{$tpl_path}assets/images/PP_PLUS_PUI_logo.png" alt="PayPal">
+	</div>
+
+	<p class="payment_note">{$paypaltxt.pui_please_transfer} {$value|string_format:"%.2f"} {$currency} {if $due_date}{$paypaltxt.pui_until} {$due_date}{/if} {$paypaltxt.pui_to_paypal}</p>
+	<table class="payment_instruction_data">
+		<tr>
+			<td class="pp-label">{$txt.amount}</td>
+			<td class="value">{$value|string_format:"%.2f"} {$currency}</td>
+		</tr>
+		<tr>
+			<td class="pp-label">{$txt.iban}</td>
+			<td class="value">{$iban}</td>
+		</tr>
+		<tr>
+			<td class="pp-label">{$txt.bic}</td>
+			<td class="value">{$bic}</td>
+		</tr>
+		<tr>
+			<td class="pp-label">{$txt.account_holder}</td>
+			<td class="value">{$account_holder}</td>
+		</tr>
+		<tr>
+			<td class="pp-label">{$txt.bank_name}</td>
+			<td class="value">{$bank_name}</td>
+		</tr>
+		<tr>
+			<td class="pp-label">{$txt.reference}</td>
+			<td class="value">{$reference}</td>
+		</tr>
+		{if $due_date}
+		<tr>
+			<td class="pp-label">{$txt.due_date}</td>
+			<td class="value">{$due_date}</td>
+		</tr>
+		{/if}
+	</table>
+	{if $additional_note}
+		<p class="additional_note">{$additional_note}</p>
+	{/if}
+</div>

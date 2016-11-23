@@ -1,0 +1,57 @@
+.box-last-viewed {
+	.panel-body {
+		text-align: center;
+		
+		.last-viewed-image {
+			a {
+				display: inline-block;
+			}
+		}
+		
+		.last-viewed-title {
+			font-weight: $headings-font-weight;
+			font-size: 14px;
+			max-height: 81px;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
+			@media (min-width: $screen-xs-min) {
+				font-size: $font-size-h4;
+			}
+			
+			@media (max-width: $screen-xs-min) {
+				max-height: 79px;
+			}
+			
+			a {
+				color: $text-color;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+		
+		.last-viewed-price {
+			font-size: 14px;
+			font-weight: 700;
+			white-space: nowrap;
+
+			@media (min-width: $screen-xs-min) {
+				font-size: $font-size-h4;
+				white-space: inherit;
+			}
+
+			.productOldPrice {
+				font-size: $font-size-base;
+				color: $gray-light;
+				font-weight: normal;
+			}
+			a {
+				color: $text-color;
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}

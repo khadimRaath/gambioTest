@@ -1,0 +1,509 @@
+{load_language_text section="template_configuration"}
+{load_language_text section="buttons" name="btn"}
+
+<div class="template-configuration-configuration gx-container breakpoint-small">
+
+	{if $SHOP_ENVIRONMENT === 'StyleEdit3' || $SHOP_ENVIRONMENT === 'forceStyleEdit'}
+		<a href="{$STYLE_EDIT_LINK}" class="btn btn-primary">{$txt.LOAD_EDIT_MODE}</a>
+	{elseif $SHOP_ENVIRONMENT === 'StyleEdit'}
+		<div class="gx-container">
+			<a style="width:240px;margin-right: 10px;" href="{$STYLE_EDIT_LINK}" class="btn btn-primary">{$txt.LOAD_EDIT_MODE}</a>
+			<a style="width:300px;" href="{$STYLE_EDIT_SOS_LINK}" class="btn">{$txt.LOAD_SOS_MODE}</a><br style="clear:left" /><br />
+		</div>
+	{else}
+		<span style="font-size: 24px; color: #fe0000; font-weight: bold; font-family: Verdana, Arial, Tahoma, sans-serif;">{$txt.NO_STYLE_EDIT}</span>
+	{/if}
+
+
+	{if $SHOP_ENVIRONMENT === 'StyleEdit3' || $SHOP_ENVIRONMENT === 'forceStyleEdit'}
+	<form name="configuration" action="admin.php?do=TemplateConfiguration/Store" method="post">
+
+		<table class="gx-configuration gx-configuration-table" border="0" width="100%" cellspacing="0" cellpadding="2">
+			<tr>
+				<th class="dataTableContent_gm" colspan="2">
+					{$txt.INDEX}
+				</th>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.USE_UPCOMING_PRODUCT_SWIPER_ON_INDEX}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="USE_UPCOMING_PRODUCT_SWIPER_ON_INDEX" value="false" />
+						<input type="checkbox" name="USE_UPCOMING_PRODUCT_SWIPER_ON_INDEX" value="true"{if $USE_UPCOMING_PRODUCT_SWIPER_ON_INDEX} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.USE_TOP_PRODUCT_SWIPER_ON_INDEX}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="USE_TOP_PRODUCT_SWIPER_ON_INDEX" value="false" />
+						<input type="checkbox" name="USE_TOP_PRODUCT_SWIPER_ON_INDEX" value="true"{if $USE_TOP_PRODUCT_SWIPER_ON_INDEX} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.USE_SPECIAL_PRODUCT_SWIPER_ON_INDEX}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="USE_SPECIAL_PRODUCT_SWIPER_ON_INDEX" value="false" />
+						<input type="checkbox" name="USE_SPECIAL_PRODUCT_SWIPER_ON_INDEX" value="true"{if $USE_SPECIAL_PRODUCT_SWIPER_ON_INDEX} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.USE_NEW_PRODUCT_SWIPER_ON_INDEX}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="USE_NEW_PRODUCT_SWIPER_ON_INDEX" value="false" />
+						<input type="checkbox" name="USE_NEW_PRODUCT_SWIPER_ON_INDEX" value="true"{if $USE_NEW_PRODUCT_SWIPER_ON_INDEX} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<table class="gx-configuration gx-configuration-table" border="0" width="100%" cellspacing="0" cellpadding="2">
+			<tr>
+				<th class="dataTableContent_gm" colspan="2">
+					{$txt.HEADING_PRODUCT_DETAILS}
+				</th>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_MANUFACTURER_IMAGE_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_MANUFACTURER_IMAGE_PRODUCT_DETAILS" value="false" />
+						<input type="checkbox" name="SHOW_MANUFACTURER_IMAGE_PRODUCT_DETAILS" value="true"{if $SHOW_MANUFACTURER_IMAGE_PRODUCT_DETAILS} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_ADDITIONAL_FIELDS_PRODUCT_DETAILS}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_ADDITIONAL_FIELDS_PRODUCT_DETAILS" value="false" />
+						<input type="checkbox" name="SHOW_ADDITIONAL_FIELDS_PRODUCT_DETAILS" value="true"{if $SHOW_ADDITIONAL_FIELDS_PRODUCT_DETAILS} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_ZOOM_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_ZOOM" value="false" />
+						<input type="checkbox" name="SHOW_ZOOM" value="true"{if $SHOW_ZOOM} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_WISHLIST_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="GM_SHOW_WISHLIST" value="false" />
+						<input type="checkbox" name="GM_SHOW_WISHLIST" value="true"{if $GM_SHOW_WISHLIST} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_TELL_A_FRIEND_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="GM_TELL_A_FRIEND" value="false" />
+						<input type="checkbox" name="GM_TELL_A_FRIEND" value="true"{if $GM_TELL_A_FRIEND} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_FACEBOOK_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_FACEBOOK" value="false" />
+						<input type="checkbox" name="SHOW_FACEBOOK" value="true"{if $SHOW_FACEBOOK} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_TWITTER_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_TWITTER" value="false" />
+						<input type="checkbox" name="SHOW_TWITTER" value="true"{if $SHOW_TWITTER} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_GOOGLEPLUS_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_GOOGLEPLUS" value="false" />
+						<input type="checkbox" name="SHOW_GOOGLEPLUS" value="true"{if $SHOW_GOOGLEPLUS} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_PINTEREST_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_PINTEREST" value="false" />
+						<input type="checkbox" name="SHOW_PINTEREST" value="true"{if $SHOW_PINTEREST} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<table class="gx-configuration gx-configuration-table" border="0" width="100%" cellspacing="0" cellpadding="2">
+			<tr>
+				<th class="dataTableContent_gm" colspan="2">
+					{$txt.HEADING_PRODUCT_LISTING}
+				</th>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.MAIN_SHOW_QTY_INFO_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="MAIN_SHOW_QTY_INFO" value="false" />
+						<input type="checkbox" name="MAIN_SHOW_QTY_INFO" value="true"{if $MAIN_SHOW_QTY_INFO} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.MAIN_SHOW_ATTRIBUTES_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="MAIN_SHOW_ATTRIBUTES" value="false" />
+						<input type="checkbox" name="MAIN_SHOW_ATTRIBUTES" value="true"{if $MAIN_SHOW_ATTRIBUTES} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.MAIN_SHOW_GRADUATED_PRICES_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="MAIN_SHOW_GRADUATED_PRICES" value="false" />
+						<input type="checkbox" name="MAIN_SHOW_GRADUATED_PRICES" value="true"{if $MAIN_SHOW_GRADUATED_PRICES} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.MAIN_SHOW_QTY_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="MAIN_SHOW_QTY" value="false" />
+						<input type="checkbox" name="MAIN_SHOW_QTY" value="true"{if $MAIN_SHOW_QTY} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.MAIN_VIEW_MODE_TILED_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="MAIN_VIEW_MODE_TILED" value="false" />
+						<input type="checkbox" name="MAIN_VIEW_MODE_TILED" value="true"{if $MAIN_VIEW_MODE_TILED} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_MANUFACTURER_IMAGE_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_MANUFACTURER_IMAGE_LISTING" value="false" />
+						<input type="checkbox" name="SHOW_MANUFACTURER_IMAGE_LISTING" value="true"{if $SHOW_MANUFACTURER_IMAGE_LISTING} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_PRODUCT_RIBBONS_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_PRODUCT_RIBBONS" value="false" />
+						<input type="checkbox" name="SHOW_PRODUCT_RIBBONS" value="true"{if $SHOW_PRODUCT_RIBBONS} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.ENABLE_RATING}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="ENABLE_RATING" value="false" />
+						<input type="checkbox" name="ENABLE_RATING" value="true"{if $ENABLE_RATING} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_RATING_IN_GRID_AND_LISTING}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_RATING_IN_GRID_AND_LISTING" value="false" />
+						<input type="checkbox" name="SHOW_RATING_IN_GRID_AND_LISTING" value="true"{if $SHOW_RATING_IN_GRID_AND_LISTING} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SPECIALS_STARTPAGE_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="text" name="GM_SPECIALS_STARTPAGE" value="{$GM_SPECIALS_STARTPAGE}">
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.NEW_PRODUCTS_STARTPAGE_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="text" name="GM_NEW_PRODUCTS_STARTPAGE" value="{$GM_NEW_PRODUCTS_STARTPAGE}">
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		{*
+		<table class="gx-configuration gx-configuration-table" border="0" width="100%" cellspacing="0" cellpadding="2">
+			<tr>
+				<th class="dataTableContent_gm" colspan="2">
+					{$txt.HEADING_IMAGES}
+				</th>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_FLYOVER_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="GM_SHOW_FLYOVER" value="false" />
+						<input type="checkbox" name="GM_SHOW_FLYOVER" value="true"{if $GM_SHOW_FLYOVER} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_GALLERY_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_GALLERY" value="false" />
+						<input type="checkbox" name="SHOW_GALLERY" value="true"{if $SHOW_GALLERY} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_ZOOM_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_ZOOM" value="false" />
+						<input type="checkbox" name="SHOW_ZOOM" value="true"{if $SHOW_ZOOM} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+		</table>
+		*}
+
+		<table class="gx-configuration gx-configuration-table" border="0" width="100%" cellspacing="0" cellpadding="2"
+			   data-gx-compatibility="template_configuration/category_menu">
+			<tr>
+				<th class="dataTableContent_gm" colspan="3">
+					{$txt.HEADING_CATEGORY_MENU}
+				</th>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.CAT_MENU_TOP_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="CAT_MENU_TOP" value="false" />
+						<input type="checkbox" name="CAT_MENU_TOP" value="true"{if $CAT_MENU_TOP} checked="checked"{/if} />
+					</div>
+				</td>
+				<td>
+					<span data-gx-widget="tooltip_icon" data-tooltip_icon-type="warning">{$txt.CAT_MENU_TOP_TEXT_TOOLTIP_WARNING}</span>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.CAT_MENU_LEFT_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="CAT_MENU_LEFT" value="false" />
+						<input type="checkbox" name="CAT_MENU_LEFT" value="true"{if $CAT_MENU_LEFT} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_SUBCATEGORIES_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_SUBCATEGORIES" value="false" />
+						<input type="checkbox" name="SHOW_SUBCATEGORIES" value="true"{if $SHOW_SUBCATEGORIES} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.CATEGORY_ACCORDION_EFFECT_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="CATEGORY_ACCORDION_EFFECT" value="false" />
+						<input type="checkbox" name="CATEGORY_ACCORDION_EFFECT" value="true"{if $CATEGORY_ACCORDION_EFFECT} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.CATEGORY_DISPLAY_SHOW_ALL_LINK_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="CATEGORY_DISPLAY_SHOW_ALL_LINK" value="false" />
+						<input type="checkbox" name="CATEGORY_DISPLAY_SHOW_ALL_LINK" value="true"{if $CATEGORY_DISPLAY_SHOW_ALL_LINK} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.CATEGORY_UNFOLD_LEVEL_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="text" name="CATEGORY_UNFOLD_LEVEL" value="{$CATEGORY_UNFOLD_LEVEL}">
+					</div>
+				</td>
+			</tr>
+			
+		</table>
+		
+		<table class="gx-configuration gx-configuration-table" border="0" width="100%" cellspacing="0" cellpadding="2">
+			<tr>
+				<th class="dataTableContent_gm" colspan="2">
+					{$txt.HEADING_TOP_MENU}
+				</th>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_TOP_LANGUAGE_SELECTION_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_TOP_LANGUAGE_SELECTION" value="false" />
+						<input type="checkbox" name="SHOW_TOP_LANGUAGE_SELECTION" value="true"{if $SHOW_TOP_LANGUAGE_SELECTION} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_TOP_CURRENCY_SELECTION_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_TOP_CURRENCY_SELECTION" value="false" />
+						<input type="checkbox" name="SHOW_TOP_CURRENCY_SELECTION" value="true"{if $SHOW_TOP_CURRENCY_SELECTION} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_TOP_COUNTRY_SELECTION_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="SHOW_TOP_COUNTRY_SELECTION" value="false" />
+						<input type="checkbox" name="SHOW_TOP_COUNTRY_SELECTION" value="true"{if $SHOW_TOP_COUNTRY_SELECTION} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.SHOW_QUICK_SEARCH_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="GM_QUICK_SEARCH" value="false" />
+						<input type="checkbox" name="GM_QUICK_SEARCH" value="true"{if $GM_QUICK_SEARCH} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<table class="gx-configuration gx-configuration-table" border="0" width="100%" cellspacing="0" cellpadding="2">
+			<tr>
+				<th class="dataTableContent_gm" colspan="2">
+					{$txt.HEADING_SHOPPING_CART}
+				</th>
+			</tr>
+			<tr>
+				<td class="dataTableContent_gm configuration-label">
+					{$txt.ALWAYS_SHOW_CONTINUE_SHOPPING_BUTTON_TEXT}
+				</td>
+				<td class="dataTableContent_gm">
+					<div class="gx-container" data-gx-widget="checkbox">
+						<input type="hidden" name="ALWAYS_SHOW_CONTINUE_SHOPPING_BUTTON" value="false" />
+						<input type="checkbox" name="ALWAYS_SHOW_CONTINUE_SHOPPING_BUTTON" value="true"{if $ALWAYS_SHOW_CONTINUE_SHOPPING_BUTTON} checked="checked"{/if} />
+					</div>
+				</td>
+			</tr>
+		</table>
+
+		<div class="grid" style="margin-top: 24px">
+			<div class="pull-right">
+				<input type="submit"
+				       class="button btn btn-primary pull-right"
+				       name="save"
+				       value="{$btn.save}" />
+			</div>
+		</div>
+	</form>
+	{/if}
+</div>

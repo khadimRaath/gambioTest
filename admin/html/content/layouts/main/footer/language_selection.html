@@ -1,0 +1,5 @@
+{foreach $languages as $language}
+	<a href="#{$language.code|lower}" data-language-code="{$language.code|lower}" class="flag">
+		<img src="../lang/{$language.name|lower}/icon.gif" />
+	</a>
+{/foreach}

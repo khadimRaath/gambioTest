@@ -1,0 +1,12 @@
+{if $attributes|count > 0}
+	{foreach name=attributes item=attributes_data from=$attributes}
+		<dl>
+			<dt>
+				{$attributes_data.NAME}: {$attributes_data.OPTIONS_NAME}
+			</dt>
+			<dd>
+				<img class="img-responsive" src="{$IMAGES_PATH}{$attributes_data.IMAGE}" alt="{$attributes_data.NAME}: {$attributes_data.OPTIONS_NAME}" title="{$attributes_data.NAME}: {$attributes_data.OPTIONS_NAME}" />
+			</dd>
+		</dl>
+	{/foreach}
+{/if}

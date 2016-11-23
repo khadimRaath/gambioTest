@@ -1,0 +1,37 @@
+{load_language_text section="gift_cart"}
+{load_language_text section="buttons" name="button"}
+
+{if $ACTIVATE_GIFT=='true'}
+	{* $FORM_ACTION *}
+	<div class="content-box clearfix" style="width:220px; float:left">
+		<div class="content-box-header clearfix">
+			<div class="content-box-header-inner">{$txt.title}</div>
+		</div>
+
+		<div class="content-box-main clearfix">
+			<div class="content-box-main-inner clearfix article-list offer">
+				{if $GV_AMOUNT neq ''}
+					{$txt.text_info}<br /><br />
+					{$txt.voucher_balance} <strong>{$GV_AMOUNT}</strong><br /><br />
+					{$txt.text_send_to_friend} <a href="{$GV_SEND_TO_FRIEND_LINK}">{$txt.box_send_to_friend}</a><br /><br />
+				{/if}
+
+				{if $COUPON_AMOUNT2 neq ''}
+					{$txt.voucher_redeemed}<br />
+					{$COUPON_AMOUNT2}<br />
+				{/if}
+				
+				{if $C_FLAG == 'true'}
+					<input name="{$INPUT_CODE_NAME}" value="{$txt.text_input_value}" type="text" style="width:100px" class="input-text default_value">&nbsp;
+					<a href="{$FORM_ACTION_URL}" class="button_blue button_set action_submit replace_form_action"><span class="button-outer"><span class="button-inner">{$button.redeem}</span></span></a>
+				{else}
+					{$txt.create_account}<br />
+					<a href="{$LINK_ACCOUNT}">{$txt.text_create_account}</a>
+				{/if}
+
+				{if $COUPON_HELP_URL neq ''}<p>{$txt.cart_coupon} <a href="{$COUPON_HELP_URL}" class="lightbox_iframe" target="blank"><strong>{$txt.cart_coupon_info}</strong></a></p><p>{$REDEEMED_COUPON_UNDER_MIN_VALUE}</p>{/if}
+			</div>
+		</div>
+	</div>
+	{* $FORM_END *}
+{/if}

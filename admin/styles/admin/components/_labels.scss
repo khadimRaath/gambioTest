@@ -1,0 +1,19 @@
+/* 
+	Labels
+    ========================================================================== 
+
+	Label styling uses the Bootstrap classes and overrides some styles in order to make them 
+	look like the Gambio Admin theme. 
+	
+	bower_components/bootstrap-sass/assets/stylesheets/bootstrap/_labels.scss
+	
+*/
+
+.label {
+	display:     inline-block;
+	padding:     3px 8px;
+	text-shadow: none;
+	font-size:   $font-size-base;
+	font-weight: normal;
+	line-height: 12px;
+}

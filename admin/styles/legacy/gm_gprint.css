@@ -1,0 +1,167 @@
+/*
+	---------------------------------------------------------------------------
+	THIS FILE IS DEPRECATED - MODIFY IT ONLY FOR FIXES IN EXISTING STYLE RULES. 
+	
+	DO NOT APPEND IT WITH NEW STYLING RULES, USE THE GX-ADMIN FILES INSTEAD. 
+	---------------------------------------------------------------------------
+*/
+#gm_gprint_tabs {
+	margin: 0px 0px 2px 0px;
+	padding: 0px;
+	border-left: 1px solid #CCCCCC;
+	overflow: hidden;
+	display: none;
+	height: 100%;
+}
+
+#gm_gprint_tabs .gm_gprint_tab_active {
+	background-color: #E7E7E7;
+	padding: 5px 8px;
+	margin: 0px;
+	float: left;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	cursor: default;
+}
+
+#gm_gprint_tabs .gm_gprint_tab {
+	background-color: #FFFFFF;
+	padding: 5px 8px;
+	margin: 0px;
+	float: left;
+	list-style-image: none;
+	list-style-position: outside;
+	list-style-type: none;
+	border-top: 1px solid #CCCCCC;
+	border-right: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	cursor: pointer;
+}
+
+#gm_gprint_tabs span {
+	float: left;
+	font-size: 12px;
+	color: #000000;
+	text-transform: uppercase;			
+	white-space: nowrap;	
+}
+
+#gm_gprint_content {
+	display: none;
+	font-size: 12px;
+}
+
+#toolbar {
+	clear: both;
+}
+
+.input_number {
+	width: 40px;
+}
+
+.gm_gprint_surface {
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	color: #000000;
+	font-size: 12px;
+}
+
+.surface {
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+}
+
+.surfaces_groups, .delete_surfaces_groups {
+	cursor: pointer;	
+}
+
+#gm_gprint_content input[type="text"], #gm_gprint_content select, #gm_gprint_content textarea {
+	border: 1px solid #cccccc;
+}
+
+#gm_gprint_content input[type="file"] {
+	font-size: 12px;
+}
+
+.gm_gprint_field {
+	background-color: #ffffff;
+	padding: 0px;
+	margin: 0px;
+	border: 1px solid #cccccc;
+	font-size: 12px;
+	color: #000000;
+}
+
+.gm_gprint_dropdown {
+	background-color: #ffffff;
+	border: 1px solid #cccccc;
+	font-size: 12px;
+	color: #000000;
+}
+
+.dataTableHeadingContentText a, .dataTableHeadingContentText a:link, .dataTableHeadingContentText a:focus, .dataTableHeadingContentText a:visited {
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+.dataTableHeadingContentText a:hover {
+	text-decoration: underline;
+}
+
+.gm_gprint_advice {
+	background-color: #B4FFB4; 
+	border: 1px solid #00ff00; 
+	padding: 5px;
+}
+
+#toolbar table {
+	font-size: 12px;
+}
+
+.gm_gprint_wait {
+	display: none; 
+	margin: 20px 0px 0px 5px;
+}
+
+.gm_gprint_flyover textarea {
+	height: 30px;
+}
+
+div .gm_gprint_success {
+	font-weight: bold; 
+	background-color: #408e2f; 
+	color: #ffffff; 
+	padding: 5px;
+}
+
+#toolbar .gm_gprint_success {
+	display: none;
+}
+
+#toolbar .button {
+	margin-left: 1px;
+	width: 138px;
+}
+
+.gm_gprint_menu_heading {
+	font-size: 12px; 
+	font-weight: bold; 
+	margin-bottom: 10px;
+}
+
+#surfaces_group_name_copy, #surfaces_group_name, #surfaces_group_name_rename {
+	width: 120px;
+}
+
+#gm_gprint_selected_options {
+	display: none;
+}
+
+#gm_gprint_help {
+	display: none;
+}

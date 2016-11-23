@@ -1,0 +1,27 @@
+{load_language_text section="buttons" name="button"}
+
+<div id="lightbox_gallery_container" style="width: {$content_data.GALLERY_WIDTH}px;">
+	<div id="lightbox_gallery" style="width: {$content_data.GALLERY_WIDTH}px;">
+		<div id="lightbox_gallery_inner">
+			<div style="position:relative;">
+				<div class="lightbox_close"><a href="{page_url}#" class="icon_lightbox_close" title="{$button.close}">&nbsp;</a></div>
+			</div>
+
+			<div id="lightbox_gallery_main" style="height: {$content_data.IMAGE_MAX_HEIGHT}px; background-image: url('{$content_data.images_data.0.IMAGE}');">
+				<div class="lightbox_gallery_left"><a href="{page_url}#" class="icon_gallery_back" title="{$button.back_small}">&nbsp;</a>
+					<div class="lightbox_gallery_right"><a href="{page_url}#" class="icon_gallery_next" title="{$button.next_small}">&nbsp;</a></div>
+				</div>
+			</div>
+
+			<div id="lightbox_gallery_thumbnails">
+				{foreach name=thumbnails item=thumbnails_data from=$content_data.images_data}
+					<div class="thumbnail">
+						<a href="{$thumbnails_data.IMAGE}" class="button_product_images" id="gallery_inside_thumbnail_{$smarty.foreach.thumbnails.iteration}">
+							<img style="padding-left: {$thumbnails_data.THUMBNAIL_PADDING_LEFT}px; padding-top: {$thumbnails_data.THUMBNAIL_PADDING_TOP}px;" src="{$thumbnails_data.THUMBNAIL}" alt="{$thumbnails_data.IMAGE_ALT|default:$thumbnails_data.PRODUCTS_NAME}" title="{$thumbnails_data.IMAGE_ALT|default:$thumbnails_data.PRODUCTS_NAME}" />
+						</a>
+					</div>
+				{/foreach}
+			</div>
+		</div>
+	</div>
+</div>

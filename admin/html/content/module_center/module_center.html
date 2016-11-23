@@ -1,0 +1,60 @@
+{load_language_text section="module_center"}
+{load_language_text section="buttons" name="button"}
+
+<div class="gx-container" data-gx-controller="module_center/module_center">
+	<table class="gx-modules-table left-table remove-margin">
+		<thead>
+			<tr>
+				<th>{$txt.module_name}</th>
+				<th style="width: 250px">{$txt.module_status}</th>
+				<th style="width: 100px"></th>
+			</tr>
+		</thead>
+		
+		<tbody>
+			{foreach item=module from=$modules->getArray()}
+			<tr class="dataTableRow{if $module->getName() == $smarty.get.module} active{/if}" data-gx-extension="link" data-link-url="#{$module->getName()}">
+				<td class="dataTableContent">{$module->getTitle()}</td>
+				<td class="dataTableContent">
+					<span class="badge badge-success {if $module->isInstalled()}active{/if}">{$txt.module_status_installed}</span>
+				</td>
+				<td class="dataTableContent"></td>
+			</tr>
+			{/foreach}
+		</tbody>
+	</table>
+
+	<div class="gx-configuration-box gx-container">
+		<div class="configuration-box-content">
+			<div class="configuration-box-header">
+				<h2></h2>
+			</div>
+
+			<div class="configuration-box-body">
+				<div class="configuration-box-description">
+					<p></p>
+				</div>
+				<div class="configuration-box-form"></div>
+			</div>
+
+			<div class="configuration-box-footer">
+				<form action="#" method="post">
+					<div class="button-container">
+						<button name="install" value="install" class="btn btn-primary pull-right">{$button.install}</button>
+						<a href="#" class="btn btn-primary pull-right">{$button.edit}</a>
+						<button name="uninstall" value="uninstall" class="btn pull-right">{$button.uninstall}</button>
+					</div>
+					<input type="hidden" name="module" value="" />
+				</form>
+			</div>
+		</div>
+	</div>
+	<div id="module-center-confirmation-dialog" class="hidden" style="display: none;">
+		<form class="grid" name="delete_module" method="post" action="admin.php?do=ModuleCenter/Destroy">
+			<fieldset class="span12">
+				<p class="modal-info-text"></p>
+				<input type="hidden" name="module" value="" />
+			</fieldset>
+		</form>
+	</div>
+</div>

@@ -1,0 +1,11 @@
+{load_language_text section="new_products"}
+{load_language_text section="index" name="index"}
+{load_language_text section="product_listing" name="listing"}
+
+<h2>{$txt.heading_text}</h2>
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/pagination.html" info=$NAVIGATION_INFO bar=$NAVIGATION_BAR}
+		
+{product_listing products=$module_content id="new_products" template="snippets/product_listing/product_listing.html" truncate=$TRUNCATE_PRODUCTS_NAME showManufacturerImages=$showManufacturerImages showProductRibbons=$showProductRibbons showRating=$showRating}
+
+{include file="get_usermod:{$tpl_path}snippets/navigation/pagination.html" info=$NAVIGATION_INFO bar=$NAVIGATION_BAR}

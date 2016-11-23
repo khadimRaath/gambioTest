@@ -1,0 +1,62 @@
+
+/* Pagination
+   ========================================================================== */
+
+// extend bootstrap-css
+
+.pagination {
+  > li {
+    > .active {
+      background-color: $gray-lighter;
+      &,
+      &:hover {
+      	color: $text-color;
+      }
+    }
+  }
+}
+.pagination-info {
+  color: #999;
+  text-align: center;
+  margin: 10px 0;
+}
+
+#product_navigation {
+  &.panel-pagination {
+    @include make-xs-column(12);
+    padding: 0;
+    
+    @media (min-width: $screen-sm-min) {
+      @include make-sm-column(8);
+      padding: 0;
+    }
+    
+    .pagination {
+      margin: 0;
+      float:  left;
+  
+      @media (max-width: $screen-xs-min) {
+        @include make-xs-column(12);
+        padding: 0;
+      }
+      
+      > li {
+        > a, span {
+          padding: 5px 9px;
+        }
+      }
+    }
+    
+    span {
+      height:      30px;
+      line-height: 30px;
+      margin-left: 5px;
+  
+      @media (max-width: $screen-xs-min) {
+        @include make-xs-column(12);
+        padding: 0;
+        margin-left:  0;
+      }
+    }
+  }
+}

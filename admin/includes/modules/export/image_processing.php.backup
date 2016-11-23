@@ -1,0 +1,167 @@
+<?php
+/* --------------------------------------------------------------
+	image_processing.php 2011-11-08 gm
+	Gambio GmbH
+	http://www.gambio.de
+	Copyright (c) 2010 Gambio GmbH
+   Released under the GNU General Public License (Version 2)
+   [http://www.gnu.org/licenses/gpl-2.0.html]
+	--------------------------------------------------------------
+
+
+ based on:
+ (c) 2000-2001 The Exchange Project  (earlier name of osCommerce)
+ (c) 2002-2003 osCommerce(cod.php,v 1.28 2003/02/14); www.oscommerce.com
+ (c) 2003	 nextcommerce (invoice.php,v 1.6 2003/08/24); www.nextcommerce.org
+ (c) 2003 XT-Commerce - community made shopping http://www.xt-commerce.com ($Id: image_processing.php 950 2005-05-14 16:45:21Z mz $)
+
+ Released under the GNU General Public License
+ ---------------------------------------------------------------------------------------*/
+defined( '_VALID_XTC' ) or die( 'Direct Access to this location is not allowed.' );
+
+define('MODULE_IMAGE_PROCESS_TEXT_DESCRIPTION', 'Imageprocessing - Stapelverarbeitung f&uuml;r Bildbearbeitung');
+define('MODULE_IMAGE_PROCESS_TEXT_TITLE', 'Imageprocessing');
+define('MODULE_IMAGE_PROCESS_STATUS_DESC','Modulstatus');
+define('MODULE_IMAGE_PROCESS_STATUS_TITLE','<span class="options-title">Status</span>');
+define('IMAGE_EXPORT','Dr&uuml;cken Sie Start, um die Stapelverarbeitung zu beginnen. Dieser Vorgang kann einige Zeit dauern und sollte auf keinen Fall unterbrochen werden!');
+define('IMAGE_EXPORT_TYPE','<span class="options-title">Stapelverarbeitung:</span>');
+
+
+
+class image_processing {
+	var $code, $title, $description, $enabled;
+
+
+	function image_processing() {
+		global $order;
+
+		$this->code = 'image_processing';
+		$this->title = MODULE_IMAGE_PROCESS_TEXT_TITLE;
+		$this->description = MODULE_IMAGE_PROCESS_TEXT_DESCRIPTION;
+		$this->sort_order = MODULE_IMAGE_PROCESS_SORT_ORDER;
+		$this->enabled = ((MODULE_IMAGE_PROCESS_STATUS == 'True') ? true : false);
+
+	}
+	function process($file) {
+		// include needed functions
+		include ('includes/classes/'.FILENAME_IMAGEMANIPULATOR);
+		@xtc_set_time_limit(0);
+
+		// action
+		// get images in original_images folder
+		$files=array();
+
+		if ($dir= opendir(DIR_FS_CATALOG_ORIGINAL_IMAGES)){
+			while  ($file = readdir($dir)) {
+				if (is_file(DIR_FS_CATALOG_ORIGINAL_IMAGES.$file) and ($file !="index.html") and (strtolower($file) != "thumbs.db")){
+					$files[]=array(
+                                        'id' => $file,
+                                        'text' =>$file);
+				}
+			}
+			closedir($dir);
+		}
+		for ($i=0;$n=sizeof($files),$i<$n;$i++) {
+
+			$products_image_name = $files[$i]['text'];
+			if ($files[$i]['text'] != 'Thumbs.db' &&  $files[$i]['text'] != 'Index.html') {
+				require(DIR_WS_INCLUDES . 'product_thumbnail_images.php');
+				require(DIR_WS_INCLUDES . 'product_info_images.php');
+				require(DIR_WS_INCLUDES . 'product_popup_images.php');
+			}
+		}
+
+	}
+
+	function process2($file, $page) {
+		// include needed functions
+		include ('includes/classes/'.FILENAME_IMAGEMANIPULATOR);
+		@xtc_set_time_limit(0);
+
+		// action
+		// get images in original_images folder
+		$files = array();
+
+		if ($dir = opendir(DIR_FS_CATALOG_ORIGINAL_IMAGES)){
+			while($file = readdir($dir)) {
+				if (is_file(DIR_FS_CATALOG_ORIGINAL_IMAGES.$file)
+						&&
+							(strrpos(strtolower($file), '.jpg') !== false ||
+							 strrpos(strtolower($file), '.jpeg') !== false ||
+							 strrpos(strtolower($file), '.gif') !== false ||
+							 strrpos(strtolower($file), '.png') !== false)){
+					$files[]=array(
+                                        'id' => $file,
+                                        'text' =>$file,
+										'nr' => $i++);
+				}
+			}
+			closedir($dir);
+			// BOF GM_IMAGE_LOG:
+			array_multisort($files);
+		}
+		
+		$products_image_name	= $files[$_POST['page']-1]['text'];
+		$count_files			= count($files);
+		$this->image_counts		= $count_files;
+		$post_page				= $_POST['page'];
+		$image_error			= false;
+
+		if($post_page <= $count_files) {
+			// BOF GM_IMAGE_LOG:
+			$message = 'success';
+
+			require(DIR_WS_INCLUDES . 'product_popup_images.php');
+			require(DIR_WS_INCLUDES . 'product_info_images.php');
+			require(DIR_WS_INCLUDES . 'product_thumbnail_images.php');
+			require(DIR_WS_INCLUDES . 'product_gallery_images.php');
+
+			// BOF GM_IMAGE_LOG:
+			if($post_page > 0) {
+				// has image processing error, log the error
+				if($image_error) {
+					$_SESSION['image_error']++;
+					$message = '#ERROR#';
+				}
+				if(is_object($GLOBALS['coo_debugger'])) $GLOBALS['coo_debugger']->log('Image['.$post_page.']: '.$products_image_name.' '.$message.'', 'error', 'image_processing');
+			} else {
+				if(is_object($GLOBALS['coo_debugger'])) $GLOBALS['coo_debugger']->log('Image processing START', 'notice', 'image_processing');
+			}
+			// BOF GM_IMAGE_LOG:
+			$this->process_status = '';
+		} else {
+		    $this->process_status = 'done';
+			// BOF GM_IMAGE_LOG:
+			if(is_object($GLOBALS['coo_debugger'])) $GLOBALS['coo_debugger']->log('Image processing DONE', 'notice', 'image_processing');
+		}
+	}
+
+	function display() {
+		return array('text' =>
+		IMAGE_EXPORT_TYPE.'<br>'.
+		'<p>' . IMAGE_EXPORT . '</p>' . xtc_button_link(BUTTON_CANCEL, xtc_href_link(FILENAME_MODULE_EXPORT, 'set=' . $_GET['set'] . '&module=image_processing')) . "</div>" .
+		"<div align=\"center\"><a class=\"button btn-primary pull-right\" onclick=\"document.getElementById('gm_module_part_export').innerHTML='<iframe src=gm_module_part_export.php?set=" . $_GET['set'] . "&module=image_processing&action=images width=100% height=85 scrolling=no marginheight=8 marginwidth=0 frameborder=0></iframe>'; return false;\">Start</a><br><div id=\"gm_module_part_export\"></div>");
+	}
+
+	function check() {
+		if (!isset($this->_check)) {
+			$check_query = xtc_db_query("select configuration_value from " . TABLE_CONFIGURATION . " where configuration_key = 'MODULE_IMAGE_PROCESS_STATUS'");
+			$this->_check = xtc_db_num_rows($check_query);
+		}
+		return $this->_check;
+	}
+
+	function install() {
+		xtc_db_query("insert into " . TABLE_CONFIGURATION . " (configuration_key, configuration_value,  configuration_group_id, sort_order, set_function, date_added) values ('MODULE_IMAGE_PROCESS_STATUS', 'True',  '6', '1', 'gm_cfg_select_option(array(\'True\', \'False\'), ', now())");
+	}
+
+	function remove() {
+		xtc_db_query("delete from " . TABLE_CONFIGURATION . " where configuration_key in ('" . implode("', '", $this->keys()) . "')");
+	}
+
+	function keys() {
+		return array('MODULE_IMAGE_PROCESS_STATUS');
+	}
+
+}
+?>

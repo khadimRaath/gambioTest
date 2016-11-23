@@ -1,0 +1,7 @@
+{$MESSAGE}
+
+You can redeem your voucher with your order. Enter your voucher number in the Voucher box.
+
+Your voucher number is: {$COUPON_ID}
+
+Please make sure to keep your voucher number safe, as it is the only way you can benefit from this offer the next time you visit us under {$WEBSITE}.

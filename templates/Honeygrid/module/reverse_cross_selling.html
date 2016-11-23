@@ -1,0 +1,14 @@
+{load_language_text section="reverse_cross_selling"}
+
+{if $module_content != ''}
+	<h3>{$txt.heading_text}</h3>
+	{assign var="fullscreenPage" value={template_setting name="gx-product-info-full-width"}}
+	{product_listing 
+		products=$module_content 
+		id="reverse_cross_selling" 
+		truncate=$TRUNCATE_PRODUCTS_NAME 
+		showManufacturerImages=$showManufacturerImages 
+		showProductRibbons=$showProductRibbons 
+		showRating=$showRating
+		fullscreenPage=$fullscreenPage}
+{/if}

@@ -1,0 +1,54 @@
+{load_language_text section="account_history_info"}
+{load_language_text section="checkout_confirmation" name="info"}
+
+	<tr>
+		<th>&nbsp;</th>
+		<th>{$txt.head_products}</th>
+		<th>{$txt.head_single_price}</th>
+		<th>{$txt.head_units}</th>
+		<th class="product_total_price">{$txt.head_price}</th>
+	</tr>
+
+{foreach name=products_data item=products_item_array from=$content_data.products_data}
+	<tr class="{if $smarty.foreach.products_data.last}last{/if}">
+		<td class="product_image">{if $products_item_array.products_image}<img src="{$products_item_array.products_image}" alt="{$products_item_array.products_alt}" title="{$products_item_array.products_alt}" />{/if}<br /></td>
+		<td class="product_info">
+			<span class="product_name">{$products_item_array.products_name}</span>
+			
+			{if $products_item_array.products_model}
+				<br />{$info.text_model}: {$products_item_array.products_model}
+			{/if}
+			{if $products_item_array.shipping_time}
+				<br />{$info.text_shipping_time}: {$products_item_array.shipping_time}
+			{/if}
+			{if $products_item_array.products_weight}
+				<br />{$info.text_weight}: {$products_item_array.products_weight} {$info.text_weight_unit}
+			{/if}			
+			{foreach item=attributes_item_array from=$products_item_array.attributes}
+				{if isset($attributes_item_array.option) && $attributes_item_array.option != ''}
+					<br />
+					{$attributes_item_array.option}: {$attributes_item_array.value}
+				{/if}
+			{/foreach}
+			{foreach item=property from=$products_item_array.properties_array}
+				<br />
+				{$property.properties_name}: {$property.values_name}
+			{/foreach}
+			{if $products_item_array.checkout_information}
+				<br />
+				{$products_item_array.checkout_information}
+			{/if}
+			<br />
+			<a href="{$products_item_array.products_url}" class="lightbox_iframe" target="_blank">{$info.text_detail_information}</a>
+		</td>
+		<td class="product_price">
+			<span class="product_single_price">{$products_item_array.price}</span>
+			{if $products_item_array.products_vpe_array.vpe_text}
+				<br />
+				{$products_item_array.products_vpe_array.vpe_text}
+			{/if}
+		</td>
+		<td class="product_quantity">{$products_item_array.quantity}{if $products_item_array.unit} {$products_item_array.unit}{/if}</td>
+		<td class="product_total_price">{$products_item_array.final_price}</td>
+	</tr>
+{/foreach}

@@ -1,0 +1,115 @@
+{load_language_text section="print_order"}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>{$txt.title} {$oID}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+
+<body {if !$ERROR}onload="window.print()"{/if}>
+{if !$ERROR}
+<table width="100%" border="0">
+  <tr> 
+    <td><table width="100%" border="0" cellpadding="0" cellspacing="0">
+        <tr> 
+          <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$smarty.const.STORE_NAME_ADDRESS|nl2br}<br /><br />
+			  <font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$address_label_customer}<br />
+              <br />{if $csID}<strong>{$txt.csID}</strong> {$csID}<br />{/if}
+            {if $PAYMENT_METHOD}<strong>{$txt.payment}</strong> {$PAYMENT_METHOD}<br />{/if}
+            <strong>{$txt.order}</strong> {$oID}<br />
+            <strong>{$txt.date}</strong> {$DATE}<br />
+            </font></td>
+          {if $gm_logo_mail}<td valign="top" align="right">{$gm_logo_mail}</td>{/if}
+        </tr>
+      </table>
+      <br />
+      <table style="border-top:1px solid; border-bottom:1px solid;" width="100%" border="0">
+        <tr bgcolor="#f1f1f1"> 
+          <td width="50%"> 
+            <p><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><strong>
+            </strong><strong>
+            {$txt.shipping_address}
+            </strong><br />
+          </font></p></td>{if $address_label_payment}
+          <td> 
+            <p><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><strong>              </strong><strong>
+              {$txt.payment_address}
+              </strong><br />
+          </font> </p></td>{/if}
+        </tr>
+        <tr>
+          <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">
+            {$address_label_shipping}
+          </font></td>
+		  {if $address_label_payment}
+          <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif">            {$address_label_payment}
+          </font></td>{/if}
+        </tr>
+      </table>
+	  
+		{if $COMMENT}
+			<br />
+			<font face="Verdana, Arial, Helvetica, sans-serif" size="1">
+				<strong>{$txt.comments}</strong><br />
+				{$COMMENT|nl2br}
+			</font>
+		{/if}
+	  
+      <p>&nbsp;</p></td>
+  </tr>
+</table>
+<table style="border-bottom:1px solid;" width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr> 
+    <td><font size="1" face="Verdana, Arial, Helvetica, sans-serif"><strong>{$txt.heading_products}</strong></font></td>
+  </tr>
+  <tr>
+    <td>
+	<table width="100%" border="0" cellpadding="3" cellspacing="0" bgcolor="#f1f1f1">
+        <tr> 
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><div align="center"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$txt.head_units}</font></strong></div></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$txt.head_products}</font></strong></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$txt.head_artnr}</font></strong></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$txt.head_single_price}</font></strong></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;" width="150"><div align="right"><strong><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$txt.head_price}</font></strong></div></td>
+        </tr>
+        {foreach name=aussen item=order_values from=$order_data} 
+        <tr> 
+          <td width="20" style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><div align="center"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$order_values.PRODUCTS_QTY} {if $order_values.UNIT}{$order_values.UNIT}{else}x{/if}</font></div></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;">
+			<font size="1" face="Verdana, Arial, Helvetica, sans-serif">
+				<strong>{$order_values.PRODUCTS_NAME}</strong>
+				<em>{$order_values.PRODUCTS_ATTRIBUTES}</em>
+				{foreach item=prop_item_array from=$order_values.PRODUCTS_PROPERTIES}
+					<br/>{$prop_item_array.properties_name}: {$prop_item_array.values_name}
+				{/foreach}
+				{if $order_values.PRODUCTS_SHIPPING_TIME neq ''}<br />
+				{$txt.text_shippingtime} {$order_values.PRODUCTS_SHIPPING_TIME}<br />{/if}
+			</font>
+		  </td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$order_values.PRODUCTS_MODEL}<em>{$order_values.PRODUCTS_ATTRIBUTES_MODEL}</em></font></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$order_values.PRODUCTS_SINGLE_PRICE}</font></td>
+          <td style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;" width="150"><div align="right"><font size="1" face="Verdana, Arial, Helvetica, sans-serif">{$order_values.PRODUCTS_PRICE}</font></div></td>
+        </tr>
+        {/foreach} </table>
+	</td>
+  </tr>
+</table>
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+  <tr>
+    <td>
+	<table width="100%" border="0" cellpadding="3" cellspacing="0">
+  {foreach name=aussen item=order_total_values from=$order_total}
+  <tr> 
+    <td nowrap="nowrap" width="100%" style="border-right: 2px solid; border-bottom: 2px solid; border-color: #ffffff;"><div align="right"><font size="1" face="Arial, Helvetica, sans-serif">{$order_total_values.TITLE} 
+              {$order_total_values.TEXT}</font></div></td>
+  </tr>
+  {/foreach} 
+</table>
+</td>
+  </tr>
+</table>
+{else}
+{$ERROR}
+{/if}
+</body>
+</html>

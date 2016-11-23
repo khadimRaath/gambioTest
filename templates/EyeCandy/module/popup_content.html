@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>{$CONTENT_HEADING}</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="{$STYLESHEET}" />
+		<link type="text/css" rel="stylesheet" href="{$DYNAMIC_CSS}" />
+	</head>
+	<body style="background: transparent;">
+
+		<div id="content_page" class="popup_content">
+			<h1>{$CONTENT_HEADING}</h1>
+			<div class="content_text">{$HTML}</div>
+		</div>
+
+		{if $LIGHTBOX_MODE == '0'}
+			<p class="smallText" align="right">
+				<script type="text/javascript">
+				<!--
+				document.write('<a href="javascript:window.close()">{$TEXT_CLOSE_WINDOW}</a>')
+				// -->
+				</script>
+				<noscript>{$TEXT_CLOSE_WINDOW_NO_JS}</noscript>
+			</p>
+		{/if}
+
+	</body>
+</html>

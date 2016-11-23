@@ -1,0 +1,18 @@
+{load_language_text section="products_media"}
+
+{if $module_content && $module_content != ''}
+	<div class="product-documents clearfix">
+		<h4>{$txt.heading_products_media}</h4>
+		{foreach name=aussen item=module_data from=$module_content}
+			<dl>
+				<dt>
+				<div style="float:left"><a href="{$module_data.BUTTON_URL}"
+										   target="_blank"><img src="{$module_data.ICON_URL}"
+																alt="" /> {$module_data.CONTENT_NAME}
+					</a>{if $module_data.FILESIZE}&nbsp;({$module_data.FILESIZE}){/if}{if $module_data.DESCRIPTION}:&nbsp;{/if}
+				</div>
+				{if $module_data.DESCRIPTION}{$module_data.DESCRIPTION}{/if}</dt>
+			</dl>
+		{/foreach}
+	</div>
+{/if}

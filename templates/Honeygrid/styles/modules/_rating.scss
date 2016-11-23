@@ -1,0 +1,52 @@
+
+/* Rating Star Display
+   ========================================================================== */
+
+.rating-stars {
+  position: relative;
+  display: inline-block;
+  width: $gx-rating-stars-width;
+  height: ($gx-rating-stars-width / 5);
+  margin-bottom: 10px;
+  color: #ccc;
+  .rating-stars-mask {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    overflow: hidden;
+    .rating-stars-inside {
+      color: #ff9000;
+      height: inherit;
+      white-space: nowrap;
+      width: $gx-rating-stars-width;
+    }
+  }
+  .glyphicon,
+  .fa,
+  .gm-star {
+    float: left;
+    font-size: ($gx-rating-stars-width / 5);
+    width: ($gx-rating-stars-width / 5);
+  }
+  [class^="gm-"]:before, [class*=" gm-"]:before {
+    margin-left: 0;
+  }
+  @for $i from 0 through 10 {
+    &.rating-stars-#{($i / 2 * 10)} > .rating-stars-mask { 
+      width: 1% * $i * 10; 
+    }
+  }
+
+  // no margin inside a single rating item
+  .rating-item & {
+    margin-top: 10px;
+    margin-bottom: 5px;
+  }
+}
+
+.rating-item {
+  a.btn {
+    display: none;
+  }
+}

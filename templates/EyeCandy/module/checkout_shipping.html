@@ -1,0 +1,55 @@
+{load_language_text section="checkout_shipping"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="postfinder" name="postfinder"}
+
+<!-- SHIPPING -->
+{if $LIGHTBOX == 'true'}<div id="lightbox_content" style="display:none">{/if}
+	<div class="order_shipping{if $LIGHTBOX == 'true'} lightbox_block{/if}">
+		<div class="process_bar">
+			<ul>
+				<li><label><span>{$txt.text_shoppingcart}</span></label></li>
+				<li><label><span>{$txt.text_yourdata}</span></label></li>
+				<li class="active"><label><span>{$txt.text_shipandpay}</span></label></li>
+				<li><label><span>{$txt.text_confirm}</span></label></li>
+			</ul>
+		</div>
+		<h1>{$txt.text_shipping_info}</h1>
+
+		{if $error!=''}<div class="errorText">{$error}</div>{/if}
+
+		<form id="checkout_address" action="{$FORM_ACTION_URL}" method="post">
+			<input type="hidden" name="action" value="process" />
+
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/address.png" alt="" />{$txt.title_address}</h2>
+			{if $amazon_checkout_address}
+				{$amazon_checkout_address}
+			{else}
+			<div class="shipping_address">
+				<p>{$txt.text_addressbook}</p>
+				<p class="address">
+					{$ADDRESS_LABEL}<br /><br />
+					<a class="button_blue button_set" href="{'checkout_shipping_address.php'|xtc_href_link:'':'SSL'}"><span class="button-outer"><span class="button-inner">{$txt.text_address_change}</span></span></a>
+					{if $url_pfinder}
+					<a class="button_blue button_set" href="{$url_pfinder}"><span class="button-outer"><span class="button-inner">{$postfinder.btn_pfinder}</span></span></a>
+					{/if}
+				</p>
+			</div>
+			{/if}
+
+			<h2 class="underline overline"><img class="png-fix" src="{$tpl_path}img/icons/shipping.png" alt="" />{$txt.title_shipping}</h2>
+
+			{$SHIPPING_BLOCK}
+			<br /><br />
+
+			{* TODO: write action_page_back handler *}
+			<div class="back_button"><a href="{'shopping_cart.php'|xtc_href_link}" class="button_grey_big button_set_big action_page_back"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a></div>
+			{* TODO: use xtc_href_link plugin *}
+			<div class="continue_button"><a href="{page_url}#" class="button_green_big button_set_big action_submit"><span class="button-outer"><span class="button-inner"><img class="png-fix" src="{$tpl_path}img/icons/icon-white-shoppingcart.png" alt="" style="margin-right:10px; float:left" />{$button.continue}</span></span></a></div>
+
+		</form>
+	</div>
+{if $LIGHTBOX == 'true'}
+	<a href="{$LIGHTBOX_CLOSE}" class="icon_lightbox_close_checkout button_close_lightbox" title="{$button.close}">{$button.close}</a>
+</div>
+{/if}
+

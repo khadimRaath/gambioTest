@@ -1,0 +1,22 @@
+Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME},
+
+The status of your order {$ORDER_NR} from {$ORDER_DATE} changed.
+
+{if $NOTIFY_COMMENTS}
+Comments: {$NOTIFY_COMMENTS}
+
+{/if}
+New status: {$ORDER_STATUS}
+
+
+{if $PARCEL_TRACKING_CODES_ARRAY && $PARCEL_TRACKING_CODES}
+Your tracking code(s) to your order:
+
+{foreach name=aussen item=PARCEL_TRACKING_CODE from=$PARCEL_TRACKING_CODES_ARRAY}
+{$PARCEL_TRACKING_CODE->getTrackingCode()} ({$PARCEL_TRACKING_CODE->getServiceName()}): {$PARCEL_TRACKING_CODE->getServiceUrl()}
+{$PARCEL_TRACKING_CODE->getServiceComment()}
+
+{/foreach}
+{/if}
+
+For questions, feel free to answer to this mail.

@@ -1,0 +1,39 @@
+{load_language_text section="box_best_sellers"}
+
+{if $content_data.PRODUCTS_DATA}
+	{include file="get_usermod:{$tpl_path}snippets/box/default/top.html" class="bestsellers" headline=$txt.heading_best_sellers}
+		
+	{if $content_data.PRODUCTS_DATA|count > 0}
+		<ol>
+			{foreach name=aussen item=products_item from=$content_data.PRODUCTS_DATA}
+				<li class="row">
+					<a href="{$products_item.PRODUCTS_LINK}"{if $products_item.PRODUCTS_META_DESCRIPTION != ''} title="{$products_item.PRODUCTS_META_DESCRIPTION|truncate:80:"..."|replace:'"':'&quot;'}"{else} title="{$products_item.PRODUCTS_NAME}"{/if}>
+						<span class="col-xs-4">
+							{if $products_item.PRODUCTS_IMAGE && $products_item.PRODUCTS_IMAGE != ''}
+								<div class="img-thumbnail">	
+									<span class="align-helper"></span>
+									<img src="{$products_item.PRODUCTS_IMAGE}" class="img-responsive" alt="{$products_item.PRODUCTS_NAME}" />
+								</div>
+							{else}
+								&nbsp;
+							{/if}
+						</span>
+						<span class="col-xs-8">
+							{$products_item.PRODUCTS_NAME}
+							<br />
+							<span class="price">
+								{$products_item.PRODUCTS_PRICE}
+								{if $products_item.PRODUCTS_VPE}
+									<br />
+									<span class="products-vpe">{$products_item.PRODUCTS_VPE}</span>
+								{/if}
+							</span>
+						</span>
+					</a>
+				</li>
+			{/foreach}
+		</ol>
+	{/if}
+
+	{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"}
+{/if}

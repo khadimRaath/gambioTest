@@ -1,0 +1,10 @@
+{$MESSAGE}
+
+Voucher value: {$AMMOUNT}
+
+In order to post your voucher, click on the link below. To be safe, please write down your personal voucher code. 
+
+Your voucher code is: {$GIFT_ID} 
+{$GIFT_LINK}
+
+Should there be any unexpected problems posting the voucher, please visit our website {$WEBSITE} and enter the voucher code manually.

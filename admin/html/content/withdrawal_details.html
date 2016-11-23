@@ -1,0 +1,163 @@
+{load_language_text section="withdrawal"}
+{load_language_text section="orders" name="orders"}
+{load_language_text section="admin_general" name="admin_general"}
+{load_language_text section="buttons" name="buttons"}
+
+{if $content_data.withdrawal->get_withdrawal_id() > 0}
+<div class="withdrawal_details gx-container breakpoint-large" data-gx-controller="withdrawals/withdrawals_main_controller">
+
+	<div class="content grid" style="margin-bottom: 0;">
+		<!-- Customer -->
+		<div class="span6">
+			<div class="frame-wrapper info box-with-min-height" style="margin-bottom: 24px;">
+				<div class="frame-head info">
+					<label class="title pull-left">{$txt.customer_data}</label> {if $content_data.customer_details_link}
+					<label class="head-link pull-right"> <a href="{$content_data.customer_details_link}">
+						<i class="fa fa-fw fa-user"></i> {$txt.open_customer_details} </a> </label> {/if}
+				</div>
+				<div class="frame-content">
+					<!-- Address -->
+					<div class="grid">
+						<div class="span6">
+								<span class="key-title">
+									{$admin_general.CATEGORY_ADDRESS}
+								</span>
+						</div>
+						<div class="span6">
+							{$content_data.withdrawal->get_customer_gender()}<br />
+							{$content_data.withdrawal->get_customer_name()}<br />
+							{$content_data.withdrawal->get_customer_street_address()}<br />
+							{$content_data.withdrawal->get_customer_postcode()}
+							{$content_data.withdrawal->get_customer_city()}<br />
+							{$content_data.withdrawal->get_customer_city()}<br />
+							{$content_data.withdrawal->get_customer_country()}<br /><br />
+						</div>
+					</div>
+					<!-- E-Mail -->
+					<div class="grid">
+						<div class="span6">
+								<span class="key-title">
+									{$admin_general.ENTRY_EMAIL_ADDRESS}
+								</span>
+						</div>
+						<div class="span6">
+							{$content_data.withdrawal->get_customer_email()}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Order -->
+		<div class="span6">
+			<div class="frame-wrapper box-with-min-height" style="margin-bottom: 24px;">
+				<div class="frame-head">
+					<label class="title pull-left">{$txt.order_data}</label> {if $content_data.order_details_link}
+					<label class="head-link default pull-right"> <a href="{$content_data.order_details_link}">{$txt.open_order_details}</a>
+					</label> {/if}
+				</div>
+				<div class="frame-content">
+
+					<!-- Ordered on -->
+					<div class="grid">
+						<div class="span6">
+								<span class="key-title">
+									{$txt.ordered_on_short}:
+								</span>
+						</div>
+						<div class="span6">
+							{if $content_data.withdrawal->get_order_date() == "1970-01-01 00:00:00"} - {else}
+							{$content_data.withdrawal->get_order_date_formatted()} {/if}
+						</div>
+					</div>
+
+					<!-- Delivered on -->
+					<div class="grid">
+						<div class="span6">
+								<span class="key-title">
+									{$txt.delivered_on_short}:
+								</span>
+						</div>
+						<div class="span6">
+							{if $content_data.withdrawal->get_delivery_date() == "1970-01-01 00:00:00"} - {else}
+							{$content_data.withdrawal->get_delivery_date_formatted()} {/if}
+						</div>
+					</div>
+
+					<!-- Withdrawal data -->
+					<div class="grid">
+						<div class="span6">
+								<span class="key-title">
+									{$txt.withdrawal_date}:
+								</span>
+						</div>
+						<div class="span6">
+							{if $content_data.withdrawal->get_withdrawal_date() == "1970-01-01 00:00:00"} - {else}
+							{$content_data.withdrawal->get_withdrawal_date_formatted()} {/if}&nbsp;({$content_data.withdrawal->get_date_created_formatted()})
+						</div>
+					</div>
+
+					<!-- Order ID -->
+					<div class="grid"
+					     style="border-top: 1px solid #E5E5E5; border-bottom: 1px solid #E5E5E5; padding: 12px 0; margin: 12px 0;">
+						<div class="span6" style="padding-top: 4px;">
+								<span class="key-title">
+									{$txt.order_id}:
+								</span>
+						</div>
+						<div class="span6 remove-padding">
+							<input type="text"
+							       name="withdrawal_order_id"
+							       value="{$content_data.withdrawal->get_order_id()}"
+							       style="width: 100%;" /> <input type="hidden"
+							                                       name="page_token"
+							                                       value="{$content_data.PAGE_TOKEN}" />
+						</div>
+					</div>
+
+					<!-- Save button -->
+					<div style="margin-top: 12px;">
+						<a class="btn pull-right js-save-order-id">{$buttons.save}</a>
+						<!-- <a class="button pull-right" style="position: relative; top: 19px; left: 6px;" href="#" onclick="return;" id="save_order_id">{$buttons.save}</a> -->
+						<span class="save_order_id_confirm"></span>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Withdrawal -->
+	<div class="content grid" style="margin-bottom: 0;">
+		<div class="span12">
+			<div class="frame-wrapper">
+				<div class="frame-head">
+					<label class="title pull-left">{$txt.withdrawal}</label>
+				</div>
+				<div class="frame-content">
+						<span>
+							{$content_data.withdrawal->get_withdrawal_content()|escape:html|nl2br}
+						</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Created by -->
+	<div style="margin-top:24px;">
+			<span>
+				{if $content_data.withdrawal->get_created_by_admin()}
+					{$txt.created_by_admin}
+				{else}
+					{$txt.created_by_customer}
+				{/if}
+			</span>
+	</div>
+
+	<!-- Back button -->
+	<div style="margin-top: 24px;">
+		<a style="display: inline-block; margin-left: 0" type="button" href="javascript:history.go(-1)" class="btn"><i
+				class="fa fa-reply"></i> {$buttons.back}</a>
+	</div>
+	{else}
+	<p>{$txt.invalid_withdrawal_id}</p>
+	<br /> <a type="button" href="javascript:history.go(-1)" class="button">{$buttons.back}</a> {/if}

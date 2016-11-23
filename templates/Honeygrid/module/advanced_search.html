@@ -1,0 +1,128 @@
+{load_language_text section="advanced_search"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_search}</h1>
+
+{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$error type="danger"}
+
+<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}" class="form-horizontal">
+	
+	<fieldset>
+
+		<div class="form-group">
+
+			<label for="{$INPUT_KEYWORDS_NAME}" class="control-label col-sm-3">
+				{$txt.label_keywords}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text"
+					   placeholder="{$txt.label_keywords}"
+					   id="{$INPUT_KEYWORDS_NAME}"
+					   name="{$INPUT_KEYWORDS_NAME}"
+					   class="form-control"
+					   value="" />
+			</div>
+
+		</div>
+
+		{* $categories_data has always one default option for all categories *}
+		{if $categories_data|count > 1} 
+			<div class="form-group">
+
+				<label for="{$SELECT_CATEGORIES_NAME}" class="control-label col-sm-3">
+					{$txt.label_categories}
+				</label>
+
+				<div class="col-sm-9 col-lg-6 input-container">
+					<select id="{$SELECT_CATEGORIES_NAME}" name="{$SELECT_CATEGORIES_NAME}" class="form-control">
+						{foreach item=category_data from=$categories_data}
+							<option value="{$category_data.id}">{$category_data.text}</option>
+						{/foreach}
+					</select>
+				</div>
+
+			</div>
+
+			<div class="form-group">
+
+				<div class="col-sm-offset-3 col-sm-9">
+					<div class="checkbox-inline">
+						<label for="{$INPUT_SUBCAT_NAME}">
+							<input type="checkbox" value="{$INPUT_SUBCAT_VALUE}" id="{$INPUT_SUBCAT_NAME}" name="{$INPUT_SUBCAT_NAME}" />
+							{$txt.label_subkategories}
+						</label>
+					</div>
+				</div>
+
+			</div>
+		{/if}
+
+	</fieldset>
+
+	<fieldset>
+		
+		<div class="form-group">
+
+			<label for="{$SELECT_MANUFACTURERS_NAME}" class="control-label col-sm-3">
+				{$txt.label_manufacturer}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<select id="{$SELECT_MANUFACTURERS_NAME}" name="{$SELECT_MANUFACTURERS_NAME}" class="form-control">
+					{foreach item=manufacturer_data from=$manufacturers_data}
+						<option value="{$manufacturer_data.id}">{$manufacturer_data.text}</option>
+					{/foreach}
+				</select>
+			</div>
+
+		</div>
+
+		<div class="form-group">
+
+			<label for="{$SELECT_PFROM_NAME}" class="control-label col-sm-3">
+				{$txt.label_min}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text"
+					   placeholder="{$txt.label_min}"
+					   id="{$SELECT_PFROM_NAME}"
+					   name="{$SELECT_PFROM_NAME}"
+					   class="form-control"
+					   value="" />
+			</div>
+
+		</div>
+
+		<div class="form-group">
+
+			<label for="{$SELECT_PTO_NAME}" class="control-label col-sm-3">
+				{$txt.label_max}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text"
+					   placeholder="{$txt.label_max}"
+					   id="{$SELECT_PTO_NAME}"
+					   name="{$SELECT_PTO_NAME}"
+					   class="form-control"
+					   value="" />
+			</div>
+
+		</div>
+		
+	</fieldset>
+
+	<div class="row">
+		<div class="col-xs-6 col-sm-4 col-md-3">
+			<button type="submit" class="btn btn-primary btn-block" title="{$button.search}">
+				{$button.search}
+			</button>
+		</div>
+		<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+			&nbsp;
+		</div>
+	</div>
+
+</form>

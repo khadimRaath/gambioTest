@@ -1,0 +1,60 @@
+{load_language_text section="advanced_search"}
+{load_language_text section="buttons" name="button"}
+
+<div id="advanced_search">
+
+	<h1>{$txt.heading_search}</h1>
+
+	{if $error!=''}
+	<div class="class_error">
+		{$error}
+	</div>
+	<br />
+	{/if}
+
+	<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+		<fieldset class="blocklabels_150">
+			<div class="input">
+				<label>{$txt.label_keywords}</label>
+				<input type="text" name="{$INPUT_KEYWORDS_NAME}" value="" class="input-text" />
+			</div>
+			<div class="input">
+				<label>{$txt.label_categories}</label>
+				<select class="input-select" name="{$SELECT_CATEGORIES_NAME}">
+					{foreach name=aussen item=category_data from=$categories_data}
+					<option value="{$category_data.id}">{$category_data.text}</option>
+					{/foreach}
+				</select>
+			</div>
+			<div class="input">
+				<label>{$txt.label_manufacturer}</label>
+				<select class="input-select" name="{$SELECT_MANUFACTURERS_NAME}">
+					{foreach name=aussen item=manufacturer_data from=$manufacturers_data}
+					<option value="{$manufacturer_data.id}">{$manufacturer_data.text}</option>
+					{/foreach}
+				</select>
+			</div>
+			<div class="input">
+				<label>{$txt.label_min}</label>
+				<input type="text" name="{$SELECT_PFROM_NAME}" value="" class="input-text" />
+			</div>
+			<div class="input">
+				<label>{$txt.label_max}</label>
+				<input type="text" name="{$SELECT_PTO_NAME}" value="" class="input-text" />
+			</div>
+			<div class="input">
+				<label>{$txt.label_subkategories}</label>
+				<input type="checkbox" name="{$INPUT_SUBCAT_NAME}" value="{$INPUT_SUBCAT_VALUE}" class="input-text" />
+			</div>
+		</fieldset>
+
+		{if $gm_opensearch_link_text}
+			<a href="{page_url}#" class="gm_opensearch button_opensearch" title="{$content_data.GM_OPENSEARCH_TITLE}">{$gm_opensearch_link_text}</a> [<a href="{page_url}#" class="gm_opensearch_info button_opensearch">info</a>]
+			<br />
+			<br />
+		{/if}
+		
+		<div class="send_button"><a href="{page_url}#" class="button_blue_big button_set_big action_submit"><span class="button-outer"><span class="button-inner">{$button.search}</span></span></a></div>
+
+	</form>
+</div>

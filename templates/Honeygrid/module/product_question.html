@@ -1,0 +1,106 @@
+{load_language_text section="contact_us"}
+{load_language_text section="buttons" name="button"}
+
+<div class="mfp-bg mfp-ready"></div>
+
+<div tabindex="-1"
+	 class="mfp-wrap mfp-close-btn-in product-question-modal"
+	 data-gambio-widget="product_question"
+	 data-product_question-product-id="{$content_data.PRODUCTS_ID}" 
+	 data-product_question-modal-mode>
+	<div class="mfp-container">
+		<div class="mfp-content">
+			<div class="modal-dialog modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">{$content_data.TELL_A_FRIEND_TITLE} &quot;{$content_data.PRODUCTS_NAME}&quot;</h4>
+					</div>
+
+					<div class="modal-body">
+						{if $content_data.MAIL_OUT}
+							{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$content_data.MAIL_OUT type="success"}
+						{else}
+							{if $content_data.VVCODE_ERROR}
+								{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$content_data.VVCODE_ERROR type="danger"}
+							{/if}
+							{if $content_data.ERROR}
+								{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$content_data.ERROR type="danger"}
+							{/if}
+							<form id="product-question-form"
+								  action="#"
+								  method="post"
+								  class="form-horizontal">
+								
+								<fieldset>
+									<div class="col-sm-12 required_info">
+										<div class="pull-right">{$txt.text_required}<br /><br /></div>
+									</div>
+									
+									<div class="form-group">
+										<label for="tell_a_friend_name"
+											   class="control-label col-sm-3">{$content_data.NAME}</label>
+										<div class="col-sm-9 input-container">
+											<input type="text"
+												   class="form-control"
+												   name="name"
+												   id="tell_a_friend_name"
+												   value="{$content_data.INPUT_NAME}" />
+										</div>
+									</div>
+									<div class="form-group mandatory">
+										<label for="tell_a_friend_email"
+											   class="control-label col-sm-3">{$content_data.EMAIL}</label>
+										<div class="col-sm-9 input-container">
+											<input type="text"
+												   class="form-control"
+												   name="email"
+												   id="tell_a_friend_email"
+												   value="{$content_data.OWN_MAIL}" />
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="tell_a_friend_message" 
+											   class="control-label col-sm-3">{$content_data.MESSAGE}</label>
+										<div class="col-sm-9 input-container">
+											<textarea class="form-control"
+													  name="message"
+													  id="tell_a_friend_message">{$content_data.INPUT_MESSAGE}</textarea>
+										</div>
+									</div>
+									{if $content_data.VALIDATION_ACTIVE == 'true'}
+										<div class="form-group vvcode mandatory">
+											<label class="control-label col-sm-3">{$content_data.VALIDATION}</label>
+											<div id="captcha_wrapper" class="col-sm-9">
+												{$content_data.GM_CAPTCHA}
+											</div>
+										</div>
+									{/if}
+
+									{if $content_data.GM_PRIVACY_LINK != '0'}
+										<div class="checkbox-inline">
+											{if $content_data.show_privacy_checkbox}<input id="privacy_accepted" type="checkbox" name="privacy_accepted" value="1"{if $content.privacy_accepted} checked="checked"{/if}/> {/if}
+											<label for="privacy_accepted">{$content_data.GM_PRIVACY_LINK}</label>
+										</div>
+									{/if}
+								</fieldset>
+							</form>
+						{/if}
+					</div>
+
+					<div class="modal-footer">
+						{if $content_data.MAIL_OUT}
+							<button title="{$button.close}" 
+									type="button" 
+									class="btn btn-primary btn-close-question-window">{$button.close}</button>
+						{else}
+							<button title="{$button.send}"
+									type="button"
+									class="btn btn-primary btn-send-question">{$button.send}</button>
+						{/if}
+					</div>
+				</div>
+				<button title="{$button.close}" type="button" class="mfp-close btn-close-question-window">×</button>
+			</div>
+		</div>
+	</div>
+</div>

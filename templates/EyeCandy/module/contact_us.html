@@ -1,0 +1,67 @@
+{load_language_text section="contact_us"}
+{load_language_text section="buttons" name="button"}
+
+<div id="contact_us" class="contact_us">
+
+	<h1>{$content_data.CONTACT_HEADING}</h1>
+
+	{if $content_data.error_message!=''}
+	<div class="class_error">
+		{$content_data.error_message}
+	</div>
+	<br />
+	{/if}
+
+	{if $content_data.CONTACT_CONTENT}
+		<div class="content_contact">{$content_data.CONTACT_CONTENT}</div>
+		<br />
+	{/if}
+
+	{if $content_data.success != '1'}
+
+		<div class="required_info">
+			{$txt.text_required}
+		</div>
+
+		<form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+			<fieldset class="blocklabels_150">
+				<div class="input">
+					<label>{$txt.text_name}</label>
+					<input type="text" name="{$content_data.INPUT_NAME_NAME}" value="{$content_data.INPUT_NAME_VALUE}" class="input-text" /> {$txt.text_required_sign}
+				</div>
+				<div class="input">
+					<label>{$txt.text_email}</label>
+					<input type="text" name="{$content_data.INPUT_EMAIL_NAME}" value="{$content_data.INPUT_EMAIL_VALUE}" class="input-text" /> {$txt.text_required_sign}
+				</div>
+				<div class="input">
+					<label>{$txt.text_subject}</label>
+					<input type="text" name="{$content_data.INPUT_SUBJECT_NAME}" value="{$content_data.INPUT_SUBJECT_VALUE|htmlspecialchars}" class="input-text" />
+				</div>
+				<div class="input">
+					<label>{$txt.text_message}</label>
+					<textarea name="{$content_data.INPUT_TEXT_NAME}" class="input-textarea" cols="1" rows="1">{$content_data.INPUT_TEXT_VALUE}</textarea>
+				</div>
+				{if $content_data.GM_CONTACT_VVCODE == 'true'}
+				<div class="input vvcode">
+					<label>{$txt.text_captcha}</label>
+					{$content_data.GM_CAPTCHA}
+				</div>
+				{/if}
+			</fieldset>
+
+			{if $content_data.GM_PRIVACY_LINK != '0'}
+			<div id="gm_privacy">
+				{if $content_data.show_privacy_checkbox}<input type="checkbox" name="privacy_accepted" value="1"{if $content_data.INPUT_PRIVACY_VALUE} checked="checked"{/if}/> {/if}
+				{$content_data.GM_PRIVACY_LINK}
+				<br />
+				<br />
+			</div>
+			{/if}
+
+			<div class="send_button"><a href="{page_url}#" class="button_blue_big button_set_big action_submit"><span class="button-outer"><span class="button-inner">{$button.send}</span></span></a></div>
+
+		</form>
+	{else}
+		{$txt.text_success}
+	{/if}
+</div>

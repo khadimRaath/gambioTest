@@ -1,0 +1,33 @@
+{load_language_text section="box_login_dropdown"}
+{load_language_text section="buttons" name="button"}
+{load_language_text section="box_login" name="login"}
+
+<ul class="dropdown-menu dropdown-menu-login arrow-top">
+	<li class="arrow"></li>
+	<li class="dropdown-header hidden-xs">{$login.heading_login}</li>
+	<li>
+		<form action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}" class="form-horizontal">
+			<div class="form-group">
+				<input type="text" id="login-username" class="form-control" placeholder="{$txt.text_email}" name="{$content_data.FIELD_EMAIL_NAME}" />
+			</div>
+			<div class="form-group">
+				<input type="password" id="login-password" class="form-control" placeholder="{$txt.text_pwd}" name="{$content_data.FIELD_PWD_NAME}" />
+			</div>
+			<div class="dropdown-footer row">
+				<input type="submit" class="btn btn-primary btn-block" value="{$button.login}" />
+				<ul>
+					<li>
+						<a title="{$txt.text_create_account}" href="{$content_data.LINK_CREATE_ACCOUNT}">
+							{$txt.text_create_account}
+						</a>
+					</li>
+					<li>
+						<a title="{$txt.text_password_forgotten}" href="{$content_data.LINK_LOST_PASSWORD}">
+							{$txt.text_password_forgotten}
+						</a>
+					</li>
+				</ul>
+			</div>
+		</form>
+	</li>
+</ul>

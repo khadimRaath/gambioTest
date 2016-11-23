@@ -1,0 +1,43 @@
+# -----------------------------------------------------------------------------
+# ETags                                                              
+# -----------------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+
+# `FileETag None` doesn't work in all cases.
+FileETag None
+
+# -----------------------------------------------------------------------------
+# Caching                                                            
+# -----------------------------------------------------------------------------
+
+<IfModule mod_expires.c>
+	ExpiresActive On 
+	ExpiresDefault "access plus 1 hour"
+	
+	# Favicon (cannot be renamed!) and cursor images
+	ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
+	ExpiresByType image/x-icon "access plus 1 month"
+	
+	# Media files
+	ExpiresByType audio/ogg "access plus 1 week"
+	ExpiresByType image/bmp "access plus 1 week"
+	ExpiresByType image/gif "access plus 1 week"
+	ExpiresByType image/jpeg "access plus 1 week"
+	ExpiresByType image/png "access plus 1 week"
+	ExpiresByType image/svg+xml "access plus 1 week"
+	ExpiresByType image/webp "access plus 1 week"
+	ExpiresByType video/mp4 "access plus 1 week"
+	ExpiresByType video/ogg "access plus 1 week"
+	ExpiresByType video/webm "access plus 1 week"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+	
+	RewriteCond %{REQUEST_FILENAME} ".*/images/product_images/.*"
+	RewriteCond %{REQUEST_FILENAME} !-s
+	RewriteRule (\.jpe?g|\.gif|\.png)$ ../../shop.php?do=ImageRequest&requested_image=%{REQUEST_URI} [L,NC]
+</IfModule>

@@ -1,0 +1,97 @@
+<table class="table table-main table-striped"
+	   data-gx-widget="single_checkbox multi_select" data-main_table_init-customer-id="{$_SESSION.customer_id}"
+	   data-main_table_init-page-length="{$content.page_length}"
+	   data-gx-widget="single_checkbox multi_select" data-main_table_init-user-id="{$_SESSION.customer_id}"
+	   data-main_table_init-page-length="{$content.page_length}"
+	   data-main_table_init-default-row-action="{$content.default_row_action}"
+	   data-main_table_init-default-bulk-action="{$content.default_bulk_action}"
+	   data-gx-extension="checkbox_mapping">
+	<thead>
+		<tr role="row">
+			<th><input type="checkbox" class="bulk-selection" /></th>
+			<th>{$admin_invoices.INVOICE_NUMBER}</th>
+			<th>{$admin_invoices.INVOICE_DATE}</th>
+			<th>{$admin_invoices.SUM}</th>
+			<th>{$admin_invoices.RECIPIENT}</th>
+			<th>{$admin_invoices.GROUP}</th>
+			<th>{$admin_invoices.COUNTRY}</th>
+			<th>{$admin_invoices.ORDER_NUMBER}</th>
+			<th>{$admin_invoices.ORDER_DATE}</th>
+			<th>{$admin_invoices.PAYMENT}</th>
+			<th>{$admin_invoices.STATUS}</th>
+			<th>{include file="../layouts/main/partial/datatables_page_navigation.html"}</th>
+		</tr>
+		<tr role="row" class="filter">
+			<th>
+				{* Empty Cell *}
+			</th>
+			<th>
+				<input type="text" class="invoice-number form-control" />
+			</th>
+			<th>
+				<input type="text" class="invoice-date form-control" data-jse-widget="daterangepicker"/>
+			</th>
+			<th>
+				<input type="text" class="sum form-control" />
+			</th>
+			<th>
+				<input type="text" class="recipient form-control" />
+			</th>
+			<th>
+				<select class="group form-control" data-multi_select-instance multiple="multiple">
+					{foreach $content.filtering.group as $group}
+						<option value="{$group}">{$group}</option>
+					{/foreach}
+				</select>
+			</th>
+			<th>
+				<select class="country-iso-code form-control" data-multi_select-instance multiple="multiple">
+					{foreach $content.filtering.country_iso_code as $country_iso_code}
+						<option value="{$country_iso_code}">{$country_iso_code}</option>
+					{/foreach}
+				</select>
+			</th>
+			<th>
+				<input type="text" class="order-number form-control" />
+			</th>
+			<th>
+				<input type="text" class="order-date form-control" data-jse-widget="daterangepicker" />
+			</th>
+			<th>
+				<select class="payment form-control" data-multi_select-instance multiple="multiple">
+					{foreach $content.filtering.payment as $payment}
+						<option value="{$payment}">{$payment}</option>
+					{/foreach}
+				</select>
+			</th>
+			<th>
+				<select class="status form-control" data-multi_select-instance multiple="multiple">
+					{foreach $content.filtering.status as $status}
+						<option value="{$status}">{$status}</option>
+					{/foreach}
+				</select>
+			</th>
+			<th>
+				{* Filter Actions *}
+				<button class="btn apply-filters">{$admin_invoices.FILTER}</button>
+				<button class="btn reset-filters">{$admin_invoices.RESET}</button>
+				{include file="../layouts/main/partial/datatables_page_length.html"}
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+		{* Content will be loaded dynamically (main_table_init.js) *}
+	</tbody>
+</table>
+
+{* Button Dropdown *}
+<div class="bulk-action btn-group dropdown">
+	<button type="button" class="btn btn-default disabled">{* Dynamic Content *}</button>
+	<button type="button" class="btn btn-default dropdown-toggle disabled" data-toggle="dropdown"
+			aria-haspopup="true" aria-expanded="false">
+		<span class="caret"></span> <span class="sr-only">Toggle Dropdown</span>
+	</button>
+	<ul class="dropdown-menu">
+		{* Dynamic Content *}
+	</ul>
+</div>

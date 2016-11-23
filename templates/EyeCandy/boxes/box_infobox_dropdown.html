@@ -1,0 +1,25 @@
+{load_language_text section="infobox"}
+
+<div id="infobox" style="display:none;">
+	<div class="infobox_container png-fix">
+		<div class="infobox_content">
+			{if $content_data.customers_data.LAST_NAME}
+				<p>{if $content_data.customers_data.GENDER == 'm'}{$txt.male}{else}{$txt.female}{/if} {$content_data.customers_data.FIRST_NAME} {$content_data.customers_data.LAST_NAME}</p>
+			{/if}
+			{if $content_data.customers_data.PRODUCTS_DISCOUNT}
+				<p>{$txt.products_discount}: {$content_data.customers_data.PRODUCTS_DISCOUNT}%</p>
+			{/if}
+			{if $content_data.customers_data.ORDER_DISCOUNT}
+				<p>{$txt.order_discount}: {$content_data.customers_data.ORDER_DISCOUNT}%</p>
+			{/if}
+		{*
+			{if $content_data.customers_data.MIN_ORDER}
+				<p>{$txt.min_order}: {$content_data.customers_data.MIN_ORDER}</p>
+			{/if}
+			{if $content_data.customers_data.MAX_ORDER}
+				<p>{$txt.max_order}: {$content_data.customers_data.MAX_ORDER}</p>
+			{/if}
+		*}
+		</div>
+	</div>
+</div>

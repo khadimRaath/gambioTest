@@ -1,0 +1,198 @@
+// --------------------------------------------------------------------------
+// GX-COMPATIBILITY FIXES
+//
+// Add compatibility fixes that do not apply to any other file.
+// -------------------------------------------------------------------------- 
+
+// GM PDF Fonts Fix
+input.color-button {
+  background-image: none !important;
+}
+
+// Fix spiffy JS calendar z-index issue.
+#spiffycalendar {
+  z-index: 1;
+}
+
+// Style datepicker trigger button.
+.ui-datepicker-trigger {
+  min-width: 30px !important;
+  padding: 2px !important;
+}
+
+button.ui-datepicker-trigger {
+  display: none;
+  visibility: hidden;
+}
+
+// --------------------------------------------------------------------------
+// GX CONTAINER FIXES
+// --------------------------------------------------------------------------
+
+.gx-container {
+  div {
+    line-height: 1.6em;
+    .btn {
+      line-height: normal;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// ICON BUTTONS
+// --------------------------------------------------------------------------
+
+.btn-caret,
+.btn-delete,
+.btn-edit {
+  font-size: 20px;
+  color:     $text-color-dark;
+}
+
+.btn-caret-inactive {
+  font-size: 20px;
+  color:     adjust-lightness($text-color-light, 30) !important;
+  padding:   0 5px;
+}
+
+// ----------------------------------------------------------------------------
+// OLD TABLES STYLE OVERRIDE
+// ----------------------------------------------------------------------------
+
+.dataTableHeadingRow, tr.dataTableRow, .dataTableRowSelected {
+  height: 48px;
+  color:  $text-color-light;
+
+  td, td.dataTableContent, td.categories_view_data {
+    font-family: $font-family;
+    font-size:   12px;
+    text-align:  left;
+    border:      none;
+    padding:     0 12px 0 12px;
+    color:       $text-color;
+
+    a {
+      font-family: $font-family;
+      font-size:   12px;
+      color:       $text-color;
+    }
+
+    img {
+      margin: 0;
+    }
+  }
+
+  &.dataTableHeadingRow > td:first-child,
+  &.dataTableHeadingRow > th:first-child,
+  &.dataTableRow > td:first-child,
+  &.dataTableRowSelected > td:first-child {
+    padding-left: 24px;
+  }
+
+  &.dataTableHeadingRow > td:last-child,
+  &.dataTableHeadingRow > th:last-child,
+  &.dataTableRow > td:last-child,
+  &.dataTableRowSelected > td:last-child {
+    padding-right: 24px;
+  }
+
+  &.dataTableHeadingRow input[type="checkbox"] {
+    margin: 0;
+  }
+
+  &.dataTableHeadingRow {
+
+    font-weight: bold;
+
+    td, th {
+      background-color: $background-color !important;
+      color:            $text-color-light;
+      border-bottom:    3px solid $gambio-blue;
+    }
+  }
+
+  &:not(.no-hover):hover {
+    td.dataTableContent, td.dataTableContent_gm {
+      background-color: adjust-lightness($background-color, -8);
+    }
+  }
+
+  &:nth-child(odd) {
+    background-color: $background-color;
+  }
+
+  &:nth-child(even) {
+    background-color: adjust-lightness($background-color, -2.5);
+  }
+}
+
+// ----------------------------------------------------------------------------
+// LABEL STYLING FIXES
+// ----------------------------------------------------------------------------
+
+.opensearch-label {
+  display:   inline-block;
+  min-width: 220px;
+}
+
+.meta-label {
+  display:   inline-block;
+  min-width: 250px;
+}
+
+.bookmarks-label {
+  display: inline-block;
+  width:   250px;
+}
+
+.opensearch-input {
+  display:   inline-block;
+  min-width: 300px;
+
+  input,
+  textarea {
+    width: 100%;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// OLD LIGHTBOX FIXES
+// ----------------------------------------------------------------------------
+
+.lightbox_package 
+{
+  .tab_wrapper.lightbox_theme .tab_headline_wrapper > .current_context {
+    padding-top: 7px;
+  }
+
+  .export_scheme_details .export_scheme_details_navigation a,
+  .export_scheme_details .export_scheme_details_navigation .profile_name
+  {
+    padding-top: 6px;
+    
+    &:hover {
+      color: #ffffff;
+    }
+  }
+
+  .button_container .admin_button {
+    font-size: 12px !important;
+
+    &:hover {
+      color: #ffffff !important;
+      text-decoration: none !important;
+    }
+  }
+}
+
+#exportSchemes {
+  .button_container .admin_button {
+    font-size: 12px !important;
+
+    &:hover {
+      color: #ffffff !important;
+      text-decoration: none !important;
+    }
+  }
+}
+

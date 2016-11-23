@@ -1,0 +1,22 @@
+{load_language_text section="product_info"}
+
+{if $options!=''}
+	<fieldset class="attributes">
+		{foreach name=outer item=options_data from=$options}
+			{if $options_data.DATA || $GM_HIDE_OUT_OF_STOCK == 'false'}
+				<div class="form-group">
+					<label class="control-label col-xs-12">{$options_data.NAME}:</label>
+					<div class="col-xs-12 input-container">
+						{foreach name=inner key=key_data item=item_data from=$options_data.DATA}
+							<label for="id-{$options_data.ID}-{$key_data}" class="col-sm-12">
+								<input type="radio"{if $PRICE_STATUS != 1} class="js-calculate"{/if} id="id-{$options_data.ID}-{$key_data}" name="id[{$options_data.ID}]" value="{$item_data.ID}"{if !$chk} checked="checked" {$chk = true}{else if $smarty.foreach.inner.first} checked="checked"{/if} />
+								{$item_data.TEXT}{if $item_data.MODEL}, {$txt.text_model} {$item_data.MODEL}{/if} {if $item_data.PRICE!=''}( {$item_data.PREFIX}{$item_data.PRICE} ){/if}{if $GM_SHOW_STOCK == 'true' && $options_data.NAME != 'downloads'} {$GM_STOCK_TEXT_BEFORE}{$item_data.GM_STOCK}{$GM_STOCK_TEXT_AFTER}{/if}
+							</label>
+						{/foreach}
+						{$chk = false}
+					</div>
+				</div>
+			{/if}
+		{/foreach}
+	</fieldset>
+{/if}

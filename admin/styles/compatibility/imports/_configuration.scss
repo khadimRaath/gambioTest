@@ -1,0 +1,314 @@
+// --------------------------------------------------------------------------
+// CONFIGURATION
+//
+// This file contains styling for the pages that contain the configuration style
+// tables and other elements.
+// --------------------------------------------------------------------------
+
+.gx-configuration {
+
+  tbody {
+    tr:nth-child(even) {
+      background-color: adjust-lightness($background-color, -2.4);
+    }
+    tr:nth-child(odd) {
+      background-color: $background-color;
+    }
+  }
+
+  input {
+
+  }
+
+  th {
+    padding:          6px 12px;
+    border-bottom:    3px solid $table-color;
+    background-color: $background-color;
+    color:            $text-color-light;
+    text-align:       left;
+    font-size:        12px;
+    height:           48px;
+  }
+
+  .error-logging-select {
+    margin-bottom: 13px;
+  }
+
+  div.gx-container {
+    &.main-table {
+      margin-top: 24px;
+    }
+  }
+
+  // Task #21 fix configuration input widths
+  input[type="text"],
+  input[type="password"],
+  select,
+  textarea {
+    width:            170px;
+    border:           1px solid $border-color;
+    border-radius:    2px;
+    background-color: $background-color;
+  }
+
+  input[type="text"],
+  input[type="password"],
+  select {
+    height:       30px;
+    margin-right: 12px;
+    
+    &#GM_ANALYTICS_CODE {
+	    width:  300px;
+	    height: 250px;
+    }
+  }
+  
+  textarea {
+    min-height: 30px;
+  }
+
+  .main-table {
+    height: 48px;
+  }
+
+  table {
+    &.even {
+      background-color: $background-color;
+    }
+
+    &.odd {
+      background-color: adjust-lightness($background-color, -2.4);
+    }
+
+    &.even,
+    &.odd {
+      tbody {
+        tr {
+          background-color: inherit;
+        }
+      }
+    }
+  }
+
+  .configuration-label {
+    color:          $text-color-light;
+    text-align:     left;
+    vertical-align: middle;
+    width:          300px;
+    font-size:      12px;
+  }
+  
+  .colorpicker-wrapper {
+    .color-preview {
+      height:     24px;
+      width:      24px;
+      margin-top: 6px;
+      border:     1px solid $border-color;
+      @include border-radius(5px);
+      float:      left;
+    }
+    
+    .picker {
+      margin: 2px 0 0 12px;
+      float:  left;
+    }
+  }
+
+  .add-padding-left-25 {
+    padding-left: 25px;
+  }
+  
+  td {
+    &.dataTableContent_gm {
+      height: 48px;
+      color:  $text-color-light;
+    }
+    
+    &.dataTableContent_gm.withdrawal_time_wrapper > input[type="text"] {
+      width: 50px;
+    }
+    
+    &.dataTableContent_gm .checkbox-switch-wrapper {
+      margin-top: 4px;
+    }
+    
+    &.dataTableContent_gm button.ui-datepicker-trigger {
+      margin: 0 0 0 5px;
+    }
+  }
+
+  &:not(:first-of-type).gx-configuration-table {
+    margin-top: 48px; // For gm_miscellaneous.php page tables.
+  }
+	
+  .gx-configuration-table {
+    width: 100%;
+  }
+
+  table.log_configuration_table {
+    margin-top: 24px;
+  }
+  
+  .mail-subject {
+    display: inline-block;
+    margin-bottom: 12px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// --------------------------------------------------------------------------
+// MOBILECANDY CONFIGURATION
+// --------------------------------------------------------------------------
+
+.mobile-configuration {
+  table {
+    &.main-table {
+      &:nth-child(odd) {
+        background-color: adjust-lightness($background-color, -2.5);
+
+        tr {
+          &:nth-child(odd) {
+            background-color: transparent;
+          }
+        }
+      }
+
+      &:nth-child(even) {
+        background-color: $background-color;
+
+        tr {
+          &:nth-child(odd) {
+            background-color: transparent;
+          }
+        }
+      }
+
+      input {
+        &.main-table {
+          margin-top: 24px;
+        }
+      }
+
+      .dataTableContent_gm {
+        padding: 24px;
+
+        .tooltip_icon {
+          visibility: hidden;
+        }
+
+        select {
+          min-width:    170px;
+          width:        340px;
+          max-width:    510px;
+          margin-right: 24px;
+        }
+
+        &:last-child {
+          padding-left: 0;
+        }
+
+        .dataTableContent_gm {
+          padding: 0;
+        }
+      }
+
+      .languages-container,
+      .currencies-container,
+      .payment-modules-container,
+      .mobile-contents-container,
+      .mobile-logo-container {
+        float:        left;
+        margin-right: 24px;
+      }
+
+      .control-wrapper {
+        label {
+          display:   inline-block;
+          min-width: 289px;
+        }
+
+        .actual-image-container {
+          display:       table;
+          margin-bottom: 12px;
+
+          .actual-image-headline {
+            display:        table-cell;
+            min-width:      150px;
+            vertical-align: middle;
+          }
+
+          img {
+            display:        table-cell;
+            margin:         0 24px 0 0;
+            vertical-align: middle;
+          }
+
+          .delete-container {
+            display:        table-cell;
+            vertical-align: middle;
+
+            label {
+              display:    inline-block;
+              margin-top: 8px;
+            }
+          }
+        }
+
+        .new-image-container {
+          display: table;
+
+          .upload-headline {
+            display:        table-cell;
+            min-width:      150px;
+            vertical-align: middle;
+          }
+
+          input[type="file"] {
+            display:        table-cell;
+            margin-right:   24px;
+            width:          170px;
+            vertical-align: middle;
+          }
+
+          .upload-warning {
+            display:        table-cell;
+            vertical-align: middle;
+          }
+        }
+      }
+
+      .color-container {
+        display:       table;
+        margin-bottom: 6px;
+
+        .color-key {
+          display:        table-cell;
+          min-width:      300px;
+          vertical-align: middle;
+        }
+
+        .mobile-color-input {
+          display:        table-cell;
+          vertical-align: middle;
+        }
+      }
+
+      .reset-mobile-colors {
+        display: table;
+        height:  31px;
+
+        label {
+          display:        table-cell;
+          min-width:      300px;
+          vertical-align: middle;
+        }
+
+        .single-checkbox {
+          margin-top: 9px;
+        }
+      }
+    }
+  }
+}

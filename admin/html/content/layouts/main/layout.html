@@ -1,0 +1,118 @@
+{* 
+	Admin Pages Layout 
+
+	New admin pages must extend this layout and define a {block name=content}{/block} section 
+	where the content of each page is defined. This layout is loaded by default when using the 
+	AdminLayoutHttpControllerResponse class and the following variables are already prefilled: 
+
+		- $_SESSION
+		- $base_url
+		- $environment
+		- $suffix
+		- $template_dir
+		- $page_title
+		- $language_code
+		- $shop_version
+		- $page_token
+		- $cache_token
+		- $translations
+		- $fontawesome_fallback
+		- $menu_entries
+		- $menu_visibility
+		- $shop_key_state
+		- $languages
+		- $message_stack
+		- $content
+		- $dynamic_script_assets
+		- $dynamic_style_assets
+		- $recent_search_area
+
+	There are two optional blocks that can be filled by the child-templates of the layout: 
+
+		- head: Include styles and meta info in the bottom part of the <head> element. 
+		- bottom: Include scripts and other content in the bottom of the <body> element.
+	
+	In order to avoid name collisions with your own data the page-specific data are grouped
+	in the $content variable. 
+*}
+
+<!DOCTYPE html>
+<html lang="{$language_code}">
+	<head>
+		<!--
+
+		==============================================================================
+		Shopsoftware by Gambio GmbH (c) 2005-2016 [www.gambio.de]
+		==============================================================================
+
+		Gambio GmbH offers you highly scalable E-Commerce-Solutions and Services.
+		The Shopsoftware is redistributable under the GNU General Public License 
+		(Version 2) [http://www.gnu.org/licenses/gpl-2.0.html]. Based on: E-Commerce 
+		Engine Copyright (c) 2006 xt:Commerce, created by Mario Zanier & Guido Winger 
+		and licensed under GNU/GPL.	
+		
+		Information and contribution at http://www.xt-commerce.com
+
+		==============================================================================
+		Please visit our website: www.gambio.de
+		==============================================================================
+
+		-->
+
+		<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, 
+			user-scalable=no" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<base href="{$base_url}/admin/" />
+
+		<title>{$page_title} - Gambio Admin</title>
+		
+		{* Partial template injection in bottom-head. *}
+		{include file="$template_dir/layouts/main/partial/layout_styles.html"}
+		{include file="$template_dir/layouts/main/partial/initial_styling.html"}
+		{include file="$template_dir/layouts/main/partial/fontawesome_fallback.html"}
+		
+		{* Dynamic <head> HTML injection. *}
+		{block name="head"}{/block}
+
+		{* Dynamic Style Assets *}
+		{$dynamic_style_assets nofilter}
+	</head>
+	<body data-gx-namespace="{$base_url}/admin/html/assets/javascript/engine"
+		  data-jse-namespace="{$base_url}/JSEngine/build"
+		  data-gx-controller="layouts/main/initialize layouts/main/resize layouts/main/viewport"
+	      data-gx-extension="dynamic_shop_messages"
+		  data-resize-layout="JSENGINE_INIT_FINISHED"
+		  x-ms-format-detection="none"
+		  class="page-loading">
+		<div class="wrapper">
+			<div class="container-fluid">
+				{include file="$template_dir/layouts/main/header/header.html"}
+				<section class="row">
+					<aside id="main-menu">
+						{include file="$template_dir/layouts/main/menu/menu.html"}
+					</aside>
+					<section id="main-content">
+						{include file="$template_dir/layouts/main/content/content_header.html"}
+						{include file="$template_dir/layouts/main/content/message_stack.html"}
+						<section id="content-block-wrapper">
+							{block name="content"}{/block}
+						</section>
+					</section>
+				</section>
+				{include file="$template_dir/layouts/main/footer/footer.html"}
+			</div>
+		</div>
+
+		{* Partial template injection in bottom-body. *}
+		{include file="$template_dir/layouts/main/partial/jse_configuration.html"}
+		{include file="$template_dir/layouts/main/partial/pace_configuration.html"}
+		{include file="$template_dir/layouts/main/partial/layout_scripts.html"}
+
+		{* Dynamic <body> HTML injection. *}
+		{block name="bottom"}{/block}
+		
+		{* Dynamic Script Assets *}
+		{$dynamic_script_assets nofilter}
+	</body>
+</html>

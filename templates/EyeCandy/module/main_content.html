@@ -1,0 +1,37 @@
+{$MODULE_error}
+
+
+<div class="first_page_content">
+{$title}
+		
+{$text|replace:"text-decoration:underline;":""}
+</div>
+
+{$MODULE_upcoming_products}
+
+{$MODULE_new_products}
+
+<div class="first_page_content">
+{$title_center}
+
+{$text_center|replace:"text-decoration:underline;":""}
+</div>
+
+{$specials_main}
+
+<!-- #BOF YOOCHOOSE -->
+{if $MODULE_yoochoose_homepage_personalized != ''}
+	{$MODULE_yoochoose_homepage_personalized}
+{/if}
+{if $MODULE_yoochoose_homepage_topsellers != ''}
+	{$MODULE_yoochoose_homepage_topsellers}
+{/if}
+<!-- #EOF YOOCHOOSE -->
+
+{$products_new_main}
+
+<div class="first_page_content">
+{$title_bottom}
+
+{$text_bottom|replace:"text-decoration:underline;":""}
+</div>

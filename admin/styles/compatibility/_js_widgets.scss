@@ -1,0 +1,1167 @@
+// --------------------------------------------------------------------------
+// GX-Admin Stylesheet - JavaScript Widgets
+//
+// This script contains UI styling for supported widgets that must be used in
+// the administration pages of GX. If there is a widget that is not included
+// here then append its styling at the end of the file.
+//
+// All the styling rules included in this file will be applied to the children
+// of an element containing the ".gx-container" class.
+//
+// @since v2.3.1.0
+// --------------------------------------------------------------------------
+
+.gx-container {
+
+  // styling for checkbox switcher on configuration pages
+  &.checkbox-switch-wrapper {
+    float: left;
+  }
+
+  &.checkbox-switch-list {
+    float:     left;
+    min-width: 200px;
+
+    .checkbox-switch-list-row {
+      padding:    7px 0;
+      text-align: left;
+
+      .switcher {
+        float:        left;
+        margin-right: 12px;
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // JQUERY UI WIDGETS FIX
+  // --------------------------------------------------------------------------
+
+  .ui-widget-content {
+    box-sizing: border-box;
+  }
+
+  // --------------------------------------------------------------------------
+  // JQUERY UI BUTTON
+  // --------------------------------------------------------------------------
+
+  .ui-button {
+    min-width: 10px;
+    @include font(12px);
+
+    .ui-button-text {
+      padding:     0;
+      color:       inherit;
+      text-indent: initial;
+    }
+
+    // Add button icon support (jQuery UI)
+    &.ui-button-text-icon-primary,
+    &.ui-button-text-icons,
+    &.ui-button-icon-primary {
+      .ui-button-text {
+        padding-left: 12px;
+      }
+
+      .ui-button-icon-primary {
+        top: 49%;
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // SWITCHER
+  // --------------------------------------------------------------------------
+
+  .switcher {
+    height:   20px;
+    width:    48px;
+    cursor:   pointer;
+    display:  inline-block;
+    position: relative;
+    @include user-select('none');
+
+    .switcher-inner {
+      display:       block;
+      height:        100%;
+      overflow:      hidden;
+      white-space:   nowrap;
+      width:         100%;
+      word-spacing:  0;
+      border-radius: 3px;
+    }
+
+    .switcher-state-on,
+    .switcher-state-off {
+      color:       $switcher-foreground-color;
+      font-size:   12px;
+      font-weight: 600;
+      line-height: 20px;
+      display:     inline-block;
+      width:       100%;
+      height:      100%;
+      margin:      0;
+      padding:     0;
+      text-align:  center;
+      @include transition(all .2s);
+    }
+
+    .switcher-state-on {
+      background:    $gambio-blue;
+      padding-right: 15px;
+      margin-left:   -100%;
+    }
+
+    .switcher-state-off {
+      background:   $text-color;
+      padding-left: 15px;
+    }
+
+    &.checked .switcher-state-on {
+      margin-left: 0;
+    }
+
+    .switcher-toggler {
+      background:    $switcher-foreground-color;
+      border-radius: 2px;
+      height:        16px;
+      width:         16px;
+      margin:        2px;
+      left:          0;
+      position:      absolute;
+      text-align:    center;
+      @include transition(all .2s);
+    }
+
+    &.checked .switcher-toggler {
+      margin-left: -18px;
+      left:        100%;
+    }
+
+    > input {
+      left:       -100000px;
+      position:   absolute;
+      visibility: hidden;
+    }
+
+    span {
+      line-height: 20px;
+    }
+
+    &.labeled {
+      width: 100px;
+
+      .switcher-state-on,
+      .switcher-state-off {
+        &:after {
+          content: attr(data-checkbox-label);
+          width:   65px;
+          @include font(12px)
+        }
+
+        span {
+          display: none;
+        }
+      }
+    }
+
+    &.disabled {
+      cursor: not-allowed !important;
+      @include opacity(0.1);
+    }
+
+    .switcher-text-on,
+    .switcher-text-off,
+    {
+      position:    absolute;
+      top:         1px;
+      left:        60px;
+      white-space: nowrap;
+    }
+
+    .switcher-text-on {
+      display: none;
+    }
+    .switcher-text-off,
+    {
+      display: block;
+    }
+
+    &.checked {
+      .switcher-text-on {
+        display: block;
+      }
+      .switcher-text-off {
+        display: none;
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // SINGLE CHECKBOX
+  // --------------------------------------------------------------------------
+
+  .single-checkbox {
+    display:          inline-block;
+    width:            14px;
+    height:           14px;
+    line-height:      14px;
+    text-align:       center;
+    border:           1px solid $border-color;
+    background-color: #FFFFFF;
+    cursor:           pointer;
+    @include border-radius(2px);
+    @include user-select(none);
+    @include transition(border .2s ease);
+
+    .fa {
+      font-size:  12px;
+      color:      #FFFFFF;
+      visibility: hidden;
+    }
+
+    &.focused {
+      border-color: $gambio-blue;
+    }
+
+    &.checked {
+      background-color: $gambio-blue;
+      border:           1px solid $gambio-blue;
+
+      .fa {
+        visibility: visible;
+      }
+
+      &:active {
+        background-color: adjust-lightness($gambio-blue, -5);
+      }
+    }
+
+    &.disabled {
+      cursor:           not-allowed !important;
+      background-color: $highlight-color !important;
+      border-color:     $border-color !important;
+
+      .fa {
+        color: $text-color-light !important;
+      }
+    }
+
+    &:active {
+      background-color: adjust-lightness(#FFFFFF, -5);
+    }
+
+    &:hover {
+      border-color: $gambio-blue;
+      @include transition(border .2s ease);
+    }
+
+  }
+
+  // --------------------------------------------------------------------------
+  // TOOLTIP ICON STYLING
+  // --------------------------------------------------------------------------
+
+  &.gx-qtip {
+
+    line-height: 1.8;
+    @include font(12px);
+
+    padding:     10px;
+    border:      none;
+
+    @include border-radius(2px);
+
+    .qtip-tip {
+      visibility: hidden;
+    }
+
+    .qtip-content {
+      color: $component-color !important;
+      a {
+	      color: $component-color;
+      }
+    }
+
+    &.info {
+      background: $primary-color;
+    }
+
+    &.warning {
+      background: $danger-color;
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // JQUERY UI DATEPICKER
+  // --------------------------------------------------------------------------
+
+  .ui-datepicker,
+  &.ui-datepicker {
+    background-clip:  padding-box;
+    background-color: $background-color;
+    display:          none;
+    left:             0;
+    position:         absolute;
+    text-align:       left;
+    top:              0;
+    padding:          0;
+    border:           3px solid rgba(0, 0, 0, 0.2);
+    margin:           5px 0 0 0;
+    width:            auto !important;
+    white-space:      normal;
+    @include border-radius(3px);
+    @include font(12px);
+
+    th, td {
+      height:      auto;
+      line-height: 30px;
+      text-align:  center;
+      width:       auto;
+    }
+
+    .ui-datepicker-header {
+      background:    $table-color;
+      border:        none;
+      border-radius: 0;
+      font-weight:   normal;
+      font-size:     15px;
+      padding:       0;
+
+      .ui-datepicker-title {
+        border:      0;
+        height:      35px;
+        line-height: 30px;
+        margin-top:  .4em;
+        text-align:  center;
+        width:       210px;
+
+        span {
+          &.ui-datepicker-month,
+          &.ui-datepicker-year {
+            color:       $component-color;
+            font-size:   14px;
+            font-weight: bold;
+          }
+        }
+      }
+
+      .ui-datepicker-prev,
+      .ui-datepicker-next {
+        font-size:     12px;
+        background:    none;
+        border:        0;
+        border-radius: 0;
+        cursor:        pointer;
+        height:        41px;
+        line-height:   41px;
+        text-align:    center;
+        top:           0;
+        width:         41px;
+
+        &:hover {
+          background: tint($table-color, 20%);
+        }
+
+        &:after {
+          color:       $text-color-inverse;
+          font-family: FontAwesome;
+        }
+
+        span {
+          background:  none;
+          height:      28px;
+          width:       14px;
+          margin-top:  7px;
+          top:         0;
+          font-weight: normal;
+        }
+      }
+
+      .ui-datepicker-next {
+        border-left: 1px solid adjust-lightness($primary-color, -10);
+        right:       0;
+
+        &:after {
+          content: "\f054";
+        }
+      }
+
+      .ui-datepicker-prev {
+        border-right: 1px solid adjust-lightness($primary-color, -10);
+        left:         0;
+
+        &:after {
+          content: "\f053";
+        }
+      }
+
+      .ui-datepicker-month {
+        margin-right: 5px;
+        min-width:    0;
+        width:        37%;
+        max-width:    37%;
+      }
+
+      .ui-datepicker-year {
+        min-width: 0;
+        width:     37%;
+        max-width: 37%;
+      }
+
+    }
+
+    table.ui-datepicker-calendar {
+      border-color: adjust-lightness($primary-color, -10);
+      margin:       0;
+
+      thead {
+        th {
+          background:  adjust-lightness($primary-color, -3);
+          color:       $component-color;
+          font-size:   12px;
+          font-weight: bold;
+          text-align:  center;
+          line-height: 35px;
+          border:      0;
+          border-top:  1px solid adjust-lightness($primary-color, -10);
+          padding:     0;
+
+          span {
+            color: $component-color;
+          }
+        }
+      }
+
+      tbody {
+        tr:nth-child(even) {
+          background: $background-color;
+        }
+
+        a {
+          color:      $text-color;
+          border:     none;
+          background: none;
+        }
+
+        td, a {
+          text-align: center;
+          padding:    4px 1px;
+        }
+
+        td {
+          border-right: 1px solid adjust-lightness($background-color, -10.5);
+          line-height:  22px;
+
+          &:last-child {
+            border-right: 0;
+          }
+
+          &:hover {
+            background: $highlight-color;
+          }
+
+          &.ui-datepicker-today {
+            background: $highlight-color;
+
+            a {
+              font-weight: 700;
+            }
+          }
+
+          &.ui-datepicker-current-day {
+            background: $primary-color;
+            a {
+              font-weight: bold;
+              color:       $component-color;
+            }
+          }
+
+          &.ui-state-disabled {
+            background-color: $default-color;
+            @include opacity(1);
+
+            span {
+              @include opacity(0.5);
+            }
+          }
+
+          &.ui-datepicker-week-col {
+            &:hover {
+              background: $background-color;
+            }
+          }
+
+          span {
+            border:     none;
+            background: none;
+            text-align: center;
+          }
+
+          a {
+            color:           $text-color;
+            display:         block;
+            height:          100%;
+            text-decoration: none;
+            width:           100%;
+          }
+        }
+      }
+    }
+  }
+
+  .ui-datepicker-trigger {
+    min-width: inherit;
+    width:     27px;
+    padding:   0;
+    margin:    0;
+  }
+
+  // --------------------------------------------------------------------------
+  // JQUERY UI PROGRESS BAR
+  // --------------------------------------------------------------------------
+
+  .ui-progressbar {
+    display:    inline-block;
+    width:      100%;
+    height:     24px;
+    margin:     $margin;
+    padding:    1px;
+    overflow:   hidden;
+    background: $default-color;
+    border:     none;
+    @include border-radius(2px);
+    @include box-shadow(inset 0 1px 2px #BBBBBB);
+
+    .ui-progressbar-value {
+      display: block;
+      @include component-colors($primary-color);
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // JQUERY UI SLIDER
+  // --------------------------------------------------------------------------
+
+  .ui-slider {
+    border:     none;
+    background: shade($default-color, 72%);
+    height:     .7em;
+    @include border-radius(2px);
+
+    .ui-slider-handle {
+      cursor:     pointer;
+      padding:    3px;
+      z-index:    0;
+      border:     1px solid $text-color-light;
+      outline:    none;
+      background: $background-color;
+      @include border-radius(3px);
+      @include box-shadow(0px 1px 2px rgba(0, 0, 0, 0.3));
+
+      &:before {
+        display: none; //remove styling from pixel-admin css
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // JQUERY UI SPINNER
+  // --------------------------------------------------------------------------
+
+  .ui-spinner {
+    margin: $margin;
+
+    input {
+      border:  none;
+      height:  100%;
+      padding: 0 5px;
+      margin:  5px 0 6px 0;
+      outline: none;
+      @include font(12px);
+    }
+
+    //remove button symbols form pixel-admin css
+    .ui-spinner-button {
+      &:after {
+        display: none;
+      }
+
+      &.ui-spinner-down {
+        border-top-width: 1px;
+        border-top-style: solid;
+        margin-top:       -1px;
+      }
+
+      span {
+        display: block;
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // CUSTOM UI TABS
+  // --------------------------------------------------------------------------
+
+  .ui-tabs {
+    padding:  0;
+    margin:   0;
+    position: initial;
+
+    .tab-headline-wrapper {
+      overflow: auto;
+      position: relative;
+      top:      1px;
+
+      a {
+        display:         inline-block;
+        float:           left;
+        padding:         6px 15px 6px;
+        margin-right:    6px;
+        background:      $highlight-color;
+        border:          none;
+        cursor:          pointer;
+        color:           $text-color-light;
+        text-decoration: none;
+        @include font(12px);
+        @include border-top-left-radius(2px);
+        @include border-top-right-radius(2px);
+
+        &.active {
+          background: $primary-color;
+          color:      $text-color-inverse;
+        }
+
+      }
+    }
+
+    .tab-content-wrapper {
+      padding:    10px;
+      border:     1px solid $border-color-light;
+      background: $background-color;
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // JQUERY DIALOG
+  // --------------------------------------------------------------------------
+
+  // Do not add directly the parent .ui-dialog because it is created outside the gx-container
+  // class and we apply styling to the dialog by setting the dialogClass: 'gx-container' option.
+
+  &.ui-dialog {
+    padding: 0;
+    border:  none;
+    @include font(12px);
+    @include border-radius(2px);
+    @include box-shadow(0px 0px 8px rgba(0, 0, 0, 0.4));
+
+    .ui-dialog-titlebar {
+      height:        48px;
+      padding:       15px 24px 10px;
+      background:    tint($default-color, 40%);
+      border:        none;
+      border-bottom: 1px solid adjust-lightness($default-color, -6);
+      @include border-radius(0px);
+
+      .ui-dialog-title {
+        margin:      0;
+        font-size:   1.3em;
+        font-weight: normal;
+        color:       $text-color;
+      }
+
+      .ui-dialog-titlebar-close {
+        margin-right: 6px;
+        border:       none;
+        background:   tint($default-color, 40%);
+
+        &:hover {
+          background: tint($default-color, 40%);
+        }
+
+        .ui-button-text {
+          display: none;
+        }
+      }
+    }
+
+    .ui-dialog-content {
+      display: block !important;
+      padding: 24px;
+      margin: 0;
+	    
+      fieldset {
+	    padding: 0;
+      }
+	    
+      .control-group {
+	      margin: 0 0 12px;
+      }
+    }
+
+    .ui-dialog-buttonpane {
+      height:     48px;
+      clear:      both;
+      border-top: 1px solid adjust-lightness($default-color, -6);
+      //margin-top: 24px;
+      margin:     0;
+      padding:    8px 24px;
+
+      button {
+        margin: 0 0 0 12px;
+      }
+
+      .ui-state-default,
+      .ui-widget-content .ui-state-default,
+      .ui-widget-header .ui-state-default {
+        @include component-colors($default-color, $text-color-light);
+
+        &:hover {
+          @include component-colors-hover($default-color, $text-color-light);
+        }
+
+        &.btn-success {
+          @include component-colors($success-color);
+          &:hover {
+            @include component-colors-hover($success-color);
+          }
+        }
+
+        &.btn-primary {
+          @include component-colors($primary-color);
+          &:hover {
+            @include component-colors-hover($primary-color);
+          }
+        }
+
+        &.btn-danger {
+          @include component-colors($danger-color);
+          &:hover {
+            @include component-colors-hover($danger-color);
+          }
+        }
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // JQUERY DATATABLE
+  // --------------------------------------------------------------------------
+
+  .dataTables_wrapper {
+    border:  none;
+    padding: 0;
+
+    .dataTables_filter,
+    .dataTables_length {
+      margin-bottom: 12px;
+    }
+
+    .dataTables_length {
+      select {
+        width:        170px;
+        margin-right: 12px;
+      }
+    }
+
+    .dataTables_filter {
+      input[type="search"] {
+        width:        170px;
+        margin-left:  12px;
+        margin-right: 0;
+      }
+
+      label {
+        margin-right: 0;
+      }
+    }
+
+    .dataTable {
+      border-bottom-color: $default-color;
+
+      tr {
+        height: 48px;
+        @include box-sizing(border-box);
+
+        th {
+          color:         $text-color-light;
+          font-size:     1.1em;
+          border-left:   none;
+          border-right:  none;
+          border-bottom: 3px solid $gambio-blue;
+          background:    $background-color;
+          padding:       0 12px !important;
+          @include box-sizing(border-box);
+
+          &.sorting {
+            min-width: 75px;
+          }
+
+          &.sorting_asc {
+            background: url("../../../html/assets/images/datatables/sort_asc.png") no-repeat center right $background-color !important;
+          }
+
+          &.sorting_desc {
+            background: url("../../../html/assets/images/datatables/sort_desc.png") no-repeat center right $background-color !important;
+          }
+
+          &::after {
+            top: 12px; // Position the sort icon.
+          }
+        }
+
+        td {
+          color:   $text-color;
+          padding: 0 12px;
+          @include box-sizing(border-box);
+
+          &.dataTables_empty {
+            padding:    16px; // Will fix the height of an empty datatable.
+            background: none !important;
+          }
+        }
+
+        // Highlight table row on mouse hover.
+        &:hover {
+          td {
+            background: $highlight-color;
+          }
+        }
+      }
+    }
+
+    .dataTables_paginate {
+      a {
+        @include font(12px);
+      }
+
+      .paginate_button {
+        @include component-colors($default-color, $text-color-light);
+        color: $text-color-light !important; // Override default style.
+        @include border-radius(2px);
+
+        &:hover,
+        &:active,
+        &:focus,
+        &:visited {
+          box-shadow: none;
+          color:      $text-color-light !important;
+          @include component-colors-hover($default-color);
+        }
+
+        &.disabled {
+          @include component-colors($default-color, $text-color-light);
+          @include opacity(0.35);
+
+          &:hover {
+            @include component-colors-hover($default-color, $text-color-light);
+          }
+        }
+
+        &.current {
+          @include component-colors($primary-color);
+          color: $component-color !important;
+
+          &:hover {
+            @include component-colors-hover($primary-color);
+            color: $component-color !important;
+          }
+        }
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // BUTTON DROPDOWN
+  // --------------------------------------------------------------------------
+
+  .js-button-dropdown {
+    display:        inline-block;
+    vertical-align: middle;
+    margin:         0 0 12px 12px;
+
+    button {
+      display: inline-block;
+      margin:  0;
+      float:   left;
+      color:   $text-color-light;
+    }
+
+    button:hover {
+      color: $text-color-light;
+    }
+
+    button:first-child {
+      margin: 0 !important;
+    }
+
+    button:nth-child(2) {
+      margin-left:   -3px !important;
+      margin-bottom: 0 !important;
+      min-width:     33px;
+    }
+
+    ul {
+      position:                absolute;
+      z-index:                 1000;
+      display:                 none;
+      float:                   left;
+      min-width:               160px;
+      padding:                 5px 0;
+      margin-top:              30px;
+      text-align:              left;
+      list-style:              none;
+      background-color:        $component-color;
+      -webkit-background-clip: padding-box;
+      background-clip:         padding-box;
+      border:                  1px solid #CCCCCC;
+      border-radius:           2px;
+      -webkit-box-shadow:      0 6px 12px rgba(0, 0, 0, .175);
+      box-shadow:              0 0 5px rgba(0, 0, 0, .175);
+      max-height:              400px;
+      overflow:                auto;
+
+      li {
+        display:    list-item;
+        text-align: -webkit-match-parent;
+
+        span,
+        a {
+          display:     block;
+          padding:     3px 20px;
+          clear:       both;
+          font-weight: 400;
+          line-height: 1.42857143;
+          color:       $text-color-light;
+          white-space: nowrap;
+          cursor:      pointer;
+
+          &:hover {
+            color:            $text-color-light;
+            text-decoration:  none;
+            background-color: $default-color;
+          }
+        }
+      }
+    }
+  }
+
+  // Fix for different button-lengths in tables
+  .action-list {
+    .js-button-dropdown {
+      button:first-child {
+        width:         93px;
+        text-overflow: ellipsis;
+        overflow:      hidden;
+        white-space:   nowrap;
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // ADMIN SEARCH
+  // --------------------------------------------------------------------------
+
+	// Search Input
+	input[name="admin_search"] {
+		padding:          0 0 0 24px;
+		outline:          0;
+		color:            #FFFFFF;
+		background-color: $gambio-blue;
+		border:           0;
+		width:            100%;
+		height:           46px;
+		@include font(14px);
+
+		// Placeholder style mixin
+		@mixin placeholder-style {
+			padding-top:    2px;
+			padding-left:   4px;
+			color:          adjust-lightness($gambio-blue, 50%);
+			font-weight:    normal;
+			@include font(12px);
+		}
+
+		&::-webkit-input-placeholder {
+			@include placeholder-style();
+		}
+		// Firefox
+		&:-moz-placeholder {
+			@include placeholder-style();
+		}
+		&::-moz-placeholder {
+			@include placeholder-style();
+		}
+		// Internet Explorer
+		&:-ms-input-placeholder {
+			@include placeholder-style();
+		}
+
+		&:focus {
+			background-color: adjust-lightness($gambio-blue, -10%);
+		}
+
+		transition: background-color 250ms linear;
+	}
+
+	// Search Dropdown
+	ul.searchable {
+		display:                 none;
+		padding:                 0;
+		margin:                  0;
+		font-size:               14px;
+		list-style:              none;
+		background-color:        $component-color;
+		border:                  1px solid #CCCCCC;
+		border-radius:           2px;
+		box-shadow:              0 0 5px rgba(0, 0, 0, .175);
+		position:                absolute;
+		top:                     46px;
+
+		li {
+			display:            list-item;
+			text-align:         -webkit-match-parent;
+			white-space:        nowrap;
+			padding:            6px 0;
+
+			span {
+				display:        inline-block;
+				clear:          both;
+				font-weight:    400;
+				line-height:    1.42857143;
+				white-space:    nowrap;
+				cursor:         pointer;
+
+				&.search-query-item {
+					color:              $gambio-blue;
+					padding-left:        24px;
+				}
+
+				&.search-query-description {
+					color:              adjust-lightness($text-color-light, -10);
+					padding-left:        6px;
+					padding-right:       24px;
+				}
+			}
+
+			&:hover, &.active {
+				color:            #262626;
+				text-decoration:  none;
+				background-color: #F5F5F5;
+			}
+		}
+	}
+
+  // --------------------------------------------------------------------------
+  // TOOLTIP ICONS
+  // --------------------------------------------------------------------------
+
+  &.tooltip_icon,
+  .tooltip_icon {
+    font-size: 24px;
+    cursor:    default;
+    float:     right;
+    margin-left: 12px;
+
+    i:first-child {
+      margin-top: 2px;
+    }
+
+    &.warning {
+      i:first-child {
+        color: $danger-color;
+      }
+    }
+
+    &.info i:first-child {
+      color: $text-color-light;
+    }
+
+    i:hover {
+      cursor: pointer;
+    }
+
+  }
+
+  span {
+    &:last-of-type {
+      &.tooltip_icon {
+        margin-left: 0;
+      }
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // STATISTIC CHART
+  // --------------------------------------------------------------------------
+
+  .js-interval-dropdown-toolbar {
+    opacity:          0.2;
+    height:           48px;
+    padding:          7px 24px 0px 0;
+    background-color: #FFFFFF;
+  }
+
+  .statistic-chart-container {
+    // Equals the exact height of latest orders table with 5 orders
+    height: 337px;
+
+    #dashboard-chart {
+      min-width:  200px;
+
+      // Equals the exact height of latest orders table with 5 orders
+      height:     337px;
+
+      text-align: center;
+
+      &.loading {
+        opacity: 0.2;
+      }
+
+      .loader {
+        color:     $gambio-blue;
+        font-size: 12em;
+        position:  relative;
+        top:       100px;
+      }
+
+      .morris-hover {
+        border:        0;
+        border-radius: 2px;
+      }
+
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // COLLAPSER
+  // --------------------------------------------------------------------------
+
+  .collapser {
+    cursor:    pointer;
+    color:     $text-color-light;
+    margin:    2px 0 0 0;
+    font-size: 14px;
+  }
+
+  // --------------------------------------------------------------------------
+  // PROGRESS BAR
+  // --------------------------------------------------------------------------
+
+  .progress {
+    @include border-radius(2px);
+
+    .progress-bar {
+      background-color: $gambio-blue;
+    }
+  }
+
+  // --------------------------------------------------------------------------
+  // TABLE SORTING
+  // --------------------------------------------------------------------------
+
+  .caret {
+    margin-left: 5px;
+  }
+}

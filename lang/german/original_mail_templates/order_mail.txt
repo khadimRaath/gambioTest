@@ -1,0 +1,93 @@
+{$address_label_customer}
+
+{if $PHONE}Telefonnummer: {$PHONE}
+{/if}
+{if $customer_vat}USt-IdNr.: {$customer_vat}{/if}
+
+
+{if $PAYMENT_METHOD}Zahlungsmethode: {$PAYMENT_METHOD}
+{/if}
+Bestellnummer: {$oID}
+Datum: {$DATE}
+{if $csID}Kundennummer:{$csID}{/if}
+
+----------------------------------------------------------------------
+
+{if $NAME|trim == ''}
+Sehr geehrte Damen und Herren,
+{else}
+Sehr {if $GENDER == 'm'}geehrter Herr {elseif $GENDER == 'f'}geehrte Frau {else}geehrte(r) {/if}{$NAME},
+{/if}
+
+vielen Dank für Ihre Bestellung in unserem Onlineshop.
+
+{if $PAYMENT_MODUL=='moneyorder'}
+Unsere Bankverbindung:
+{$smarty.const.MODULE_PAYMENT_MONEYORDER_PAYTO}
+{else}
+{$PAYMENT_INFO_TXT}
+{/if}
+
+{if $COMMENTS}
+Ihre Anmerkungen:
+{$COMMENTS}
+{/if}
+
+Ihre bestellten Produkte zur Kontrolle:
+----------------------------------------------------------------------
+{foreach name=aussen item=order_values from=$order_data} 
+{$order_values.PRODUCTS_QTY} {if $order_values.UNIT}{$order_values.UNIT}{else}x{/if} {$order_values.PRODUCTS_NAME} {$order_values.PRODUCTS_PRICE}
+{foreach item=prop_item_array from=$order_values.PRODUCTS_PROPERTIES}
+ {$prop_item_array.properties_name}: {$prop_item_array.values_name}
+{/foreach}
+{if $order_values.PRODUCTS_ATTRIBUTES !=''}{$order_values.PRODUCTS_ATTRIBUTES}{/if}
+
+{$order_values.CHECKOUT_INFORMATION_TEXT}
+{if $order_values.PRODUCTS_SHIPPING_TIME neq ''}
+Lieferzeit: {$order_values.PRODUCTS_SHIPPING_TIME}
+{/if}
+
+{/foreach}
+
+{foreach name=aussen item=order_total_values from=$order_total}
+{$order_total_values.TITLE|trim} {$order_total_values.TEXT|trim}
+{/foreach}
+
+
+{if $address_label_payment}
+Rechnungsadresse
+----------------------------------------------------------------------
+{$address_label_payment}
+{/if}
+
+
+Versandadresse 
+----------------------------------------------------------------------
+{$address_label_shipping}
+
+
+{$TS_RATING}
+
+{if $SHOW_ABANDONMENT_WITHDRAWAL_DOWNLOADS_INFO}
+Sie haben gewählt:
+Ich stimme ausdrücklich zu, dass Sie vor Ablauf der Widerrufsfrist mit der Ausführung des Vertrages beginnen. Mir ist bekannt, dass ich durch diese Zustimmung mit Beginn der Ausführung des Vertrages mein Widerrufsrecht verliere.
+
+{/if}
+{if $SHOW_ABANDONMENT_WITHDRAWAL_SERVICES_INFO}
+Sie haben gewählt:
+Ich bin einverstanden und verlange ausdrücklich, dass Sie vor Ende der Widerrufsfrist mit der Ausführung der beauftragten Dienstleistung beginnen. Mir ist bekannt, dass ich bei vollständiger Vertragserfüllung durch Sie mein Widerrufsrecht verliere.
+
+{/if}
+{if $WITHDRAWAL_LINK || $PDF_LINK}
+§ Muster-Widerrufsformular
+{if $PDF_LINK}Unser Muster-Widerrufsformular im PDF-Format: {$PDF_LINK} {/if}
+{if $WITHDRAWAL_LINK}
+Unser Muster-Widerrufsformular zum online Ausfüllen: {$WITHDRAWAL_LINK}{/if}
+{/if}
+
+
+Um die zum Download angebotenen PDF-Dateien zu öffnen, benötigen Sie ein Zusatzprogramm, wie zum Beispiel den Adobe Reader, welchen Sie im Internet kostenfrei herunterladen können. Die aktuelle Version des Adobe Readers finden Sie hier: http://get.adobe.com/de/reader/
+
+{if $JANOLAW_INFO_TEXT}{$JANOLAW_INFO_TEXT}{/if}
+
+{$EMAIL_SIGNATURE_TEXT}

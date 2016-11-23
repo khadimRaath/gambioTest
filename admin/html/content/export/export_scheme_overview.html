@@ -1,0 +1,69 @@
+{load_language_text section="export_schemes"}
+{if $content_data.show_wrapper}
+<div class="export_scheme_overview">
+	<div class="headline_container">
+		<div class="scheme_headline scheme_name">{$txt.provider}</div>
+		<div class="scheme_headline scheme_filename">{$txt.filename}</div>
+		<div class="scheme_headline scheme_cronjob_status">{$txt.cronjob}</div>
+		<div class="scheme_headline scheme_last_export">{$txt.last_export}</div>
+		<div class="clear_both"><!--&nbsp;--></div>
+	</div>
+{/if}	
+	{foreach item=scheme from=$content_data.schemes}
+	<div class="export_scheme_container" id="export_scheme_container_{$scheme->v_scheme_id}">
+		<div class="scheme_col scheme_name">{$scheme->v_data_array.scheme_name|escape}</div>
+		<div class="scheme_col scheme_filename">
+			<a href="../request_port.php?module=CSV&action=download_export_file&scheme_id={$scheme->v_scheme_id}" title="{$txt.download}: {$scheme->v_data_array.filename}" {if $scheme->v_data_array.file_exists == "false"} onclick="return false;" class="no_file"{/if}>{$scheme->v_data_array.filename}</a>
+		</div>
+		<div class="scheme_col scheme_cronjob_status">
+			{if $scheme->v_data_array.cronjob_status != 'no_cronjob'}
+				<div class="cronjob_status_icon tooltip {$scheme->v_data_array.cronjob_status} {if $scheme->v_data_array.cronjob_active != 1}inactive{/if}">{$scheme->v_data_array.cronjob_message}</div>
+			{/if}
+		</div>
+		<div class="scheme_col scheme_last_export">
+			<div class="scheme_last_export_date">{$scheme->v_data_array.date_last_export}</div>
+			<div class="scheme_buttons">
+				<a href="export/export_scheme_export.html?scheme_id={$scheme->v_scheme_id}&amp;token={$content_data.token}" class="export_small_lightbox" onclick="return false;">
+					<img src="html/assets/images/legacy/export_schemes/icon_export.png" title="{$txt.export_scheme}" alt="" />
+				</a>
+				<a href="export/export_scheme_export.html?scheme_id={$scheme->v_scheme_id}&amp;token={$content_data.token}&amp;download=true" class="export_small_lightbox" onclick="return false;">
+					<img src="html/assets/images/legacy/export_schemes/icon_download.png" title="{$txt.export_and_download}" alt="" />
+				</a>
+				<a href="export/export_scheme_details.html?scheme_id={$scheme->v_scheme_id}" class="export_big_lightbox" onclick="return false;">
+					<img src="html/assets/images/legacy/export_schemes/icon_edit.png" title="{$txt.edit_scheme}" alt="" />
+				</a>
+				<a href="export/export_scheme_delete.html?scheme_id={$scheme->v_scheme_id}&amp;buttons=cancel-delete" class="export_small_lightbox {if $scheme->v_data_array.created_by == 'gambio'}active{/if}" onclick="return false;">
+					<img src="html/assets/images/legacy/export_schemes/icon_delete.png" title="{$txt.delete_scheme}" alt="" />
+				</a>
+				<a href="#" title="{$txt.copy_scheme}" class="export_copy_scheme" rel="{$scheme->v_scheme_id}" onclick="return false;">
+					<img src="html/assets/images/legacy/export_schemes/icon_copy.png" title="{$txt.copy_scheme}" alt="" />
+				</a>
+				<div class="clear_both"><!--&nbsp;--></div>
+			</div>
+			<div class="clear_both"><!--&nbsp;--></div>
+			
+		</div>
+		<div class="clear_both"><!--&nbsp;--></div>
+	</div>
+	{/foreach}
+{if $content_data.show_wrapper}
+	<div class="button_container">
+		<div class="button_left_container" {if !$content_data.cronjob_exists}style="display: none;"{/if}>			
+			<a href="#" class="admin_button red deactivate_export" {if $content_data.export_active == false}style="display: none;"{/if} onclick="return false;">{$txt.deactivate_cronjob}</a>			
+			<a href="#" class="admin_button green activate_export" {if $content_data.export_active == true}style="display: none;"{/if} onclick="return false;">{$txt.activate_cronjob}</a>
+			<a href="#" class="admin_button red pause_export" {if $content_data.export_paused == true || $content_data.export_active == false}style="display: none;"{/if} onclick="return false;">{$txt.pause_cronjob}</a>			
+			<a href="#" class="admin_button green continue_export" {if $content_data.export_paused == false}style="display: none;"{/if} onclick="return false;">{$txt.activate_cronjob}</a>
+			<a href="#" class="admin_button green show_cronjob_url" onclick="return false;">{$txt.show_cronjob_url}</a><br />									
+		</div>
+		<div class="button_right_container">
+			<a href="export/export_scheme_details.html?scheme_id=0&amp;export_type={$content_data.type_id}" class="admin_button green export_big_lightbox" onclick="return false;">{$txt.add_scheme}</a>
+		</div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>   
+	</div>
+	<div class="cronjob_url_container" {if $content_data.cronjob_exists}style="display: none;"{/if}>
+		<div style="float: left; padding-top: 2px;">{$txt.export_cronjob_url}:&nbsp;&nbsp;&nbsp;<input type="text" class="cronjob_url" value="{$content_data.cronjob_url}" readonly="readonly" onfocus="this.select()" /></div>
+		<div class="tooltip" title="{$txt.tooltip_cronjob}"> <!-- &nbsp; --> </div>
+		<div class="clear_both"> <!-- &nbsp; --> </div>   
+	</div>
+</div>
+{/if}

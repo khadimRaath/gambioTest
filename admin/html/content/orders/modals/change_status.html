@@ -1,0 +1,102 @@
+{load_language_text section="buttons" name="btn"}
+
+<div class="status modal fade" tabindex="-1" role="dialog" data-gx-controller="orders/modals/change_status">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="{$admin_buttons.BUTTON_ClOSE}">
+					<span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title">{$orders.HEADING_GM_STATUS}</h4>
+			</div>
+			<div class="modal-body">
+				<form class="form-horizontal" data-gx-widget="single_checkbox">
+					<fieldset class="status-group">
+						<ul class="status">
+							<li class="status-number">
+								<div class="form-group">
+									<label for="status-dropdown" class="col-md-6">{$orders.ENTRY_NEW_ORDER_STATUS}</label>
+
+									<div class="col-md-6">
+										<select id="status-dropdown" name="order_status" class="form-control">
+											<option value>{$orders.TEXT_GM_STATUS}</option>
+											{foreach $content.order_status as $status}
+											<option value="{$status.orders_status_id}">{$status.orders_status_name}</option>
+											{/foreach}
+										</select>
+									</div>
+
+								</div>
+							</li>
+
+							{* Selected Order IDs *}
+							<li class="status-number">
+								<div class="form-group">
+									<label class="col-md-6">{$orders.TEXT_SELECTED_ORDERS}</label>
+									
+									<div class="col-md-6 selected-orders">
+										{* Dynamic Content *}
+									</div>
+								</div>
+							</li>
+
+							<li class="status-number">
+								<div class="form-group">
+									<label for="notify-customer" class="col-md-6">{$orders.ENTRY_NOTIFY_CUSTOMER}</label>
+
+									<div class="col-md-6">
+										<input id="notify-customer" 
+											   type="checkbox" 
+											   name="notify_customer" 
+											   value="on" data-single_checkbox />
+									</div>
+
+								</div>
+							</li>
+
+							<li class="status-number">
+								<div class="form-group">
+									<label for="send-parcel-tracking-code" 
+										   class="col-md-6">{$orders.ENTRY_SEND_PARCEL_TRACKING_CODES}</label>
+									<div class="col-md-6">
+										<input id="send-parcel-tracking-code"
+											   type="checkbox"
+										       name="send_parcel_tracking_codes"
+										       value="on"
+										       data-single_checkbox />
+									</div>
+								</div>
+							</li>
+							<li class="status-number">
+								<div class="form-group">
+									<label for="send-comment"
+										   class="col-md-6">{$orders.ENTRY_NOTIFY_COMMENTS}</label>
+									<div class="col-md-6">
+										<input id="send-comment"
+											   type="checkbox"
+										       name="send_comment"
+										       value="on"
+										       data-single_checkbox />
+									</div>
+								</div>
+							</li>
+							<li class="status-number">
+								<div class="form-group">
+									<label for="comment" class="col-md-6">{$orders.TABLE_HEADING_COMMENTS}</label>
+									<div class="col-md-6">
+										<textarea id="comment" class="form-control" name="comment"></textarea>
+									</div>
+								</div>
+							</li>
+						</ul>
+					</fieldset>
+				</form>
+
+
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">{$btn.close}</button>
+				<button type="button" class="btn btn-primary save">{$btn.execute}</button>
+			</div>
+		</div>
+	</div>
+</div>

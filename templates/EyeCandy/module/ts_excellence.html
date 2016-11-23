@@ -1,0 +1,35 @@
+{load_language_text section="ts_excellence"}
+<div class="ts_excellence_box" style="clear:left;color:#666666;border:1px solid #aaaaaa;overflow:auto;padding:5px;margin:1em;">
+	<div class="ts_seal" style="overflow:auto;float:left;margin:5px;min-height:80px;">
+		<a href="https://www.trustedshops.com/shop/certificate.php?shop_id={$TSID}" target="_blank">
+			<img src="{$smarty.const.DIR_WS_IMAGES}trusted_siegel.gif" title="{$txt.seal_title}" alt="{$txt.seal_title}">
+		</a>
+	</div>
+	<div class="ts_form" style="margin-left: 90px;">
+		{if $has_protection}
+		<div class="ts_heading" style="text-align: center; font-weight: bold; margin-bottom: 1ex;">
+			{$txt.protection_added}
+		</div>
+		<div class="ts_e_product">
+			{$txt.product_name} {$protected_amount} ({$protection_fee} {$txt.including_tax})
+		</div>
+		<div class="ts_e_body" style="margin:1ex 0;">{$txt.body}</div>
+		<div style="text-align: center;">
+			<button id="remove_tsbp">{$txt.ts_remprot_button}</button>
+		</div>
+		{else}
+		<input type="hidden" name="tsbp_amount" value="{$total}">
+		<div class="ts_heading" style="text-align: center; font-weight: bold; margin-bottom: 1ex;">
+			{$txt.checkbox_label}
+		</div>
+		<div class="ts_e_product">
+			{$txt.product_name} {$protected_amount} ({$protection_fee} {if $incl_tax}{$txt.including_tax}{else}{$txt.excluding_tax}{/if})
+		</div>
+		<div class="ts_e_body" style="margin:1ex 0;">{$txt.body}</div>
+		<div style="text-align: center;">
+			<button id="add_tsbp" style="color:#000; padding: 5px 15px; font-size: 1.2em;">{$txt.ts_addprot_button}</button>
+		</div>
+		{/if}
+	</div>
+	{* <pre style="clear:both;">{$foo}</pre> *}
+</div>

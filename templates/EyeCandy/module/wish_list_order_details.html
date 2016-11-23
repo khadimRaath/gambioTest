@@ -1,0 +1,39 @@
+{load_language_text section="order_details"}
+{load_language_text section="buttons" name="button"}
+
+
+<table cellspacing="0" class="shopping_cart_list">
+	<tr class="row_0 first">
+		<th>&nbsp;</th>
+		<th class="col_1">{$txt.text_article}</th>
+		<th class="col_2 wish_list_qty">{$txt.text_qty}</th>
+		<th class="wish_list_checkbox"></th>
+	</tr>
+
+	{foreach name=cart item=module_data from=$content_data.module_content}
+	<tr class="{if $smarty.foreach.cart.last}last-article{else}article{/if}">
+		<td class="col_0">{if $module_data.PRODUCTS_IMAGE!=''}<a href="{$module_data.PRODUCTS_LINK}"><img src="{$module_data.PRODUCTS_IMAGE}" alt="{$module_data.IMAGE_ALT}" /></a>{/if}</td>
+		<td class="col_1">
+			<a href="{$module_data.PRODUCTS_LINK}" class="strong">{$module_data.PRODUCTS_NAME}</a><br/>
+			{if $module_data.PRODUCTS_MODEL != "" && $module_data.SHOW_PRODUCTS_MODEL == "true"}{$txt.text_model} {$module_data.PRODUCTS_MODEL}<br/>{/if}
+			{if $module_data.GM_WEIGHT != '0'}{$txt.text_weight} {$module_data.GM_WEIGHT}{$txt.text_weight_unit}<br/>{/if}
+			{if $module_data.PRODUCTS_SHIPPING_TIME != ""}{$txt.text_shippingtime} {$module_data.PRODUCTS_SHIPPING_TIME}<br/>{/if}
+
+			{if $module_data.ATTRIBUTES != ''}
+				{foreach key=key_data item=item_data from=$module_data.ATTRIBUTES}
+					{$item_data.NAME}: {$item_data.VALUE_NAME}<br />
+				{/foreach}
+			{/if}
+			{$module_data.PROPERTIES}
+			<br />{$module_data.PRODUCTS_SINGLE_PRICE}{if $module_data.PRODUCTS_VPE_ARRAY.vpe_text != ''}<br />{$module_data.PRODUCTS_VPE_ARRAY.vpe_text}{/if}<br />{$module_data.TAX_SHIPPING_INFO}<br /><br />
+			<div id="gm_checker_error_{$module_data.PRODUCTS_ID}" class="cart_error_color"></div>
+		</td>
+		<td class="col_2 wish_list_qty">
+			<input type="text" name="{$module_data.PRODUCTS_QTY_INPUT_NAME}" value="{$module_data.PRODUCTS_QTY_VALUE}" style="width:30px; text-align:right" size="2" class="input-text gm_cart_data" />&nbsp;{$module_data.UNIT}
+			<input type="hidden" name="{$module_data.PRODUCTS_ID_INPUT_NAME}" value="{$module_data.PRODUCTS_ID_EXTENDED}" class="gm_cart_data" />
+			<input type="hidden" name="{$module_data.PRODUCTS_OLDQTY_INPUT_NAME}" value="{$module_data.PRODUCTS_QTY_VALUE}" />
+		</td>
+		<td  class="wish_list_checkbox" align="right">{$module_data.BOX_DELETE}</td>
+	</tr>
+	{/foreach}
+</table>

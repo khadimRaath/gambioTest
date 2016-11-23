@@ -1,0 +1,28 @@
+{load_language_text section="account_history"}
+{load_language_text section="buttons" name="button"}
+
+<div id="account">
+	<h1>
+		{$txt.heading_history}
+	</h1>
+	{foreach name=aussen item=order_data from=$order_content}				
+	<h2>
+			{$txt.title_order_number}{$order_data.ORDER_ID}
+	</h2>
+	<span class="strong">{$txt.label_date}</span>{$order_data.ORDER_DATE}<br />
+	<span class="strong">{$txt.label_articles}</span>{$order_data.ORDER_PRODUCTS}<br />
+	<span class="strong">{$txt.label_total}</span>{$order_data.ORDER_TOTAL}<br />
+	<span class="strong">{$txt.label_status}</span>{$order_data.ORDER_STATUS}<br />
+	<br />
+	<a href="{$order_data.BUTTON_URL}" class="button_blue button_set"><span class="button-outer"><span class="button-inner">{$button.show}</span></span></a>
+	<br />
+	<br />
+	{/foreach}
+	
+	{$SPLIT_BAR}
+	
+	<div class="align_right">
+		<br />
+		<a href="{$BUTTON_BACK_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+	</div>
+</div>

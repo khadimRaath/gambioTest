@@ -1,0 +1,75 @@
+{load_language_text section="contact_us"}
+{load_language_text section="buttons" name="button"}
+
+
+{load_language_text section="gv_send"}
+
+<div class="contact_us">
+	<h1>
+		{$txt.heading_gvsend}
+	</h1>	
+	
+{if $action eq 'process'}
+		<br />		
+
+		<div class="box_content">
+			{$txt.text_success}
+			<br />
+			<br />
+			<br />
+			<a href="{$CONTINUE_LINK}" class="button_blue_big button_set_big"><span class="button-outer"><span class="button-inner">{$button.continue}</span></span></a>
+			
+		</div>		
+{elseif $action eq 'send'}
+	<form action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+		<br />		
+
+		<div class="box_content">
+			{$MAIN_MESSAGE}
+			<br />
+			{if $POST_MESSAGE neq ''}
+				{$POST_MESSAGE}
+			{/if}
+			<br />
+			<br />
+
+			<a href="javascript:history.go(-1)" class="button_grey_big button_set_big button_gv_send_back"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+			<div class="send_button"><a href="{page_url}#" class="button_blue_big button_set_big action_submit"><span class="button-outer"><span class="button-inner">{$button.send}</span></span></a></div>
+
+		</div>
+		{$HIDDEN_FIELDS}
+	</form>
+
+	{elseif $action eq ''}
+
+		<div class="content_contact">{$txt.heading_text}</div>
+		<br />
+
+		<div class="required_info">
+			{$txt.text_required}
+		</div>
+
+		<form action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+			<fieldset class="blocklabels_150">
+				<div class="input">
+					<label>{$txt.entry_name}</label>
+					{$INPUT_TO_NAME} {$txt.text_required_sign}
+				</div>
+				<div class="input">
+					<label>{$txt.entry_email}</label>
+					{$INPUT_EMAIL} {$txt.text_required_sign} {if $ERROR_EMAIL neq ''}{$txt.error_entry_email_address_check}{/if}
+				</div>
+				<div class="input">
+					<label>{$txt.entry_amount}</label>
+					{$INPUT_AMOUNT} {$txt.text_required_sign} {if $ERROR_AMOUNT neq ''}{$txt.error_entry_amount_check}{/if}
+				</div>
+				<div class="input">
+					<label>{$txt.entry_message}</label>
+					{$TEXTAREA_MESSAGE}
+				</div>
+			</fieldset>
+
+			<div class="send_button"><a href="{page_url}#" class="button_blue_big button_set_big action_submit"><span class="button-outer"><span class="button-inner">{$button.continue}</span></span></a></div>
+		</form>
+	{/if}
+</div>

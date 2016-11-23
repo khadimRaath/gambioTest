@@ -1,0 +1,46 @@
+/* 
+	Tooltip Icons
+    ========================================================================== 
+
+	Basic styling for tooltip icons.
+	
+*/
+
+.tooltip_icon {
+	float:     right;
+	cursor:    default;
+	margin:    0 12px;
+	
+	i {
+		&.fa {
+			font-size: 24px;
+		}
+		
+		&:first-child {
+			margin-top: 2px;
+		}
+	}
+	
+	&.warning {
+		i:first-child {
+			color: $brand-danger;
+		}
+	}
+	
+	&.info i:first-child {
+		color: tint($text-color, 31.5);
+	}
+	
+	i:hover {
+		cursor: pointer;
+	}
+	
+}
+
+span {
+	&:last-of-type {
+		&.tooltip_icon {
+			margin-left: 0;
+		}
+	}
+}

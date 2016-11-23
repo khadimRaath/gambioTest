@@ -1,0 +1,14 @@
+<table class="order-total table table-responsive">
+	<tbody>
+		{foreach item=total_item from=$total_block_data}
+			<tr class="{if $smarty.foreach.total_block.last} order-total-last{/if}">
+				<td class="col-xs-6">
+					{$total_item.title}
+				</td>
+				<td class="col-xs-6 text-right">
+					{$total_item.text}
+				</td>
+			</tr>
+		{/foreach}
+	</tbody>
+</table>

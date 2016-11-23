@@ -1,0 +1,22 @@
+{extends file="../../layouts/main/partial/tooltip.html"}
+
+{block name="content"}
+	<table class="customer-memos">
+		<tbody>
+			{foreach $memos as $memo}
+				<tr class="memo">
+					<td>
+						{$memo.creation_date|date_format:"%d.%m.%Y"}<br/>
+						<span class="poster">{$memo.poster_name}</span>
+					</td>
+					<td>
+						<span class="title">{$memo.title}</span>
+					</td>
+					<td>
+						{$memo.text}
+					</td>
+				</tr>
+			{/foreach}
+		</tbody>
+	</table>
+{/block}

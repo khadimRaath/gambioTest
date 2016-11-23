@@ -1,0 +1,71 @@
+{load_language_text section="gm_customer_upload"}
+
+<div id="account">
+	{$FORM_ACTION}
+	<div id="iconizing_icon">
+		<img src="{$tpl_path}icons/persdaten.gif" />
+	</div>
+
+	<h1>
+		<div style="float:left">
+			{$txt.gm_heading_customer_upload}
+		</div>
+		<div class="class_error_message" style="text-align:right">
+			{$UPLOAD_ERROR}
+		</div>
+	</h1>
+	<br />
+	<div class="heading">
+		<h2>
+			{$txt.gm_sub_heading_customer_upload}
+		</h2>
+	</div>
+	<div class="box_content">
+		{if $GM_UPLOAD == "delete"}
+			{$txt.gm_text_confirm_delete}
+		{elseif $GM_UPLOAD == "edit"}			
+			<div class="cell_left">
+				{$UPLOAD_FIELD.fields_name}
+			</div>
+			<div class="cell_right">
+				{$UPLOAD_FIELD.upload_field}
+				{$UPLOAD_FIELD.upload_field_hidden}
+				{$UPLOAD_FIELD.upload_file_hidden}
+			</div>
+			<div class="cell_left">
+				&nbsp;
+			</div>
+			<div class="cell_right">
+				{$UPLOAD_FIELD.fields_description}				
+			</div>
+		{else}
+			{foreach name=aussen item=item from=$GM_UPLOADS}
+				<div class="cell_left">
+					{$item.fields_name|default:txt.gm_text_no_file}
+				</div>
+				<div class="cell_right">				
+					<div style="float:left">
+						{$item.filename|default:txt.gm_text_no_file}
+					</div>
+					<div style="text-align:right">
+						{if $GM_UPLOAD_EDIT == '1' || $GM_UPLOAD_DELETE == '1'}
+							{if $GM_UPLOAD_DELETE == '1' && $item.filename != ''}
+							<a href="{$GM_UPLOAD_DELETE_LINK}&upload_files_id={$item.upload_files_id}">{$GM_UPLOAD_BUTTON_DELETE}</a>
+							{/if}
+							{if $GM_UPLOAD_EDIT == '1'}
+							<a href="{$GM_UPLOAD_EDIT_LINK}&upload_files_id={$item.upload_files_id}&upload_fields_id={$item.upload_fields_id}">{$GM_UPLOAD_BUTTON_EDIT}</a>
+							{/if}
+						{else}
+							&nbsp;
+						{/if}
+					</div>
+				</div>
+			{/foreach}
+		{/if}
+		<br />
+		<br />
+		<div class="box_left">{$BUTTON_BACK}</div>
+		<div class="align_right">{$BUTTON_SUBMIT}</div>
+	</div>
+	</form>
+</div>

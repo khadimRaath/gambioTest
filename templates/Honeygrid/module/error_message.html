@@ -1,0 +1,43 @@
+{load_language_text section="product_listing" name="product"}
+{load_language_text section="advanced_search"}
+{load_language_text section="buttons" name="button"}
+
+{$FILTER_SELECTION}
+		
+<h1>{$txt.heading_search}</h1>
+		
+{include file="get_usermod:{$tpl_path}snippets/alert_message.html" message=$txt.text_search_again type="danger"}
+		
+{$FORM_ACTION}
+	<fieldset class="form-horizontal">
+
+		<div class="form-group">
+
+			<label for="{$INPUT_SEARCH_NAME}" class="control-label col-sm-3">
+				{$txt.text_search_heading}
+			</label>
+
+			<div class="col-sm-9 col-lg-6 input-container">
+				<input type="text"
+					   placeholder="{$txt.text_search_heading}"
+					   id="{$INPUT_SEARCH_NAME}"
+					   name="{$INPUT_SEARCH_NAME}"
+					   class="form-control"
+					   value="" />
+			</div>
+
+		</div>
+		
+		<div class="row">
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				&nbsp;
+			</div>
+			<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+				<button type="submit" class="btn btn-primary btn-block" title="{$button.search}">
+					{$button.search}
+				</button>
+			</div>
+		</div>
+		
+	</fieldset>
+</form>

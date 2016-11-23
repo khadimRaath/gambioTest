@@ -1,0 +1,49 @@
+{load_language_text section="feature_set"}
+{foreach key=feature_set_id item=feature_set from=$content_data.feature_sets}
+	{if $content_data.show_set_container}
+		<div id="feature_set_id_{$feature_set_id}" class="feature_set_box">
+	{/if}
+	
+	{foreach key=feature_box_id item=feature_box from=$feature_set}
+		<div class="feature_box" id="feature_id_{$feature_box_id}">
+			<div class="feature_box_header">
+				<div class="feature_box_headline">
+					<span>{if !empty($feature_box.feature_admin_name)}{$feature_box.feature_admin_name}{else}{$feature_box.feature_name}{/if}</span>:
+					{if array_key_exists($feature_box_id, $content_data.individual_features) || $content_data.delete_box_button}
+						<a href="#" title="{$txt.delete_feature_box}" rel="{$feature_box_id}" class="delete_feature_box"><img src="html/assets/images/legacy/buttons/button_cancel_red_cross.png" alt="{$txt.delete_feature_box}" /></a>
+					{/if}
+				</div>
+
+			</div>
+			<div class="feature_values gambio_scrollbar">
+				{foreach key=feature_value_id item=feature_value_name from=$feature_box.feature_values}
+					<a href="#" onclick="return false;" rel="{$feature_value_id}" {if isset($content_data.selected_values) && in_array($feature_value_id, $content_data.selected_values)}class="active"{/if}>{$feature_value_name}</a>
+				{/foreach}
+			</div>								
+		</div>
+	{/foreach}
+		
+	{if $content_data.show_set_container}
+			{if $content_data.edit_set_button || $content_data.delete_set_button}
+			<div class="feature_box_buttons">
+				{if $content_data.edit_set_button}
+				<a href="filter/feature_set_container.html?action=edit&amp;feature_set_id={$feature_set_id}&amp;categories_path={$content_data.categories_path}&amp;products_id={$content_data.products_id}" title="{$txt.edit_feature_set}" onclick="return false;" class="feature_edit_button feature_set_lightbox_open">
+					<span class="btn-edit cursor-pointer">
+						<i class="fa fa-pencil fa-fw"></i>
+					</span>
+				</a>
+				{/if}
+				{if $content_data.delete_set_button}
+				<a href="filter/feature_set_container.html?action=delete&amp;feature_set_id={$feature_set_id}&amp;categories_path={$content_data.categories_path}&amp;products_id={$content_data.products_id}" title="{$txt.delete_feature_set}" onclick="return false;" class="feature_delete_button feature_set_lightbox_open">
+					<span class="btn-delete cursor-pointer">
+						<i class="fa fa-trash-o"></i>
+					</span>
+				</a>
+				{/if}
+			</div>
+			{/if}
+			<div class="clear_both"> <!-- --> </div>
+		</div>
+		<div class="clear_both"> <!-- --> </div>
+	{/if}
+{/foreach}

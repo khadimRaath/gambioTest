@@ -1,0 +1,21 @@
+{load_language_text section="account_delete"}
+{load_language_text section="buttons" name="button"}
+
+<div id="account">
+	<h1>{$txt.heading_delete_account}</h1>
+	<h2 class="underline"><img class="png-fix" src="{$tpl_path}img/icons/personal-data.png" alt="" /> {$txt.title_delete_account}</h2>
+	<form id="{$FORM_ID}" action="{$FORM_ACTION_URL}" method="{$FORM_METHOD}">
+		{$HIDDEN_ACTION_FIELD}
+		<fieldset class="blocklabels_150">
+
+			<div class="input">
+				<label>{$txt.label_annotation}</label>
+				<textarea name="{$GM_COMMENTS_NAME}" class="input-textarea" style="width:300px; height:100px"></textarea>
+			</div>
+
+		</fieldset>
+
+		<a href="{$BUTTON_BACK_LINK}" class="button_grey button_set"><span class="button-outer"><span class="button-inner">{$button.back}</span></span></a>
+		<a href="{page_url}#" class="button_blue button_set action_submit"><span class="button-outer"><span class="button-inner">{$button.send}</span></span></a>
+	</form>
+</div>

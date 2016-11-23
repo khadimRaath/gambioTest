@@ -1,0 +1,72 @@
+{load_language_text section="box_filter"}
+
+<div class="filter-box-form-wrapper">
+	<input type="hidden" name="feature_categories_id" value="{$content_data.categories_id}" />
+	<input type="hidden" name="filter_categories_id" value="{$content_data.categories_id}" />
+
+	{foreach name=feature_html item=feature_code from=$content_data.FEATURE_DATA}
+		<div class="{if ($content_data.FEATURE_MODE == 1 && $feature_code.show == false) || ($content_data.FEATURE_EMPTY_BOX_MODE == 0 && $feature_code.empty_feature == true)} hidden{/if}">
+			{$feature_code.html}
+			{if $content_data.FEATURE_EMPTY_BOX_MODE == 1}
+				<div{if !$feature_code.empty_feature} class="hidden"{/if}>
+					{$txt.feature_empty_text}
+				</div>
+			{/if}
+		</div>
+	{/foreach}
+
+	{if $content_data.PRICE_FILTER_FROM_ACTIVE eq 'true' || $content_data.PRICE_FILTER_TO_ACTIVE eq 'true'}
+		<fieldset class="form-horizontal">
+			<label class="control-label option-heading" for="filter_price_min">
+				{$txt.text_price}
+			</label>
+
+			<div class="form-group input-container">
+				<div class="col-sm-4">
+					{if $content_data.PRICE_FILTER_FROM_ACTIVE eq 'true'}
+						<input type="text" class="form-control" id="filter_price_min" name="filter_price_min" placeholder="{$txt.text_price}" value="{$content_data.DEFAULT_PRICE_START}" />
+					{/if}
+				</div>
+
+				{if $content_data.PRICE_FILTER_TO_ACTIVE eq 'true'}
+					<label class="control-label col-sm-1" for="filter_price_max">
+						{$txt.text_between}
+					</label>
+					<div class="col-sm-4">
+						<input type="text" class="form-control" id="filter_price_max" name="filter_price_max" placeholder="{$txt.text_between}" value="{$content_data.DEFAULT_PRICE_END}" />
+					</div>
+					<label class="control-label col-sm-1">
+						{$content_data.CURRENCY}
+					</label>
+				{/if}
+			</div>
+
+		</fieldset>
+	{/if}
+
+	<div class="form-group">
+		<button class="btn btn-primary btn-block" type="submit" title="{$txt.button_filter}">
+			{$txt.button_filter}
+		</button>
+
+		<button class="btn btn-default btn-block" type="reset" title="{$txt.button_reset}">
+			{$txt.button_reset}
+		</button>
+	</div>
+
+	<input type="hidden" name="filter_url" value="{$content_data.FILTER_URL}" />
+	{load_env_array source='get' name='ENV_GET_DATA' exclude='filter_fv_id,value_conjunction,filter_price_min,filter_price_max,do,value_conjunction,page_token'}
+	{foreach name=hidden_params key=param_key item=param_value from=$ENV_GET_DATA}
+		{if $param_key != 'feature_categories_id' && $param_key != 'filter_url' && $param_key != 'module' && $param_key != 'action'}
+			<input type="hidden" name="{$param_key}" value="{$param_value}" />
+		{/if}
+	{/foreach}
+
+	{load_env_array source='post' name='ENV_GET_DATA_POST' exclude='filter_fv_id,price_start,price_end,feature_values,filter_categories_id,filter_price_min,filter_price_max,do,value_conjunction,page_token'}
+	{foreach name=hidden_params key=param_key item=param_value from=$ENV_GET_DATA_POST}
+		{if $param_key != 'feature_categories_id' && $param_key != 'filter_url' && $param_key != 'module' && $param_key != 'action'}
+			<input type="hidden" name="{$param_key}" value="{$param_value}" />
+		{/if}
+	{/foreach}
+
+</div>

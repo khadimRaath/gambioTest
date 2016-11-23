@@ -1,0 +1,8 @@
+{if $additional_fields_data_array}
+	{foreach key=key item=item from=$additional_fields_data_array}
+		{if $item.value}
+			<dt>{$item.title}</dt>
+			<dd>{$item.value}</dd>
+		{/if}
+	{/foreach}
+{/if}

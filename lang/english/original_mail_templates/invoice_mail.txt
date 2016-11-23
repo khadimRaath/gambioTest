@@ -1,0 +1,5 @@
+Dear {$SALUTATION} {$CUSTOMER},
+
+With this e-mail you receive your invoice no. {$INVOICE_ID} of order no. {$ORDER_ID} from {$DATE}.
+
+{$EMAIL_SIGNATURE}

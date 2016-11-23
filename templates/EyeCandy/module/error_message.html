@@ -1,0 +1,18 @@
+{load_language_text section="product_listing" name="product"}
+{load_language_text section="advanced_search"}
+{load_language_text section="buttons" name="button"}
+
+{$FILTER_SELECTION}
+
+<div id="advanced_search">
+
+	<h1>{$txt.text_search_again}</h1>
+
+	{$FORM_ACTION}
+	<p>{$txt.text_search_heading}</p>
+	<p>
+		<input type="text" name="{$INPUT_SEARCH_NAME}" value="" class="input-text" />
+		<a href="{page_url}#" class="button_blue button_set action_submit"><span class="button-outer"><span class="button-inner">{$button.search}</span></span></a>
+	</p>
+	{$FORM_END}
+</div>

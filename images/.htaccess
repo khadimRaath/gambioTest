@@ -1,0 +1,35 @@
+# -----------------------------------------------------------------------------
+# ETags                                                              
+# -----------------------------------------------------------------------------
+
+<IfModule mod_headers.c>
+    Header unset ETag
+</IfModule>
+
+# `FileETag None` doesn't work in all cases.
+FileETag None
+
+# -----------------------------------------------------------------------------
+# Caching                                                            
+# -----------------------------------------------------------------------------
+
+<IfModule mod_expires.c>
+	ExpiresActive On 
+	ExpiresDefault "access plus 2 weeks"
+	
+	# Favicon (cannot be renamed!) and cursor images
+	ExpiresByType image/vnd.microsoft.icon "access plus 1 month"
+	ExpiresByType image/x-icon "access plus 1 month"
+	
+	# Media files
+	ExpiresByType audio/ogg "access plus 2 weeks"
+	ExpiresByType image/bmp "access plus 2 weeks"
+	ExpiresByType image/gif "access plus 2 weeks"
+	ExpiresByType image/jpeg "access plus 2 weeks"
+	ExpiresByType image/png "access plus 2 weeks"
+	ExpiresByType image/svg+xml "access plus 2 weeks"
+	ExpiresByType image/webp "access plus 2 weeks"
+	ExpiresByType video/mp4 "access plus 2 weeks"
+	ExpiresByType video/ogg "access plus 2 weeks"
+	ExpiresByType video/webm "access plus 2 weeks"
+</IfModule>

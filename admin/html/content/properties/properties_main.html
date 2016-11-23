@@ -1,0 +1,90 @@
+{load_language_text section="properties" name="properties"}
+{load_language_text section="admin_menu" name="title"}
+
+<div class="pageHeading" style="background-image:url(html/assets/images/legacy/gm_icons/artkatalog.png)">{$title.BOX_PROPERTIES|@ucfirst}</div>
+
+<div id="box_properties" class="gx-container breakpoint-large" data-gx-extension="toolbar_icons" data-toolbar_icons-large="true" data-toolbar_icons-fixedwidth="true">
+	<div id="properties_area_top" class="grid">
+		<a href="properties/properties_edit.html?properties_id=0"
+				title="{$properties.property_add}"
+				class="lightbox_open button_propertie_add btn btn-success pull-right">
+			<i class="fa fa-plus"></i>
+			{$properties.property}
+		</a>
+	</div>
+
+	<div id="properties_area_content">
+		<div class="properties_table_headline">{$properties.properties}</div>
+
+		{foreach item=properties_table from=$content_data.properties_tables}
+			<div id="properties_table_container_{$properties_table.properties_id}" class="properties_table_container">
+
+       <div class="properties_container_headline">
+        <a href="#" class="properties_button button_display_container"></a>
+
+		<div class="text-container">
+			{foreach item=properties_name from=$properties_table.properties_names name=properties_names_array}
+                {if $properties_name.properties_admin_name || $properties_name.properties_name}
+                    {if !$smarty.foreach.properties_names_array.first}
+                    <div class="properties_container_headline_placeholder">/</div>
+                    {/if}
+                {/if}
+                {if $properties_name.properties_admin_name}
+                        <div class="properties_container_headline_text">{$properties_name.properties_admin_name|escape} ({$properties_name.properties_name|escape})</div>
+                {else}
+                        <div class="properties_container_headline_text">{$properties_name.properties_name|escape}</div>
+                {/if}
+            {/foreach}
+		</div>
+
+		<div style="display: inline-block;">
+	        <a href="properties/properties_edit.html?properties_id={$properties_table.properties_id}" title="{$properties.property_edit}" class="icon btn-edit properties_button button_propertie_edit button_edit_pencil lightbox_open" style="margin-left: 24px;"></a>
+	        <a href="properties/properties_delete.html?properties_id={$properties_table.properties_id}" title="{$properties.property_delete}" class="icon btn-delete properties_button button_propertie_delete button_cancel_red_cross lightbox_open"></a>
+	        <a href="properties/properties_values_edit.html?properties_id={$properties_table.properties_id}&amp;properties_values_id=0" title="{$properties.property_value_add}" class="icon btn-add properties_button button_propertie_value_add button_add_green_plus lightbox_open"></a>
+		</div>
+
+        <div class="properties_sort_order_value">{$properties_table.sort_order}</div>
+        <div class="properties_sort_order_text">#</div>
+        <div style="clear: both;"> <!-- --> </div>
+        </div>
+        <div class="properties_container_content">
+        <table cellpadding="2" cellspacing="0" id="properties_table">
+        <tr>
+
+        {foreach item=properties_name from=$properties_table.properties_names}
+            <th class="properties_table_name">{$properties.value} ({$properties_name.code})</th>
+        {/foreach}
+
+        <th>{$properties.sort_order_short}</th>
+        <th>{$properties.products_model_short}</th>
+        <th colspan="3">{$properties.price}</th>
+        </tr>
+
+        {foreach item=properties_values from=$properties_table.properties_values}
+        <tr class="properties_values_id_{$properties_values.properties_values_id}">
+
+            {foreach item=values_name from=$properties_values.values_names}
+	            <td class="properties_table_name">
+	            {$values_name.values_name|escape}&nbsp;
+	            </td>
+            {/foreach}
+
+            <td class="properties_table_sortnr">{$properties_values.sort_order}&nbsp;</td>
+            <td class="properties_table_artnr">{$properties_values.value_model|escape}&nbsp;</td>
+            <td class="properties_table_price">{$properties_values.value_price_formatted}&nbsp;</td>
+            <td class="properties_table_button"><a href="properties/properties_values_edit.html?properties_id={$properties_table.properties_id}&amp;properties_values_id={$properties_values.properties_values_id}" title="{$properties.property_value_edit}" class="icon btn-edit no-margin properties_button button_propertie_value_edit button_edit_pencil lightbox_open"> <!-- --> </a></td>
+            <td class="properties_table_button"><a href="properties/properties_values_delete.html?properties_id={$properties_table.properties_id}&amp;properties_values_id={$properties_values.properties_values_id}" title="{$properties.property_value_delete}" class="icon btn-delete no-margin properties_button button_propertie_value_delete button_cancel_red_cross lightbox_open"> <!-- --> </a></td>
+        </tr>
+        {/foreach}
+
+        </table>
+        </div>
+			</div>
+		{/foreach}
+
+	</div>
+	<div id="properties_area_bottom"></div>
+</div>
+{literal}
+	<script type='text/javascript' src='../gm_javascript.js.php?page=Section&amp;globals=off&amp;section=properties_main'></script>
+{/literal}

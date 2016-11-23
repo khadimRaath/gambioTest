@@ -1,0 +1,47 @@
+<meta charset="UTF-8" />
+<div style="height: 100%; margin: 0 !important; padding: 0 !important; max-width: 9000px !important; background-color: #e5e5e5;">
+	<div style="margin-left: auto; margin-right: auto; width: 720px; padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #999999; text-align: right;">&nbsp;</div>
+
+	<div style="margin-left: auto; margin-right: auto; width: 630px; padding: 25px 45px 25px; background-color: white; margin-top: 15px; margin-bottom: 15px; display: block;">
+		<table align="center" border="0" cellpadding="4" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<td>
+						{if $gm_logo_mail}
+						<div style="overflow: hidden; margin-bottom: 25px; display: block; float: right;">{$gm_logo_mail}</div>
+						{/if}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">
+							<strong>Dear {if $GENDER == 'm'}Mr {elseif $GENDER == 'f'}Miss/Ms/Mrs {/if}{$NAME}, </strong><br />
+							<br />
+							The status of your order {$ORDER_NR} from {$ORDER_DATE} changed.<br />
+							{if $NOTIFY_COMMENTS}<br />
+							Comments: {$NOTIFY_COMMENTS}<br />
+							{/if}<br />
+							New status: <strong>{$ORDER_STATUS}</strong><br />
+							{if $PARCEL_TRACKING_CODES_ARRAY && $PARCEL_TRACKING_CODES}
+								<strong>Your tracking code(s) to your order: </strong><br /><br />
+								{foreach name=aussen item=PARCEL_TRACKING_CODE from=$PARCEL_TRACKING_CODES_ARRAY}
+									<a href="{$PARCEL_TRACKING_CODE->getServiceUrl()|escape}" target="_blank">{$PARCEL_TRACKING_CODE->getTrackingCode()|escape}</a> ({$PARCEL_TRACKING_CODE->getServiceName()|escape})<br />
+									{$PARCEL_TRACKING_CODE->getServiceComment()|nl2br}<br /><br />
+								{/foreach}
+							{/if}
+							For questions, feel free to answer to this mail.
+						</span></span>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		&nbsp;
+	</div>
+
+	<div style="padding-bottom: 5px; padding-top: 5px; font-size: 9pt; color: #444444; font-family: arial; text-align: center;">
+		<br /><br />
+		<span style="font-size:13px;"><span style="font-family: verdana,geneva,sans-serif;">{$EMAIL_SIGNATURE_HTML}</span></span>
+		<br /><br />
+	</div>
+</div>

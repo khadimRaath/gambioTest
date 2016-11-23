@@ -1,0 +1,62 @@
+{load_language_text section="account_history"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.heading_history}</h1>
+		
+{foreach name=aussen item=order_data from=$order_content}
+	<div class="order-history-element">
+		<h3>{$txt.title_order_number}{$order_data.ORDER_ID}</h3>
+		<dl class="row">
+			<dt class="col-xs-4 col-sm-3 col-md-2">
+				{$txt.label_date}
+			</dt>
+			<dd class="col-xs-8 col-sm-9 col-md-10">
+				{$order_data.ORDER_DATE}
+			</dd>
+
+			<dt class="col-xs-4 col-sm-3 col-md-2">
+				{$txt.label_articles}
+			</dt>
+			<dd class="col-xs-8 col-sm-9 col-md-10">
+				{$order_data.ORDER_PRODUCTS}
+			</dd>
+
+			<dt class="col-xs-4 col-sm-3 col-md-2">
+				{$txt.label_total}
+			</dt>
+			<dd class="col-xs-8 col-sm-9 col-md-10">
+				{$order_data.ORDER_TOTAL}
+			</dd>
+
+			<dt class="col-xs-4 col-sm-3 col-md-2">
+				{$txt.label_status}
+			</dt>
+			<dd class="col-xs-8 col-sm-9 col-md-10">
+				{$order_data.ORDER_STATUS}
+			</dd>
+		</dl>
+
+		<div class="row">
+			<div class="col-xs-6 col-sm-4 col-md-3">
+				<a class="btn btn-primary btn-block" href="{$order_data.BUTTON_URL}" title="{$button.show}">
+					{$button.show}
+				</a>
+			</div>
+			<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+				&nbsp;
+			</div>
+		</div>
+	</div>
+		
+{/foreach}
+
+<div class="row">
+	<div class="col-xs-6 col-sm-4 col-md-3">
+		<a class="btn btn-default btn-block" href="{$order_data.BUTTON_BACK_LINK}" title="{$button.back}">
+			{$button.back}
+		</a>
+	</div>
+	<div class="col-xs-6 col-sm-4 col-sm-offset-4 col-md-3 col-md-offset-6 text-right">
+		&nbsp;
+	</div>
+</div>

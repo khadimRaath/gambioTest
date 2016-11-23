@@ -1,0 +1,22 @@
+{load_language_text section="general" name="general"}
+
+{if $bar}
+	<div class="panel-pagination">
+
+		{$bar=$bar|replace:'<strong>':'<li><span class="active">'}
+		{$bar=$bar|replace:'</strong>':'</span></li>'}
+		{$bar=$bar|replace:'<a ':'<li><a '}
+		{$bar=$bar|replace:'</a>':'</a></li>'}
+		{$bar=$bar|replace:'&nbsp;':''}
+		{$bar=$bar|replace:$general.TEXT_RESULT_PAGE:''}
+		{$bar=$bar|replace:$general.PREVNEXT_BUTTON_NEXT:'<span>&raquo;</span>'}
+		{$bar=$bar|replace:$general.PREVNEXT_BUTTON_PREV:'<span>&laquo;</span>'}
+
+		<nav>
+			<ul class="pagination">
+				{$bar}
+			</ul>
+		</nav>
+
+	</div>
+{/if}

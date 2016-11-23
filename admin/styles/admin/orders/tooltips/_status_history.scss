@@ -1,0 +1,19 @@
+/*
+	Order Status History Tooltip
+    ==========================================================================
+
+	Tooltips contained in the order page.
+
+*/
+
+.gx-tooltip {
+	.order-status-history {
+		th, td {
+			padding: $margin-small;
+
+			&.center {
+				text-align: center;
+			}
+		}
+	}
+}

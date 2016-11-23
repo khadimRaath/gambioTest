@@ -1,0 +1,60 @@
+/* 
+	Main Application Header
+    ========================================================================== 
+
+	Style the main app header. 
+	
+*/
+
+$header-text-color: #FFFFFF;
+$header-bg-color: $brand-primary;
+
+#main-header {
+	@import "actions";
+	@import "info_box";
+	@import "search";
+	
+	position:   fixed;
+	left:       0;
+	top:        0;
+	width:      100vw;
+	z-index:    $zindex-main-header;
+	background: $header-bg-color;
+	color:      $header-text-color;
+	height:     $header-height;
+	
+	> div {
+		display: inline-block;
+		float:   left;
+	}
+	
+	> div:first-child {
+		padding-left: 0;
+	}
+	
+	> div:last-child {
+		padding-right: $padding-small;
+	}
+	
+	.logo {
+		width: $menu-width;
+		
+		a {
+			color:           $header-text-color;
+			text-decoration: none;
+			outline:         none;
+			
+			img {
+				float:  left;
+				width:  32px;
+				margin: 7px $margin-small;
+			}
+			
+			h1 {
+				font-size:   16px;
+				font-weight: bold;
+				margin:      14px 5px;
+			}
+		}
+	}
+}

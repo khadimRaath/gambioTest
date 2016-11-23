@@ -1,0 +1,37 @@
+<div class="billsafe">
+	{if $billsafe_token}
+	<script type="text/javascript" src="https://content.billsafe.de/lpg/js/client.js"></script>
+	{literal}
+	<script>
+		if(top.lpg) {
+			top.lpg.close('{/literal}{$lpg_close_url}{literal}');
+		}
+	</script>
+	{/literal}
+	<form action="{$layerform_action}" method="post" id="billsafe_form" style="visibility: hidden">
+		<input type="hidden" name="token" value="{$billsafe_token}">
+		{if $sandbox_mode == 'true'}
+		<input type="hidden" name="sandbox" value="true">
+		{/if}
+		<input type="hidden" name="product" value="{$product}">
+		<input type="submit" value="{$layerform_button}" id="bssubmit">
+	</form>
+	{literal}
+	<script>
+		var bsform = document.getElementById('billsafe_form');
+		var bssubmit = document.getElementById('bssubmit');
+		var lpg = new BillSAFE.LPG.client({
+			form: bsform,
+			conditions: {
+				invoice: [{element: 'product', value: 'invoice'}],
+				installment: [{element: 'product', value: 'installment'}]
+			},
+			sandbox: {/literal}{$sandbox_mode}{literal}
+		});
+		bssubmit.click();
+	</script>
+	{/literal}
+	{/if}
+	
+	{$main_content}
+</div>

@@ -1,0 +1,94 @@
+{load_language_text section="checkout_success"}
+{load_language_text section="buttons" name="button"}
+
+<h1>{$txt.title_success}</h1>
+
+<div class="alert alert-success">
+
+	<strong>{$txt.text_thankyou}</strong><br>
+	<br>
+	{$txt.text_success}
+
+</div>
+
+<p>&nbsp;</p>
+		
+<form action="{$FORM_ACTION_URL}" method="post" class="form-horizontal">
+	
+	<fieldset>
+		
+		<legend>
+			{$txt.heading_success}
+		</legend>
+
+
+		<div class="row">
+			<div class="col-sm-8">
+				<p>{$txt.text_printorder}</p>
+			</div>
+			<div class="col-sm-4">
+				<a href="{$BUTTON_PRINT_URL}" class="btn btn-primary btn-block lightbox_iframe">{$button.print}</a>
+			</div>
+		</div>
+
+		{if $smarty.session.customers_status.customers_status_id == 1}
+			<div class="row end-shopping">
+				<div class="col-sm-4 col-sm-offset-8">
+					<a href="{$LOGOFF_URL}" class="btn btn-default btn-block">{$txt.text_end_shopping}</a>
+				</div>
+			</div>
+		{/if}
+
+		{if $TS_RATING && $TS_RATING != ''}
+			<div class="row">
+				<label class="control-label col-sm-3">&nbsp;</label>
+
+				<div class="col-sm-9 input-container">
+					<p>{$TS_RATING}</p>
+				</div>
+			</div>
+		{/if}
+
+		{if $GV_SEND_LINK && $GV_SEND_LINK != ''}
+			<div class="row">
+				<label class="control-label col-sm-3">&nbsp;</label>
+
+				<div class="col-sm-9 input-container">
+					<p>{$txt.gv_has_vouchera}{$GV_SEND_LINK}{$txt.gv_has_voucherb}</p>
+				</div>
+			</div>
+		{/if}
+
+		{if $downloads_content != ''}
+			{$downloads_content}
+		{/if}
+		
+	</fieldset>
+
+	{if $google_tracking && $google_tracking == 'true'}
+		{$tracking_code}
+	{/if}
+	
+</form>
+
+{$NC_SUCCESS_INFO}
+
+{foreach name=extender_html item=extender_html from=$extender_html_array}
+	{$extender_html}
+{/foreach}
+
+{if $TRUSTED_BLOCK}
+	{$TRUSTED_BLOCK}
+{/if}
+
+{if $GOOGLE_CONVERSION}
+	{$GOOGLE_CONVERSION_BLOCK}
+{/if}
+
+{if $GOOGLE_ANALYTICS_CODE != '0'}
+	{$GOOGLE_ANALYTICS_CODE}
+{/if}
+
+{if $MODULE_yoochoose_checkout_tracking}
+	{$MODULE_yoochoose_checkout_tracking}
+{/if}

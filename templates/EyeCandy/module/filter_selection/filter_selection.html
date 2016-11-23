@@ -1,0 +1,19 @@
+{load_language_text section="product_listing"}
+
+{if isset($FILTER_SELECTION_ARRAY) && count($FILTER_SELECTION_ARRAY) gt 0}
+	<div class="filter_selection">
+		<p>{$txt.text_current_filter}:</p>
+		{foreach name=filter_selection item=feature from=$FILTER_SELECTION_ARRAY}
+		<div class="filter_container">
+			<div>{$feature.feature_name}:</div>
+			<div>
+				<ul>
+					{foreach name=filter_values_selection item=feature_value from=$feature.feature_values}
+					<li>{$feature_value}</li>
+					{/foreach}
+				</ul>
+			</div>
+		</div>
+		{/foreach}
+	</div>
+{/if}

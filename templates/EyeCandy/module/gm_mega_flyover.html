@@ -1,0 +1,5 @@
+<div id="flyover" style="width: {$BOX_WIDTH}px; height: {$BOX_HEIGHT}px;">
+	{foreach name=images item=image_data from=$images_data} 
+		<img src="{$image_data.IMAGE}" class="flyover_image" border="0" alt="" title="" style="margin-left:{$image_data.PADDING_LEFT}px; margin-top: {$image_data.PADDING_TOP}px; display: none;"/>
+	{/foreach}
+</div>

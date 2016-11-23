@@ -1,0 +1,21 @@
+<!--
+ Released under the GNU General Public License (Version 2)
+ [http://www.gnu.org/licenses/gpl-2.0.html]
+-->
+<form name='heidelpay' class='module_option_checked' action='{$formUrl}' method='post' onsubmit='return valGatewayForm();' autocomplete='off'>
+	<h4 class='auto_redirect'>{$smarty.const.HGW_TXT_AUTO_REDIRECT}</h4>
+	<br />
+	<script>{literal}document.addEventListener('DOMContentLoaded', function(){ $(document).ready(function(){ document.forms['heidelpay'].submit(); });});{/literal}</script>
+
+	<input type="hidden" name='CRITERION.GATEWAY' value='1' />
+	{if $DbOnRg}<input type="hidden" name='CRITERION.DBONRG' value='{$DbOnRg}' />{/if}
+	
+	{if (isset($formInput) && $formInput|@count gt 0)}
+		{foreach from=$formInput key=k item=v}
+			<input type="hidden" name="{$k}" value="{$v}" />
+		{/foreach}
+	{/if}
+	
+	<input type="button" value="{$smarty.const.HGW_BTN_CANCEL}" class="grey button left" onClick="location.href='ext/heidelpay/heidelpayGW_response.php?cancel=1'" />
+	<input type="submit" value="{$smarty.const.HGW_BTN_CONTINUE}" class="green button right" />
+</form>

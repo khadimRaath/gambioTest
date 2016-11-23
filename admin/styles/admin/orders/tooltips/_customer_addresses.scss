@@ -1,0 +1,33 @@
+/* 
+	Order Item Tooltip 
+    ========================================================================== 
+
+	Tooltips contained in the order page.
+	
+*/
+
+.gx-tooltip {
+	.customer-addresses {
+		.customer-email {
+			clear: both;
+			
+			a {
+				text-decoration: underline;
+			}
+		}
+		
+		.delivery-address,
+		.billing-address {
+			.title {
+				font-weight: bold;
+			}
+			float:         left;
+			margin-bottom: $margin-small;
+		}
+		
+		.delivery-address {
+			padding-right: $padding-small;
+			margin-right:  $margin-small;
+		}
+	}
+}

@@ -1,0 +1,30 @@
+{load_language_text section="box_search"}
+{load_language_text section="buttons" name="button"}
+
+{include file="get_usermod:{$tpl_path}snippets/box/default/top.html" class="search" headline=$txt.heading_search}
+
+<form id="{$content_data.FORM_ID}" action="{$content_data.FORM_ACTION_URL}" method="{$content_data.FORM_METHOD}">
+
+	<div class="form-group">
+		<div class="input-container">
+			<input type="text" class="form-control" name="{$content_data.INPUT_NAME}" id="{$content_data.INPUT_NAME}" title="{$txt.heading_search}"  placeholder="{$txt.heading_search}" />
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<button type="submit" class="btn btn-sm btn-block btn-primary" title="{$txt.title_search}">
+			{$button.go}
+		</button>
+	</div>
+
+	<ul class="list-group">
+		<li class="list-group-item">
+			<a class="btn btn-sm btn-block btn-default" title="{$txt.text_advanced_search}" href="{$content_data.LINK_ADVANCED}">
+				{$txt.text_advanced_search}
+			</a>
+		</li>
+	</ul>
+	
+</form>
+		
+{include file="get_usermod:{$tpl_path}snippets/box/default/bottom.html"}

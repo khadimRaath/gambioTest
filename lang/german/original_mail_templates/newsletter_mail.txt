@@ -1,0 +1,10 @@
+Sehr {if $GENDER == 'm'}geehrter Herr {elseif $GENDER == 'f'}geehrte Frau {else}geehrte(r) {/if}{$NAME},
+
+vielen Dank für die Anmeldung.
+
+Sie erhalten diese E-Mail, weil Sie unseren Newsletter empfangen möchten. Bitte klicken Sie auf den Aktivierungslink, damit Ihre E-Mail-Adresse für den Newsletterempfang freigeschaltet wird. Sollten Sie sich nicht in unseren Newsletter eingetragen haben bzw. den Empfang des Newsletters nicht wünschen, bitten wir Sie gar nichts zu tun. Ihre E-Mail-Adresse wird dann bei der nächsten Aktualisierung der Datenbank automatisch gelöscht.
+
+Ihr Aktivierungslink:
+{$LINK}
+
+{$EMAIL_SIGNATURE_TEXT}
